@@ -32,6 +32,7 @@ Configuration of interest includes
     - Reverse proxies to app via uWSGI socket
 
 * Let's Encrypt (`/etc/letsencrypt`)
+    - Managed by `certbot`
     - Used by `backoffice-le-ssl` Apache site config
     - Auto-renewing
 
@@ -72,7 +73,7 @@ _Not yet provisioned_
 * Single VPC
 
 * Security group for web servers allowing ports 80 and 443 from all and port 22
-  from Fred Hutch
+  from Fred Hutch (140.107.0.0/16)
 
 * Security group for RDS allowing port 5432 from web server security group and
-  the Fred Hutch
+  the Fred Hutch (140.107.0.0/16)
