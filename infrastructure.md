@@ -1,6 +1,9 @@
 # Seattle Flu Study infrastructure
 
-Currently managed by Thomas in the Bedford Lab.
+Run by the Bedford Lab, currently managed by Thomas.
+
+Unless noted otherwise, all of this is running under the AWS account
+296651737672.
 
 
 ## Route 53
