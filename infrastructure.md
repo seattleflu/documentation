@@ -19,11 +19,13 @@ _Internal tooling_
 
 * Testing [API](https://github.com/zeXLc2p0/api) at `/testing/api`
 * Production [API](https://github.com/zeXLc2p0/api) at `/production/api` (_not yet provisioned_)
-* [Metabase](https://metabase.com) at `/metabase` (_not yet provisioned_)
+* [Metabase](https://metabase.com) at `/metabase`
 
 Configuration of interest includes
 
-* Source code (`/opt/api`)
+* [API source code](https://github.com/zeXLc2p0/api) (`/opt/api`)
+
+* [Metabase container config and data](https://github.com/zeXLc2p0/metabase-service) (`/opt/metabase`)
 
 * uWSGI (`/etc/uwsgi`)
     - Apps enabled: `api-testing`
@@ -32,12 +34,21 @@ Configuration of interest includes
 * Apache2 (`/etc/apache2`)
     - Modules enabled: `ssl`, `proxy`, `proxy_uwsgi`
     - Sites enabled: `backoffice`, `backoffice-le-ssl`
-    - Reverse proxies to app via uWSGI socket
+    - Reverse proxies to API via uWSGI socket
+    - Reverse proxies to Metabase via HTTP
 
 * Let's Encrypt (`/etc/letsencrypt`)
     - Managed by `certbot`
     - Used by `backoffice-le-ssl` Apache site config
     - Auto-renewing
+
+* Docker
+    - `metabase` container defined using `/opt/metabase/create-container`
+    - run via systemd
+
+* systemd
+    - `systemctl status metabase`
+    - `/etc/systemd/system/metabase.service` → `/opt/metabase/metabase.service`
 
 ### frontoffice.seattleflu.org
 
