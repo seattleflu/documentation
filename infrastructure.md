@@ -23,6 +23,8 @@ _Internal tooling_
 
 Configuration of interest includes
 
+* [Static web source](https://github.com/zeXLc2p0/backoffice) (`/opt/backoffice`)
+
 * [API source code](https://github.com/zeXLc2p0/api) (`/opt/api`)
 
 * [Metabase container config and data](https://github.com/zeXLc2p0/metabase-service) (`/opt/metabase`)
