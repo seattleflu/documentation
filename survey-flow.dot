@@ -1,0 +1,109 @@
+digraph {
+  node [shape=box];
+
+  Symptoms;
+
+  BirthDate;
+  BirthDate -> WhereLive;
+
+  WhereLive;
+  WhereLive -> Address;
+  WhereLive -> Bedrooms [label="  if house"];
+  WhereLive -> Bedrooms [label="  if apartment"];
+  WhereLive -> BedAssignment [label="  if shelter"];
+
+  Bedrooms;
+  Bedrooms -> Address;
+
+  BedAssignment;
+  BedAssignment -> Address;
+
+  Address;
+  Address -> ExpoDesc;
+
+  ExpoDesc;
+  ExpoDesc -> NearSickPeople;
+
+  NearSickPeople;
+  NearSickPeople -> NearChildren;
+  NearSickPeople -> CoughSneeze [label="  if yes"];
+
+  CoughSneeze;
+  CoughSneeze -> NearChildren;
+
+  NearChildren;
+  NearChildren -> ChildrenNearChildren;
+
+  ChildrenNearChildren;
+  ChildrenNearChildren -> Smoke;
+
+  Smoke;
+  Smoke -> HouseholdSmoke;
+
+  HouseholdSmoke;
+  HouseholdSmoke -> RecentTravel;
+
+  ArrivedFrom;
+  ArrivedFrom -> RecentTravel;
+
+  RecentTravel;
+  RecentTravel -> TimeSpent;
+
+  TimeSpent;
+  TimeSpent -> NumPeople;
+  TimeSpent -> Occupation [label="  if work"];
+  TimeSpent -> SchoolType [label="  if school"];
+
+  Occupation;
+  Occupation -> WorkAddress;
+
+  WorkAddress;
+  WorkAddress -> HoursWorked;
+
+  HoursWorked;
+  HoursWorked -> NumPeople;
+
+  SchoolType;
+  SchoolType -> SchoolName;
+
+  SchoolName;
+  SchoolName -> NumPeople;
+
+  NumPeople;
+  NumPeople -> FluShot;
+
+  FluShot;
+  FluShot -> FirstSick;
+  FluShot -> VaccineDate [label="  if yes"];
+
+  VaccineDate;
+  VaccineDate -> FirstSick;
+
+  FirstSick;
+  FirstSick -> Antibiotics;
+
+  Antibiotics;
+  Antibiotics -> DailyInterference;
+
+  DailyInterference;
+  DailyInterference -> DoctorThisWeek;
+
+  DoctorThisWeek;
+  DoctorThisWeek -> AssignedSex;
+
+  AssignedSex;
+  AssignedSex -> Race;
+  AssignedSex -> Pregnant [label="  if female"];
+
+  Pregnant;
+  Pregnant -> Race;
+
+  Race;
+  Race -> HispanicLatino;
+
+  HispanicLatino;
+  HispanicLatino -> MedicalInsurance;
+
+  MedicalInsurance;
+
+}

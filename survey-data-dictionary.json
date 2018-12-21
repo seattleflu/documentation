@@ -1,0 +1,696 @@
+[
+  {
+    "id": "Symptoms",
+    "section": "ILLNESS HISTORY",
+    "text": "What symptoms have you experienced in the last week?",
+    "input": "multiple-choice",
+    "choices": [
+      {
+        "id": "feelingFeverish",
+        "text": "Feeling feverish"
+      },
+      {
+        "id": "headaches",
+        "text": "Headaches"
+      },
+      {
+        "id": "cough",
+        "text": "Cough"
+      },
+      {
+        "id": "diarrhea",
+        "text": "Diarrhea"
+      },
+      {
+        "id": "soreThroat",
+        "text": "Sore throat"
+      },
+      {
+        "id": "nauseaOrVomiting",
+        "text": "Nausea or vomiting"
+      },
+      {
+        "id": "runnyOrStuffyNose",
+        "text": "Runny or stuffy nose"
+      },
+      {
+        "id": "rash",
+        "text": "Rash"
+      },
+      {
+        "id": "fatigue",
+        "text": "Fatigue (tiredness)"
+      },
+      {
+        "id": "muscleOrBodyAches",
+        "text": "Muscle or body aches"
+      },
+      {
+        "id": "increasedTroubleBreathing",
+        "text": "Increased trouble with breathing"
+      },
+      {
+        "id": "earPainOrDischarge",
+        "text": "Ear pain or ear discharge"
+      },
+      {
+        "id": "noneOfTheAbove",
+        "text": "None of the above"
+      }
+    ],
+    "branches": {
+      "DEFAULT": null
+    }
+  },
+  {
+    "id": "BirthDate",
+    "section": "HOUSEHOLD COMPOSITION",
+    "text": "What is your date of birth?",
+    "input": "date",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "WhereLive"
+    }
+  },
+  {
+    "id": "WhereLive",
+    "section": "HOUSEHOLD COMPOSITION",
+    "text": "Where do you live?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "house",
+        "text": "House"
+      },
+      {
+        "id": "assistedLiving",
+        "text": "Assisted living"
+      },
+      {
+        "id": "shelter",
+        "text": "Shelter"
+      },
+      {
+        "id": "skilledNursingCenter",
+        "text": "Skilled nursing center"
+      },
+      {
+        "id": "apartment",
+        "text": "Apartment"
+      },
+      {
+        "id": "noneOfTheAbove",
+        "text": "None of the above"
+      },
+      {
+        "id": "dormitory",
+        "text": "Dormitory"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "Address",
+      "house": "Bedrooms",
+      "apartment": "Bedrooms",
+      "shelter": "BedAssignment"
+    }
+  },
+  {
+    "id": "Bedrooms",
+    "section": "HOUSEHOLD COMPOSITION",
+    "text": "How many bedrooms do you have?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "1bedroom",
+        "text": "1 bedroom"
+      },
+      {
+        "id": "2bedrooms",
+        "text": "2 bedrooms"
+      },
+      {
+        "id": "3bedrooms",
+        "text": "3 bedrooms"
+      },
+      {
+        "id": "4bedrooms",
+        "text": "4 bedrooms"
+      },
+      {
+        "id": "moreThan4Bedrooms",
+        "text": "More than 4 bedrooms"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "Address"
+    }
+  },
+  {
+    "id": "BedAssignment",
+    "section": "HOUSEHOLD COMPOSITION",
+    "text": "What is your bed assignment?",
+    "input": "number",
+    "choices": [
+      {
+        "id": "none",
+        "text": "None"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "Address"
+    }
+  },
+  {
+    "id": "Address",
+    "section": "HOUSEHOLD COMPOSITION",
+    "text": "What is your current address?",
+    "input": "address",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "ExpoDesc"
+    }
+  },
+  {
+    "id": "ExpoDesc",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "These questions are about being in contact with people who seemed to have a cold. In contact means being within 6 feet of them for at least 2 minutes. For reference, 6 feet is about the distance between you and someone sitting 2 rows ahead of you on the bus.",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "understand",
+        "text": "I understand"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "NearSickPeople"
+    }
+  },
+  {
+    "id": "NearSickPeople",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "In the past week, have you been in contact with a person who seemed to have a cold?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "NearChildren",
+      "yes": "CoughSneeze"
+    }
+  },
+  {
+    "id": "CoughSneeze",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Were they coughing or sneezing?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "NearChildren"
+    }
+  },
+  {
+    "id": "NearChildren",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "In the past week, have you been in contact with any children under 5 years of age for over an hour?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "1child",
+        "text": "1 child"
+      },
+      {
+        "id": "2to5children",
+        "text": "2-5 children"
+      },
+      {
+        "id": "moreThan5children",
+        "text": "More than 5 children"
+      },
+      {
+        "id": "none",
+        "text": "None"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "ChildrenNearChildren"
+    }
+  },
+  {
+    "id": "ChildrenNearChildren",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Do any children in your household attend a school, childcare setting, or play group with at least 3 other children for 3 or more hours per week?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "Smoke"
+    }
+  },
+  {
+    "id": "Smoke",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Do you smoke tobacco, marijuana, or vape?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "HouseholdSmoke"
+    }
+  },
+  {
+    "id": "HouseholdSmoke",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Does anyone in your household smoke tobacco, marijuana, or vape?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "RecentTravel"
+    }
+  },
+  {
+    "id": "ArrivedFrom",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Where have you arrived from?",
+    "input": "text",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "RecentTravel"
+    }
+  },
+  {
+    "id": "RecentTravel",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Where have you traveled in the last month?",
+    "input": "multiple-choice",
+    "choices": [
+      {
+        "id": "withinWashingtonStateOnly",
+        "text": "Within Washington State only"
+      },
+      {
+        "id": "toAnotherUSState",
+        "text": "To another US state"
+      },
+      {
+        "id": "toAnotherCountry",
+        "text": "To another country"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "TimeSpent"
+    }
+  },
+  {
+    "id": "TimeSpent",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Over the past 7 days and when you are awake, where have you spent the majority of your time?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "work",
+        "text": "Work"
+      },
+      {
+        "id": "school",
+        "text": "School"
+      },
+      {
+        "id": "home",
+        "text": "Home"
+      },
+      {
+        "id": "other",
+        "text": "Other"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "NumPeople",
+      "work": "Occupation",
+      "school": "SchoolType"
+    }
+  },
+  {
+    "id": "Occupation",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "What is your occupation?",
+    "input": "text",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "WorkAddress"
+    }
+  },
+  {
+    "id": "WorkAddress",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Where do you work?",
+    "input": "address",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "HoursWorked"
+    }
+  },
+  {
+    "id": "HoursWorked",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "How many hours do you work each day, on average?",
+    "input": "number",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "NumPeople"
+    }
+  },
+  {
+    "id": "SchoolType",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "What type of school do you attend?",
+    "input": "multiple-choice",
+    "choices": [
+      {
+        "id": "elementary",
+        "text": "Elementary"
+      },
+      {
+        "id": "middle",
+        "text": "Middle"
+      },
+      {
+        "id": "highSchool",
+        "text": "High school"
+      },
+      {
+        "id": "college",
+        "text": "College/university"
+      },
+      {
+        "id": "tradeSchool",
+        "text": "Trade school"
+      },
+      {
+        "id": "other",
+        "text": "Other"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "SchoolName"
+    }
+  },
+  {
+    "id": "SchoolName",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "What is the name of your school?",
+    "input": "text",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "NumPeople"
+    }
+  },
+  {
+    "id": "NumPeople",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "During a normal day, how many people are you in contact with?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "1to5people",
+        "text": "1-5 people"
+      },
+      {
+        "id": "6to10people",
+        "text": "6-10 people"
+      },
+      {
+        "id": "moreThan10people",
+        "text": "More than 10 people"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "FluShot"
+    }
+  },
+  {
+    "id": "FluShot",
+    "section": "ILLNESS HISTORY",
+    "text": "Did you get a flu shot in the last year?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "FirstSick",
+      "yes": "VaccineDate"
+    }
+  },
+  {
+    "id": "VaccineDate",
+    "section": "ILLNESS HISTORY",
+    "text": "What was the date of vaccination?",
+    "input": "date",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "FirstSick"
+    }
+  },
+  {
+    "id": "FirstSick",
+    "section": "ILLNESS HISTORY",
+    "text": "What day did you start to feel sick?",
+    "input": "date",
+    "choices": [],
+    "branches": {
+      "DEFAULT": "Antibiotics"
+    }
+  },
+  {
+    "id": "Antibiotics",
+    "section": "ILLNESS HISTORY",
+    "text": "Did you take prescription medicine such as antibiotics or antivirals for this current illness/cold?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "DailyInterference"
+    }
+  },
+  {
+    "id": "DailyInterference",
+    "section": "ILLNESS HISTORY",
+    "text": "Is your cold stopping you from doing things you would usually do?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yesLot",
+        "text": "Yes, a lot"
+      },
+      {
+        "id": "yesLittle",
+        "text": "Yes, a little"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "DoctorThisWeek"
+    }
+  },
+  {
+    "id": "DoctorThisWeek",
+    "section": "ILLNESS HISTORY",
+    "text": "Have you seen a doctor for your cold this week?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "AssignedSex"
+    }
+  },
+  {
+    "id": "AssignedSex",
+    "section": "DEMOGRAPHIC INFORMATION",
+    "text": "What was your assigned sex at birth?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "male",
+        "text": "Male"
+      },
+      {
+        "id": "female",
+        "text": "Female"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "Race",
+      "female": "Pregnant"
+    }
+  },
+  {
+    "id": "Pregnant",
+    "section": "DEMOGRAPHIC INFORMATION",
+    "text": "Are you currently pregnant?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "Race"
+    }
+  },
+  {
+    "id": "Race",
+    "section": "DEMOGRAPHIC INFORMATION",
+    "text": "How would you describe your race?",
+    "input": "multiple-choice",
+    "choices": [
+      {
+        "id": "americanIndianOrAlaskaNative",
+        "text": "American Indian or Alaska Native"
+      },
+      {
+        "id": "asian",
+        "text": "Asian"
+      },
+      {
+        "id": "nativeHawaiian",
+        "text": "Native Hawaiian or Other Pacific Islander"
+      },
+      {
+        "id": "blackOrAfricanAmerican",
+        "text": "Black or African American"
+      },
+      {
+        "id": "white",
+        "text": "White"
+      },
+      {
+        "id": "other",
+        "text": "Other"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "HispanicLatino"
+    }
+  },
+  {
+    "id": "HispanicLatino",
+    "section": "DEMOGRAPHIC INFORMATION",
+    "text": "Are you Hispanic or Latino?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": {
+      "DEFAULT": "MedicalInsurance"
+    }
+  },
+  {
+    "id": "MedicalInsurance",
+    "section": "DEMOGRAPHIC INFORMATION",
+    "text": "Do you have medical insurance?",
+    "input": "multiple-choice",
+    "choices": [
+      {
+        "id": "none",
+        "text": "None"
+      },
+      {
+        "id": "medicaid",
+        "text": "Medicaid"
+      },
+      {
+        "id": "privateInsurance",
+        "text": "Private insurance"
+      },
+      {
+        "id": "medicare",
+        "text": "Medicare"
+      },
+      {
+        "id": "other",
+        "text": "Other"
+      }
+    ],
+    "branches": {
+      "DEFAULT": null
+    }
+  }
+]

@@ -1,0 +1,248 @@
+§ ILLNESS HISTORY
+# Symptoms
+T What symptoms have you experienced in the last week?
+I multiple-choice
+	feelingFeverish ("Feeling feverish")
+	headaches ("Headaches")
+	cough ("Cough")
+	diarrhea ("Diarrhea")
+	soreThroat ("Sore throat")
+	nauseaOrVomiting ("Nausea or vomiting")
+	runnyOrStuffyNose ("Runny or stuffy nose")
+	rash ("Rash")
+	fatigue ("Fatigue (tiredness)")
+	muscleOrBodyAches ("Muscle or body aches")
+	increasedTroubleBreathing ("Increased trouble with breathing")
+	earPainOrDischarge ("Ear pain or ear discharge")
+	noneOfTheAbove ("None of the above")
+
+§ HOUSEHOLD COMPOSITION
+# BirthDate
+T What is your date of birth?
+I date
+
+§ HOUSEHOLD COMPOSITION
+# WhereLive
+T Where do you live?
+I single-choice
+	house ("House")
+	assistedLiving ("Assisted living")
+	shelter ("Shelter")
+	skilledNursingCenter ("Skilled nursing center")
+	apartment ("Apartment")
+	noneOfTheAbove ("None of the above")
+	dormitory ("Dormitory")
+
+§ HOUSEHOLD COMPOSITION
+# Bedrooms
+T How many bedrooms do you have?
+I single-choice
+	1bedroom ("1 bedroom")
+	2bedrooms ("2 bedrooms")
+	3bedrooms ("3 bedrooms")
+	4bedrooms ("4 bedrooms")
+	moreThan4Bedrooms ("More than 4 bedrooms")
+
+§ HOUSEHOLD COMPOSITION
+# BedAssignment
+T What is your bed assignment?
+I number
+	none ("None")
+
+§ HOUSEHOLD COMPOSITION
+# Address
+T What is your current address?
+I address
+
+§ HOUSEHOLD EXPOSURE
+# ExpoDesc
+T These questions are about being in contact with people who seemed to have a cold. In contact means being within 6 feet of them for at least 2 minutes. For reference, 6 feet is about the distance between you and someone sitting 2 rows ahead of you on the bus.
+I single-choice
+	understand ("I understand")
+
+§ HOUSEHOLD EXPOSURE
+# NearSickPeople
+T In the past week, have you been in contact with a person who seemed to have a cold?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
+# CoughSneeze
+T Were they coughing or sneezing?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
+# NearChildren
+T In the past week, have you been in contact with any children under 5 years of age for over an hour?
+I single-choice
+	1child ("1 child")
+	2to5children ("2-5 children")
+	moreThan5children ("More than 5 children")
+	none ("None")
+
+§ HOUSEHOLD EXPOSURE
+# ChildrenNearChildren
+T Do any children in your household attend a school, childcare setting, or play group with at least 3 other children for 3 or more hours per week?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
+# Smoke
+T Do you smoke tobacco, marijuana, or vape?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
+# HouseholdSmoke
+T Does anyone in your household smoke tobacco, marijuana, or vape?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
+# ArrivedFrom
+T Where have you arrived from?
+I text
+
+§ HOUSEHOLD EXPOSURE
+# RecentTravel
+T Where have you traveled in the last month?
+I multiple-choice
+	withinWashingtonStateOnly ("Within Washington State only")
+	toAnotherUSState ("To another US state")
+	toAnotherCountry ("To another country")
+
+§ HOUSEHOLD EXPOSURE
+# TimeSpent
+T Over the past 7 days and when you are awake, where have you spent the majority of your time?
+I single-choice
+	work ("Work")
+	school ("School")
+	home ("Home")
+	other ("Other")
+
+§ HOUSEHOLD EXPOSURE
+# Occupation
+T What is your occupation?
+I text
+
+§ HOUSEHOLD EXPOSURE
+# WorkAddress
+T Where do you work?
+I address
+
+§ HOUSEHOLD EXPOSURE
+# HoursWorked
+T How many hours do you work each day, on average?
+I number
+
+§ HOUSEHOLD EXPOSURE
+# SchoolType
+T What type of school do you attend?
+I multiple-choice
+	elementary ("Elementary")
+	middle ("Middle")
+	highSchool ("High school")
+	college ("College/university")
+	tradeSchool ("Trade school")
+	other ("Other")
+
+§ HOUSEHOLD EXPOSURE
+# SchoolName
+T What is the name of your school?
+I text
+
+§ HOUSEHOLD EXPOSURE
+# NumPeople
+T During a normal day, how many people are you in contact with?
+I single-choice
+	1to5people ("1-5 people")
+	6to10people ("6-10 people")
+	moreThan10people ("More than 10 people")
+
+§ ILLNESS HISTORY
+# FluShot
+T Did you get a flu shot in the last year?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ ILLNESS HISTORY
+# VaccineDate
+T What was the date of vaccination?
+I date
+
+§ ILLNESS HISTORY
+# FirstSick
+T What day did you start to feel sick?
+I date
+
+§ ILLNESS HISTORY
+# Antibiotics
+T Did you take prescription medicine such as antibiotics or antivirals for this current illness/cold?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ ILLNESS HISTORY
+# DailyInterference
+T Is your cold stopping you from doing things you would usually do?
+I single-choice
+	yesLot ("Yes, a lot")
+	yesLittle ("Yes, a little")
+	no ("No")
+
+§ ILLNESS HISTORY
+# DoctorThisWeek
+T Have you seen a doctor for your cold this week?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ DEMOGRAPHIC INFORMATION
+# AssignedSex
+T What was your assigned sex at birth?
+I single-choice
+	male ("Male")
+	female ("Female")
+
+§ DEMOGRAPHIC INFORMATION
+# Pregnant
+T Are you currently pregnant?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ DEMOGRAPHIC INFORMATION
+# Race
+T How would you describe your race?
+I multiple-choice
+	americanIndianOrAlaskaNative ("American Indian or Alaska Native")
+	asian ("Asian")
+	nativeHawaiian ("Native Hawaiian or Other Pacific Islander")
+	blackOrAfricanAmerican ("Black or African American")
+	white ("White")
+	other ("Other")
+
+§ DEMOGRAPHIC INFORMATION
+# HispanicLatino
+T Are you Hispanic or Latino?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ DEMOGRAPHIC INFORMATION
+# MedicalInsurance
+T Do you have medical insurance?
+I multiple-choice
+	none ("None")
+	medicaid ("Medicaid")
+	privateInsurance ("Private insurance")
+	medicare ("Medicare")
+	other ("Other")
+
