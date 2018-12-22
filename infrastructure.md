@@ -20,14 +20,17 @@ _Internal tooling_
 * Testing [API](https://github.com/zeXLc2p0/api) at `/testing/api`
 * Production [API](https://github.com/zeXLc2p0/api) at `/production/api` (_not yet provisioned_)
 * [Metabase](https://metabase.com) at `/metabase`
+* [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
 
 Configuration of interest includes
 
-* [Static web source](https://github.com/zeXLc2p0/backoffice) (`/opt/backoffice`)
+* [Webpage source and service configs](https://github.com/zeXLc2p0/backoffice) (`/opt/backoffice`)
 
 * [API source code](https://github.com/zeXLc2p0/api) (`/opt/api`)
 
-* [Metabase container config and data](https://github.com/zeXLc2p0/metabase-service) (`/opt/metabase`)
+* [Metabase container config and data](https://github.com/zeXLc2p0/backoffice/tree/metabase) (`/opt/backoffice/metabase`)
+
+* [Lab Labels container config](https://github.com/zeXLc2p0/backoffice/tree/lab-labels) (`/opt/backoffice/lab-labels`)
 
 * uWSGI (`/etc/uwsgi`)
     - Apps enabled: `api-testing`
@@ -45,12 +48,14 @@ Configuration of interest includes
     - Auto-renewing
 
 * Docker
-    - `metabase` container defined using `/opt/metabase/create-container`
+    - `metabase` container defined using `/opt/backoffice/metabase/create-container`
+    - `lab-labels` container defined using `/opt/backoffice/lab-labels/create-container`
     - run via systemd
 
 * systemd
     - `systemctl status metabase`
-    - `/etc/systemd/system/metabase.service` → `/opt/metabase/metabase.service`
+    - `/etc/systemd/system/metabase.service` → `/opt/backoffice/metabase/metabase.service`
+    - `/etc/systemd/system/lab-labels.service` → `/opt/backoffice/lab-labels/lab-labels.service`
 
 ### frontoffice.seattleflu.org
 
