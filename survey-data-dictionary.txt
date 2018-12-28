@@ -16,7 +16,7 @@ I multiple-choice
 	earPainOrDischarge ("Ear pain or ear discharge")
 	noneOfTheAbove ("None of the above")
 
-§ HOUSEHOLD COMPOSITION
+§ DATE OF BIRTH
 # BirthDate
 T What is your date of birth?
 I date
@@ -54,6 +54,11 @@ I number
 T What is your current address?
 I address
 
+§ HOUSEHOLD COMPOSITION
+# AddressCampus
+T What is your current address?
+I address
+
 § HOUSEHOLD EXPOSURE
 # ExpoDesc
 T These questions are about being in contact with people who seemed to have a cold. In contact means being within 6 feet of them for at least 2 minutes. For reference, 6 feet is about the distance between you and someone sitting 2 rows ahead of you on the bus.
@@ -84,6 +89,13 @@ I single-choice
 	none ("None")
 
 § HOUSEHOLD EXPOSURE
+# HaveChildren
+T Are there any children under 18 in your household?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
 # ChildrenNearChildren
 T Do any children in your household attend a school, childcare setting, or play group with at least 3 other children for 3 or more hours per week?
 I single-choice
@@ -105,9 +117,16 @@ I single-choice
 	no ("No")
 
 § HOUSEHOLD EXPOSURE
-# ArrivedFrom
-T Where have you arrived from?
-I text
+# DrinkAlcohol
+T Do you drink alcohol?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
+# HowManyDrinks
+T On average, how many alcoholic drinks do you consume per week? (1 drink = 1 beer, 1 glass of wine, or 1.5 fl oz/1 shot of hard alcohol)
+I number
 
 § HOUSEHOLD EXPOSURE
 # RecentTravel
@@ -116,6 +135,18 @@ I multiple-choice
 	withinWashingtonStateOnly ("Within Washington State only")
 	toAnotherUSState ("To another US state")
 	toAnotherCountry ("To another country")
+
+§ HOUSEHOLD EXPOSURE
+# WhereTravelled
+T What state(s) or countries have you traveled to?
+I text
+
+§ HOUSEHOLD EXPOSURE
+# WhenTravelled
+T Was this travel in the past 7 days?
+I single-choice
+	yes ("Yes")
+	no ("No")
 
 § HOUSEHOLD EXPOSURE
 # TimeSpent
@@ -139,7 +170,23 @@ I address
 § HOUSEHOLD EXPOSURE
 # HoursWorked
 T How many hours do you work each day, on average?
-I number
+I single-choice
+	0 ("0")
+	1 ("1")
+	2 ("2")
+	3 ("3")
+	4 ("4")
+	5 ("5")
+	6 ("6")
+	7 ("7")
+	8 ("8")
+	9 ("9")
+	10 ("10")
+	11 ("11")
+	12 ("12")
+	13 ("13")
+	14 ("14")
+	15+ ("15+")
 
 § HOUSEHOLD EXPOSURE
 # SchoolType
@@ -156,6 +203,42 @@ I multiple-choice
 # SchoolName
 T What is the name of your school?
 I text
+
+§ HOUSEHOLD EXPOSURE
+# Major
+T If you are a college student, what is/are your majors?
+I text
+	na ("Not Applicable")
+
+§ HOUSEHOLD EXPOSURE
+# CampusBuilding
+T If you are a UW student, which buildings do you spend the most time in on campus (in addition to your residence)?
+I multiple-choice
+	artLibaray ("Art Library")
+	bagley ("Bagley Hall")
+	builtLib ("Built Environments Library")
+	burke ("Burke Museum")
+	cse ("Computer Science and Engineering (CSE)")
+	engLib ("Engineering Library")
+	healthSci ("Health Sciences Building")
+	hecEd ("Hec Edmundson Pavilion")
+	hitchcock ("Hitchcock Hall")
+	huskeyStadium ("Husky Stadium")
+	hub ("HUB")
+	ima ("Intramural Activities Building (IMA)")
+	lifeSciences ("Life Sciences Building")
+	maryGates ("Mary Gates Hall")
+	meany ("Meany Hall")
+	moles ("Molecular Engineering and Sciences Building")
+	oceanSciences ("Ocean Sciences Building")
+	odegaard ("Odegaard Library")
+	paccar ("PACCAR Hall")
+	physicsAstron ("Physics-Astronomy Building")
+	suzzallo ("Suzzallo/Allen Libraries")
+	foege ("William H. Foege Hall")
+	willGates ("William H. Gates Hall")
+	other ("Other")
+	na ("Not Applicable")
 
 § HOUSEHOLD EXPOSURE
 # NumPeople
@@ -178,16 +261,26 @@ T What was the date of vaccination?
 I date
 
 § ILLNESS HISTORY
-# FirstSick
-T What day did you start to feel sick?
-I date
+# VaccineLocation
+T Where did you receive your vaccination?
+I single-choice
+	pharmacy ("Pharmacy")
+	clinic ("Clinic/Hospital")
+	workplace ("Workplace")
+	school ("School")
+	other ("Other")
 
 § ILLNESS HISTORY
-# Antibiotics
-T Did you take prescription medicine such as antibiotics or antivirals for this current illness/cold?
+# DaysSick
+T How many days have you been sick?
 I single-choice
-	yes ("Yes")
-	no ("No")
+	1 ("1")
+	2 ("2")
+	3 ("3")
+	4 ("4")
+	5 ("5")
+	6 ("6")
+	7+ ("7+")
 
 § ILLNESS HISTORY
 # DailyInterference
@@ -198,10 +291,36 @@ I single-choice
 	no ("No")
 
 § ILLNESS HISTORY
+# KeptFrom
+T In the past week, has your cold kept you from:
+I multiple-choice
+	attendingClass ("Attending class")
+	goingToWork ("Going to work")
+	goingToASocialEvent ("Going to a social event")
+	studying ("Studying for an exam")
+	performingWell ("Performing well on an exam or school assignment")
+	na ("Not Applicable")
+
+§ ILLNESS HISTORY
 # DoctorThisWeek
 T Have you seen a doctor for your cold this week?
 I single-choice
 	yes ("Yes")
+	no ("No")
+
+§ ILLNESS HISTORY
+# Antibiotics
+T Did you take prescription medicine such as antibiotics or antivirals for this current illness/cold?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ ILLNESS HISTORY
+# MedConditions
+T Have you ever been told by a doctor that you have one of the following medical conditions?
+I multiple-choice
+	asthma ("Asthma")
+	copd ("COPD")
 	no ("No")
 
 § DEMOGRAPHIC INFORMATION

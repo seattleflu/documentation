@@ -8,31 +8,41 @@ digraph {
 
   WhereLive;
   WhereLive -> Address;
-  WhereLive -> Bedrooms [label="  if house"];
-  WhereLive -> Bedrooms [label="  if apartment"];
-  WhereLive -> BedAssignment [label="  if shelter"];
+  WhereLive -> AddressCampus [label=" if site is a \l collegeCampus\l"];
+  WhereLive -> Bedrooms [label=" if house\l"];
+  WhereLive -> Bedrooms [label=" if apartment\l"];
+  WhereLive -> BedAssignment [label=" if shelter\l"];
 
   Bedrooms;
   Bedrooms -> Address;
+  Bedrooms -> AddressCampus [label=" if site is a \l collegeCampus\l"];
 
   BedAssignment;
   BedAssignment -> Address;
+  BedAssignment -> AddressCampus [label=" if site is a \l collegeCampus\l"];
 
   Address;
   Address -> ExpoDesc;
+
+  AddressCampus;
+  AddressCampus -> ExpoDesc;
 
   ExpoDesc;
   ExpoDesc -> NearSickPeople;
 
   NearSickPeople;
   NearSickPeople -> NearChildren;
-  NearSickPeople -> CoughSneeze [label="  if yes"];
+  NearSickPeople -> CoughSneeze [label=" if yes\l"];
 
   CoughSneeze;
   CoughSneeze -> NearChildren;
 
   NearChildren;
-  NearChildren -> ChildrenNearChildren;
+  NearChildren -> HaveChildren;
+
+  HaveChildren;
+  HaveChildren -> Smoke;
+  HaveChildren -> ChildrenNearChildren [label=" if yes\l"];
 
   ChildrenNearChildren;
   ChildrenNearChildren -> Smoke;
@@ -42,17 +52,31 @@ digraph {
 
   HouseholdSmoke;
   HouseholdSmoke -> RecentTravel;
+  HouseholdSmoke -> DrinkAlcohol [label=" if site is a \l collegeCampus\l"];
 
-  ArrivedFrom;
-  ArrivedFrom -> RecentTravel;
+  DrinkAlcohol;
+  DrinkAlcohol -> RecentTravel;
+  DrinkAlcohol -> HowManyDrinks [label=" if yes\l"];
+
+  HowManyDrinks;
+  HowManyDrinks -> RecentTravel;
 
   RecentTravel;
   RecentTravel -> TimeSpent;
+  RecentTravel -> WhereTravelled [label=" if toAnotherUSState\l"];
+  RecentTravel -> WhereTravelled [label=" if toAnotherCountry\l"];
+
+  WhereTravelled;
+  WhereTravelled -> WhenTravelled;
+
+  WhenTravelled;
+  WhenTravelled -> TimeSpent;
 
   TimeSpent;
   TimeSpent -> NumPeople;
-  TimeSpent -> Occupation [label="  if work"];
-  TimeSpent -> SchoolType [label="  if school"];
+  TimeSpent -> Major [label=" if site is a \l collegeCampus\l"];
+  TimeSpent -> Occupation [label=" if work\l"];
+  TimeSpent -> SchoolType [label=" if school\l"];
 
   Occupation;
   Occupation -> WorkAddress;
@@ -62,38 +86,57 @@ digraph {
 
   HoursWorked;
   HoursWorked -> NumPeople;
+  HoursWorked -> Major [label=" if site is a \l collegeCampus\l"];
 
   SchoolType;
   SchoolType -> SchoolName;
 
   SchoolName;
   SchoolName -> NumPeople;
+  SchoolName -> Major [label=" if site is a \l collegeCampus\l"];
+
+  Major;
+  Major -> CampusBuilding;
+
+  CampusBuilding;
+  CampusBuilding -> NumPeople;
 
   NumPeople;
   NumPeople -> FluShot;
 
   FluShot;
-  FluShot -> FirstSick;
-  FluShot -> VaccineDate [label="  if yes"];
+  FluShot -> DaysSick;
+  FluShot -> VaccineDate [label=" if yes\l"];
 
   VaccineDate;
-  VaccineDate -> FirstSick;
+  VaccineDate -> VaccineLocation;
 
-  FirstSick;
-  FirstSick -> Antibiotics;
+  VaccineLocation;
+  VaccineLocation -> DaysSick;
 
-  Antibiotics;
-  Antibiotics -> DailyInterference;
+  DaysSick;
+  DaysSick -> DailyInterference;
 
   DailyInterference;
   DailyInterference -> DoctorThisWeek;
+  DailyInterference -> KeptFrom [label=" if yesLot \l and site is a \l collegeCampus\l"];
+  DailyInterference -> KeptFrom [label=" if yesLittle \l and site is a \l collegeCampus\l"];
+
+  KeptFrom;
+  KeptFrom -> DoctorThisWeek;
 
   DoctorThisWeek;
-  DoctorThisWeek -> AssignedSex;
+  DoctorThisWeek -> Antibiotics;
+
+  Antibiotics;
+  Antibiotics -> MedConditions;
+
+  MedConditions;
+  MedConditions -> AssignedSex;
 
   AssignedSex;
   AssignedSex -> Race;
-  AssignedSex -> Pregnant [label="  if female"];
+  AssignedSex -> Pregnant [label=" if female\l"];
 
   Pregnant;
   Pregnant -> Race;
