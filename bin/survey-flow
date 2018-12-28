@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+"""
+Generate a DAG of survey flow suitable for drawing with Graphviz (e.g. with the
+`dot` program).
+"""
+import argparse
+import json
+
+parser = argparse.ArgumentParser(
+    description     = __doc__.strip("\n"),
+    formatter_class = argparse.RawDescriptionHelpFormatter)
+
+parser.add_argument(
+    "data_dictionary",
+    type    = argparse.FileType("r"),
+    metavar = "<data dictionary>",
+    help    = "JSON output from the survey-data-dictionary program")
+
+opts = parser.parse_args()
+
+definitions = json.load(opts.data_dictionary)
+
+print("""\
+digraph {
+  node [shape=box];
+""")
+
+for definition in definitions:
+    id = definition["id"]
+    print(f"  {id};")
+
+    for branch in definition["branches"]:
+        next_id = branch["next_id"]
+
+        if next_id:
+            if set(branch.keys()) == {"next_id"}:
+                print(f"  {id} -> {next_id};")
+            else:
+                # \l means "left-aligned line" in GraphViz's bizzaro-strings
+                if "location" in branch and "choice" in branch:
+                    label = f"if {branch['choice']} \\l and site is a \\l {branch['location']}"
+
+                elif "location" in branch:
+                    label = f"if site is a \\l {branch['location']}"
+
+                elif "choice" in branch:
+                    label = f"if {branch['choice']}"
+
+                else:
+                    raise ValueError(f"Unknown branching logic in {branch}")
+
+                print(f"  {id} -> {next_id} [label=\" {label}\\l\"];")
+    print()
+
+print("}")

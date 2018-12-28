@@ -1,0 +1,316 @@
+#!/usr/bin/env python3
+"""
+Generate a data dictionary from the enrollment app's survey/questionnaire
+responses.
+
+This is useful for getting a sense of the kind of data we'll be receiving and
+will help with matching the coding of retrospective clinical data variables as
+closely as possible with the prospective enrollment
+
+The JSON output can also be used to generate a DAG of the survey flow.
+"""
+import argparse
+import json
+import re
+import subprocess
+from collections import OrderedDict
+from functools import partial
+from itertools import chain, dropwhile, takewhile, tee
+from sys import exit
+from tempfile import NamedTemporaryFile
+from pathlib import Path
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description     = __doc__.strip("\n"),
+        formatter_class = argparse.RawDescriptionHelpFormatter)
+
+    parser.add_argument(
+        "--format",
+        choices = ("json", "text", "rawjson"),
+        default = "json",
+        help    = "Output format (default: %(default)s)")
+
+    parser.add_argument(
+        "app_source",
+        type    = Path,
+        metavar = "<app source>",
+        help    = "Path to FluTrack source code "
+                  "(e.g. learn/ReactNativeTS/FluTrack/ in the auderenow/learn repo)")
+
+    opts = parser.parse_args()
+
+    questions = load_questions(opts.app_source)
+    messages = load_messages(opts.app_source)
+
+    define = partial(define_question, messages)
+
+    definitions = list(filter(None, map(define, questions.values())))
+
+    if opts.format == "json":
+        print(json.dumps(definitions))
+
+    elif opts.format == "text":
+        for definition in definitions:
+            print(f"§ {definition['section']}")
+            print(f"# {definition['id']}")
+            print(f"T {definition['text']}")
+            print(f"I {definition['input']}")
+
+            for choice in definition["choices"]:
+                print(f"\t{choice['id']} (\"{choice['text']}\")")
+
+            print()
+
+    elif opts.format == "rawjson":
+        print(json.dumps(questions))
+
+    else:
+        raise ValueError(f"Unknown format '{format}'")
+
+
+def define_question(messages, question):
+    """
+    Makes sense of a single *question* spec, as loaded from the enrollment
+    app's data, and returns a :class:`dict` defining the question in our own
+    terms for our data dictionary.
+    """
+    # Not all questions have a title; some are a large description block used
+    # just as a checkpoint for understanding (e.g. ExpoDesc).
+    if "title" in question:
+        title = messages["surveyTitle"][question["title"]]
+    elif "description" in question:
+        title = messages["surveyDescription"][question["description"]["label"]]
+    else:
+        title = question["id"]
+
+    # Select from a list of options
+    select_list = question.get("optionList", {})
+
+    options = [
+        { "id": option, "text": messages["surveyOption"][option] }
+            for option in select_list.get("options", [])
+    ]
+
+    # Select a number within a range
+    select_number = question.get("numberSelector", {})
+
+    number_min = select_number.get("min")
+    number_max = select_number.get("max")
+
+    if number_min is not None and number_max:
+        number_range = list(map(str, range(number_min, number_max + 1)))
+
+        if select_number.get("maxPlus"):
+            number_range[-1] += "+"
+
+        numbers = [
+            { "id": number, "text": number }
+                for number in number_range
+        ]
+    else:
+        numbers = []
+
+    # Pick a single button
+    non_answer_buttons = [
+        "done",
+        "doNotKnow",
+        "preferNotToSay",
+    ]
+
+    buttons = [
+        { "id": button["key"], "text": messages["surveyButton"][button["key"]] }
+            for button in question.get("buttons", [])
+             if button["key"] not in non_answer_buttons
+    ]
+
+    # Enter a date, a number, an address, or a bit of text
+    inputs = [
+        re.sub("Input$", "", key)
+            for key in question.keys()
+             if key.endswith("Input")
+    ]
+    assert len(inputs) <= 1, f"inputs are: {inputs}"
+
+    # Branching logic
+    branches = [
+        # Default
+        { "next_id": question.get("nextQuestion") },
+    ]
+
+    conditional_next = question.get("conditionalNext", {})
+
+    conditional_locations = conditional_next.get("location", {}).items()
+    conditional_buttons   = conditional_next.get("buttonKeys", {}).items()
+    conditional_options   = conditional_next.get("options", {}).items()
+
+    if conditional_next.get("buttonAndLocation"):
+        # Conditional on collection site location _and_ selected answer
+        branches += [
+            { "location": location, "choice": answer, "next_id": answer_next_id }
+                for location, location_next_id in conditional_locations
+                for answer,   answer_next_id   in conditional_buttons
+                 if location_next_id == answer_next_id
+        ]
+
+    else:
+        # Conditional on collection site location
+        branches += [
+            { "location": location, "next_id": next_id }
+                for location, next_id in conditional_locations
+        ]
+
+        # Conditional on selected answer
+        branches += [
+            { "choice": choice, "next_id": next_id }
+                for choice, next_id in chain(conditional_options, conditional_buttons)
+        ]
+
+    # The shape of this question, e.g. the data dictionary entry for it.
+    definition = {
+        "id": question["id"],
+        "section": messages["sectionTitle"][question["section"]],
+        "text": title,
+        "input": "unknown",
+        "choices": [*options, *numbers, *buttons],
+        "branches": branches,
+    }
+
+    # Decide on the input type
+    if inputs:
+        definition["input"] = inputs[0]
+    elif select_list:
+        if select_list.get("multiSelect"):
+            definition["input"] = "multiple-choice"
+        else:
+            definition["input"] = "single-choice"
+    elif select_number or buttons:
+        definition["input"] = "single-choice"
+    else:
+        raise ValueError(f"Unable to determine input type for question: {question}")
+
+    return definition
+
+
+def load_questions(source_dir: Path) -> dict:
+    """
+    Loads the survey and returns an ordered dictionary of all questions indexed
+    by their id.
+    """
+    survey = load_survey_config(source_dir)
+
+    questions = OrderedDict(
+        (q["data"]["id"], { "section": q["section"], **q["data"] })
+            for q in survey)
+
+    assert len(questions) == len(survey)
+
+    return questions
+
+
+def load_survey_config(source_dir: Path) -> dict:
+    """
+    Loads ``QuestionnaireConfig.questionnaire`` and
+    ``ScreenConfig.SymptomsConfig`` data structures from the app's TypeScript
+    source files and returns them as a combined list.
+    """
+    tsconfig = source_dir / "tsconfig.json"
+    assert tsconfig.exists()
+
+    QuestionnaireConfig = source_dir / "src/resources/QuestionnaireConfig.tsx"
+    assert QuestionnaireConfig.exists()
+
+    ScreenConfig = source_dir / "src/resources/ScreenConfig.tsx"
+    assert ScreenConfig.exists()
+
+    load_data = partial(load_typescript_data, tsconfig)
+
+    survey = [
+        {
+            # Technically part of the pre-enrollment screening questions, but
+            # it makes sense to lump this in with illness history.
+            "section": "hist",
+            "data": load_data(ScreenConfig.with_suffix(''), "SymptomsConfig"),
+        },
+        *load_data(QuestionnaireConfig.with_suffix(''), "questionnaire"),
+    ]
+
+    return survey
+
+
+def load_typescript_data(tsconfig: str, module: str, symbol: str) -> dict:
+    """
+    Extracts a desired exported data structure (*symbol*) from a TypeScript
+    *module* compiled using the given *tsconfig* file.  ``ts-node`` and the
+    application dependencies must be installed.
+    """
+    data = json.loads(
+        capture_output(["ts-node", "-P", tsconfig, "-O", '{"target":"esnext"}', "-pe",
+            """
+            import { %s as data } from '%s';
+
+            // Object.fromEntries stand-in
+            //
+            function fromEntries(entries: any): any {
+              let object: any = {};
+              for (let [k, v] of entries) {
+                object[k] = v;
+              }
+              return object;
+            }
+
+            // This nonsense is required because JSON.stringify() won't coerce
+            // Maps to objects (somewhat reasonably).  If we didn't care about
+            // conditionalNext values, this function could go away.
+            //
+            function coerce(d: any): any {
+              if (d == null)
+                return d;
+
+              else if (d instanceof Array)
+                return d.map(coerce);
+
+              else if (d instanceof Map)
+                return fromEntries(Array.from(d.entries()).map(([k,v]) => [k,coerce(v)]));
+
+              else if (typeof(d) === "object")
+                return fromEntries(Object.entries(d).map(([k,v]) => [k,coerce(v)]));
+
+              else
+                return d;
+            }
+
+            JSON.stringify(coerce(data));
+            """ % (symbol, module)]))
+
+    return data
+
+
+def load_messages(source_dir: Path, language: str = "en") -> dict:
+    """
+    Loads the locale messages in the given *language* used for i18n.
+    """
+    with (source_dir / "src/i18n/locales/en.json").open(encoding = "UTF-8") as file:
+        return json.load(file)
+
+
+def capture_output(argv, **kwargs):
+    """
+    Run the command specified by the argument list *argv* and return the stdout
+    stream as a string.
+
+    This wrapper around subprocess.run() exists because its own capture_output
+    parameter wasn't added until Python 3.7, and I'm aiming for compat with 3.6.
+    """
+    result = subprocess.run(
+        argv,
+        stdout = subprocess.PIPE,
+        check  = True,
+        **kwargs)
+
+    return result.stdout.decode("utf-8")
+
+
+if __name__ == "__main__":
+    exit(main())
