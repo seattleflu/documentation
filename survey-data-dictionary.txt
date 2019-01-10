@@ -61,13 +61,13 @@ I address
 
 § HOUSEHOLD EXPOSURE
 # ExpoDesc
-T These questions are about being in contact with people who seemed to have a cold. In contact means being within 6 feet of them for at least 2 minutes. For reference, 6 feet is about the distance between you and someone sitting 2 rows ahead of you on the bus.
+T These questions are about being **in contact** with people who seemed to have a cold. **In contact** means being within 6 feet of them for at least 2 minutes. For reference, 6 feet is about the distance between you and someone sitting 2 rows ahead of you on the bus.
 I single-choice
 	understand ("I understand")
 
 § HOUSEHOLD EXPOSURE
 # NearSickPeople
-T In the past week, have you been in contact with a person who seemed to have a cold?
+T In the past week, have you been **in contact** with a person who seemed to have a cold?
 I single-choice
 	yes ("Yes")
 	no ("No")
@@ -81,7 +81,7 @@ I single-choice
 
 § HOUSEHOLD EXPOSURE
 # NearChildren
-T In the past week, have you been in contact with any children under 5 years of age for over an hour?
+T In the past week, have you been **in contact** with any children under 5 years of age for over an hour?
 I single-choice
 	1child ("1 child")
 	2to5children ("2-5 children")
@@ -115,6 +115,7 @@ T Does anyone in your household smoke tobacco, marijuana, or vape?
 I single-choice
 	yes ("Yes")
 	no ("No")
+	na ("Not Applicable")
 
 § HOUSEHOLD EXPOSURE
 # DrinkAlcohol
@@ -138,7 +139,7 @@ I multiple-choice
 
 § HOUSEHOLD EXPOSURE
 # WhereTravelled
-T What state(s) or countries have you traveled to?
+T What state(s) or countries have you traveled to in the past month?
 I text
 
 § HOUSEHOLD EXPOSURE
@@ -159,7 +160,7 @@ I single-choice
 
 § HOUSEHOLD EXPOSURE
 # Occupation
-T What is your occupation?
+T What is your primary occupation?
 I text
 
 § HOUSEHOLD EXPOSURE
@@ -208,13 +209,14 @@ I text
 # Major
 T If you are a college student, what is/are your majors?
 I text
+	doNotKnowUndecided ("Do Not Know / Undecided")
 	na ("Not Applicable")
 
 § HOUSEHOLD EXPOSURE
 # CampusBuilding
 T If you are a UW student, which buildings do you spend the most time in on campus (in addition to your residence)?
 I multiple-choice
-	artLibaray ("Art Library")
+	artLibrary ("Art Library")
 	bagley ("Bagley Hall")
 	builtLib ("Built Environments Library")
 	burke ("Burke Museum")
@@ -223,7 +225,7 @@ I multiple-choice
 	healthSci ("Health Sciences Building")
 	hecEd ("Hec Edmundson Pavilion")
 	hitchcock ("Hitchcock Hall")
-	huskeyStadium ("Husky Stadium")
+	huskyStadium ("Husky Stadium")
 	hub ("HUB")
 	ima ("Intramural Activities Building (IMA)")
 	lifeSciences ("Life Sciences Building")
@@ -242,7 +244,7 @@ I multiple-choice
 
 § HOUSEHOLD EXPOSURE
 # NumPeople
-T During a normal day, how many people are you in contact with?
+T During a normal day, how many people are you **in contact** with?
 I single-choice
 	1to5people ("1-5 people")
 	6to10people ("6-10 people")
@@ -257,12 +259,12 @@ I single-choice
 
 § ILLNESS HISTORY
 # VaccineDate
-T What was the date of vaccination?
+T What was the date of your flu shot?
 I date
 
 § ILLNESS HISTORY
 # VaccineLocation
-T Where did you receive your vaccination?
+T Where did you receive your flu shot?
 I single-choice
 	pharmacy ("Pharmacy")
 	clinic ("Clinic/Hospital")
@@ -310,7 +312,7 @@ I single-choice
 
 § ILLNESS HISTORY
 # Antibiotics
-T Did you take prescription medicine such as antibiotics or antivirals for this current illness/cold?
+T Did you take prescription medicine such as antibiotics or antivirals for this current cold?
 I single-choice
 	yes ("Yes")
 	no ("No")
@@ -361,7 +363,8 @@ T Do you have medical insurance?
 I multiple-choice
 	none ("None")
 	medicaid ("Medicaid")
-	privateInsurance ("Private insurance")
+	employerPlan ("Employer-sponsored plan")
+	privateInsurance ("Private health plan")
 	medicare ("Medicare")
 	other ("Other")
 
