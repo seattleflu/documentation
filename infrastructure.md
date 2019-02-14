@@ -6,11 +6,6 @@ Unless noted otherwise, all of this is running under the AWS account
 296651737672.
 
 
-## Route 53
-
-Nameservers for seattleflu.org (registered on Hover)
-
-
 ## EC2
 
 ### backoffice.seattleflu.org
@@ -98,3 +93,12 @@ _Not yet provisioned_
 
 * Security group for RDS allowing port 5432 from web server security group and
   the Fred Hutch (140.107.0.0/16)
+
+
+## DNSimple.com
+
+Nameservers for seattleflu.org (registered on Hover).
+
+We stopped using AWS's Route 53 because of issues using a CNAME for the zone
+apex (i.e. seattleflu.org).
+[More details](https://devcenter.heroku.com/articles/custom-domains#configuring-dns-for-root-domains)
