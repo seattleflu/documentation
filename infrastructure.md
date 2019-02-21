@@ -13,7 +13,7 @@ Unless noted otherwise, all of this is running under the AWS account
 _Internal tooling_
 
 * Testing [API](https://github.com/zeXLc2p0/api) at `/testing/api`
-* Production [API](https://github.com/zeXLc2p0/api) at `/production/api` (_not yet provisioned_)
+* Production [API](https://github.com/zeXLc2p0/api) at `/production/api`
 * [Metabase](https://metabase.com) at `/metabase`
 * [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
 
@@ -23,14 +23,14 @@ Configuration of interest includes
 
 * [Webpage source and service configs](https://github.com/zeXLc2p0/backoffice) (`/opt/backoffice`)
 
-* [API source code](https://github.com/zeXLc2p0/api) (`/opt/api`)
+* [API source code](https://github.com/zeXLc2p0/api) (`/opt/api-testing`, `/opt/api-production`)
 
 * [Metabase container config and data](https://github.com/zeXLc2p0/backoffice/tree/metabase) (`/opt/backoffice/metabase`)
 
 * [Lab Labels container config](https://github.com/zeXLc2p0/backoffice/tree/lab-labels) (`/opt/backoffice/lab-labels`)
 
 * uWSGI (`/etc/uwsgi`)
-    - Apps enabled: `api-testing`
+    - Apps enabled: `api-testing`, `api-production`
     - App environment using envdirs in `/etc/uwsgi/env.d`
 
 * Apache2 (`/etc/apache2`)
@@ -80,11 +80,9 @@ These are hosted on AWS RDS.
 
 ### production.db.seattleflu.org
 
-_Not yet provisioned_
-
-* `seattleflu-production` will be the instance name
-* start with db.t2.micro?
-* primary database will be named `production`
+* `seattleflu-production` is the instance name
+* db.t2.micro
+* primary database is named `production`
 
 
 ## Networking and security groups
