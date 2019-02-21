@@ -49,7 +49,7 @@ def main():
     definitions = list(filter(None, map(define, questions.values())))
 
     if opts.format == "json":
-        print(json.dumps(definitions))
+        print(tojson(definitions))
 
     elif opts.format == "text":
         for definition in definitions:
@@ -64,7 +64,7 @@ def main():
             print()
 
     elif opts.format == "rawjson":
-        print(json.dumps(questions))
+        print(tojson(questions))
 
     else:
         raise ValueError(f"Unknown format '{format}'")
@@ -310,6 +310,10 @@ def capture_output(argv, **kwargs):
         **kwargs)
 
     return result.stdout.decode("utf-8")
+
+
+def tojson(data) -> str:
+    return json.dumps(data, indent = "  ")
 
 
 if __name__ == "__main__":
