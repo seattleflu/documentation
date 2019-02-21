@@ -1,12 +1,12 @@
 # Seattle Flu Study infrastructure
 
-Run by the Bedford Lab, currently managed by Thomas.
+Run by the Bedford Lab, currently managed mostly by Thomas.
 
 Unless noted otherwise, all of this is running under the AWS account
 296651737672.
 
 
-## EC2
+## Web hosts
 
 ### backoffice.seattleflu.org
 
@@ -16,6 +16,8 @@ _Internal tooling_
 * Production [API](https://github.com/zeXLc2p0/api) at `/production/api` (_not yet provisioned_)
 * [Metabase](https://metabase.com) at `/metabase`
 * [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
+
+Hosted on an EC2 instance.
 
 Configuration of interest includes
 
@@ -52,22 +54,23 @@ Configuration of interest includes
     - `/etc/systemd/system/metabase.service` → `/opt/backoffice/metabase/metabase.service`
     - `/etc/systemd/system/lab-labels.service` → `/opt/backoffice/lab-labels/lab-labels.service`
 
-### frontoffice.seattleflu.org
 
-_Not yet provisioned_
+### seattleflu.org (“front office”)
 
-_Public- and partner-facing, serves seattleflu.org_
+_Public- and partner-facing_
 
-* Splash page
-* Viz (public + protected areas for partners (CDC, PHSKC, etc.))
-* "Lookup my swab" for participants
+Source is <https://github.com/seattleflu/website>.
+
+Hosted on Heroku, pointed to with a DNSimple.com `ALIAS` record.
 
 
-## RDS (PostgreSQL)
+## Databases (PostgreSQL)
 
 Testing and production instances are entirely separate, and always spell out
 explicitly what they are, to reduce the risk of testing impacting production
 accidentally.
+
+These are hosted on AWS RDS.
 
 ### testing.db.seattleflu.org
 
@@ -84,15 +87,15 @@ _Not yet provisioned_
 * primary database will be named `production`
 
 
-## VPC and Security groups
+## Networking and security groups
 
-* Single VPC
+* Single AWS VPC
 
-* Security group for web servers allowing ports 80 and 443 from all and port 22
-  from Fred Hutch (140.107.0.0/16)
+* AWS security group for web servers allowing ports 80 and 443 from all and
+  port 22 from Fred Hutch (140.107.0.0/16)
 
-* Security group for RDS allowing port 5432 from web server security group and
-  the Fred Hutch (140.107.0.0/16)
+* AWS security group for RDS allowing port 5432 from web server security group
+  and the Fred Hutch (140.107.0.0/16)
 
 
 ## DNSimple.com
