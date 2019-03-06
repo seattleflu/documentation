@@ -5,21 +5,44 @@ digraph {
 
   BirthDate;
   BirthDate -> WhereLive;
+  BirthDate -> FluShot [label=" if site is a \l port\l"];
 
   WhereLive;
   WhereLive -> Address;
+  WhereLive -> PeopleInHousehold [label=" if house\l"];
+  WhereLive -> PeopleInHousehold [label=" if apartment\l"];
+  WhereLive -> WhichShelter [label=" if shelter\l"];
   WhereLive -> AddressCampus [label=" if site is a \l collegeCampus\l"];
-  WhereLive -> Bedrooms [label=" if house\l"];
-  WhereLive -> Bedrooms [label=" if apartment\l"];
-  WhereLive -> BedAssignment [label=" if shelter\l"];
+
+  PeopleInHousehold;
+  PeopleInHousehold -> Bedrooms;
 
   Bedrooms;
   Bedrooms -> Address;
   Bedrooms -> AddressCampus [label=" if site is a \l collegeCampus\l"];
 
+  WhichShelter;
+  WhichShelter -> AddressOtherShelter;
+  WhichShelter -> HowLongHomeless [label=" if pioneerSquare\l"];
+  WhichShelter -> HowLongHomeless [label=" if stMartins\l"];
+
+  AddressOtherShelter;
+  AddressOtherShelter -> HowLongHomeless;
+
+  HowLongHomeless;
+  HowLongHomeless -> HowLongShelter;
+
+  HowLongShelter;
+  HowLongShelter -> HowManyNights;
+
+  HowManyNights;
+  HowManyNights -> BedAssignment;
+
   BedAssignment;
-  BedAssignment -> Address;
-  BedAssignment -> AddressCampus [label=" if site is a \l collegeCampus\l"];
+  BedAssignment -> OtherShelters;
+
+  OtherShelters;
+  OtherShelters -> ExpoDesc;
 
   Address;
   Address -> ExpoDesc;
@@ -38,7 +61,8 @@ digraph {
   CoughSneeze -> NearChildren;
 
   NearChildren;
-  NearChildren -> HaveChildren;
+  NearChildren -> ChildrenNearChildren;
+  NearChildren -> HaveChildren [label=" if 18orOver years old\l"];
 
   HaveChildren;
   HaveChildren -> Smoke;
@@ -46,20 +70,50 @@ digraph {
 
   ChildrenNearChildren;
   ChildrenNearChildren -> Smoke;
+  ChildrenNearChildren -> HouseholdSmoke [label=" if 7to12 years old\l"];
+  ChildrenNearChildren -> HouseholdSmoke [label=" if under7 years old\l"];
 
   Smoke;
   Smoke -> HouseholdSmoke;
+  Smoke -> ShelterDrinkAlcohol [label=" if site is a \l homelessShelter\l"];
 
   HouseholdSmoke;
   HouseholdSmoke -> RecentTravel;
-  HouseholdSmoke -> DrinkAlcohol [label=" if site is a \l collegeCampus\l"];
+  HouseholdSmoke -> DrinkAlcohol [label=" if 13to17 years old\l"];
+  HouseholdSmoke -> DrinkAlcohol [label=" if 18orOver years old\l"];
+  HouseholdSmoke -> ChildrensRecentTravel [label=" if site is a \l childrensClinic\l"];
+  HouseholdSmoke -> ChildrensRecentTravel [label=" if site is a \l childrensHospital\l"];
+  HouseholdSmoke -> ChildrensRecentTravel [label=" if site is a \l childcare\l"];
+
+  ShelterDrinkAlcohol;
+  ShelterDrinkAlcohol -> ShelterOtherDrugs;
+  ShelterDrinkAlcohol -> ShelterHowManyDrinks [label=" if yes\l"];
+
+  ShelterHowManyDrinks;
+  ShelterHowManyDrinks -> ShelterOtherDrugs;
+
+  ShelterOtherDrugs;
+  ShelterOtherDrugs -> RecentTravel;
+  ShelterOtherDrugs -> ShelterWhatDrugs [label=" if yes\l"];
+
+  ShelterWhatDrugs;
+  ShelterWhatDrugs -> ShelterInject;
+
+  ShelterInject;
+  ShelterInject -> RecentTravel;
 
   DrinkAlcohol;
   DrinkAlcohol -> RecentTravel;
   DrinkAlcohol -> HowManyDrinks [label=" if yes\l"];
+  DrinkAlcohol -> ChildrensRecentTravel [label=" if site is a \l childrensClinic\l"];
+  DrinkAlcohol -> ChildrensRecentTravel [label=" if site is a \l childrensHospital\l"];
+  DrinkAlcohol -> ChildrensRecentTravel [label=" if site is a \l childcare\l"];
 
   HowManyDrinks;
   HowManyDrinks -> RecentTravel;
+  HowManyDrinks -> ChildrensRecentTravel [label=" if site is a \l childrensClinic\l"];
+  HowManyDrinks -> ChildrensRecentTravel [label=" if site is a \l childrensHospital\l"];
+  HowManyDrinks -> ChildrensRecentTravel [label=" if site is a \l childcare\l"];
 
   RecentTravel;
   RecentTravel -> TimeSpent;
@@ -72,11 +126,19 @@ digraph {
   WhenTravelled;
   WhenTravelled -> TimeSpent;
 
+  ChildrensRecentTravel;
+  ChildrensRecentTravel -> TimeSpent;
+  ChildrensRecentTravel -> ChildrensWhereTravelled [label=" if toAnotherUSState\l"];
+  ChildrensRecentTravel -> ChildrensWhereTravelled [label=" if toAnotherCountry\l"];
+
+  ChildrensWhereTravelled;
+  ChildrensWhereTravelled -> WhenTravelled;
+
   TimeSpent;
   TimeSpent -> NumPeople;
-  TimeSpent -> Major [label=" if site is a \l collegeCampus\l"];
   TimeSpent -> Occupation [label=" if work\l"];
   TimeSpent -> SchoolType [label=" if school\l"];
+  TimeSpent -> Major [label=" if site is a \l collegeCampus\l"];
 
   Occupation;
   Occupation -> WorkAddress;
@@ -110,12 +172,14 @@ digraph {
 
   VaccineDate;
   VaccineDate -> VaccineLocation;
+  VaccineDate -> DaysSick [label=" if site is a \l port\l"];
 
   VaccineLocation;
   VaccineLocation -> DaysSick;
 
   DaysSick;
   DaysSick -> DailyInterference;
+  DaysSick -> AssignedSexAirport [label=" if site is a \l port\l"];
 
   DailyInterference;
   DailyInterference -> DoctorThisWeek;
@@ -136,7 +200,13 @@ digraph {
 
   AssignedSex;
   AssignedSex -> Race;
+  AssignedSex -> Race [label=" if 7to12 years old\l"];
+  AssignedSex -> Race [label=" if under7 years old\l"];
   AssignedSex -> Pregnant [label=" if female\l"];
+  AssignedSex -> Race [label=" if site is a \l port\l"];
+
+  AssignedSexAirport;
+  AssignedSexAirport -> Race;
 
   Pregnant;
   Pregnant -> Race;
@@ -146,7 +216,30 @@ digraph {
 
   HispanicLatino;
   HispanicLatino -> MedicalInsurance;
+  HispanicLatino -> WhereBorn [label=" if site is a \l homelessShelter\l"];
+  HispanicLatino -> CountriesVisited [label=" if site is a \l port\l"];
+
+  WhereBorn;
+  WhereBorn -> TimeUS;
+  WhereBorn -> MedicalInsurance [label=" if United States\l"];
+
+  TimeUS;
+  TimeUS -> MedicalInsurance;
 
   MedicalInsurance;
+
+  CountriesVisited;
+  CountriesVisited -> AirlineFlightNum;
+
+  AirlineFlightNum;
+  AirlineFlightNum -> CountryResidence;
+
+  CountryResidence;
+  CountryResidence -> AddressCountryResidence;
+
+  AddressCountryResidence;
+  AddressCountryResidence -> AddressNextWeek;
+
+  AddressNextWeek;
 
 }
