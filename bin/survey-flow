@@ -33,17 +33,19 @@ for definition in definitions:
         next_id = branch["next_id"]
 
         if next_id:
-            if set(branch.keys()) == {"next_id"}:
+            condition = set(branch.keys()) - {"next_id"}
+
+            if not condition:
                 print(f"  {id} -> {next_id};")
             else:
                 # \l means "left-aligned line" in GraphViz's bizzaro-strings
-                if "location" in branch and "choice" in branch:
+                if condition == {"location", "choice"}:
                     label = f"if {branch['choice']} \\l and site is a \\l {branch['location']}"
 
-                elif "location" in branch:
+                elif condition == {"location"}:
                     label = f"if site is a \\l {branch['location']}"
 
-                elif "choice" in branch:
+                elif condition == {"choice"}:
                     label = f"if {branch['choice']}"
 
                 else:
