@@ -95,6 +95,12 @@ def define_question(messages, question):
             for option in select_list.get("options", [])
     ]
 
+    # Select a country
+    #
+    # We don't emit the full list of countries, which is stored elsewhere in
+    # the app's source, just set the input type from this boolean.
+    select_country = bool(question.get("countrySelector"))
+
     # Select a number within a range
     select_number = question.get("numberSelector", {})
 
@@ -189,6 +195,8 @@ def define_question(messages, question):
             definition["input"] = "single-choice"
     elif select_number or buttons:
         definition["input"] = "single-choice"
+    elif select_country:
+        definition["input"] = "country"
     else:
         raise ValueError(f"Unable to determine input type for question:\n{indent(pformat(question), '  ')}")
 
