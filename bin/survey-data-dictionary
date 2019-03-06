@@ -61,7 +61,8 @@ def main():
             print(f"I {definition['input']}")
 
             for choice in definition["choices"]:
-                print(f"\t{choice['id']} (\"{choice['text']}\")")
+                print(f"\t{choice['id']} (\"{choice['text']}\")",
+                      *(("[excludes other choices]",) if choice.get("exclusive") else ()))
 
             print()
 
@@ -90,8 +91,14 @@ def define_question(messages, question):
     # Select from a list of options
     select_list = question.get("optionList", {})
 
+    select_multiple  = select_list.get("multiSelect")
+    exclusive_option = select_list.get("exclusiveOption")
+
     options = [
-        { "id": option, "text": messages["surveyOption"][option] }
+        { "id": option,
+          "text": messages["surveyOption"][option],
+          **({"exclusive": option == exclusive_option} if select_multiple else {}) }
+
             for option in select_list.get("options", [])
     ]
 
@@ -204,7 +211,7 @@ def define_question(messages, question):
     if inputs:
         definition["input"] = inputs[0]
     elif select_list:
-        if select_list.get("multiSelect"):
+        if select_multiple:
             definition["input"] = "multiple-choice"
         else:
             definition["input"] = "single-choice"
