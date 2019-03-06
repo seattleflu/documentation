@@ -215,16 +215,13 @@ def load_survey_config(source_dir: Path) -> dict:
     ``ScreenConfig.SymptomsConfig`` data structures from the app's TypeScript
     source files and returns them as a combined list.
     """
-    tsconfig = source_dir / "tsconfig.json"
-    assert tsconfig.exists()
-
     QuestionnaireConfig = source_dir / "src/resources/QuestionnaireConfig.tsx"
     assert QuestionnaireConfig.exists()
 
     ScreenConfig = source_dir / "src/resources/ScreenConfig.tsx"
     assert ScreenConfig.exists()
 
-    load_data = partial(load_typescript_data, tsconfig)
+    load_data = partial(load_typescript_data, source_dir)
 
     survey = [
         {
@@ -239,21 +236,32 @@ def load_survey_config(source_dir: Path) -> dict:
     return survey
 
 
-def load_typescript_data(tsconfig: str, module: str, symbol: str) -> dict:
+def load_typescript_data(working_dir: Path, module: str, symbol: str) -> dict:
     """
     Extracts a desired exported data structure (*symbol*) from a TypeScript
-    *module* compiled using the given *tsconfig* file.  ``ts-node`` and the
-    application dependencies must be installed.
+    *module* compiled from the given *working_dir*.  The Node.js ``ts-node``
+    package must be installed in addition to the *module* dependencies.
     """
     data = json.loads(
-        capture_output(["ts-node", "-P", tsconfig, "-O", '{"target":"esnext"}', "-pe",
+        capture_output(["node", "-pe",
             """
-            import { %s as data } from '%s';
+            require("ts-node/register");
 
-            // Object.fromEntries stand-in
+            // This is required because we're outside of the React Native /
+            // Expo context, and vanilla Node doesn't understand out how to
+            // require a .png file (which the app does).  Transform it to a
+            // placeholder object instead.
             //
-            function fromEntries(entries: any): any {
-              let object: any = {};
+            require.extensions['.png'] = (module, path) => ({ image: path })
+
+            // The main point: loading an exported data object from a TypeScript file.
+            //
+            const data = require('%s')['%s'];
+
+            // Object.fromEntries polyfill
+            //
+            function fromEntries(entries) {
+              let object = {};
               for (let [k, v] of entries) {
                 object[k] = v;
               }
@@ -264,7 +272,7 @@ def load_typescript_data(tsconfig: str, module: str, symbol: str) -> dict:
             // Maps to objects (somewhat reasonably).  If we didn't care about
             // conditionalNext values, this function could go away.
             //
-            function coerce(d: any): any {
+            function coerce(d) {
               if (d == null)
                 return d;
 
@@ -282,7 +290,7 @@ def load_typescript_data(tsconfig: str, module: str, symbol: str) -> dict:
             }
 
             JSON.stringify(coerce(data));
-            """ % (symbol, module)]))
+            """ % (module, symbol)], cwd = working_dir))
 
     return data
 
