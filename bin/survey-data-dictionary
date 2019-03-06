@@ -238,7 +238,7 @@ def load_survey_config(source_dir: Path) -> dict:
     return survey
 
 
-def load_typescript_data(working_dir: Path, module: str, symbol: str) -> dict:
+def load_typescript_data(working_dir: Path, module: Path, symbol: str) -> dict:
     """
     Extracts a desired exported data structure (*symbol*) from a TypeScript
     *module* compiled from the given *working_dir*.  The Node.js ``ts-node``
@@ -292,7 +292,7 @@ def load_typescript_data(working_dir: Path, module: str, symbol: str) -> dict:
             }
 
             JSON.stringify(coerce(data));
-            """ % (module, symbol)], cwd = working_dir))
+            """ % (module.resolve(), symbol)], cwd = working_dir))
 
     return data
 
