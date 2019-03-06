@@ -12,8 +12,8 @@ Unless noted otherwise, all of this is running under the AWS account
 
 _Internal tooling_
 
-* Testing [API](https://github.com/zeXLc2p0/api) at `/testing/api`
-* Production [API](https://github.com/zeXLc2p0/api) at `/production/api`
+* Testing [API](https://github.com/seattleflu/api) at `/testing/api`
+* Production [API](https://github.com/seattleflu/api) at `/production/api`
 * [Metabase](https://metabase.com) at `/metabase`
 * [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
 
@@ -21,13 +21,13 @@ Hosted on an EC2 instance.
 
 Configuration of interest includes
 
-* [Webpage source and service configs](https://github.com/zeXLc2p0/backoffice) (`/opt/backoffice`)
+* [Webpage source and service configs](https://github.com/seattleflu/backoffice) (`/opt/backoffice`)
 
-* [API source code](https://github.com/zeXLc2p0/api) (`/opt/api-testing`, `/opt/api-production`)
+* [API source code](https://github.com/seattleflu/api) (`/opt/api-testing`, `/opt/api-production`)
 
-* [Metabase container config and data](https://github.com/zeXLc2p0/backoffice/tree/metabase) (`/opt/backoffice/metabase`)
+* [Metabase container config and data](https://github.com/seattleflu/backoffice/tree/metabase) (`/opt/backoffice/metabase`)
 
-* [Lab Labels container config](https://github.com/zeXLc2p0/backoffice/tree/lab-labels) (`/opt/backoffice/lab-labels`)
+* [Lab Labels container config](https://github.com/seattleflu/backoffice/tree/lab-labels) (`/opt/backoffice/lab-labels`)
 
 * uWSGI (`/etc/uwsgi`)
     - Apps enabled: `api-testing`, `api-production`
