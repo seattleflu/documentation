@@ -124,6 +124,7 @@ def define_question(messages, question):
     non_answer_buttons = [
         "done",
         "doNotKnow",
+        "doNotKnowUndecided",
         "preferNotToSay",
     ]
 
