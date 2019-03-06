@@ -25,9 +25,9 @@ Configuration of interest includes
 
 * [API source code](https://github.com/seattleflu/api) (`/opt/api-testing`, `/opt/api-production`)
 
-* [Metabase container config and data](https://github.com/seattleflu/backoffice/tree/metabase) (`/opt/backoffice/metabase`)
+* [Metabase container config and data](https://github.com/seattleflu/backoffice/tree/master/metabase) (`/opt/backoffice/metabase`)
 
-* [Lab Labels container config](https://github.com/seattleflu/backoffice/tree/lab-labels) (`/opt/backoffice/lab-labels`)
+* [Lab Labels container config](https://github.com/seattleflu/backoffice/tree/master/lab-labels) (`/opt/backoffice/lab-labels`)
 
 * uWSGI (`/etc/uwsgi`)
     - Apps enabled: `api-testing`, `api-production`
