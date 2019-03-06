@@ -18,7 +18,9 @@ from functools import partial
 from itertools import chain, dropwhile, takewhile, tee
 from sys import exit
 from tempfile import NamedTemporaryFile
+from textwrap import indent
 from pathlib import Path
+from pprint import pformat
 
 
 def main():
@@ -188,7 +190,7 @@ def define_question(messages, question):
     elif select_number or buttons:
         definition["input"] = "single-choice"
     else:
-        raise ValueError(f"Unable to determine input type for question: {question}")
+        raise ValueError(f"Unable to determine input type for question:\n{indent(pformat(question), '  ')}")
 
     return definition
 
