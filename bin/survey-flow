@@ -45,6 +45,9 @@ for definition in definitions:
                 elif condition == {"location"}:
                     label = f"if site is a \\l {branch['location']}"
 
+                elif condition == {"age"}:
+                    label = f"if {branch['age']} years old"
+
                 elif condition == {"choice"}:
                     label = f"if {branch['choice']}"
 

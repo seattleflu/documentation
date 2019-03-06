@@ -153,6 +153,11 @@ def define_question(messages, question):
     conditional_locations = conditional_next.get("location", {}).items()
     conditional_buttons   = conditional_next.get("buttonKeys", {}).items()
     conditional_options   = conditional_next.get("options", {}).items()
+    conditional_text      = conditional_next.get("text", {}).items()
+    conditional_age       = conditional_next.get("age", {}).items()
+
+    # The app (ui/components/SurveyQuestion.tsx) looks at either
+    # buttonAndLocation *or* cascades on everything else as the sole condition.
 
     if conditional_next.get("buttonAndLocation"):
         # Conditional on collection site location _and_ selected answer
@@ -164,16 +169,25 @@ def define_question(messages, question):
         ]
 
     else:
-        # Conditional on collection site location
-        branches += [
-            { "location": location, "next_id": next_id }
-                for location, next_id in conditional_locations
+        # The cascade in ui/components/SurveyQuestion.tsx is first match of:
+        #   option, age, buttonKey, location, text
+        #
+        # Use the same order here in our array of possible branches so that
+        # order is indicative of priority. "choice" is used for all condition
+        # types which are directly tied to a participant's answer.
+
+        conditionals = [
+            ("choice",   conditional_options),
+            ("age",      conditional_age),
+            ("choice",   conditional_buttons),
+            ("location", conditional_locations),
+            ("choice",   conditional_text),
         ]
 
-        # Conditional on selected answer
         branches += [
-            { "choice": choice, "next_id": next_id }
-                for choice, next_id in chain(conditional_options, conditional_buttons)
+            { condition_type: value, "next_id": next_id }
+                for condition_type, conditions in conditionals
+                for value, next_id in conditions
         ]
 
     # The shape of this question, e.g. the data dictionary entry for it.
