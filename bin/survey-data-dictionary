@@ -150,10 +150,7 @@ def define_question(messages, question):
     assert len(inputs) <= 1, f"inputs are: {inputs}"
 
     # Branching logic
-    branches = [
-        # Default
-        { "next_id": question.get("nextQuestion") },
-    ]
+    branches = []
 
     conditional_next = question.get("conditionalNext", {})
 
@@ -201,6 +198,11 @@ def define_question(messages, question):
                 for condition_type, conditions in conditionals
                 for value, next_id in conditions
         ]
+
+    # The default branch when no conditional matches or exists.
+    branches += [
+        { "next_id": question.get("nextQuestion") },
+    ]
 
     # The shape of this question, e.g. the data dictionary entry for it.
     definition = {

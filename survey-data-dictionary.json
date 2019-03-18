@@ -84,11 +84,11 @@
     "choices": [],
     "branches": [
       {
-        "next_id": "WhereLive"
-      },
-      {
         "location": "port",
         "next_id": "FluShot"
+      },
+      {
+        "next_id": "WhereLive"
       }
     ]
   },
@@ -129,9 +129,6 @@
     ],
     "branches": [
       {
-        "next_id": "Address"
-      },
-      {
         "choice": "house",
         "next_id": "PeopleInHousehold"
       },
@@ -146,6 +143,9 @@
       {
         "location": "collegeCampus",
         "next_id": "AddressCampus"
+      },
+      {
+        "next_id": "Address"
       }
     ]
   },
@@ -223,11 +223,11 @@
     ],
     "branches": [
       {
-        "next_id": "Address"
-      },
-      {
         "location": "collegeCampus",
         "next_id": "AddressCampus"
+      },
+      {
+        "next_id": "Address"
       }
     ]
   },
@@ -256,15 +256,15 @@
     ],
     "branches": [
       {
-        "next_id": "AddressOtherShelter"
-      },
-      {
         "choice": "pioneerSquare",
         "next_id": "HowLongHomeless"
       },
       {
         "choice": "stMartins",
         "next_id": "HowLongHomeless"
+      },
+      {
+        "next_id": "AddressOtherShelter"
       }
     ]
   },
@@ -743,11 +743,11 @@
     ],
     "branches": [
       {
-        "next_id": "NearChildren"
-      },
-      {
         "choice": "yes",
         "next_id": "CoughSneeze"
+      },
+      {
+        "next_id": "NearChildren"
       }
     ]
   },
@@ -797,15 +797,15 @@
     ],
     "branches": [
       {
-        "next_id": "ChildrenNearChildren"
-      },
-      {
         "location": "fredHutch",
         "next_id": "StaffHutchKids"
       },
       {
         "age": "18orOver",
         "next_id": "HaveChildren"
+      },
+      {
+        "next_id": "ChildrenNearChildren"
       }
     ]
   },
@@ -826,11 +826,11 @@
     ],
     "branches": [
       {
-        "next_id": "ChildrenNearChildren"
-      },
-      {
         "age": "18orOver",
         "next_id": "HaveChildren"
+      },
+      {
+        "next_id": "ChildrenNearChildren"
       }
     ]
   },
@@ -851,11 +851,11 @@
     ],
     "branches": [
       {
-        "next_id": "Smoke"
-      },
-      {
         "choice": "yes",
         "next_id": "ChildrenNearChildren"
+      },
+      {
+        "next_id": "Smoke"
       }
     ]
   },
@@ -876,9 +876,6 @@
     ],
     "branches": [
       {
-        "next_id": "Smoke"
-      },
-      {
         "location": "fredHutch",
         "next_id": "ChildrenHutchKids"
       },
@@ -889,6 +886,9 @@
       {
         "age": "under7",
         "next_id": "HouseholdSmoke"
+      },
+      {
+        "next_id": "Smoke"
       }
     ]
   },
@@ -909,15 +909,15 @@
     ],
     "branches": [
       {
-        "next_id": "Smoke"
-      },
-      {
         "age": "7to12",
         "next_id": "HouseholdSmoke"
       },
       {
         "age": "under7",
         "next_id": "HouseholdSmoke"
+      },
+      {
+        "next_id": "Smoke"
       }
     ]
   },
@@ -938,11 +938,11 @@
     ],
     "branches": [
       {
-        "next_id": "HouseholdSmoke"
-      },
-      {
         "location": "homelessShelter",
         "next_id": "ShelterDrinkAlcohol"
+      },
+      {
+        "next_id": "HouseholdSmoke"
       }
     ]
   },
@@ -967,9 +967,6 @@
     ],
     "branches": [
       {
-        "next_id": "RecentTravel"
-      },
-      {
         "age": "13to17",
         "next_id": "DrinkAlcohol"
       },
@@ -988,6 +985,9 @@
       {
         "location": "childcare",
         "next_id": "ChildrensRecentTravel"
+      },
+      {
+        "next_id": "RecentTravel"
       }
     ]
   },
@@ -1008,11 +1008,11 @@
     ],
     "branches": [
       {
-        "next_id": "ShelterOtherDrugs"
-      },
-      {
         "choice": "yes",
         "next_id": "ShelterHowManyDrinks"
+      },
+      {
+        "next_id": "ShelterOtherDrugs"
       }
     ]
   },
@@ -1062,11 +1062,11 @@
     ],
     "branches": [
       {
-        "next_id": "RecentTravel"
-      },
-      {
         "choice": "yes",
         "next_id": "ShelterWhatDrugs"
+      },
+      {
+        "next_id": "RecentTravel"
       }
     ]
   },
@@ -1161,9 +1161,6 @@
     ],
     "branches": [
       {
-        "next_id": "RecentTravel"
-      },
-      {
         "choice": "yes",
         "next_id": "HowManyDrinks"
       },
@@ -1178,6 +1175,9 @@
       {
         "location": "childcare",
         "next_id": "ChildrensRecentTravel"
+      },
+      {
+        "next_id": "RecentTravel"
       }
     ]
   },
@@ -1189,9 +1189,6 @@
     "choices": [],
     "branches": [
       {
-        "next_id": "RecentTravel"
-      },
-      {
         "location": "childrensClinic",
         "next_id": "ChildrensRecentTravel"
       },
@@ -1202,6 +1199,9 @@
       {
         "location": "childcare",
         "next_id": "ChildrensRecentTravel"
+      },
+      {
+        "next_id": "RecentTravel"
       }
     ]
   },
@@ -1229,9 +1229,6 @@
     ],
     "branches": [
       {
-        "next_id": "TimeSpent"
-      },
-      {
         "choice": "toAnotherUSState",
         "next_id": "WhereTravelled"
       },
@@ -1242,6 +1239,9 @@
       {
         "location": "fredHutch",
         "next_id": "FredHutchEmployee"
+      },
+      {
+        "next_id": "TimeSpent"
       }
     ]
   },
@@ -1274,11 +1274,11 @@
     ],
     "branches": [
       {
-        "next_id": "TimeSpent"
-      },
-      {
         "location": "fredHutch",
         "next_id": "FredHutchEmployee"
+      },
+      {
+        "next_id": "TimeSpent"
       }
     ]
   },
@@ -1306,15 +1306,15 @@
     ],
     "branches": [
       {
-        "next_id": "TimeSpent"
-      },
-      {
         "choice": "toAnotherUSState",
         "next_id": "ChildrensWhereTravelled"
       },
       {
         "choice": "toAnotherCountry",
         "next_id": "ChildrensWhereTravelled"
+      },
+      {
+        "next_id": "TimeSpent"
       }
     ]
   },
@@ -1347,11 +1347,11 @@
     ],
     "branches": [
       {
-        "next_id": "TimeSpent"
-      },
-      {
         "choice": "yes",
         "next_id": "Occupation"
+      },
+      {
+        "next_id": "TimeSpent"
       }
     ]
   },
@@ -1380,9 +1380,6 @@
     ],
     "branches": [
       {
-        "next_id": "NumPeople"
-      },
-      {
         "choice": "work",
         "next_id": "Occupation"
       },
@@ -1393,6 +1390,9 @@
       {
         "location": "collegeCampus",
         "next_id": "Major"
+      },
+      {
+        "next_id": "NumPeople"
       }
     ]
   },
@@ -1489,11 +1489,11 @@
     ],
     "branches": [
       {
-        "next_id": "NumPeople"
-      },
-      {
         "location": "collegeCampus",
         "next_id": "Major"
+      },
+      {
+        "next_id": "NumPeople"
       }
     ]
   },
@@ -1550,11 +1550,11 @@
     "choices": [],
     "branches": [
       {
-        "next_id": "NumPeople"
-      },
-      {
         "location": "collegeCampus",
         "next_id": "Major"
+      },
+      {
+        "next_id": "NumPeople"
       }
     ]
   },
@@ -1754,11 +1754,11 @@
     ],
     "branches": [
       {
-        "next_id": "DaysSick"
-      },
-      {
         "choice": "yes",
         "next_id": "VaccineDate"
+      },
+      {
+        "next_id": "DaysSick"
       }
     ]
   },
@@ -1770,11 +1770,11 @@
     "choices": [],
     "branches": [
       {
-        "next_id": "VaccineLocation"
-      },
-      {
         "location": "port",
         "next_id": "DaysSick"
+      },
+      {
+        "next_id": "VaccineLocation"
       }
     ]
   },
@@ -1848,11 +1848,11 @@
     ],
     "branches": [
       {
-        "next_id": "DailyInterference"
-      },
-      {
         "location": "port",
         "next_id": "AssignedSexAirport"
+      },
+      {
+        "next_id": "DailyInterference"
       }
     ]
   },
@@ -1877,9 +1877,6 @@
     ],
     "branches": [
       {
-        "next_id": "DoctorThisWeek"
-      },
-      {
         "location": "collegeCampus",
         "choice": "yesLot",
         "next_id": "KeptFrom"
@@ -1888,6 +1885,9 @@
         "location": "collegeCampus",
         "choice": "yesLittle",
         "next_id": "KeptFrom"
+      },
+      {
+        "next_id": "DoctorThisWeek"
       }
     ]
   },
@@ -2034,9 +2034,6 @@
     ],
     "branches": [
       {
-        "next_id": "Race"
-      },
-      {
         "age": "7to12",
         "next_id": "Race"
       },
@@ -2050,6 +2047,9 @@
       },
       {
         "location": "port",
+        "next_id": "Race"
+      },
+      {
         "next_id": "Race"
       }
     ]
@@ -2156,15 +2156,15 @@
     ],
     "branches": [
       {
-        "next_id": "MedicalInsurance"
-      },
-      {
         "location": "homelessShelter",
         "next_id": "WhereBorn"
       },
       {
         "location": "port",
         "next_id": "WhereTravelled14"
+      },
+      {
+        "next_id": "MedicalInsurance"
       }
     ]
   },
@@ -2176,11 +2176,11 @@
     "choices": [],
     "branches": [
       {
-        "next_id": "TimeUS"
-      },
-      {
         "choice": "United States",
         "next_id": "MedicalInsurance"
+      },
+      {
+        "next_id": "TimeUS"
       }
     ]
   },
@@ -2274,9 +2274,6 @@
     ],
     "branches": [
       {
-        "next_id": "AirlineFlightNum"
-      },
-      {
         "choice": "toAnotherUSState+toAnotherCountry",
         "next_id": "StatesThenCountriesVisited"
       },
@@ -2287,6 +2284,9 @@
       {
         "choice": "toAnotherCountry",
         "next_id": "CountriesVisited"
+      },
+      {
+        "next_id": "AirlineFlightNum"
       }
     ]
   },
