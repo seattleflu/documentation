@@ -218,6 +218,13 @@ I single-choice
 	none ("None")
 
 § HOUSEHOLD EXPOSURE
+# StaffHutchKids
+T Are you a staff member at Hutch Kids?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
 # HaveChildren
 T Are there any children under 18 in your household?
 I single-choice
@@ -227,6 +234,13 @@ I single-choice
 § HOUSEHOLD EXPOSURE
 # ChildrenNearChildren
 T Do any children in your household attend a school, childcare setting, or play group with at least 3 other children for 3 or more hours per week?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ HOUSEHOLD EXPOSURE
+# ChildrenHutchKids
+T Are any children in your household enrolled at Hutch Kids?
 I single-choice
 	yes ("Yes")
 	no ("No")
@@ -333,6 +347,13 @@ I multiple-choice
 # ChildrensWhereTravelled
 T What state(s) or countries have you or anyone in your household traveled to in the past month?
 I text
+
+§ HOUSEHOLD EXPOSURE
+# FredHutchEmployee
+T Are you a Fred Hutch employee?
+I single-choice
+	yes ("Yes")
+	no ("No")
 
 § HOUSEHOLD EXPOSURE
 # TimeSpent
@@ -577,8 +598,26 @@ I multiple-choice
 	other ("Other")
 
 § TRAVEL HISTORY
+# WhereTravelled14
+T Where have you traveled in the past 14 days?
+I multiple-choice
+	withinWashingtonStateOnly ("Within Washington State only") [excludes other choices]
+	toAnotherUSState ("To another US state")
+	toAnotherCountry ("To another country")
+
+§ TRAVEL HISTORY
+# StatesVisited
+T What US states have you traveled to in the past 14 days?
+I text
+
+§ TRAVEL HISTORY
+# StatesThenCountriesVisited
+T What US states have you traveled to in the past 14 days?
+I text
+
+§ TRAVEL HISTORY
 # CountriesVisited
-T In the past 14 days, what countries have you been in?
+T What countries have you traveled to in the past 14 days?
 I text
 
 § TRAVEL HISTORY

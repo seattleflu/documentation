@@ -62,7 +62,12 @@ digraph {
 
   NearChildren;
   NearChildren -> ChildrenNearChildren;
+  NearChildren -> StaffHutchKids [label=" if site is a \l fredHutch\l"];
   NearChildren -> HaveChildren [label=" if 18orOver years old\l"];
+
+  StaffHutchKids;
+  StaffHutchKids -> ChildrenNearChildren;
+  StaffHutchKids -> HaveChildren [label=" if 18orOver years old\l"];
 
   HaveChildren;
   HaveChildren -> Smoke;
@@ -70,8 +75,14 @@ digraph {
 
   ChildrenNearChildren;
   ChildrenNearChildren -> Smoke;
+  ChildrenNearChildren -> ChildrenHutchKids [label=" if site is a \l fredHutch\l"];
   ChildrenNearChildren -> HouseholdSmoke [label=" if 7to12 years old\l"];
   ChildrenNearChildren -> HouseholdSmoke [label=" if under7 years old\l"];
+
+  ChildrenHutchKids;
+  ChildrenHutchKids -> Smoke;
+  ChildrenHutchKids -> HouseholdSmoke [label=" if 7to12 years old\l"];
+  ChildrenHutchKids -> HouseholdSmoke [label=" if under7 years old\l"];
 
   Smoke;
   Smoke -> HouseholdSmoke;
@@ -119,12 +130,14 @@ digraph {
   RecentTravel -> TimeSpent;
   RecentTravel -> WhereTravelled [label=" if toAnotherUSState\l"];
   RecentTravel -> WhereTravelled [label=" if toAnotherCountry\l"];
+  RecentTravel -> FredHutchEmployee [label=" if site is a \l fredHutch\l"];
 
   WhereTravelled;
   WhereTravelled -> WhenTravelled;
 
   WhenTravelled;
   WhenTravelled -> TimeSpent;
+  WhenTravelled -> FredHutchEmployee [label=" if site is a \l fredHutch\l"];
 
   ChildrensRecentTravel;
   ChildrensRecentTravel -> TimeSpent;
@@ -133,6 +146,10 @@ digraph {
 
   ChildrensWhereTravelled;
   ChildrensWhereTravelled -> WhenTravelled;
+
+  FredHutchEmployee;
+  FredHutchEmployee -> TimeSpent;
+  FredHutchEmployee -> Occupation [label=" if yes\l"];
 
   TimeSpent;
   TimeSpent -> NumPeople;
@@ -217,7 +234,7 @@ digraph {
   HispanicLatino;
   HispanicLatino -> MedicalInsurance;
   HispanicLatino -> WhereBorn [label=" if site is a \l homelessShelter\l"];
-  HispanicLatino -> CountriesVisited [label=" if site is a \l port\l"];
+  HispanicLatino -> WhereTravelled14 [label=" if site is a \l port\l"];
 
   WhereBorn;
   WhereBorn -> TimeUS;
@@ -227,6 +244,18 @@ digraph {
   TimeUS -> MedicalInsurance;
 
   MedicalInsurance;
+
+  WhereTravelled14;
+  WhereTravelled14 -> AirlineFlightNum;
+  WhereTravelled14 -> StatesThenCountriesVisited [label=" if toAnotherUSState+toAnotherCountry\l"];
+  WhereTravelled14 -> StatesVisited [label=" if toAnotherUSState\l"];
+  WhereTravelled14 -> CountriesVisited [label=" if toAnotherCountry\l"];
+
+  StatesVisited;
+  StatesVisited -> AirlineFlightNum;
+
+  StatesThenCountriesVisited;
+  StatesThenCountriesVisited -> CountriesVisited;
 
   CountriesVisited;
   CountriesVisited -> AirlineFlightNum;

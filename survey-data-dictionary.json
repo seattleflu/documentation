@@ -800,6 +800,35 @@
         "next_id": "ChildrenNearChildren"
       },
       {
+        "location": "fredHutch",
+        "next_id": "StaffHutchKids"
+      },
+      {
+        "age": "18orOver",
+        "next_id": "HaveChildren"
+      }
+    ]
+  },
+  {
+    "id": "StaffHutchKids",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Are you a staff member at Hutch Kids?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": [
+      {
+        "next_id": "ChildrenNearChildren"
+      },
+      {
         "age": "18orOver",
         "next_id": "HaveChildren"
       }
@@ -834,6 +863,39 @@
     "id": "ChildrenNearChildren",
     "section": "HOUSEHOLD EXPOSURE",
     "text": "Do any children in your household attend a school, childcare setting, or play group with at least 3 other children for 3 or more hours per week?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": [
+      {
+        "next_id": "Smoke"
+      },
+      {
+        "location": "fredHutch",
+        "next_id": "ChildrenHutchKids"
+      },
+      {
+        "age": "7to12",
+        "next_id": "HouseholdSmoke"
+      },
+      {
+        "age": "under7",
+        "next_id": "HouseholdSmoke"
+      }
+    ]
+  },
+  {
+    "id": "ChildrenHutchKids",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Are any children in your household enrolled at Hutch Kids?",
     "input": "single-choice",
     "choices": [
       {
@@ -1176,6 +1238,10 @@
       {
         "choice": "toAnotherCountry",
         "next_id": "WhereTravelled"
+      },
+      {
+        "location": "fredHutch",
+        "next_id": "FredHutchEmployee"
       }
     ]
   },
@@ -1209,6 +1275,10 @@
     "branches": [
       {
         "next_id": "TimeSpent"
+      },
+      {
+        "location": "fredHutch",
+        "next_id": "FredHutchEmployee"
       }
     ]
   },
@@ -1257,6 +1327,31 @@
     "branches": [
       {
         "next_id": "WhenTravelled"
+      }
+    ]
+  },
+  {
+    "id": "FredHutchEmployee",
+    "section": "HOUSEHOLD EXPOSURE",
+    "text": "Are you a Fred Hutch employee?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": [
+      {
+        "next_id": "TimeSpent"
+      },
+      {
+        "choice": "yes",
+        "next_id": "Occupation"
       }
     ]
   },
@@ -2069,7 +2164,7 @@
       },
       {
         "location": "port",
-        "next_id": "CountriesVisited"
+        "next_id": "WhereTravelled14"
       }
     ]
   },
@@ -2156,9 +2251,73 @@
     ]
   },
   {
+    "id": "WhereTravelled14",
+    "section": "TRAVEL HISTORY",
+    "text": "Where have you traveled in the past 14 days?",
+    "input": "multiple-choice",
+    "choices": [
+      {
+        "id": "withinWashingtonStateOnly",
+        "text": "Within Washington State only",
+        "exclusive": true
+      },
+      {
+        "id": "toAnotherUSState",
+        "text": "To another US state",
+        "exclusive": false
+      },
+      {
+        "id": "toAnotherCountry",
+        "text": "To another country",
+        "exclusive": false
+      }
+    ],
+    "branches": [
+      {
+        "next_id": "AirlineFlightNum"
+      },
+      {
+        "choice": "toAnotherUSState+toAnotherCountry",
+        "next_id": "StatesThenCountriesVisited"
+      },
+      {
+        "choice": "toAnotherUSState",
+        "next_id": "StatesVisited"
+      },
+      {
+        "choice": "toAnotherCountry",
+        "next_id": "CountriesVisited"
+      }
+    ]
+  },
+  {
+    "id": "StatesVisited",
+    "section": "TRAVEL HISTORY",
+    "text": "What US states have you traveled to in the past 14 days?",
+    "input": "text",
+    "choices": [],
+    "branches": [
+      {
+        "next_id": "AirlineFlightNum"
+      }
+    ]
+  },
+  {
+    "id": "StatesThenCountriesVisited",
+    "section": "TRAVEL HISTORY",
+    "text": "What US states have you traveled to in the past 14 days?",
+    "input": "text",
+    "choices": [],
+    "branches": [
+      {
+        "next_id": "CountriesVisited"
+      }
+    ]
+  },
+  {
     "id": "CountriesVisited",
     "section": "TRAVEL HISTORY",
-    "text": "In the past 14 days, what countries have you been in?",
+    "text": "What countries have you traveled to in the past 14 days?",
     "input": "text",
     "choices": [],
     "branches": [
