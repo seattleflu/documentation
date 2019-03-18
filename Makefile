@@ -5,12 +5,6 @@ SHELL := /bin/bash
 AUDERE_SRC := ../audere/learn
 FLU_TRACK  := $(AUDERE_SRC)/learn/ReactNativeTS/FluTrack
 
-# These targets don't have a good upstream source to use for dependency
-# timestamp resolution.
-.PHONY: \
-	survey-data-dictionary.json \
-	survey-data-dictionary.txt
-
 all: survey-data-dictionary.txt survey-flow.pdf
 
 survey-data-dictionary.json: | bin/survey-data-dictionary
