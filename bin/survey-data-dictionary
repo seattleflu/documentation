@@ -163,6 +163,10 @@ def define_question(messages, question):
     conditional_text      = conditional_next.get("text", {}).items()
     conditional_age       = conditional_next.get("age", {}).items()
 
+    # Some location conditions are high precedence in the if/else cascade of
+    # the app's question routing.
+    conditional_locations_first = conditional_next.get("locationFirst", {}).items()
+
     # The app (ui/components/SurveyQuestion.tsx) looks at either
     # buttonAndLocation *or* cascades on everything else as the sole condition.
 
@@ -177,13 +181,14 @@ def define_question(messages, question):
 
     else:
         # The cascade in ui/components/SurveyQuestion.tsx is first match of:
-        #   option, age, buttonKey, location, text
+        #   locationFirst, option, age, buttonKey, location, text
         #
         # Use the same order here in our array of possible branches so that
         # order is indicative of priority. "choice" is used for all condition
         # types which are directly tied to a participant's answer.
 
         conditionals = [
+            ("location", conditional_locations_first),
             ("choice",   conditional_options),
             ("age",      conditional_age),
             ("choice",   conditional_buttons),
