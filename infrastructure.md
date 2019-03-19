@@ -103,3 +103,20 @@ Nameservers for seattleflu.org (registered on Hover).
 We stopped using AWS's Route 53 because of issues using a CNAME for the zone
 apex (i.e. seattleflu.org).
 [More details](https://devcenter.heroku.com/articles/custom-domains#configuring-dns-for-root-domains)
+
+
+## Email
+
+Email services are provided by [SendGrid](https://sendgrid.com) via their
+partnership program with Azure.  This allows us 25,000 outgoing emails per
+month for zero cost.  The account is managed and accessed via the [Azure
+portal][] under the "seattleflu" resources group.
+
+Limited, send-only API keys are minted for each of our services which needs to
+send email.  Currently this includes:
+
+* Postfix on backoffice.seattleflu.org (e.g. for cron job emails)
+* Metabase for alerts and "pulses"
+
+
+[Azure portal]: https://portal.azure.com
