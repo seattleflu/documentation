@@ -96,9 +96,10 @@ These are hosted on AWS RDS.
   and the Fred Hutch (140.107.0.0/16)
 
 
-## DNSimple.com
+## DNS
 
-Nameservers for seattleflu.org (registered on Hover).
+Nameservers for seattleflu.org (registered on Hover) use
+[DNSimple](https://dnsimple.com).
 
 We stopped using AWS's Route 53 because of issues using a CNAME for the zone
 apex (i.e. seattleflu.org).
