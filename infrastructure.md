@@ -12,8 +12,8 @@ Unless noted otherwise, all of this is running under the AWS account
 
 _Internal tooling_
 
-* Testing [API](https://github.com/seattleflu/api) at `/testing/api`
-* Production [API](https://github.com/seattleflu/api) at `/production/api`
+* Testing [ID3C API](https://github.com/seattleflu/id3c) at `/testing/api`
+* Production [ID3C API](https://github.com/seattleflu/id3c) at `/production/api`
 * [Metabase](https://metabase.com) at `/metabase`
 * [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
 
@@ -23,7 +23,7 @@ Configuration of interest includes
 
 * [Webpage source and service configs](https://github.com/seattleflu/backoffice) (`/opt/backoffice`)
 
-* [API source code](https://github.com/seattleflu/api) (`/opt/api-testing`, `/opt/api-production`)
+* [ID3C source code](https://github.com/seattleflu/id3c) (`/opt/id3c-testing`, `/opt/id3c-production`)
 
 * [Metabase container config and data](https://github.com/seattleflu/backoffice/tree/master/metabase) (`/opt/backoffice/metabase`)
 
