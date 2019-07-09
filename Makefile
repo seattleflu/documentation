@@ -3,7 +3,7 @@ SHELL := /bin/bash
 
 # Path to clone of https://github.com/auderenow/learn
 AUDERE_SRC := ../audere/learn
-FLU_TRACK  := $(AUDERE_SRC)/learn/ReactNativeTS/FluTrack
+FLU_TRACK  := $(AUDERE_SRC)/FluTrack
 
 all: survey-data-dictionary.txt survey-flow.pdf
 

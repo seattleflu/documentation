@@ -39,7 +39,7 @@ def main():
         type    = Path,
         metavar = "<app source>",
         help    = "Path to FluTrack source code "
-                  "(e.g. learn/ReactNativeTS/FluTrack/ in the auderenow/learn repo)")
+                  "(e.g. FluTrack/ in the auderenow/learn repo)")
 
     opts = parser.parse_args()
 
