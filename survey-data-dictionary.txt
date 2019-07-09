@@ -574,6 +574,18 @@ I single-choice
 	no ("No")
 
 § DEMOGRAPHIC INFORMATION
+# SeattleVisitor
+T Are you a visitor to Seattle?
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ DEMOGRAPHIC INFORMATION
+# PublicSpaceAddress
+T What is your current address?
+I address
+
+§ DEMOGRAPHIC INFORMATION
 # WhereBorn
 T What country were you born in?
 I country
@@ -597,9 +609,22 @@ I multiple-choice
 	government ("I have government insurance (Medicare, Medicaid)")
 	other ("Other")
 
+§ DEMOGRAPHIC INFORMATION
+# Referrer
+T How did you hear about the Seattle Flu Study?
+I multiple-choice
+	facebook ("Facebook")
+	instagram ("Instagram")
+	internetSearch ("Internet search")
+	friendFamily ("Friend/Family")
+	postersSignage ("Posters/Signage")
+	passingKiosk ("Passing kiosk")
+	healthcareProvider ("Healthcare provider")
+	other ("Other")
+
 § TRAVEL HISTORY
 # WhereTravelled14
-T Where have you traveled in the past 14 days?
+T Where have you traveled in the past 14 days? (This includes airports where you may have had a layover, and your home country.)
 I multiple-choice
 	withinWashingtonStateOnly ("Within Washington State only") [excludes other choices]
 	toAnotherUSState ("To another US state")
@@ -625,6 +650,43 @@ I text
 T What was your airline and flight number to Seattle?
 I text
 
+§ TRAVEL HISTORY
+# SeattleArrive
+T How did you arrive in Seattle?
+I multiple-choice
+	cruise ("Cruise")
+	plane ("Airplane")
+	other ("Other")
+	na ("Not Applicable")
+
+§ TRAVEL HISTORY
+# PlaneDate
+T What day did you arrive in Seattle by airplane?
+I date
+
+§ TRAVEL HISTORY
+# PlaneThenCruiseDate
+T What day did you arrive in Seattle by airplane?
+I date
+
+§ TRAVEL HISTORY
+# CruiseDate
+T What day did you arrive in Seattle by cruise?
+I date
+
+§ TRAVEL HISTORY
+# CruiseLine
+T Select the cruise line for your arrival to Seattle.
+I single-choice
+	carnival ("Carnival Cruise Line")
+	celebrity ("Celebrity Cruises")
+	hollandAmerica ("Holland America Line")
+	norwegian ("Norwegian Cruise Line")
+	oceania ("Oceania Cruises")
+	princess ("Princess Cruises")
+	royal ("Royal Caribbean")
+	other ("Other")
+
 § GEOGRAPHY
 # CountryResidence
 T What is your country of residence?
@@ -633,6 +695,18 @@ I country
 § GEOGRAPHY
 # AddressCountryResidence
 T In your country of residence, where do you live?
+I address
+
+§ GEOGRAPHY
+# SeattleOvernight
+T Do you plan to stay in Seattle overnight (or have you already stayed in Seattle overnight?)
+I single-choice
+	yes ("Yes")
+	no ("No")
+
+§ GEOGRAPHY
+# SeattleAddress
+T What is the address in Seattle where you stayed last night (or plan to stay tonight, if different)?
 I address
 
 § GEOGRAPHY

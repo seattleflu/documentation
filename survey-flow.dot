@@ -5,6 +5,7 @@ digraph {
 
   BirthDate;
   BirthDate -> FluShot [label=" if site is a \l port\l"];
+  BirthDate -> FluShot [label=" if site is a \l publicSpace\l"];
   BirthDate -> WhereLive;
 
   WhereLive;
@@ -189,6 +190,7 @@ digraph {
 
   VaccineDate;
   VaccineDate -> DaysSick [label=" if site is a \l port\l"];
+  VaccineDate -> DaysSick [label=" if site is a \l publicSpace\l"];
   VaccineDate -> VaccineLocation;
 
   VaccineLocation;
@@ -196,6 +198,7 @@ digraph {
 
   DaysSick;
   DaysSick -> AssignedSexAirport [label=" if site is a \l port\l"];
+  DaysSick -> AssignedSexAirport [label=" if site is a \l publicSpace\l"];
   DaysSick -> DailyInterference;
 
   DailyInterference;
@@ -234,7 +237,15 @@ digraph {
   HispanicLatino;
   HispanicLatino -> WhereBorn [label=" if site is a \l homelessShelter\l"];
   HispanicLatino -> WhereTravelled14 [label=" if site is a \l port\l"];
+  HispanicLatino -> SeattleVisitor [label=" if site is a \l publicSpace\l"];
   HispanicLatino -> MedicalInsurance;
+
+  SeattleVisitor;
+  SeattleVisitor -> CountryResidence [label=" if yes\l"];
+  SeattleVisitor -> PublicSpaceAddress;
+
+  PublicSpaceAddress;
+  PublicSpaceAddress -> WhereTravelled14;
 
   WhereBorn;
   WhereBorn -> MedicalInsurance [label=" if United States\l"];
@@ -244,30 +255,58 @@ digraph {
   TimeUS -> MedicalInsurance;
 
   MedicalInsurance;
+  MedicalInsurance -> Referrer [label=" if site is a \l collegeCampus\l"];
+
+  Referrer;
 
   WhereTravelled14;
   WhereTravelled14 -> StatesThenCountriesVisited [label=" if toAnotherUSState+toAnotherCountry\l"];
   WhereTravelled14 -> StatesVisited [label=" if toAnotherUSState\l"];
   WhereTravelled14 -> CountriesVisited [label=" if toAnotherCountry\l"];
-  WhereTravelled14 -> AirlineFlightNum;
+  WhereTravelled14 -> AirlineFlightNum [label=" if site is a \l port\l"];
 
   StatesVisited;
+  StatesVisited -> SeattleArrive [label=" if site is a \l publicSpace\l"];
   StatesVisited -> AirlineFlightNum;
 
   StatesThenCountriesVisited;
   StatesThenCountriesVisited -> CountriesVisited;
 
   CountriesVisited;
+  CountriesVisited -> SeattleArrive [label=" if site is a \l publicSpace\l"];
   CountriesVisited -> AirlineFlightNum;
 
   AirlineFlightNum;
   AirlineFlightNum -> CountryResidence;
 
+  SeattleArrive;
+  SeattleArrive -> PlaneThenCruiseDate [label=" if cruise+plane\l"];
+  SeattleArrive -> PlaneDate [label=" if plane\l"];
+  SeattleArrive -> CruiseDate [label=" if cruise\l"];
+
+  PlaneDate;
+
+  PlaneThenCruiseDate;
+  PlaneThenCruiseDate -> CruiseDate;
+
+  CruiseDate;
+  CruiseDate -> CruiseLine;
+
+  CruiseLine;
+
   CountryResidence;
   CountryResidence -> AddressCountryResidence;
 
   AddressCountryResidence;
+  AddressCountryResidence -> SeattleOvernight [label=" if site is a \l publicSpace\l"];
   AddressCountryResidence -> AddressNextWeek;
+
+  SeattleOvernight;
+  SeattleOvernight -> SeattleAddress [label=" if yes\l"];
+  SeattleOvernight -> WhereTravelled14;
+
+  SeattleAddress;
+  SeattleAddress -> WhereTravelled14;
 
   AddressNextWeek;
 

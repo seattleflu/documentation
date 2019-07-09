@@ -88,6 +88,10 @@
         "next_id": "FluShot"
       },
       {
+        "location": "publicSpace",
+        "next_id": "FluShot"
+      },
+      {
         "next_id": "WhereLive"
       }
     ]
@@ -1774,6 +1778,10 @@
         "next_id": "DaysSick"
       },
       {
+        "location": "publicSpace",
+        "next_id": "DaysSick"
+      },
+      {
         "next_id": "VaccineLocation"
       }
     ]
@@ -1849,6 +1857,10 @@
     "branches": [
       {
         "location": "port",
+        "next_id": "AssignedSexAirport"
+      },
+      {
+        "location": "publicSpace",
         "next_id": "AssignedSexAirport"
       },
       {
@@ -2164,7 +2176,48 @@
         "next_id": "WhereTravelled14"
       },
       {
+        "location": "publicSpace",
+        "next_id": "SeattleVisitor"
+      },
+      {
         "next_id": "MedicalInsurance"
+      }
+    ]
+  },
+  {
+    "id": "SeattleVisitor",
+    "section": "DEMOGRAPHIC INFORMATION",
+    "text": "Are you a visitor to Seattle?",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": [
+      {
+        "choice": "yes",
+        "next_id": "CountryResidence"
+      },
+      {
+        "next_id": "PublicSpaceAddress"
+      }
+    ]
+  },
+  {
+    "id": "PublicSpaceAddress",
+    "section": "DEMOGRAPHIC INFORMATION",
+    "text": "What is your current address?",
+    "input": "address",
+    "choices": [],
+    "branches": [
+      {
+        "next_id": "WhereTravelled14"
       }
     ]
   },
@@ -2246,6 +2299,63 @@
     ],
     "branches": [
       {
+        "location": "collegeCampus",
+        "next_id": "Referrer"
+      },
+      {
+        "next_id": null
+      }
+    ]
+  },
+  {
+    "id": "Referrer",
+    "section": "DEMOGRAPHIC INFORMATION",
+    "text": "How did you hear about the Seattle Flu Study?",
+    "input": "multiple-choice",
+    "choices": [
+      {
+        "id": "facebook",
+        "text": "Facebook",
+        "exclusive": false
+      },
+      {
+        "id": "instagram",
+        "text": "Instagram",
+        "exclusive": false
+      },
+      {
+        "id": "internetSearch",
+        "text": "Internet search",
+        "exclusive": false
+      },
+      {
+        "id": "friendFamily",
+        "text": "Friend/Family",
+        "exclusive": false
+      },
+      {
+        "id": "postersSignage",
+        "text": "Posters/Signage",
+        "exclusive": false
+      },
+      {
+        "id": "passingKiosk",
+        "text": "Passing kiosk",
+        "exclusive": false
+      },
+      {
+        "id": "healthcareProvider",
+        "text": "Healthcare provider",
+        "exclusive": false
+      },
+      {
+        "id": "other",
+        "text": "Other",
+        "exclusive": false
+      }
+    ],
+    "branches": [
+      {
         "next_id": null
       }
     ]
@@ -2253,7 +2363,7 @@
   {
     "id": "WhereTravelled14",
     "section": "TRAVEL HISTORY",
-    "text": "Where have you traveled in the past 14 days?",
+    "text": "Where have you traveled in the past 14 days? (This includes airports where you may have had a layover, and your home country.)",
     "input": "multiple-choice",
     "choices": [
       {
@@ -2286,7 +2396,11 @@
         "next_id": "CountriesVisited"
       },
       {
+        "location": "port",
         "next_id": "AirlineFlightNum"
+      },
+      {
+        "next_id": null
       }
     ]
   },
@@ -2297,6 +2411,10 @@
     "input": "text",
     "choices": [],
     "branches": [
+      {
+        "location": "publicSpace",
+        "next_id": "SeattleArrive"
+      },
       {
         "next_id": "AirlineFlightNum"
       }
@@ -2322,6 +2440,10 @@
     "choices": [],
     "branches": [
       {
+        "location": "publicSpace",
+        "next_id": "SeattleArrive"
+      },
+      {
         "next_id": "AirlineFlightNum"
       }
     ]
@@ -2335,6 +2457,131 @@
     "branches": [
       {
         "next_id": "CountryResidence"
+      }
+    ]
+  },
+  {
+    "id": "SeattleArrive",
+    "section": "TRAVEL HISTORY",
+    "text": "How did you arrive in Seattle?",
+    "input": "multiple-choice",
+    "choices": [
+      {
+        "id": "cruise",
+        "text": "Cruise",
+        "exclusive": false
+      },
+      {
+        "id": "plane",
+        "text": "Airplane",
+        "exclusive": false
+      },
+      {
+        "id": "other",
+        "text": "Other",
+        "exclusive": false
+      },
+      {
+        "id": "na",
+        "text": "Not Applicable"
+      }
+    ],
+    "branches": [
+      {
+        "choice": "cruise+plane",
+        "next_id": "PlaneThenCruiseDate"
+      },
+      {
+        "choice": "plane",
+        "next_id": "PlaneDate"
+      },
+      {
+        "choice": "cruise",
+        "next_id": "CruiseDate"
+      },
+      {
+        "next_id": null
+      }
+    ]
+  },
+  {
+    "id": "PlaneDate",
+    "section": "TRAVEL HISTORY",
+    "text": "What day did you arrive in Seattle by airplane?",
+    "input": "date",
+    "choices": [],
+    "branches": [
+      {
+        "next_id": null
+      }
+    ]
+  },
+  {
+    "id": "PlaneThenCruiseDate",
+    "section": "TRAVEL HISTORY",
+    "text": "What day did you arrive in Seattle by airplane?",
+    "input": "date",
+    "choices": [],
+    "branches": [
+      {
+        "next_id": "CruiseDate"
+      }
+    ]
+  },
+  {
+    "id": "CruiseDate",
+    "section": "TRAVEL HISTORY",
+    "text": "What day did you arrive in Seattle by cruise?",
+    "input": "date",
+    "choices": [],
+    "branches": [
+      {
+        "next_id": "CruiseLine"
+      }
+    ]
+  },
+  {
+    "id": "CruiseLine",
+    "section": "TRAVEL HISTORY",
+    "text": "Select the cruise line for your arrival to Seattle.",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "carnival",
+        "text": "Carnival Cruise Line"
+      },
+      {
+        "id": "celebrity",
+        "text": "Celebrity Cruises"
+      },
+      {
+        "id": "hollandAmerica",
+        "text": "Holland America Line"
+      },
+      {
+        "id": "norwegian",
+        "text": "Norwegian Cruise Line"
+      },
+      {
+        "id": "oceania",
+        "text": "Oceania Cruises"
+      },
+      {
+        "id": "princess",
+        "text": "Princess Cruises"
+      },
+      {
+        "id": "royal",
+        "text": "Royal Caribbean"
+      },
+      {
+        "id": "other",
+        "text": "Other"
+      }
+    ],
+    "branches": [
+      {
+        "next_id": null
       }
     ]
   },
@@ -2358,7 +2605,48 @@
     "choices": [],
     "branches": [
       {
+        "location": "publicSpace",
+        "next_id": "SeattleOvernight"
+      },
+      {
         "next_id": "AddressNextWeek"
+      }
+    ]
+  },
+  {
+    "id": "SeattleOvernight",
+    "section": "GEOGRAPHY",
+    "text": "Do you plan to stay in Seattle overnight (or have you already stayed in Seattle overnight?)",
+    "input": "single-choice",
+    "choices": [
+      {
+        "id": "yes",
+        "text": "Yes"
+      },
+      {
+        "id": "no",
+        "text": "No"
+      }
+    ],
+    "branches": [
+      {
+        "choice": "yes",
+        "next_id": "SeattleAddress"
+      },
+      {
+        "next_id": "WhereTravelled14"
+      }
+    ]
+  },
+  {
+    "id": "SeattleAddress",
+    "section": "GEOGRAPHY",
+    "text": "What is the address in Seattle where you stayed last night (or plan to stay tonight, if different)?",
+    "input": "address",
+    "choices": [],
+    "branches": [
+      {
+        "next_id": "WhereTravelled14"
       }
     ]
   },
