@@ -6,7 +6,7 @@ Unless noted otherwise, all of this is running under the AWS account
 296651737672.
 
 
-## Web hosts
+## Hosts
 
 ### backoffice.seattleflu.org
 
@@ -51,8 +51,11 @@ Configuration of interest includes
 
 * systemd
     - `systemctl status metabase`
+    - `journalctl --unit metabase`
     - `/etc/systemd/system/metabase.service` → `/opt/backoffice/metabase/metabase.service`
     - `/etc/systemd/system/lab-labels.service` → `/opt/backoffice/lab-labels/lab-labels.service`
+
+* ID3C ETL jobs are run periodically using cron, defined in `/etc/cron.d/backoffice`
 
 
 ### seattleflu.org (“front office”)
