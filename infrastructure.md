@@ -57,6 +57,9 @@ Configuration of interest includes
 
 * ID3C ETL jobs are run periodically using cron, defined in `/etc/cron.d/backoffice`
 
+* Debug-level ID3C logs are sent to syslog and show up in `/var/log/syslog`.
+  `grep` will be helpful in combing through that for just our logs.
+
 
 ### seattleflu.org (“front office”)
 
