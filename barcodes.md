@@ -12,16 +12,25 @@ elsewhere](https://docs.google.com/document/d/1exaj_aGB8rqjMAwEznRYIR84J8486DyB3
 
 Each type of barcode used by the study is printed on different labels:
 
+Different study arms use different colors and different numbers of copies of
+each barcode, described by [this spreadsheet](https://docs.google.com/spreadsheets/d/1_UBOZ3pFq_oT-OIaFZfyvu9Qj9CpoZsRq4UjWkk37rE/edit#gid=0)
+and summarized below:
+
 Identifier set (type)               | SKU of labels     | Barcodes/box | Barcodes/sheet | Notes
 ----------------------------------- | ----------------- | -----------: | -------------: | -----
 `samples`                           | [LCRY-2380][]     |          680 |             34 | in triplicate, with a column of blank labels for spacing
 `collections-seattleflu.org`        | [LCRY-1100-Y][]   |        1,040 |             52 |
+`collections-kiosks`                | [LCRY-1100-Y][]   |          520 |             26 | in duplicate
+`collections-swab&send`             | [LCRY-1100-G][]   |        1,040 |             52 |
+`collections-environmental`         | [LCRY-1100-R][]   |        1,040 |             52 |
 `collections-fluathome.org`         | [LCRY-2380-Y][]   |        2,380 |            119 |
 `kits-fluathome.org`                | [LCRY-1100-B][]   |        1,040 |             52 |
 `test-strips-fluathome.org`         | [LCRY-2380-G][]   |        2,380 |            119 |
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
 [LCRY-1100-Y]: https://www.divbio.com/product/lcry-1100-y
+[LCRY-1100-G]: https://www.divbio.com/product/lcry-1100-g
+[LCRY-1100-R]: https://www.divbio.com/product/lcry-1100-r
 [LCRY-2380-Y]: https://www.divbio.com/product/lcry-2380-y
 [LCRY-1100-B]: https://www.divbio.com/product/lcry-1100-b
 [LCRY-2380-G]: https://www.divbio.com/product/lcry-2380-g
