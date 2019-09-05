@@ -5,6 +5,13 @@ Run by the Bedford Lab, currently managed mostly by Thomas.
 Unless noted otherwise, all of this is running under the AWS account
 296651737672.
 
+## Navigation
+* [Hosts](#hosts)
+* [Databases (PostgreSQL)](#databases-postgresql)
+* [Networking and security groups](#networking-and-security-groups)
+* [DNS](#dns)
+* [Email](#email)
+
 
 ## Hosts
 
