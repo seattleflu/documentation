@@ -97,17 +97,12 @@ These are hosted on AWS RDS.
 * db.t2.micro
 * primary database is named `production`
 
-### Making changes to the database
-All modifications to databases are handled via [sqitch]. Changes are deployed
-locally with `sqitch` pointing to the target database.
-
+### sqitch configuration
+All modifications to databases are handled via [sqitch].
+Changes are deployed locally with `sqitch` pointing to the target database.
 Deploying changes to remote databases requires some configuration.
 * Add connection information to your [password file].
 * Update your [connection service file] to something similar to [the connection service file used for Metabase].
-* Run the following command, replacing the curly brackets with your
-  specifications.
-
-        PGUSER={username from local pg_service.conf} sqitch deploy {database name}
 
 
 ## Networking and security groups
