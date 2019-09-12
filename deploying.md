@@ -45,6 +45,7 @@ Before you get started, you'll need the following:
    > Note: you'll need `sudo` permissions to edit `/etc/cron.d/backoffice`.
 7. Add relevant api variables as necessary.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
+8. If you installed new Python dependencies via [Pipenv], be sure to run `pipenv sync` to install the new dependencies
 
 
 [Infrastructure]: ./infrastructure.md
@@ -52,3 +53,4 @@ Before you get started, you'll need the following:
 [ID3C-customizations]: https://github.com/seattleflu/id3c-customizations
 [backoffice.seattleflu.org]: infrastructure.md#backofficeseattlefluorg
 [sqitch configuration]: infrastructure.md#sqitch-configuration
+[Pipenv]:https://pipenv.readthedocs.io/en/latest/
