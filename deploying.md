@@ -48,6 +48,13 @@ Before you get started, you'll need the following:
 8. If you installed new Python dependencies via [Pipenv], be sure to run `pipenv sync` to install the new dependencies
 
 
+### Data uploads to the database
+> If you have no data to upload, you may skip this section.
+
+9. Upload data to the `receiving` area of the database from your local machine.
+   Run the desired `id3c` command(s) with a prefix of `PGSERVICE={service name}`.
+
+
 [Infrastructure]: ./infrastructure.md
 [ID3C]: https://github.com/seattleflu/id3c
 [ID3C-customizations]: https://github.com/seattleflu/id3c-customizations
