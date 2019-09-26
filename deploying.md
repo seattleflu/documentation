@@ -43,7 +43,7 @@ Before you get started, you'll need the following:
 6. Add relevant `cron` jobs for any new etl routines to `/etc/cron.d/backoffice`.
    Add any necessary environment variables necessary to the top of this file.
    > Note: you'll need `sudo` permissions to edit `/etc/cron.d/backoffice`.
-7. Add relevant api variables as necessary.
+7. Add relevant api variables as necessary and restart api server by running `sudo systemctl restart uwsgi`
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
 8. If you installed new Python dependencies via [Pipenv], be sure to run `pipenv sync` to install the new dependencies
 
