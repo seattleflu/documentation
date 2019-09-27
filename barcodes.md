@@ -22,8 +22,8 @@ Identifier set (type)               | SKU of labels     | Barcodes/box | Barcode
 `collections-seattleflu.org`        | [LCRY-1100-Y][]   |        1,040 |             52 |
 `collections-kiosks`                | [LCRY-1100-Y][]   |          520 |             26 | in duplicate
 `collections-swab&send`             | [LCRY-1100-G][]   |          260 |             13 | in quadruplicate
-`collections-household-observation` | [LCRY-1100-O][]   |          780 |             39 | in triplicate, with the last column blank
-`collections-household-intervention`| [LCRY-1100-B][]   |          780 |             39 | in triplicate, with the last column blank
+`collections-household-observation` | [LCRY-1100-O][]   |          260 |             13 | in triplicate, with the last column blank
+`collections-household-intervention`| [LCRY-1100-B][]   |          260 |             13 | in triplicate, with the last column blank
 `collections-environmental`         | [LCRY-1100-R][]   |        1,040 |             52 |
 `collections-fluathome.org`         | [LCRY-2380-Y][]   |        2,380 |            119 |
 `kits-fluathome.org`                | [LCRY-1100-B][]   |        1,040 |             52 |
