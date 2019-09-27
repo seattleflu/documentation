@@ -35,6 +35,7 @@ Identifier set (type)               | SKU of labels     | Barcodes/box | Barcode
 [LCRY-1100-R]: https://www.divbio.com/product/lcry-1100-r
 [LCRY-2380-Y]: https://www.divbio.com/product/lcry-2380-y
 [LCRY-1100-B]: https://www.divbio.com/product/lcry-1100-b
+[LCRY-1100-O]: https://www.divbio.com/product/lcry-1100-o
 [LCRY-2380-G]: https://www.divbio.com/product/lcry-2380-g
 
 These types exist as identifier sets within ID3C, which you can verify by
