@@ -1,0 +1,127 @@
+{
+    "resourceType": "Bundle",
+    "type": "collection",
+    "id": "de5af2bb-393a-473e-bd4b-c9fe1e8dc856",
+    "timestamp": "2019-10-08T15:05:53-07:00",
+    "entry": [
+      {
+        "resource": {
+          "resourceType": "Encounter",
+          "id": "something",
+          "subject": {
+            "reference": "patient-1"
+          },
+          "location": [
+            {
+              "location": {
+                "identifier": {
+                  "system": "https://seattleflu.org",
+                  "value": "Costco"
+                }
+              },
+              "physicalType": {
+                "text": "encounter"
+              }
+            },
+            {
+              "location": {
+                "identifier": {
+                  "system": "https://seattleflu.org",
+                  "value": "53011041107"
+                }
+              },
+              "physicalType": {
+                "text": "residence | lodging | workplace"
+              }
+            }
+          ],
+          "diagnosis": [
+            {
+              "condition": {
+                "identifier": {
+                  "system": "https://seattleflu.org",
+                  "value": "soreThroat"
+                }
+              }
+            },
+            {
+              "condtiion": {
+                "identifier": {
+                  "system": "https://seattleflu.org",
+                  "value": "feelingFeverish"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Patient",
+          "id": "patient-1",
+          "gender": "male | female | other"
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "DiagnosticReport",
+          "id": "aaec35df-bba3-4820-b7b5-a5ab28dbac43",
+          "status": "final",
+          "effectiveDateTime": "2019-10-08T11:07:36-07:00",
+          "specimen": [
+            {
+              "identifier": {
+                "system": "https://seattleflu.org",
+                "value": "abadcafe"
+              }
+            }
+          ],
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "54244-9",
+                "display": "Influenza virus identified in Unspecified specimen"
+              }
+            ]
+          },
+          "result": [
+            {"reference": "#result-1"},
+            {"reference": "#result-2"}
+          ],
+          "contained": [
+            {
+              "resourceType": "Observation",
+              "id": "result-1",
+              "status": "final",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "181000124108",
+                    "display": "Influenza A virus present"
+                  }
+                ]
+              },
+              "valueBoolean": true
+            },
+            {
+              "resourceType": "Observation",
+              "id": "result-2",
+              "status": "final",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "441345003",
+                    "display": "Influenza B virus present"
+                  }
+                ]
+              },
+              "valueBoolean": false
+            }
+          ]
+        }
+      }
+    ]
+  }
