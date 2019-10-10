@@ -124,6 +124,9 @@
                 "display": "Influenza virus vaccine"
               }
             ]
+          },
+          "patient": {
+            "reference": "patient-1"
           }
         }
       },
