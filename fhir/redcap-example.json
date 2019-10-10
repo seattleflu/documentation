@@ -153,6 +153,9 @@
               }
             ]
           },
+          "subject": {
+            "reference": "#patient-1"
+          },
           "result": [
             {"reference": "#result-1"},
             {"reference": "#result-2"}
