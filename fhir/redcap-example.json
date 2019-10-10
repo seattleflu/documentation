@@ -67,6 +67,18 @@
       },
       {
         "resource": {
+          "resourceType": "Coverage",
+          "status": "active",
+          "type": {
+            "text": "privateInsurance | government | other | none | preferNotToSay"
+          },
+          "beneficiary": {
+            "reference": "patient-1"
+          }
+        }
+      },
+      {
+        "resource": {
           "resourceType": "DiagnosticReport",
           "id": "aaec35df-bba3-4820-b7b5-a5ab28dbac43",
           "status": "final",
