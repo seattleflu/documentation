@@ -41,18 +41,52 @@
           "diagnosis": [
             {
               "condition": {
-                "identifier": {
-                  "system": "https://seattleflu.org",
-                  "value": "soreThroat"
-                }
+                "reference": "#condition-1"
               }
             },
             {
               "condtiion": {
-                "identifier": {
-                  "system": "https://seattleflu.org",
-                  "value": "feelingFeverish"
-                }
+                "reference": "#condition-2"
+              }
+            }
+          ],
+          "contained": [
+            {
+              "resourceType": "Condition",
+              "id": "condition-1",
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://seattleflu.org/symptom",
+                    "value": "soreThroat"
+                  }
+                ]
+              },
+              "onsetDatetime": "datetime",
+              "severity": {
+                "text": "mild | moderate | severe"
+              },
+              "subject": {
+                "reference": "patient-1"
+              }
+            },
+            {
+              "resourceType": "Condition",
+              "id": "condition-2",
+              "code": {
+                "coding": [
+                  {
+                    "system": "https://seattleflu.org/symptom",
+                    "value": "feelingFeverish"
+                  }
+                ]
+              },
+              "onsetDatetime": "datetime",
+              "severity": {
+                "text": "mild | moderate | severe"
+              },
+              "subject": {
+                "reference": "patient-1"
               }
             }
           ]
