@@ -45,7 +45,7 @@
               }
             },
             {
-              "condtiion": {
+              "condition": {
                 "reference": "#condition-2"
               }
             }
@@ -115,7 +115,7 @@
         "resource": {
           "resourceType": "Immunization",
           "status": "completed | not-done",
-          "occuranceDateTime": "datetime",
+          "occurenceDateTime": "datetime",
           "vaccineCode": {
             "coding": [
               {
