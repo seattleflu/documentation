@@ -8,6 +8,9 @@
         "resource": {
           "resourceType": "Encounter",
           "id": "something",
+          "period": {
+            "start": "datetime"
+          },
           "subject": {
             "reference": "patient-1"
           },
