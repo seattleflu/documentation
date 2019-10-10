@@ -79,6 +79,22 @@
       },
       {
         "resource": {
+          "resourceType": "Immunization",
+          "status": "completed | not-done",
+          "occuranceDateTime": "datetime",
+          "vaccineCode": {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "46233009",
+                "display": "Influenza virus vaccine"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "resource": {
           "resourceType": "DiagnosticReport",
           "id": "aaec35df-bba3-4820-b7b5-a5ab28dbac43",
           "status": "final",
