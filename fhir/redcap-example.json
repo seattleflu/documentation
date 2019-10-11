@@ -8,6 +8,7 @@
         "resource": {
           "resourceType": "Encounter",
           "id": "something",
+          "status": "finished",
           "period": {
             "start": "datetime"
           },
