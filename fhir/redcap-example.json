@@ -194,6 +194,29 @@
             }
           ]
         }
+      },
+      {
+        "resource": {
+          "resourceType": "Observation",
+          "status": "final",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "89873-4",
+                "display": "Unique ID Initial sample"
+              }
+            ]
+          },
+          "encounter": {"reference": "something"},
+          "subject": {"reference": "patient-1"},
+          "specimen": {
+            "identifier": {
+              "system": "https://seattleflu.org",
+              "value": "abadcafe"
+            }
+          }
+        }
       }
     ]
   }
