@@ -18,24 +18,14 @@
           "location": [
             {
               "location": {
-                "identifier": {
-                  "system": "https://seattleflu.org",
-                  "value": "Costco"
-                }
-              },
-              "physicalType": {
-                "text": "encounter"
+                "type": "Location",
+                "reference": "site"
               }
             },
             {
               "location": {
-                "identifier": {
-                  "system": "https://seattleflu.org",
-                  "value": "53011041107"
-                }
-              },
-              "physicalType": {
-                "text": "residence | lodging | workplace"
+                "type": "Location",
+                "reference": "residence"
               }
             }
           ],
@@ -89,6 +79,61 @@
               "subject": {
                 "reference": "patient-1"
               }
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Location",
+          "id": "site",
+          "mode": "instance",
+          "type": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+              "value": "HUSCS"
+            }
+          ],
+          "identifier": [
+            {
+              "system": "https://seattleflu.org/site",
+              "value": "SeattleCenter"
+            }
+          ]
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Location",
+          "id": "residence",
+          "mode": "instance",
+          "type": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+              "value": "PTRES"
+            }
+          ],
+          "identifier": [
+            {
+              "system": "https://seattleflu.org/location/address",
+              "value": "abaddeadbeefcafe"
+            }
+          ],
+          "partOf": {
+            "type": "Location",
+            "reference": "residence-tract"
+          }
+        }
+      },
+      {
+        "resource": {
+          "resourceType": "Location",
+          "id": "residence-tract",
+          "mode": "instance",
+          "identifier": [
+            {
+              "system": "https://seattleflu.org/location/tract",
+              "value": "53033005302"
             }
           ]
         }
