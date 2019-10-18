@@ -9,6 +9,10 @@
           "resourceType": "Encounter",
           "id": "something",
           "status": "finished",
+          "class": {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+            "value": "FLD"
+          },
           "period": {
             "start": "datetime"
           },
