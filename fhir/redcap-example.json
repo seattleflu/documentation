@@ -184,10 +184,10 @@
           "effectiveDateTime": "2019-10-08T11:07:36-07:00",
           "specimen": [
             {
-              "identifier": {
+              "identifier": [{
                 "system": "https://seattleflu.org",
                 "value": "abadcafe"
-              }
+              }]
             }
           ],
           "code": {
