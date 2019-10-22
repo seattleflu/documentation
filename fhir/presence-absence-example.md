@@ -40,6 +40,9 @@ For each [Observation][] entry contained in the [DiagnosticReport][]:
     logic is more appropriate (to include indeterminate results), this field
     can switch to `valueConceptCode`.
 
+  * Use [Device][] reference as shown in example so that we can
+  differentiate diagnostic results of different sources.
+
 There is some room for structuring these results differently, particularly
 around how the results are represented with SNOMED CT / LOINC codes.  The FHIR
 spec contains [useful discussion and
@@ -51,7 +54,7 @@ multiple results simultaneously.  Sending one at a time is also ok.
 
 There is also room to include additional information about the participant,
 their performance of the self-test, or the self-test kit/device itself via
-included [Patient][], [Encounter][], and [Device][] records.  I omitted these
+included [Patient][] and [Encounter][].  I omitted these
 as I'm not clear on what data might be useful or what you might want to
 include.
 

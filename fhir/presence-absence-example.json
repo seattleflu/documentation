@@ -45,7 +45,13 @@
                 }
               ]
             },
-            "valueBoolean": true
+            "valueBoolean": true,
+            "device": {
+              "identifier": {
+                "system": "https://seattleflu.org/device",
+                "value": "Ellume"
+              }
+            }
           },
           {
             "resourceType": "Observation",
@@ -60,7 +66,13 @@
                 }
               ]
             },
-            "valueBoolean": false
+            "valueBoolean": false,
+            "device": {
+              "identifier": {
+                "system": "https://seattleflu.org/device",
+                "value": "Ellume"
+              }
+            }
           }
         ]
       }
