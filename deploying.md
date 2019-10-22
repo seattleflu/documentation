@@ -39,13 +39,12 @@ Before you get started, you'll need the following:
 > If you have no code changes to deploy, you may skip this section.
 
 4. Log onto the `backoffice` server.
-5. Go to `/opt/id3c-production` and run `git pull`.
+5. Go to `/opt/backoffice/id3c-production` and run `git pull` and then `pipenv sync`.
 6. Add relevant `cron` jobs for any new etl routines to `/etc/cron.d/backoffice`.
    Add any necessary environment variables necessary to the top of this file.
    > Note: you'll need `sudo` permissions to edit `/etc/cron.d/backoffice`.
 7. Add relevant api variables as necessary and restart api server by running `sudo systemctl restart uwsgi`
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
-8. If you installed new Python dependencies via [Pipenv], be sure to run `pipenv sync` to install the new dependencies
 
 
 ### Data uploads to the database
