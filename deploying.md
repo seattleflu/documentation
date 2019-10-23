@@ -10,10 +10,13 @@ Before you get started, you'll need the following:
 
 ## Steps for deployment:
 1. Merge code changes in [ID3C] or [ID3C-customizations] to each master branch, respectively.
+2. Run `pipenv update` in the `id3c-production` directory of your [backoffice]
+   checkout.  This will lock ID3C and our customizations at the latest state of
+   their master branch on GitHub.  Review, commit, and push the changes.
 
 ### Schema changes to the database
 > If you have no schema changes to deploy, you may skip this section.
-2. Deploy database schema changes via `sqitch` from your local machine.
+3. Deploy database schema changes via `sqitch` from your local machine.
    Run the following commands, replacing the curly-bracketed text with your specifications.
 
    First, check that the plan looks good.
@@ -38,12 +41,12 @@ Before you get started, you'll need the following:
 ### Code changes to [ID3C]
 > If you have no code changes to deploy, you may skip this section.
 
-4. Log onto the `backoffice` server.
-5. Go to `/opt/backoffice/id3c-production` and run `git pull` and then `pipenv sync`.
-6. Add relevant `cron` jobs for any new etl routines to `/etc/cron.d/backoffice`.
+5. Log onto the `backoffice` server.
+6. Go to `/opt/backoffice/id3c-production` and run `git pull` and then `pipenv sync`.
+7. Add relevant `cron` jobs for any new etl routines to `/etc/cron.d/backoffice`.
    Add any necessary environment variables necessary to the top of this file.
    > Note: you'll need `sudo` permissions to edit `/etc/cron.d/backoffice`.
-7. Add relevant api variables as necessary and restart api server by running `sudo systemctl restart uwsgi`
+8. Add relevant api variables as necessary and restart api server by running `sudo systemctl restart uwsgi`
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
 
 
@@ -55,6 +58,7 @@ Before you get started, you'll need the following:
 
 
 [Infrastructure]: ./infrastructure.md
+[backoffice]: https://github.com/seattleflu/backoffice
 [ID3C]: https://github.com/seattleflu/id3c
 [ID3C-customizations]: https://github.com/seattleflu/id3c-customizations
 [backoffice.seattleflu.org]: infrastructure.md#backofficeseattlefluorg
