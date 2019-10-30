@@ -50,6 +50,12 @@
               "type": "Location",
               "reference": "urn:uuid:26f08b65-9503-40d9-84d4-23a1c3f70d56"
             }
+          },
+          {
+            "location": {
+              "type": "Location",
+              "reference": "urn:uuid:bebac3b8-5746-467b-9aad-7cf91ccc4138"
+            }
           }
         ],
         "contained": [
@@ -334,7 +340,7 @@
         "mode": "instance",
         "identifier": [
           {
-            "system": "https://seattleflu.org/location",
+            "system": "https://seattleflu.org/location/tract",
             "value": "#TODO CENSUS TRACT"
           }
         ],
@@ -350,6 +356,33 @@
         ]
       },
       "fullUrl": "urn:uuid:26f08b65-9503-40d9-84d4-23a1c3f70d56"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "mode": "instance",
+        "identifier": [
+          {
+            "system": "https://seattleflu.org/location/address",
+            "value": "#TODO ADDRESS HASH"
+          }
+        ],
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                "code": "PTRES"
+              }
+            ]
+          }
+        ],
+        "partOf": {
+          "type": "Location",
+          "reference": "urn:uuid:26f08b65-9503-40d9-84d4-23a1c3f70d56"
+        }
+      },
+      "fullUrl": "urn:uuid:bebac3b8-5746-467b-9aad-7cf91ccc4138"
     }
   ]
 }
