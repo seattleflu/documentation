@@ -327,6 +327,10 @@
               {
                 "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
                 "code": "HUSCS"
+              },
+              {
+                "system": "https://seattleflu.org/site_details",
+                "code": "self-test"
               }
             ]
           }
