@@ -269,6 +269,17 @@
                 "valueString": "1.5 - 2 days"
               }
             ]
+          },
+          {
+            "linkId": "vaccine",
+            "answer": [
+              {
+                "valueBoolean": true
+              },
+              {
+                "valueDate": "2019-10"
+              }
+            ]
           }
         ]
       },
@@ -289,27 +300,6 @@
         }
       },
       "fullUrl": "urn:uuid:1910c71b-7689-4b28-8172-1091e614407f"
-    },
-    {
-      "resource": {
-        "resourceType": "Immunization",
-        "status": "not-done",
-        "vaccineCode": {
-          "coding": [
-            {
-              "system": "http://snomed.info/sct",
-              "code": "46233009",
-              "display": "Influenza virus vaccine"
-            }
-          ]
-        },
-        "patient": {
-          "type": "Patient",
-          "reference": "urn:uuid:ef344a3a-930f-4087-93c9-d275246e3b2e"
-        },
-        "occurrenceString": "No Vaccine"
-      },
-      "fullUrl": "urn:uuid:f222993f-41d8-4b6c-8ca3-51dca6ce49af"
     },
     {
       "resource": {
