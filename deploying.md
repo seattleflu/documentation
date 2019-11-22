@@ -41,20 +41,21 @@ Before you get started, you'll need the following:
 ### Code changes to [ID3C]
 > If you have no code changes to deploy, you may skip this section.
 
-5. Log onto the `backoffice` server.
-6. Go to `/opt/backoffice/id3c-production` and run `git pull` and then `pipenv sync`.
-7. Add relevant `cron` jobs for any new etl routines to `/etc/cron.d/backoffice`.
-   Add any necessary environment variables necessary to the top of this file.
-   > Note: you'll need `sudo` permissions to edit `/etc/cron.d/backoffice`.
-8. Add relevant api variables as necessary and restart api server by running `sudo systemctl restart uwsgi`
+4. Log onto the `backoffice` server.
+5. Navigate to the `/opt/backoffice` directory and run `git pull`.
+6. Add any newly needed secret environment variables under `id3c-production/env.d/…`.
+   (Non-secret environment variables should be committed and pulled in via git.)
+7. Install the latest production environment with `(cd id3c-production; pipenv sync)`.
+8. Install the latest crontabs with `sudo make -C crontabs`.
+9. Restart the web API backend by running `sudo systemctl restart uwsgi`.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
 
 
 ### Data uploads to the database
 > If you have no data to upload, you may skip this section.
 
-9. Upload data to the `receiving` area of the database from your local machine.
-   Run the desired `id3c` command(s) with a prefix of `PGSERVICE={service name}`.
+10. Upload data to the `receiving` area of the database from your local machine.
+    Run the desired `id3c` command(s) with a prefix of `PGSERVICE={service name}`.
 
 
 [Infrastructure]: ./infrastructure.md
