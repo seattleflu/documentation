@@ -29,7 +29,7 @@ Before you get started, you'll need the following:
 
         PGUSER=postgres sqitch deploy {database name}
 
-3. Grant roles to the `backoffice` database automation user via
+3. Grant any newly needed roles to the `backoffice` database automation user via
 
         PGUSER={your-admin-username} PGSERVICE={service name} psql
 
