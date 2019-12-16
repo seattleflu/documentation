@@ -30,7 +30,7 @@ Configuration of interest includes
 
 * [Webpage source and service configs](https://github.com/seattleflu/backoffice) (`/opt/backoffice`)
 
-* [ID3C source code](https://github.com/seattleflu/id3c) (`/opt/id3c-testing`, `/opt/id3c-production`)
+* [ID3C](https://github.com/seattleflu/id3c) and [ID3C-customizations](https://github.com/seattleflu/id3c-customizations) environments (`/opt/backoffice/id3c-testing`, `/opt/backoffice/id3c-production`)
 
 * [Metabase container config and data](https://github.com/seattleflu/backoffice/tree/master/metabase) (`/opt/backoffice/metabase`)
 
