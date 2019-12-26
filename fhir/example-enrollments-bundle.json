@@ -1,370 +1,352 @@
 {
-    "resourceType": "Bundle",
-    "id": "741707c3-2aa5-4aa9-867e-90782a85deb3",
-    "type": "collection",
-    "timestamp": "2019-10-21T17:01:55.773106-07:00",
-    "entry": [
-      {
-        "resource": {
-          "resourceType": "Patient",
-          "identifier": [
-            {
-              "system": "https://seattleflu.org/individual",
-              "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
-            }
-          ],
-          "gender": "female"
-        },
-        "fullUrl": "urn:uuid:54b3fa54-cbfc-4227-b702-464eda971aef"
+  "resourceType": "Bundle",
+  "id": "79c439a6-596b-49a8-9a05-4437ba824540",
+  "type": "collection",
+  "timestamp": "2019-10-30T12:07:48.830744-07:00",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Patient",
+        "identifier": [
+          {
+            "system": "https://seattleflu.org/individual",
+            "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
+          }
+        ],
+        "gender": "female"
       },
-      {
-        "resource": {
-          "resourceType": "Encounter",
-          "identifier": [
-            {
-              "system": "https://seattleflu.org/encounter",
-              "value": "redcap.iths.org/17561/1"
-            }
-          ],
-          "class": {
-            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
-            "code": "HH"
-          },
-          "status": "finished",
-          "period": {
-            "start": "2019-10-01T12:17:00-07:00"
-          },
-          "subject": {
-            "type": "Patient",
-            "identifier": {
-              "system": "https://seattleflu.org/individual",
-              "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
-            }
-          },
-          "location": [
-            {
-              "location": {
-                "type": "Location",
-                "reference": "urn:uuid:2c1551ac-968a-4ec1-a647-736860753bc1"
-              }
-            },
-            {
-              "location": {
-                "type": "Location",
-                "reference": "urn:uuid:2f24c2d9-b40b-4c2e-8146-5ffb80a33bc5"
-              }
-            }
-          ],
-          "contained": [
-            {
-              "resourceType": "Condition",
-              "id": "feelingFeverish",
-              "code": {
-                "coding": [
-                  {
-                    "system": "https://seattleflu.org/symptom",
-                    "code": "feelingFeverish"
-                  }
-                ]
-              },
-              "onsetDateTime": "2019-09-28T00:00:00-07:00",
-              "subject": {
-                "type": "Patient",
-                "identifier": {
-                  "system": "https://seattleflu.org/individual",
-                  "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
-                }
-              },
-              "severity": {
-                "text": "Moderate"
-              }
-            },
-            {
-              "resourceType": "Condition",
-              "id": "cough",
-              "code": {
-                "coding": [
-                  {
-                    "system": "https://seattleflu.org/symptom",
-                    "code": "cough"
-                  }
-                ]
-              },
-              "onsetDateTime": "2019-09-28T00:00:00-07:00",
-              "subject": {
-                "type": "Patient",
-                "identifier": {
-                  "system": "https://seattleflu.org/individual",
-                  "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
-                }
-              },
-              "severity": {
-                "text": "Mild"
-              }
-            },
-            {
-              "resourceType": "Condition",
-              "id": "soreThroat",
-              "code": {
-                "coding": [
-                  {
-                    "system": "https://seattleflu.org/symptom",
-                    "code": "soreThroat"
-                  }
-                ]
-              },
-              "onsetDateTime": "2019-09-28T00:00:00-07:00",
-              "subject": {
-                "type": "Patient",
-                "identifier": {
-                  "system": "https://seattleflu.org/individual",
-                  "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
-                }
-              },
-              "severity": {
-                "text": "Severe"
-              }
-            },
-            {
-              "resourceType": "Condition",
-              "id": "runnyOrStuffyNose",
-              "code": {
-                "coding": [
-                  {
-                    "system": "https://seattleflu.org/symptom",
-                    "code": "runnyOrStuffyNose"
-                  }
-                ]
-              },
-              "onsetDateTime": "2019-09-28T00:00:00-07:00",
-              "subject": {
-                "type": "Patient",
-                "identifier": {
-                  "system": "https://seattleflu.org/individual",
-                  "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
-                }
-              }
-            }
-          ],
-          "diagnosis": [
-            {
-              "condition": {
-                "reference": "#feelingFeverish"
-              }
-            },
-            {
-              "condition": {
-                "reference": "#cough"
-              }
-            },
-            {
-              "condition": {
-                "reference": "#soreThroat"
-              }
-            },
-            {
-              "condition": {
-                "reference": "#runnyOrStuffyNose"
-              }
-            }
-          ]
+      "fullUrl": "urn:uuid:ef344a3a-930f-4087-93c9-d275246e3b2e"
+    },
+    {
+      "resource": {
+        "resourceType": "Encounter",
+        "identifier": [
+          {
+            "system": "https://seattleflu.org/encounter",
+            "value": "https://redcap.iths.org//17561/1"
+          }
+        ],
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "HH"
         },
-        "fullUrl": "urn:uuid:395f6b2c-81ba-4ec7-bf16-d69b6c31b7c0"
-      },
-      {
-        "resource": {
-          "resourceType": "QuestionnaireResponse",
-          "status": "completed",
-          "subject": {
-            "type": "Patient",
-            "identifier": {
-              "system": "https://seattleflu.org/individual",
-              "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
-            }
-          },
-          "encounter": {
-            "type": "Encounter",
-            "identifier": {
-              "system": "https://seattleflu.org/encounter",
-              "value": "redcap.iths.org/17561/1"
-            }
-          },
-          "item": [
-            {
-              "linkId": "race",
-              "answer": [
-                {
-                  "valueCoding": {
-                    "system": "https://seattleflu.org/race",
-                    "code": "white"
-                  }
-                }
-              ]
-            },
-            {
-              "linkId": "age",
-              "answer": [
-                {
-                  "valueInteger": 39
-                }
-              ]
-            },
-            {
-              "linkId": "age_months",
-              "answer": [
-                {
-                  "valueInteger": 476
-                }
-              ]
-            },
-            {
-              "linkId": "education",
-              "answer": [
-                {
-                  "valueString": "Bachelor's degree"
-                }
-              ]
-            },
-            {
-              "linkId": "insurance",
-              "answer": [
-                {
-                  "valueString": "Prefer not to say"
-                }
-              ]
-            },
-            {
-              "linkId": "doctor_3e8fae",
-              "answer": [
-                {
-                  "valueString": "No"
-                }
-              ]
-            },
-            {
-              "linkId": "how_hear_sfs",
-              "answer": [
-                {
-                  "valueString": "Heard about it from my place of work"
-                }
-              ]
-            },
-            {
-              "linkId": "house_members_d5f2d9",
-              "answer": [
-                {
-                  "valueString": "2 people"
-                }
-              ]
-            },
-            {
-              "linkId": "where_sick",
-              "answer": [
-                {
-                  "valueString": "No"
-                }
-              ]
-            },
-            {
-              "linkId": "acute_symptom_onset",
-              "answer": [
-                {
-                  "valueString": "1.5 - 2 days"
-                }
-              ]
-            }
-          ]
+        "status": "finished",
+        "period": {
+          "start": "2019-10-01T12:17:00-07:00"
         },
-        "fullUrl": "urn:uuid:5950b2f1-b6ca-432a-8d7e-966a581851ad"
-      },
-      {
-        "resource": {
-          "resourceType": "Specimen",
-          "identifier": [
-            {
-              "system": "https://seattleflu.org/sample",
-              "value": "adeadbadbeefcafe"
+        "subject": {
+          "type": "Patient",
+          "reference": "urn:uuid:ef344a3a-930f-4087-93c9-d275246e3b2e"
+        },
+        "location": [
+          {
+            "location": {
+              "type": "Location",
+              "identifier": {
+                "system": "https://seattleflu.org/site",
+                "value": "self-test"
+              }
             }
-          ],
-          "subject": {
-            "type": "Patient",
-            "identifier": {
-              "system": "https://seattleflu.org/individual",
-              "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
+          },
+          {
+            "location": {
+              "type": "Location",
+              "reference": "urn:uuid:bebac3b8-5746-467b-9aad-7cf91ccc4138"
             }
           }
-        },
-        "fullUrl": "urn:uuid:3a73e94a-9a07-4ef1-b3f1-eb82307bcc20"
+        ],
+        "contained": [
+          {
+            "resourceType": "Condition",
+            "id": "feelingFeverish",
+            "code": {
+              "coding": [
+                {
+                  "system": "https://seattleflu.org/symptom",
+                  "code": "feelingFeverish"
+                }
+              ]
+            },
+            "onsetDateTime": "2019-09-28T00:00:00-07:00",
+            "subject": {
+              "type": "Patient",
+              "identifier": {
+                "system": "https://seattleflu.org/individual",
+                "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
+              }
+            },
+            "severity": {
+              "text": "Moderate"
+            }
+          },
+          {
+            "resourceType": "Condition",
+            "id": "cough",
+            "code": {
+              "coding": [
+                {
+                  "system": "https://seattleflu.org/symptom",
+                  "code": "cough"
+                }
+              ]
+            },
+            "onsetDateTime": "2019-09-28T00:00:00-07:00",
+            "subject": {
+              "type": "Patient",
+              "identifier": {
+                "system": "https://seattleflu.org/individual",
+                "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
+              }
+            },
+            "severity": {
+              "text": "Mild"
+            }
+          },
+          {
+            "resourceType": "Condition",
+            "id": "soreThroat",
+            "code": {
+              "coding": [
+                {
+                  "system": "https://seattleflu.org/symptom",
+                  "code": "soreThroat"
+                }
+              ]
+            },
+            "onsetDateTime": "2019-09-28T00:00:00-07:00",
+            "subject": {
+              "type": "Patient",
+              "identifier": {
+                "system": "https://seattleflu.org/individual",
+                "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
+              }
+            },
+            "severity": {
+              "text": "Severe"
+            }
+          },
+          {
+            "resourceType": "Condition",
+            "id": "runnyOrStuffyNose",
+            "code": {
+              "coding": [
+                {
+                  "system": "https://seattleflu.org/symptom",
+                  "code": "runnyOrStuffyNose"
+                }
+              ]
+            },
+            "onsetDateTime": "2019-09-28T00:00:00-07:00",
+            "subject": {
+              "type": "Patient",
+              "identifier": {
+                "system": "https://seattleflu.org/individual",
+                "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
+              }
+            }
+          }
+        ],
+        "diagnosis": [
+          {
+            "condition": {
+              "reference": "#feelingFeverish"
+            }
+          },
+          {
+            "condition": {
+              "reference": "#cough"
+            }
+          },
+          {
+            "condition": {
+              "reference": "#soreThroat"
+            }
+          },
+          {
+            "condition": {
+              "reference": "#runnyOrStuffyNose"
+            }
+          }
+        ]
       },
-      {
-        "resource": {
-          "resourceType": "Immunization",
-          "status": "not-done",
-          "vaccineCode": {
-            "coding": [
+      "fullUrl": "urn:uuid:0bac7611-de62-429f-a3c8-a1b85b76a50e"
+    },
+    {
+      "resource": {
+        "resourceType": "QuestionnaireResponse",
+        "status": "completed",
+        "subject": {
+          "type": "Patient",
+          "reference": "urn:uuid:ef344a3a-930f-4087-93c9-d275246e3b2e"
+        },
+        "encounter": {
+          "type": "Encounter",
+          "reference": "urn:uuid:0bac7611-de62-429f-a3c8-a1b85b76a50e"
+        },
+        "item": [
+          {
+            "linkId": "race",
+            "answer": [
               {
-                "system": "http://snomed.info/sct",
-                "code": "46233009",
-                "display": "Influenza virus vaccine"
+                "valueCoding": {
+                  "system": "https://seattleflu.org/race",
+                  "code": "white"
+                }
               }
             ]
           },
-          "patient": {
-            "type": "Patient",
-            "identifier": {
-              "system": "https://seattleflu.org/individual",
-              "value": "5ce1ab712df4a18b11e27d66b3a39b49e8065e87f9958c42bb8cb3f28edc8b6c"
-            }
+          {
+            "linkId": "age",
+            "answer": [
+              {
+                "valueInteger": 39
+              }
+            ]
           },
-          "occurrenceString": "No Vaccine"
-        },
-        "fullUrl": "urn:uuid:a6f855a7-68e2-495b-99bb-3485e49c3506"
+          {
+            "linkId": "age_months",
+            "answer": [
+              {
+                "valueInteger": 476
+              }
+            ]
+          },
+          {
+            "linkId": "education",
+            "answer": [
+              {
+                "valueString": "Bachelor's degree"
+              }
+            ]
+          },
+          {
+            "linkId": "insurance",
+            "answer": [
+              {
+                "valueString": "Prefer not to say"
+              }
+            ]
+          },
+          {
+            "linkId": "doctor_3e8fae",
+            "answer": [
+              {
+                "valueString": "No"
+              }
+            ]
+          },
+          {
+            "linkId": "how_hear_sfs",
+            "answer": [
+              {
+                "valueString": "Heard about it from my place of work"
+              }
+            ]
+          },
+          {
+            "linkId": "house_members_d5f2d9",
+            "answer": [
+              {
+                "valueString": "2 people"
+              }
+            ]
+          },
+          {
+            "linkId": "where_sick",
+            "answer": [
+              {
+                "valueString": "No"
+              }
+            ]
+          },
+          {
+            "linkId": "acute_symptom_onset",
+            "answer": [
+              {
+                "valueString": "1.5 - 2 days"
+              }
+            ]
+          },
+          {
+            "linkId": "vaccine",
+            "answer": [
+              {
+                "valueBoolean": true
+              },
+              {
+                "valueDate": "2019-10"
+              }
+            ]
+          }
+        ]
       },
-      {
-        "resource": {
-          "resourceType": "Location",
-          "mode": "instance",
-          "identifier": [
-            {
-              "system": "https://seattleflu.org/site",
-              "value": "self-test"
-            }
-          ],
-          "type": [
-            {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
-                  "code": "HUSCS"
-                }
-              ]
-            }
-          ]
-        },
-        "fullUrl": "urn:uuid:2c1551ac-968a-4ec1-a647-736860753bc1"
+      "fullUrl": "urn:uuid:583a09a9-ac54-423b-a9c9-5af8ab214af3"
+    },
+    {
+      "resource": {
+        "resourceType": "Specimen",
+        "identifier": [
+          {
+            "system": "https://seattleflu.org/sample",
+            "value": "abaddeadbeefcafe"
+          }
+        ],
+        "subject": {
+          "type": "Patient",
+          "reference": "urn:uuid:ef344a3a-930f-4087-93c9-d275246e3b2e"
+        }
       },
-      {
-        "resource": {
-          "resourceType": "Location",
-          "mode": "instance",
-          "identifier": [
-            {
-              "system": "https://seattleflu.org/location",
-              "value": "#TODO CENSUS TRACT"
-            }
-          ],
-          "type": [
-            {
-              "coding": [
-                {
-                  "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
-                  "code": "PTRES"
-                }
-              ]
-            }
-          ]
-        },
-        "fullUrl": "urn:uuid:2f24c2d9-b40b-4c2e-8146-5ffb80a33bc5"
-      }
-    ]
-  }
+      "fullUrl": "urn:uuid:1910c71b-7689-4b28-8172-1091e614407f"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "mode": "instance",
+        "identifier": [
+          {
+            "system": "https://seattleflu.org/location/tract",
+            "value": "#TODO CENSUS TRACT"
+          }
+        ],
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                "code": "PTRES"
+              }
+            ]
+          }
+        ]
+      },
+      "fullUrl": "urn:uuid:26f08b65-9503-40d9-84d4-23a1c3f70d56"
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "mode": "instance",
+        "identifier": [
+          {
+            "system": "https://seattleflu.org/location/address",
+            "value": "#TODO ADDRESS HASH"
+          }
+        ],
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+                "code": "PTRES"
+              }
+            ]
+          }
+        ],
+        "partOf": {
+          "type": "Location",
+          "reference": "urn:uuid:26f08b65-9503-40d9-84d4-23a1c3f70d56"
+        }
+      },
+      "fullUrl": "urn:uuid:bebac3b8-5746-467b-9aad-7cf91ccc4138"
+    }
+  ]
+}
