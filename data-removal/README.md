@@ -1,13 +1,19 @@
 # Data Removal
 
 ## Prerequisites
+
 Before you get started, you'll need the following:
 
-* a personal admin account for the production ID3C database.
-* a peronal admin account for the testing ID3C database or access to the `postgres`
+* a personal admin account for the production ID3C database
+* a personal admin account for the testing ID3C database or access to the `postgres` user
 
-## Steps for data removal of a individual:
+
+## ID3C
+
+### Removing an individual and all linked data
+
 Follow these steps to delete all data related to a single individual.
+
 1. Login to the production ID3C database with admin account.
 1. Find individual connected to provided sample or collection barcode.
     * If the barcode is not linked to any encounter data, then move on to [Steps for data removal of a sample](#steps-for-data-removal-of-a-sample)
@@ -22,8 +28,10 @@ Follow these steps to delete all data related to a single individual.
 1. Run `commit;` to commit the transaction and make all changes permanent.
 1. Repeat steps 2-7 on the testing ID3C database or [refresh the testing database](https://github.com/seattleflu/backoffice/blob/master/dev/refresh-database).
 
-## Steps for data removal of a sample:
+### Removing a sample and all linked data
+
 Follow these steps to delete all data related to a single sample that is not associated with any encounter data.
+
 1. Login to the production ID3C database with admin account.
 1. Find `sample.identifier` for given sample or collection barcode.
 1. Set [psql variable](https://www.postgresql.org/docs/10/app-psql.html#APP-PSQL-VARIABLES) `sample` to the `sample.identifier`
@@ -37,8 +45,10 @@ Follow these steps to delete all data related to a single sample that is not ass
 1. Run `commit;` to commit the transaction and make all changes permanent.
 1. Repeat steps 2-7 on the testing ID3C database or [refresh the testing database](https://github.com/seattleflu/backoffice/blob/master/dev/refresh-database).
 
-## Other stores:
+
+## Other data stores
+
 * Notify all devs to remove local copies of database.
 * AWS backups of the database naturally expire within a month.
 * Notify/check-in with upstream data sources (SCH, UW, BBI, NWGC)
-    * The upstream specimen manifest does not need to be changed because the sample and collection identifiers will be removed from our `warehouse.identifier`. The manifest ETL will ignore/skip such results
+    * The upstream specimen manifest does not need to be changed because the sample and collection identifiers will be removed from our `warehouse.identifier`. The manifest ETL will ignore/skip such results.
