@@ -21,7 +21,7 @@ Identifier set (type)               | SKU of labels     | Barcodes/box | Barcode
 `samples`                           | [LCRY-2380][]     |          680 |             34 | in triplicate, with a column of blank labels for spacing
 `collections-seattleflu.org`        | [LCRY-1100-Y][]   |        1,040 |             52 |
 `collections-kiosks`                | [LCRY-1100-Y][]   |          520 |             26 | in duplicate
-`collections-kiosks-asymptomatic`   |                   |              |             13 | rightmost column of labest only
+`collections-kiosks-asymptomatic`   | [LCRY-1100][]     |              |             13 | one-off mint and print for now, using just the right-most column of labels to make use of blanks from a batch of triplicates
 `collections-swab&send`             | [LCRY-1100-G][]   |          260 |             13 | in triplicate, with the last column blank
 `collections-swab&send-asymptomatic`| [LCRY-1100][]     |          520 |             26 | in duplicate
 `collections-self-test`             | [LCRY-1100-G][]   |          260 |             13 | in triplicate, with the last column blank
