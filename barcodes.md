@@ -33,6 +33,7 @@ Identifier set (type)               | SKU of labels     | Barcodes/box | Barcode
 `test-strips-fluathome.org`         | [LCRY-2380-G][]   |        2,380 |            119 |
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
+[LCRY-1100]: https://www.divbio.com/product/lcry-1100
 [LCRY-1100-Y]: https://www.divbio.com/product/lcry-1100-y
 [LCRY-1100-G]: https://www.divbio.com/product/lcry-1100-g
 [LCRY-1100-R]: https://www.divbio.com/product/lcry-1100-r
