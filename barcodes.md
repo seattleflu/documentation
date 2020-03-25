@@ -33,6 +33,7 @@ Identifier set (type)               | SKU of labels     | Barcodes/box | Barcode
 `collections-cli-compliance`        | [LCRY-1100][]     |        1,040 |             52 | layout on `scan-barcodes` branch in ID3C
 `kits-fluathome.org`                | [LCRY-1100-B][]   |        1,040 |             52 |
 `test-strips-fluathome.org`         | [LCRY-2380-G][]   |        2,380 |            119 |
+`samples-haarvi`                    | [LCRY-2380][]     |        2,380 |            119 | small aliquoting barcodes for HAARVI
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
 [LCRY-1100]: https://www.divbio.com/product/lcry-1100
