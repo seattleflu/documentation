@@ -30,7 +30,7 @@ Identifier set (type)               | SKU of labels     | Barcodes/box | Barcode
 `collections-environmental`         | [LCRY-1100-R][]   |        1,040 |             52 |
 `collections-fluathome.org`         | [LCRY-2380-Y][]   |        2,380 |            119 |
 `collections-scan`                  | [LCRY-1100][]     |          520 |             26 | in duplicate for now, might be triplicate if we start ROR, layout on `scan-barcodes` branch in ID3C
-`collections-cli-compliance`        | [LCRY-1100][]     |        1,040 |             52 | layout on `scan-barcodes` branch in ID3C
+`collections-clia-compliance`        | [LCRY-1100][]     |        1,040 |             52 | layout on `scan-barcodes` branch in ID3C
 `kits-fluathome.org`                | [LCRY-1100-B][]   |        1,040 |             52 |
 `test-strips-fluathome.org`         | [LCRY-2380-G][]   |        2,380 |            119 |
 `samples-haarvi`                    | [LCRY-2380][]     |        2,380 |            119 | small aliquoting barcodes for HAARVI
