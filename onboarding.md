@@ -25,3 +25,102 @@ You may choose to follow the template below:
 >
 > Please remember the data usage policies associated with accessing the database, as outlined in the DTUA you signed.
 > If you have any questions, the @blab-dev-team can help answer them on the #id3c or #informatics channels in the Seattle Flu Study Slack.
+
+
+## Providing AWS Access
+Providing study members with access to the Fred Hutch-managed AWS S3 bucket requires sending an email to Fred Hutch Sci Comp (scicomp@fhcrc.org) like the one below:
+
+> External collaboration for Economy Cloud storage
+> -----------
+> Hi Sci Comp,
+>
+> Could you grant an external collaborator of ours access to the Bedford
+> lab's Economy Cloud S3 bucket (fh-pi-bedford-t)?
+>
+> {Affiliation} — {Name} <{Email}>
+>
+> I'd like to restrict access to specific read/write
+> operations scoped to specific object prefixes. Attached is the
+> respective IAM policy document for {Affiliation}.
+
+When sending an email, be sure to CC the Bedford Lab dev team as well as the study member requesting access.
+See the next section for example IAM policies to attach to the email.
+
+### Example IAM policies
+#### UW / BBI
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t"
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:GetObjectVersion"
+      ],
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t/seattleflu/bbi/*"
+    }
+  ]
+}
+```
+
+#### SCH
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t"
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:GetObjectVersion"
+      ],
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t/seattleflu/sch/*"
+    }
+  ]
+}
+```
+
+#### Swedish
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t"
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:GetObjectVersion"
+      ],
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t/seattleflu/swedish/*"
+    }
+  ]
+}
+```
