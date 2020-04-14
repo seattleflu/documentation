@@ -24,6 +24,10 @@ See example Slack threads ([1](https://seattle-flu-study.slack.com/archives/CCAE
 ### Problem: Metabase is down
 
 * [Restarting Metabase](https://github.com/seattleflu/backoffice/tree/master/metabase#restart) may help.
+* If restarting Metabase fails, you can check its Docker container status with:
+  ```sh
+  docker container ls -a
+  ```
 
 ### Problem: Metabase queries are slow
 * Try adjusting the [Metabase cache](https://www.metabase.com/docs/latest/administration-guide/14-caching.html).
