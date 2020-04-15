@@ -2,14 +2,21 @@
 
 Tips for moving forward when things break.
 
+## Table of Contents
+* [ETL processes](#etl-processes)
+  * [Presence Absence ETL](#presence-absence-etl)
+  * [Manifest ETL](#manifest-etl)
+* [Metabase](#metabase)
+
 ## ETL processes
 
-### Problem: Presence Absence ETL breaks with a `SampleNotFoundError`
+### Presence Absence ETL
+#### Problem: `SampleNotFoundError`
 This means the specimen manifest sheet (or at least the latest imported copy of it in ID3C) is out of date.
 The lab may be slightly behind in updating it, or we may choose to manually import the specimen manifest sheet instead of relying on our automated process to import known specimen manifest sheets from S3.
 
 
-### Problem: Presence Absence ETL breaks with an `AssertionError`
+#### Problem: `AssertionError`
 ```
 Aborting with error: Identifier found in set «samples-haarvi», not «samples»
 ```
@@ -19,7 +26,8 @@ We can ask NWGC to re-send the same JSON bundle but with `_exp` designations on 
 We should manually skip the bundle in `recieving.presence_absence` and wait for the updated JSON.
 
 
-### Problem: Manifest ETL breaks with an `AssertionError`
+### Manifest ETL
+#### Problem: `AssertionError`
 1.
     ```
     AssertionError: Collection identifier found in set «samples», not {'collections-environmental', 'collections-kiosks', 'http://collections-seattleflu.org', 'collections-self-test', 'collections-household-intervention', 'collections-swab&send-asymptomatic', 'collections-kiosks-asymptomatic', 'collections-swab&send', 'collections-household-observation', 'http://collections-fluathome.org'}
