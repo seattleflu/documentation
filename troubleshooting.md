@@ -4,11 +4,20 @@ Tips for moving forward when things break.
 
 ## Table of Contents
 * [ETL processes](#etl-processes)
+  * [FHIR ETL](#fhir-etl)
   * [Presence Absence ETL](#presence-absence-etl)
   * [Manifest ETL](#manifest-etl)
 * [Metabase](#metabase)
 
 ## ETL processes
+
+### FHIR ETL
+#### Problem: `AssertionError`
+```
+Aborting with error: Specimen with unexpected «collections-clia-compliance» barcode «aaaaaaaa»
+````
+This is the wrong type of barcode, so just delete this record.
+
 
 ### Presence Absence ETL
 #### Problem: `SampleNotFoundError`
