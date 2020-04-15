@@ -25,6 +25,13 @@ The lab may be slightly behind in updating it, or we may choose to manually impo
     ```
     In this case, we need to add a missing collection (e.g. `collections-haarvi`) to the manifest ETL.
 
+3.
+    ```
+    Aborting with error: Sample identifier found in set «samples-haarvi», not {'samples'}
+    ```
+    This means we've received a sample from a separate study arm that we're not supposed to be ingesting.
+    Ask someone in the #lab Slack channel to update these sample identifiers to have a prefix of `_exp` so they won't get ingested in the next manifest upload.
+    The original affected records should be deleted from `receiving.manifest`.
 
 ## Metabase
 
