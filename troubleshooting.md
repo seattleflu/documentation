@@ -67,6 +67,34 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     Ask someone in the #lab Slack channel to update these sample identifiers to have a prefix of `_exp` so they won't get ingested in the next manifest upload.
     The original affected records should be deleted from `receiving.manifest`.
 
+### Problem: `Exception`
+1.
+    ```
+    Aborting with error: More than one sample matching sample and/or collection barcodes: [Record(id=118997, identifier='aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', collection_identifier='bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', encounter_id=416344), Record(id=120434, identifier=None, collection_identifier='cccccccc-cccc-cccc-cccc-cccccccccccc', encounter_id=416344)]
+    ```
+    This is one of the nefarious problems caused by duplicate barcodes.
+    This situation arises when there are two samples associated with an encounter.
+    Of the two samples, you should delete the one that does not have any presence-absence results attached to it.
+    Then, the manifest ETL will find only one matching sample in the warehouse.
+    It is then able to update the collection identifier to the corrected collection identifier.
+
+2.
+    ```
+    Aborting with error: More than one sample matching sample and/or collection barcodes: [Record(id=122250, identifier=None, collection_identifier='aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', encounter_id=418757), Record(id=119610, identifier='bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', collection_identifier='cccccccc-cccc-cccc-cccc-cccccccccccc', encounter_id=420854)]
+    ```
+    This is another duplicate barcodes problem, but more insidious than #1 because these sampes are already linked to two different encounters.
+
+    We've solved this in the past by taking the following steps:
+    1. Delete the sample that doesn't have any presence-absence results.
+    In this case, it's sample `122250`.
+    2. Run the manifest ETL.
+    3. Manually upload a DET for the affected REDCap records so they may be linked to the correct encounter and have a sample.
+
+    Note that samples that have not yet been aliquoted will resolve when they're added to the aliquoting manifest.
+    In this case, `cccccccc-cccc-cccc-cccc-cccccccccccc` was one of the duplicate barcodes.
+    The tangling that occurred here was probably due to the timing of fixes.
+
+
 ## Metabase
 
 ### Problem: Metabase is down
