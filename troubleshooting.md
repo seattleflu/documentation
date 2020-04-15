@@ -9,6 +9,16 @@ This means the specimen manifest sheet (or at least the latest imported copy of 
 The lab may be slightly behind in updating it, or we may choose to manually import the specimen manifest sheet instead of relying on our automated process to import known specimen manifest sheets from S3.
 
 
+### Problem: Presence Absence ETL breaks with an `AssertionError`
+```
+Aborting with error: Identifier found in set «samples-haarvi», not «samples»
+```
+This error means that a sample from a separate study arm that we're not supposed to be ingesting was not properly marked as experimental (`_exp`), so it ended up in our pipeline.
+The appropriate avenue is to Slack someone in one of data-transfer channels.
+We can ask NWGC to re-send the same JSON bundle but with `_exp` designations on the affected samples.
+We should manually skip the bundle in `recieving.presence_absence` and wait for the updated JSON.
+
+
 ### Problem: Manifest ETL breaks with an `AssertionError`
 1.
     ```
