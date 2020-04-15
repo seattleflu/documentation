@@ -15,6 +15,10 @@ Tips for moving forward when things break.
 This means the specimen manifest sheet (or at least the latest imported copy of it in ID3C) is out of date.
 The lab may be slightly behind in updating it, or we may choose to manually import the specimen manifest sheet instead of relying on our automated process to import known specimen manifest sheets from S3.
 
+Sometimes, this error means that there was a duplicate collection barcode for two samples which is noted on the specimen manifest sheet.
+One solution here is to manually create samples with just the sample identifiers from the lab's aliquot manifest.
+Once the collection barcode duplication issue is resolved, the manifest ETL will pick it up and update the newly created samples.
+
 
 #### Problem: `AssertionError`
 ```
