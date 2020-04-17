@@ -18,22 +18,23 @@ and summarized below:
 
 Identifier set (type)               | SKU of labels     | Barcodes/box | Barcodes/sheet | Notes
 ----------------------------------- | ----------------- | -----------: | -------------: | -----
-`samples`                           | [LCRY-2380][]     |          680 |             34 | in triplicate, with a column of blank labels for spacing
+`samples`                           | [LCRY-2380][]     |         1020 |             51 | in duplicate, with the last column blank
 `collections-seattleflu.org`        | [LCRY-1100-Y][]   |        1,040 |             52 |
-`collections-kiosks`                | [LCRY-1100-Y][]   |          520 |             26 | in duplicate
-`collections-kiosks-asymptomatic`   | [LCRY-1100][]     |              |             13 | one-off mint and print for now, using just the right-most column of labels to make use of blanks from a batch of triplicates
+`collections-kiosks`                | [LCRY-1100-Y][]   |          520 |             26 | in duplicate, one-off mint of singlets for shelters
+`collections-kiosks-asymptomatic`   | [LCRY-1100][]     |        1,040 |             52 |
 `collections-swab&send`             | [LCRY-1100-G][]   |          260 |             13 | in triplicate, with the last column blank
 `collections-swab&send-asymptomatic`| [LCRY-1100][]     |          520 |             26 | in duplicate
 `collections-self-test`             | [LCRY-1100-G][]   |          260 |             13 | in triplicate, with the last column blank
-`collections-household-observation` | [LCRY-1100-O][]   |          260 |             13 | in triplicate, with the last column blank
-`collections-household-intervention`| [LCRY-1100-B][]   |          260 |             13 | in triplicate, with the last column blank
+`collections-household-observation` | [LCRY-1100-O][]   |          260 |             13 | in triplicate, with the last column blank, one-off mint of singlets for baseline swabs
+`collections-household-intervention`| [LCRY-1100-B][]   |          260 |             13 | in triplicate, with the last column blank, one-off mint of singlets for baseline swabs
 `collections-environmental`         | [LCRY-1100-R][]   |        1,040 |             52 |
 `collections-fluathome.org`         | [LCRY-2380-Y][]   |        2,380 |            119 |
 `collections-scan`                  | [LCRY-1100][]     |          520 |             26 | in duplicate for now, might be triplicate if we start ROR
-`collections-clia-compliance`        | [LCRY-1100][]     |        1,040 |             52 |
+`collections-clia-compliance`       | [LCRY-1100][]     |        1,040 |             52 |
 `kits-fluathome.org`                | [LCRY-1100-B][]   |        1,040 |             52 |
 `test-strips-fluathome.org`         | [LCRY-2380-G][]   |        2,380 |            119 |
 `samples-haarvi`                    | [LCRY-2380][]     |        2,380 |            119 | small aliquoting barcodes for HAARVI
+`collections-haarvi`                | [LCRY-1100][]     |        1,040 |             52 |
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
 [LCRY-1100]: https://www.divbio.com/product/lcry-1100
