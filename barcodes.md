@@ -58,6 +58,8 @@ printing, run:
     PGSERVICE=seattleflu-production \
       id3c identifier mint collections-seattleflu.org 1040 --labels barcode-labels.pdf
 
+Assuming you're on a Linux machine, you can stream the barcode minting process with `tail -f /var/log/syslog`. 
+
 The new identifiers and their associated barcodes will be stored in the ID3C
 database for future reference.  A PDF of formatted barcode labels will be made
 and saved to your computer.
