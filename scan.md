@@ -10,21 +10,22 @@ Checklist
    - Upload a modified data dictionary with injected HTML attributes via [upload-data-dictionary].
 2. Enable REDCap DETs for the new project.
 3. Update the REDCap DET ETL with the new language's project ID and ISO code (see [example]).
-4. Create a new LaTeX PDF template in [lab-result-reports].
+4. Add a new cronjob for the new REDCap DET ETL.
+5. Create a new LaTeX PDF template in [lab-result-reports].
    Translations for the results PDFs live in a Google drive folder accessible via [this Trello card].
    - Rebuild the Docker image and push it to Docker Hub (see [README]).
-5. Update the [backoffice] repo:
+6. Update the [backoffice] repo:
    - Bump the Docker image version [generate-pdfs] uses.*
    - Add the new language ISO code to the `for` loop in [generate-pdfs].*
    - Add the new language to the `export-redcap-data()` function in [generate-results-csv].
-6. Manually generate PDFs for all data on the S3 results file for the new language.* **
-7. Update securelink portal with new "Next steps" translation and PDF button.* **
+7. Manually generate PDFs for all data on the S3 results file for the new language.* **
+8. Update securelink portal with new "Next steps" translation and PDF button.* **
    Translations are viewable via the Google drive link at [this Trello card].
 
 
-*: Depends on #4
+*: Depends on #5
 
-**: Depends on #5
+**: Depends on #6
 
 
 [download-data-dictionary]: https://github.com/seattleflu/backoffice/blob/master/bin/redcap-data-dictionary/download-data-dictionary
