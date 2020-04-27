@@ -8,6 +8,7 @@ Tips for moving forward when things break.
   * [Presence Absence ETL](#presence-absence-etl)
   * [Manifest ETL](#manifest-etl)
 * [Metabase](#metabase)
+* [SCAN RoR PDF generation](#scan-ror-pdf-generation)
 
 ## ETL processes
 
@@ -115,3 +116,18 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     and usename = 'metabase'
     and state = 'active'
     ```
+
+## SCAN RoR PDF generation
+
+### Problem: PDF generation errors out for specific barcodes
+```sh
+ERROR Errors were encountered (n=3) during processing of: ['s3://dokku-stack-phi/covid19/results-scan-study/AAAAAAAA-2020-01-01-en.pdf']
+```
+* This problem is commonly caused by duplicate record IDs in REDCap.
+  It is related to a known REDCap bug that ITHS is working to fix.
+  If there are duplicate record IDs in or across study arms (e.g. asymptomatic or symptomatic), post a Slack message in the #redcap channel
+  describing that there are one or more duplicate `record_id`s causing errors in our results PDF generation.
+  Include which REDCap project contains the problem (e.g. English), and tag Misja.
+* Rarely, this problem pops up when ID3C failed to create a Specimen resource for a given REDCap record.
+  Manually generating a DET for the target REDCap record should resolve this issue.
+  If this issue continues to arise, then further debugging of our REDCap ingest process is warranted.
