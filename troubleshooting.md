@@ -121,7 +121,7 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
 
 ### Problem: PDF generation errors out for specific barcodes
 ```sh
-ERROR Errors were encountered (n=3) during processing of: ['s3://dokku-stack-phi/covid19/results-scan-study/AAAAAAAA-2020-01-01-en.pdf']
+ERROR Errors were encountered (n=1) during processing of: ['s3://dokku-stack-phi/covid19/results-scan-study/AAAAAAAA-2020-01-01-en.pdf']
 ```
 * This problem is commonly caused by duplicate record IDs in REDCap.
   It is related to a known REDCap bug that ITHS is working to fix.
