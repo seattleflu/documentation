@@ -19,9 +19,11 @@ Checklist
    - Add the new language ISO code to the `for` loop in [generate-pdfs].*
    - Add the new language to the `export-redcap-data()` function in [generate-results-csv].
 7. Manually generate PDFs for all data on the S3 results file for the new language.* **
-8. Update securelink portal with new "Next steps" translation and PDF button.* **
-   Translations are viewable via the Google drive link at [this Trello card].
-
+8. Update securelink portal:
+   - Add new "Next steps" translation and PDF button.* **
+     Translations are viewable via the Google drive link at [this Trello card].
+   - Add new mock results PDFs for local development (e.g. CCCCCCCC-2020-01-01). *
+   - Update the [get_pdf_result()] function in the python module to allow the new language code.
 
 *: Depends on #5
 
@@ -37,3 +39,4 @@ Checklist
 [backoffice]: https://github.com/seattleflu/backoffice
 [generate-pdfs]: https://github.com/seattleflu/backoffice/blob/master/bin/scan-return-of-results/generate-pdfs
 [generate-results-csv]: https://github.com/seattleflu/backoffice/blob/master/bin/scan-return-of-results/generate-results-csv
+[get_pdf_result()]: https://github.com/nkrumm/securelink/blob/d82a1871bcbaa7a90ea75b84a507e4cd6bcd8f30/app/__init__.py#L124
