@@ -23,7 +23,7 @@ Checklist
    - Add new "Next steps" translation and PDF button.* **
      Translations are viewable via the Google drive link at [this Trello card].
    - Add new mock results PDFs for local development (e.g. CCCCCCCC-2020-01-01). *
-   - Update the [get_pdf_result()] function in the python module to allow the new language code.
+   - Update the [get_pdf_report()] function in the python module to allow the new language code.
 
 *: Depends on #5
 
@@ -39,4 +39,4 @@ Checklist
 [backoffice]: https://github.com/seattleflu/backoffice
 [generate-pdfs]: https://github.com/seattleflu/backoffice/blob/master/bin/scan-return-of-results/generate-pdfs
 [generate-results-csv]: https://github.com/seattleflu/backoffice/blob/master/bin/scan-return-of-results/generate-results-csv
-[get_pdf_result()]: https://github.com/nkrumm/securelink/blob/d82a1871bcbaa7a90ea75b84a507e4cd6bcd8f30/app/__init__.py#L124
+[get_pdf_report()]: https://github.com/nkrumm/securelink/blob/d82a1871bcbaa7a90ea75b84a507e4cd6bcd8f30/app/__init__.py#L124
