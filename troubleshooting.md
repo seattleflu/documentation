@@ -22,6 +22,9 @@ This is the wrong type of barcode, so just delete this record.
 
 ### Presence Absence ETL
 #### Problem: `SampleNotFoundError`
+```sh
+No sample with identifier «aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa» found
+```
 This means the specimen manifest sheet (or at least the latest imported copy of it in ID3C) is out of date.
 The lab may be slightly behind in updating it, or we may choose to manually import the specimen manifest sheet instead of relying on our automated process to import known specimen manifest sheets from S3.
 
