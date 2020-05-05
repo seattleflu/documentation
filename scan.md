@@ -14,6 +14,7 @@ Checklist
 5. Create a new LaTeX PDF template in [lab-result-reports].
    Translations for the results PDFs live in a Google drive folder accessible via [this Trello card].
    - Rebuild the Docker image and push it to Docker Hub (see [README]).
+   - Validate the newly generated PDFs with native speakers.
 6. Update the SCAN RoR workflow in the [backoffice] repo:
    - Bump the Docker image version [generate-pdfs] uses.†
    - Add the new language ISO code to the `for` loop in [generate-pdfs].†
