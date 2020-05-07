@@ -17,7 +17,7 @@ Checklist
    - Validate the newly generated PDFs with native speakers.
 6. Update the SCAN RoR workflow in the [backoffice] repo:
    - Bump the Docker image version [generate-pdfs] uses.†
-   - Add the new language ISO code to the `for` loop in [generate-pdfs].†
+   - Add the new language ISO code to the `SCAN_LANGS` environment variable in [generate-pdfs].†
    - Add the new language to the `export-redcap-data()` function in [generate-results-csv].
 7. Manually generate PDFs for all data on the S3 results file for the new language.†‡
 8. Update securelink portal:
