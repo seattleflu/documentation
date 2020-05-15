@@ -134,3 +134,22 @@ ERROR Errors were encountered (n=1) during processing of: ['s3://dokku-stack-phi
 * Rarely, this problem pops up when ID3C failed to create a Specimen resource for a given REDCap record.
   Manually generating a DET for the target REDCap record should resolve this issue.
   If this issue continues to arise, then further debugging of our REDCap ingest process is warranted.
+
+
+## Investigating Presence/Absence Results
+
+### Problem: Need to investigate results from a specific plate
+* We do not have plate name/info in a field within the JSONs we get from Samplify.
+However it does seem like the controls of each plate has an `investigatorId` that
+starts with the plate name (e.g. `BAT-049A*`).
+* So if we need to investigate the results we received for a specific plate,
+I recommend running the following query to find the presence_absence_id for
+the plate. In this example, we are searching for plate `BAT049A`:
+```
+select
+    presence_absence_id
+from receiving.presence_absence,
+json_to_recordset(document -> 'samples') as s("investigatorId" text)
+where "investigatorId" like 'BAT-049A%'
+group by presence_absence_id;
+```
