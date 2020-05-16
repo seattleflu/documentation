@@ -9,6 +9,7 @@ Tips for moving forward when things break.
   * [Manifest ETL](#manifest-etl)
 * [Metabase](#metabase)
 * [SCAN RoR PDF generation](#scan-ror-pdf-generation)
+* [Investigating Presence/Absence Results](#investigating-presenceabsence-results)
 
 ## ETL processes
 
@@ -145,11 +146,14 @@ starts with the plate name (e.g. `BAT-049A*`).
 * So if we need to investigate the results we received for a specific plate,
 I recommend running the following query to find the presence_absence_id for
 the plate. In this example, we are searching for plate `BAT049A`:
-```
-select
-    presence_absence_id
-from receiving.presence_absence,
-json_to_recordset(document -> 'samples') as s("investigatorId" text)
-where "investigatorId" like 'BAT-049A%'
-group by presence_absence_id;
-```
+  ```sql
+  select
+      presence_absence_id
+  from
+    receiving.presence_absence,
+    json_to_recordset(document -> 'samples') as s("investigatorId" text)
+  where
+    "investigatorId" like 'BAT-049A%'
+  group by
+    presence_absence_id;
+  ```
