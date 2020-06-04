@@ -11,6 +11,7 @@ An outline of the various data flows in Seattle Flu Study (SFS) and Greater Seat
     * [Genomic Data](#genomic-data)
     * [Outdated](#outdated)
 * [ETL](#etl)
+* [Data Warehouse](#data-warehouse)
 
 ## Data Ingest
 
@@ -119,11 +120,17 @@ Each data source has its own ETL process that fetches data from the `receiving` 
 
 ETL scripts can be found in both [ID3C](https://github.com/seattleflu/id3c/tree/master/lib/id3c/cli/command/etl) and [ID3C-customizations](https://github.com/seattleflu/id3c-customizations/tree/master/lib/seattleflu/id3c/cli/command/etl).
 
+---
+## Data Warehouse
+
+See diagram of `warehouse` tables and their relations at [id3c-warehouse-schema.pdf]
+Details of the schema can be found in both [ID3C](https://github.com/seattleflu/id3c/tree/master/schema) and [ID3C-customizations](https://github.com/seattleflu/id3c-customizations/tree/master/schema)
 
 [assembly]: https://github.com/seattleflu/assembly
 [FHIR Bundle]: https://www.hl7.org/fhir/bundle.html
 [FHIR Diagnostic Report]: https://www.hl7.org/fhir/diagnosticreport.html
 [fhir/presence-absence-example.md]: /fhir/presence-absence-example.md
+[id3c-warehouse-schema.pdf]: /id3c-warehouse-schema.pdf
 [ITHS]: https://www.iths.org/
 [ITHS REDCap]: https://www.iths.org/investigators/services/bmi/redcap/
 [specimen-manifest]: https://github.com/seattleflu/specimen-manifests
