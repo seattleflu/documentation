@@ -1,6 +1,7 @@
 # Documentation
 
 - [Barcodes](barcodes.md)
+- [Data Flow](data-flow.md)
 - [Deploying](deploying.md)
 - [FHIR](fhir.md)
 - [Infrastructure](infrastructure.md)
