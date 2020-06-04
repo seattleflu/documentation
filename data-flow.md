@@ -12,6 +12,10 @@ An outline of the various data flows in Seattle Flu Study (SFS) and Greater Seat
     * [Outdated](#outdated)
 * [ETL](#etl)
 * [Data Warehouse](#data-warehouse)
+* [Data Export](#data-export)
+    * [Metabase](#metabase)
+    * [Shipping Schema](#shipping-schema)
+
 
 ## Data Ingest
 
@@ -126,11 +130,32 @@ ETL scripts can be found in both [ID3C](https://github.com/seattleflu/id3c/tree/
 See diagram of `warehouse` tables and their relations at [id3c-warehouse-schema.pdf]
 Details of the schema can be found in both [ID3C](https://github.com/seattleflu/id3c/tree/master/schema) and [ID3C-customizations](https://github.com/seattleflu/id3c-customizations/tree/master/schema)
 
+---
+## Data Export
+Data export is handled in two ways: ad-hoc queries via [Metabase] and custom views in the `shipping` schema.
+
+#### Metabase
+Metabase is an online tool that provides a nice interface for interacting with data within ID3C.
+* Analytics and dashboards can be created without any SQL knowledge
+* Complicated SQL queries can be saved to be shared with other users
+* Users are put in groups with different levels of access
+* A majority of data exports are done through Metabase
+
+#### `Shipping` Schema
+Custom views are created in the ID3C `shipping` schema to export data to internal consumers:
+* Partners at Institute for Disease Modeling (IDM)
+* Return of results to participants
+* Notifications for positive SARS-CoV-2 results
+* Genomic sequences and metadata for [Augur build]
+
+
 [assembly]: https://github.com/seattleflu/assembly
+[Augur build]: https://github.com/seattleflu/augur-build
 [FHIR Bundle]: https://www.hl7.org/fhir/bundle.html
 [FHIR Diagnostic Report]: https://www.hl7.org/fhir/diagnosticreport.html
 [fhir/presence-absence-example.md]: /fhir/presence-absence-example.md
 [id3c-warehouse-schema.pdf]: /id3c-warehouse-schema.pdf
 [ITHS]: https://www.iths.org/
 [ITHS REDCap]: https://www.iths.org/investigators/services/bmi/redcap/
+[Metabase]: https://metabase.com
 [specimen-manifest]: https://github.com/seattleflu/specimen-manifests
