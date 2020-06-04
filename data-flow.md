@@ -10,6 +10,7 @@ An outline of the various data flows in Seattle Flu Study (SFS) and Greater Seat
     * [Molecular Results](#molecular-results)
     * [Genomic Data](#genomic-data)
     * [Outdated](#outdated)
+* [ETL](#etl)
 
 ## Data Ingest
 
@@ -111,6 +112,13 @@ These will need to be clean up at some point but can be ignore for now.
 * Longitudinal child care data - study arm removed from SFS in Year 2
 * Audere enrollments - moved to REDCap projects in Year 2
 * Self-test kits - moved to REDCap projects in Year 2
+
+---
+## ETL
+Each data source has its own ETL process that fetches data from the `receiving` schema of ID3C and uploads the standardized data to the `warehouse` schema of ID3C.
+
+ETL scripts can be found in both [ID3C](https://github.com/seattleflu/id3c/tree/master/lib/id3c/cli/command/etl) and [ID3C-customizations](https://github.com/seattleflu/id3c-customizations/tree/master/lib/seattleflu/id3c/cli/command/etl).
+
 
 [assembly]: https://github.com/seattleflu/assembly
 [FHIR Bundle]: https://www.hl7.org/fhir/bundle.html
