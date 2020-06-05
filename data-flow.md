@@ -101,7 +101,7 @@ We receive molecular assay results from multiple sources, with the bulk of them 
 ##### NWGC
 * Uses Illumina sequencing to sequence samples that have tested postive for certain pathogens.
 * NWGC partners upload the resulting raw sequence reads to Globus.
-* Sequence reads are manually transferred from Globus to Fred Hutch rhino
+* Sequence reads are manually transferred from Globus to [Fred Hutch rhino]
 * Requires manual parse and upload of metadata for these sequence read sets
     * see detailed script in [ID3C](https://github.com/seattleflu/id3c/blob/master/lib/id3c/cli/command/sequence_read_set.py)
 
@@ -156,6 +156,7 @@ Custom views are created in the ID3C `shipping` schema to export data to interna
 [FHIR Bundle]: https://www.hl7.org/fhir/bundle.html
 [FHIR Diagnostic Report]: https://www.hl7.org/fhir/diagnosticreport.html
 [fhir/presence-absence-example.md]: /fhir/presence-absence-example.md
+[Fred Hutch rhino]: https://sciwiki.fredhutch.org/scicomputing/compute_platforms/#rhino
 [id3c-warehouse-schema.pdf]: /id3c-warehouse-schema.pdf
 [ITHS]: https://www.iths.org/
 [ITHS REDCap]: https://www.iths.org/investigators/services/bmi/redcap/
