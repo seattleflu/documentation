@@ -44,7 +44,7 @@ when the record is created or updated. However, these do not work for bulk uploa
 the mobile platform. For these cases, we have cronjobs set up to generate DETs for records over a certain time period
 and upload them to ID3C (see example in [backoffice](https://github.com/seattleflu/backoffice/blob/master/bin/generate-and-upload-uw-retro-redcap-dets))
 
-Projects are set up to POST DETs to an SFS API endpoint that will upload the data to ID3C table `receiving.redcap_det`.
+Projects are set up to POST DETs to an [SFS API endpoint] that will upload the data to ID3C table `receiving.redcap_det`.
 We use this data to fetch the full records from the REDCap API and transform each record into a [FHIR Bundle].
 ##### Currently Ingesting:
 * SCAN
@@ -76,7 +76,7 @@ Both SCH and KP data are parsed and uploaded to ID3C table `receiving.clinical`
 #### Molecular Results
 We receive molecular assay results from multiple sources, with the bulk of them from the Northwest Genomics Center (NWGC).
 ##### NWGC
-* Uses a software called Samplify to POST presence/absence result JSONs to SFS API endpoint
+* Uses a software called Samplify to POST presence/absence result JSONs to [SFS API endpoint]
 * Provides two types of results:
     * Taqman OpenArray for a large panel of respiratory pathogens
     * Taqman QuantStudio PCR (QPCR) for SARS-CoV-2 pathogen detection
@@ -88,7 +88,7 @@ We receive molecular assay results from multiple sources, with the bulk of them 
 
 ##### Ellume
 * Part of the self-test study arm that provides Ellume self-test kits to participants
-* The Ellume team has set up automatic POST of [FHIR Bundle] with [FHIR Diagnostic Report] to SFS API endpoint
+* The Ellume team has set up automatic POST of [FHIR Bundle] with [FHIR Diagnostic Report] to [SFS API endpoint]
     * More details at [fhir/presence-absence-example.md]
 * Provides results for Influenza A and Influenza B.
 
@@ -160,4 +160,5 @@ Custom views are created in the ID3C `shipping` schema to export data to interna
 [ITHS]: https://www.iths.org/
 [ITHS REDCap]: https://www.iths.org/investigators/services/bmi/redcap/
 [Metabase]: https://metabase.com
+[SFS API endpoint]: https://backoffice.seattleflu.org/production/api
 [specimen-manifest]: https://github.com/seattleflu/specimen-manifests
