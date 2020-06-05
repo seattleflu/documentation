@@ -22,12 +22,13 @@ An outline of the various data flows in Seattle Flu Study (SFS) and Greater Seat
 #### Lab Manifest
 The lab at the Brotman Baty Institute (BBI) maintains Excel files that record all samples processed by them.
 * Uploaded daily to the Fred Hutch AWS S3 bucket by BBI partners
-* Cronjobs set up to parse and upload the manifest data to ID3C table `receiving.manifest`
+* [Cronjobs] set up to parse and upload the manifest data to ID3C table `receiving.manifest`
 * See detailed script in [specimen-manifest] and [ID3C](https://github.com/seattleflu/id3c/blob/master/lib/id3c/cli/command/manifest.py).
 
 The lab manifest is also the source from which we identify UW retrospective samples that need metadata pulled EMR.
 When we detect new UW retrospective samples, we upload their data to the SFS - Clinical Data Pull REDCap project.
 [ITHS] then helps us pull data from EMR and fills in the records on REDCap.
+* [Cronjonbs] set up to parse and upload the UW data to REDCap daily
 * See detailed script in [backoffice](https://github.com/seattleflu/backoffice/blob/master/bin/import-uw-retrospectives-to-redcap)
 
 #### REDCap
@@ -64,7 +65,7 @@ that we just haven't had time to work through
 There are other enrollment data sources that have not been converted to REDCap projects:
 ##### Seattle Children's Hospital (SCH)
 * CSV or Excel file uploaded weekely to the Fred Hutch AWS S3 bucket by SCH partners
-* Cronjob set up to parse and upload SCH data.
+* [Cronjobs] set up to parse and upload SCH data.
 ##### Kaiser Permanente (KP)
 * CSV uploaded by KP partner to the Kaiser secure file transfer (biannual)
 * Requires manual download, parse and upload
@@ -151,6 +152,7 @@ Custom views are created in the ID3C `shipping` schema to export data to interna
 
 [assembly]: https://github.com/seattleflu/assembly
 [Augur build]: https://github.com/seattleflu/augur-build
+[Cronjobs]: https://github.com/seattleflu/backoffice/blob/master/crontabs/id3c-production
 [FHIR Bundle]: https://www.hl7.org/fhir/bundle.html
 [FHIR Diagnostic Report]: https://www.hl7.org/fhir/diagnosticreport.html
 [fhir/presence-absence-example.md]: /fhir/presence-absence-example.md
