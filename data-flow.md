@@ -25,7 +25,7 @@ The lab at the Brotman Baty Institute (BBI) maintains Excel files that record al
 * [Cronjobs] set up to parse and upload the manifest data to ID3C table `receiving.manifest`
 * See detailed script in [specimen-manifest] and [ID3C](https://github.com/seattleflu/id3c/blob/master/lib/id3c/cli/command/manifest.py).
 
-The lab manifest is also the source from which we identify UW retrospective samples that need metadata pulled EMR.
+We also use the lab manifest to identify UW retrospective samples that need metadata pulled from the UW EMR system.
 When we detect new UW retrospective samples, we upload their data to the SFS - Clinical Data Pull REDCap project.
 [ITHS] then helps us pull data from EMR and fills in the records on REDCap.
 * [Cronjonbs] set up to parse and upload the UW data to REDCap daily
@@ -36,13 +36,13 @@ In Year 2 of SFS, we started to use the [ITHS REDCap] survey tools to collect da
 
 Each study arm sets up their own REDCap project so they can customize the questions and flow of the survey according
 to the needs of the study. Due these differences, we've set up separate ingest processes for all of the
-SFS projects. We use a single ingest process for all SCAN projects since they have identical survey fields, just
-translated into different languages.
+SFS projects. On the other hand, we use a single ingest process for all SCAN projects since they have identical survey fields,
+just translated into different languages.
 
 REDCap has a feature called Data Entry Trigger (DET) that will POST minimal data about a record to an API endpoint
 when the record is created or updated. However, these do not work for bulk uploaded records or records updated via
 the mobile platform. For these cases, we have cronjobs set up to generate DETs for records over a certain time period
-and upload them to ID3C (see example in [backoffice](https://github.com/seattleflu/backoffice/blob/master/bin/generate-and-upload-uw-retro-redcap-dets))
+and upload them to ID3C (see example in [backoffice](https://github.com/seattleflu/backoffice/blob/master/bin/generate-and-upload-uw-retro-redcap-dets)).
 
 Projects are set up to POST DETs to an [SFS API endpoint] that will upload the data to ID3C table `receiving.redcap_det`.
 We use this data to fetch the full records from the REDCap API and transform each record into a [FHIR Bundle].
@@ -64,7 +64,7 @@ that we just haven't had time to work through
 #### Other Enrollment Data Sources
 There are other enrollment data sources that have not been converted to REDCap projects:
 ##### Seattle Children's Hospital (SCH)
-* CSV or Excel file uploaded weekely to the Fred Hutch AWS S3 bucket by SCH partners
+* CSV or Excel file uploaded weekly to the Fred Hutch AWS S3 bucket by SCH partners
 * [Cronjobs] set up to parse and upload SCH data.
 ##### Kaiser Permanente (KP)
 * CSV uploaded by KP partner to the Kaiser secure file transfer (biannual)
@@ -84,7 +84,7 @@ We receive molecular assay results from multiple sources, with the bulk of them 
 ##### UW Clinical
 * Ingested from the SFS - Clinical Data Pull REDCap project
 * Provides results for a panel of respiratory pathogens
-* Recently included SARS-CoV-2 results
+* As of March 2020, the data pulls include SARS-CoV-2 results
 
 ##### Ellume
 * Part of the self-test study arm that provides Ellume self-test kits to participants
