@@ -3,13 +3,25 @@
 Tips for moving forward when things break.
 
 ## Table of Contents
-* [ETL processes](#etl-processes)
-  * [FHIR ETL](#fhir-etl)
-  * [Presence Absence ETL](#presence-absence-etl)
-  * [Manifest ETL](#manifest-etl)
-* [Metabase](#metabase)
-* [SCAN RoR PDF generation](#scan-ror-pdf-generation)
-* [Investigating Presence/Absence Results](#investigating-presenceabsence-results)
+- [Troubleshooting](#troubleshooting)
+  - [Table of Contents](#table-of-contents)
+  - [ETL processes](#etl-processes)
+    - [FHIR ETL](#fhir-etl)
+      - [Problem: `AssertionError`](#problem-assertionerror)
+      - [Problem: `AssertionError`](#problem-assertionerror-1)
+    - [Manifest ETL](#manifest-etl)
+      - [Problem: `AssertionError`](#problem-assertionerror-2)
+    - [Problem: `Exception`](#problem-exception)
+  - [Metabase](#metabase)
+    - [Problem: Metabase is down](#problem-metabase-is-down)
+    - [Problem: Metabase queries are slow](#problem-metabase-queries-are-slow)
+  - [SCAN RoR PDF generation](#scan-ror-pdf-generation)
+    - [Problem: PDF generation errors out for specific barcodes](#problem-pdf-generation-errors-out-for-specific-barcodes)
+  - [Presence Absence Results](#presence-absence-results)
+    - [Investigating Presence/Absence Results](#investigating-presenceabsence-results)
+      - [Problem: Need to investigate results from a specific plate](#problem-need-to-investigate-results-from-a-specific-plate)
+    - [Bad Presence/Absence Results Uploaded](#bad-presenceabsence-results-uploaded)
+      - [Problem: A plate was swapped](#problem-a-plate-was-swapped)
 
 ## ETL processes
 
@@ -136,10 +148,10 @@ ERROR Errors were encountered (n=1) during processing of: ['s3://dokku-stack-phi
   Manually generating a DET for the target REDCap record should resolve this issue.
   If this issue continues to arise, then further debugging of our REDCap ingest process is warranted.
 
+## Presence Absence Results
+### Investigating Presence/Absence Results
 
-## Investigating Presence/Absence Results
-
-### Problem: Need to investigate results from a specific plate
+#### Problem: Need to investigate results from a specific plate
 * We do not have plate name/info in a field within the JSONs we get from Samplify.
 However it does seem like the controls of each plate has an `investigatorId` that
 starts with the plate name (e.g. `BAT-049A*`).
@@ -157,3 +169,10 @@ the plate. In this example, we are searching for plate `BAT049A`:
   group by
     presence_absence_id;
   ```
+
+### Bad Presence/Absence Results Uploaded
+
+#### Problem: A plate was swapped
+* When this happens, the lab may create new samples and reattach the results to those samples (see an [example in Slack](https://seattle-flu-study.slack.com/archives/CJU8RN2Q6/p1591721735035500)).
+* Our ETL would create new presence/absence records for the sample since the `lims_id` is part of the presence/absence identifier.
+* The sample record would be associated with both LIMS IDs, and the previous presence/absence results would still exist. A manual deletion of results associated with the original LIMS ID may be necessary.
