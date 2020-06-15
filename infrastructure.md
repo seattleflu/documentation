@@ -61,6 +61,7 @@ Configuration of interest includes
     - `journalctl --unit metabase`
     - `/etc/systemd/system/metabase.service` → `/opt/backoffice/metabase/metabase.service`
     - `/etc/systemd/system/lab-labels.service` → `/opt/backoffice/lab-labels/lab-labels.service`
+    - `/etc/systemd/system/scan-switchboard.service` → `/opt/backoffice/scan-switchboard/scan-switchboard.service`
 
 * ID3C ETL jobs are run periodically using cron, defined in `/etc/cron.d/backoffice`
 
