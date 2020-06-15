@@ -28,7 +28,7 @@ The lab at the Brotman Baty Institute (BBI) maintains Excel files that record al
 We also use the lab manifest to identify UW retrospective samples that need metadata pulled from the UW EMR system.
 When we detect new UW retrospective samples, we upload their data to the SFS - Clinical Data Pull REDCap project.
 [ITHS] then helps us pull data from EMR and fills in the records on REDCap.
-* [Cronjonbs] set up to parse and upload the UW data to REDCap daily
+* [Cronjobs] set up to parse and upload the UW data to REDCap daily
 * See detailed script in [backoffice](https://github.com/seattleflu/backoffice/blob/master/bin/import-uw-retrospectives-to-redcap)
 
 #### REDCap
