@@ -1,5 +1,18 @@
 # Seattle Flu Study onboarding
 
+- [Seattle Flu Study onboarding](#seattle-flu-study-onboarding)
+  - [General access to study data](#general-access-to-study-data)
+  - [Adding new database users](#adding-new-database-users)
+  - [Providing AWS Access](#providing-aws-access)
+    - [Example IAM policies](#example-iam-policies)
+      - [UW / BBI](#uw--bbi)
+      - [SCH](#sch)
+      - [Swedish](#swedish)
+
+
+## General access to study data
+See [this Slack message](https://seattle-flu-study.slack.com/archives/GJXFQ209K/p1591997617135300?thread_ts=1591997369.134700&cid=GJXFQ209K) pointing to a Google Drive folder, maintained by Robin, that describes access to Metabase, REDCap, etc.
+
 ## Adding new database users
 Before adding a new study member to the production database, confirm the DTUA is executed with Robin.
 
