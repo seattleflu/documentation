@@ -1,5 +1,14 @@
 # Seattle Flu Study onboarding
 
+- [Seattle Flu Study onboarding](#seattle-flu-study-onboarding)
+  - [Adding new database users](#adding-new-database-users)
+  - [Providing AWS Access](#providing-aws-access)
+    - [Example IAM policies](#example-iam-policies)
+      - [UW / BBI](#uw--bbi)
+      - [SCH](#sch)
+      - [Swedish](#swedish)
+
+
 ## Adding new database users
 Before adding a new study member to the production database, confirm the DTUA is executed with Robin.
 
