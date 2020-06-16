@@ -23,6 +23,7 @@ _Internal tooling_
 * Production [ID3C API](https://github.com/seattleflu/id3c) at `/production/api`
 * [Metabase](https://metabase.com) at `/metabase`
 * [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
+* [Scan Switchboard](https://github.com/seattleflu/scan-switchboard) at `/switchboard`
 
 Hosted on an EC2 instance.
 
@@ -35,6 +36,8 @@ Configuration of interest includes
 * [Metabase container config and data](https://github.com/seattleflu/backoffice/tree/master/metabase) (`/opt/backoffice/metabase`)
 
 * [Lab Labels container config](https://github.com/seattleflu/backoffice/tree/master/lab-labels) (`/opt/backoffice/lab-labels`)
+
+* [SCAN Switchboard config](https://github.com/seattleflu/backoffice/tree/master/scan-switchboard) (`/opt/backoffice/scan-switchboard`)
 
 * uWSGI (`/etc/uwsgi`)
     - Apps enabled: `api-testing`, `api-production`
