@@ -8,6 +8,14 @@ A good overview of the study's barcodes [exists
 elsewhere](https://docs.google.com/document/d/1exaj_aGB8rqjMAwEznRYIR84J8486DyB3dNSAGnyHmM/edit).
 
 
+## Creating new collections
+
+Before creating a new collection (typically for a new study arm), the following
+questions should be answered:
+   * What is the new collection name?
+   * What do you want the collection barcode label to say?
+   * How many replicates do you want? (e.g. singlet, duplicate, triplicate)
+
 ## Making new barcodes
 
 Each type of barcode used by the study is printed on different labels:
