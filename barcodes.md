@@ -84,6 +84,9 @@ The new identifiers and their associated barcodes will be stored in the ID3C
 database for future reference.  A PDF of formatted barcode labels will be made
 and saved to your computer.
 
+> Note: If you need to recreate labels for a previously generated set of
+> barcodes, use the `id3c identifier labels` command.
+
 Open up the new _barcode-labels.pdf_ file.  It should have 20 pages (of 52
 barcodes each) formatted to print on a box of [LCRY-1100-Y][] sheets.
 
