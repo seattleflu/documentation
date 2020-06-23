@@ -16,6 +16,16 @@ questions should be answered:
    * What do you want the collection barcode label to say?
    * How many replicates do you want? (e.g. singlet, duplicate, triplicate)
 
+Once these concerns are addressed, use the `id3c identifier set` command to
+create a new collection. Then, create a new label layout for the [labelmaker].
+Now, you're ready to [mint barcodes](#making-new-barcodes)!
+> Note: One-off requests for new collections do not necessarily need to have their label
+settings merged to master or be tracked in the following barcode settings table.
+
+
+[labelmaker]: https://github.com/seattleflu/id3c/blob/master/lib/id3c/labelmaker.py
+
+
 ## Making new barcodes
 
 Each type of barcode used by the study is printed on different labels:
