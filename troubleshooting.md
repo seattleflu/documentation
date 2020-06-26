@@ -32,7 +32,8 @@ Tips for moving forward when things break.
 ```
 Aborting with error: Specimen with unexpected «collections-clia-compliance» barcode «aaaaaaaa»
 ````
-This is the wrong type of barcode, so delete this record and inform the lab in #record-troubleshooting.
+This is the wrong type of barcode, so delete this record and create a new Trello card in #record-troubleshooting.
+Be sure to tag Peter and Brian (of the lab) on the new card.
 
 
 ### Presence Absence ETL
