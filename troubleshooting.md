@@ -30,7 +30,7 @@ Tips for moving forward when things break.
 ```
 Aborting with error: Specimen with unexpected «collections-clia-compliance» barcode «aaaaaaaa»
 ````
-This is the wrong type of barcode, so just delete this record.
+This is the wrong type of barcode, so delete this record and inform the lab in #record-troubleshooting.
 
 
 ### Presence Absence ETL
