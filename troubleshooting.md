@@ -12,6 +12,8 @@ Tips for moving forward when things break.
     - [Manifest ETL](#manifest-etl)
       - [Problem: `AssertionError`](#problem-assertionerror-2)
       - [Problem: `Exception`](#problem-exception)
+    - [REDCap DET ETL](#redcap-det-etl)
+      - [Problem: Duplicate REDCap record ID in a project](#problem-duplicate-redcap-record-id-in-a-project)
   - [Metabase](#metabase)
     - [Problem: Metabase is down](#problem-metabase-is-down)
     - [Problem: Metabase queries are slow](#problem-metabase-queries-are-slow)
@@ -111,6 +113,24 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     In this case, `cccccccc-cccc-cccc-cccc-cccccccccccc` was one of the duplicate barcodes.
     The tangling that occurred here was probably due to the timing of fixes.
 
+
+### REDCap DET ETL
+#### Problem: Duplicate REDCap record ID in a project
+```
+Found duplicate record id «999» in project 12345.
+Duplicate record ids are commonly due to repeating instruments/longitudinal events in REDCap,
+which the redcap-det ETL is currently unable to handle.
+If your REDCap project does not have repeating instruments or longitudinal events,
+then this may be caused by a bug in REDCap.
+```
+
+The warning message really says it all.
+While this issue doesn't cause this ETL pipeline to fail, we still want to post in the #record-troubleshooting Trello board to alert the REDCap team about this problem.
+If left unmitigated, duplicate record IDs in REDCap could cause our [return of results PDF generation to fail](#problem-pdf-generation-errors-out-for-specific-barcodes).
+Be sure to tag Misja and Sarah (of the REDCap team) in the new card.
+
+Duplicate record IDs are a commonly known REDCap bug, a duplicate record ID across two study arms (e.g. symptomatic and asymptomatic) for the most part is not surprising.
+However, if the problem seems especially bizarre -- for example, if every single REDCap record ID in the priority code study arm is a duplicate record ID of another arm -- then send an additional message in the #redcap channel notifying Misja and Sarah of the situation.
 
 ## Metabase
 
