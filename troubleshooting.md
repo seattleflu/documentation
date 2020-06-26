@@ -11,7 +11,7 @@ Tips for moving forward when things break.
       - [Problem: `AssertionError`](#problem-assertionerror-1)
     - [Manifest ETL](#manifest-etl)
       - [Problem: `AssertionError`](#problem-assertionerror-2)
-    - [Problem: `Exception`](#problem-exception)
+      - [Problem: `Exception`](#problem-exception)
   - [Metabase](#metabase)
     - [Problem: Metabase is down](#problem-metabase-is-down)
     - [Problem: Metabase queries are slow](#problem-metabase-queries-are-slow)
@@ -84,7 +84,7 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     Ask someone in the #lab Slack channel to update these sample identifiers to have a prefix of `_exp` so they won't get ingested in the next manifest upload.
     The original affected records should be deleted from `receiving.manifest`.
 
-### Problem: `Exception`
+#### Problem: `Exception`
 1.
     ```
     Aborting with error: More than one sample matching sample and/or collection barcodes: [Record(id=118997, identifier='aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', collection_identifier='bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', encounter_id=416344), Record(id=120434, identifier=None, collection_identifier='cccccccc-cccc-cccc-cccc-cccccccccccc', encounter_id=416344)]
