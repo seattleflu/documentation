@@ -23,6 +23,8 @@ An outline of the various data flows in Seattle Flu Study (SFS) and Greater Seat
 The lab at the Brotman Baty Institute (BBI) maintains Excel files that record all samples processed by them.
 * Uploaded daily to the Fred Hutch AWS S3 bucket by BBI partners
 * [Cronjobs] set up to parse and upload the manifest data to ID3C table `receiving.manifest`
+* When the latest Excel file becomes too long, the lab creates a brand new file with the same format
+    * Instructions for adding these new files to the ingest process are avaiable at [specimen-manifests](specimen-manifests.md)
 * See detailed script in [specimen-manifest] and [ID3C](https://github.com/seattleflu/id3c/blob/master/lib/id3c/cli/command/manifest.py).
 
 We also use the lab manifest to identify UW retrospective samples that need metadata pulled from the UW EMR system.
