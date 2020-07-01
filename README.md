@@ -10,3 +10,4 @@
 - [Specimen Manifests](specimen-manifests.md)
 - [Survey](survey.md)
 - [Troubleshooting](troubleshooting.md)
+- [Welcome](welcome.md)
