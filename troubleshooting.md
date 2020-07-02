@@ -91,6 +91,12 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
 #### Problem: `Exception`
 1.
     ```
+    Aborting with error: More than one sample matching sample and/or collection barcodes: [Record(id=137871, identifier=None, collection_identifier='aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', encounter_id=1754975),    Record(id=138045, identifier='bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', collection_identifier=None, encounter_id=None)]
+    ```
+    This error can arise due to incomplete records within the manifest uploaded by the lab team.
+    Delete the sample record that is incomplete i.e. the sample that doesn't have a collection identifier.
+1.
+    ```
     Aborting with error: More than one sample matching sample and/or collection barcodes: [Record(id=118997, identifier='aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', collection_identifier='bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', encounter_id=416344), Record(id=120434, identifier=None, collection_identifier='cccccccc-cccc-cccc-cccc-cccccccccccc', encounter_id=416344)]
     ```
     This is one of the nefarious problems caused by duplicate barcodes.
