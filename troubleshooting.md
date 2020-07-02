@@ -24,6 +24,7 @@ Tips for moving forward when things break.
       - [Problem: Need to investigate results from a specific plate](#problem-need-to-investigate-results-from-a-specific-plate)
     - [Bad Presence/Absence Results Uploaded](#bad-presenceabsence-results-uploaded)
       - [Problem: A plate was swapped](#problem-a-plate-was-swapped)
+      - [Problem: A sample was retroactively failed](#problem-a-sample-was-retroactively-failed)
 
 ## ETL processes
 
