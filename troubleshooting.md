@@ -197,3 +197,22 @@ the plate. In this example, we are searching for plate `BAT049A`:
 * When this happens, the lab may create new samples and reattach the results to those samples (see an [example in Slack](https://seattle-flu-study.slack.com/archives/CJU8RN2Q6/p1591721735035500)).
 * Our ETL would create new presence/absence records for the sample since the `lims_id` is part of the presence/absence identifier.
 * The sample record would be associated with both LIMS IDs, and the previous presence/absence results would still exist. A manual deletion of results associated with the original LIMS ID may be necessary.
+
+#### Problem: A sample was retroactively failed
+* When this happens, the lab will re-push the entire plate of results with the updated sample results marked as `Fail`.
+* Our ETL skips `Fail` results, so we need to manually delete records in ID3C.
+  1. Find the sample record within `warehouse.sample` using the collection barcode or sample barcode
+  1. Find all result JSON documents containing the sample within `receiving.presence_absence`
+    (Hopefully there's only two records: first incorrect one and an updated one)
+  1. Download and diff the JSONs to verify that only the affected sample results are different.
+      ```sql
+      \copy (select document from receiving.presence_absence where presence_absence_id = ...) to 'fileA.json'
+      \copy (select document from receiving.presence_absence where presence_absence_id = ...) to 'fileB.json'
+      ```
+      ```bash
+      jq -S . fileA.json > fileA_fmt.json
+      jq -S . fileB.json > fileB_fmt.json
+      diff fileA_fmt.json fileB_fmt.json
+      ```
+  1. Delete the incorrect result record(s) for the sample from `warehouse.presence_absence`
+  1. Delete the incorrect results JSON document from `receiving.presence_absence` so we don't ingest the incorrect results again when we bump the ETL revision number.
