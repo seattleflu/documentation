@@ -5,10 +5,10 @@ Documentation on the Seattle Coronavirus Assessment Network (SCAN) project
 ## Adding a new language
 
 Checklist
-1. Insert `<span>` tags into the REDCap project fields.
+1. Insert `<span>` tags into the REDCap project fields while the project is still in development mode.
    - Download the existing data dictionary with the [download-data-dictionary] script.
    - Upload a modified data dictionary with injected HTML attributes via [upload-data-dictionary].
-2. Enable REDCap DETs for the new project.
+2. Enable REDCap DETs for the new project once testing is complete and it's ready for production.
 3. Update the REDCap DET ETL with the new language's project ID and ISO code (see [example]).
 4. Add a new cronjob for the new REDCap DET ETL.*
 5. Create a new LaTeX PDF template in [lab-result-reports].
