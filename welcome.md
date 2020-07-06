@@ -40,6 +40,7 @@ start using or contributing to our code.
     - [Re-run an ETL process (without bumping revision number)](#re-run-an-etl-process-without-bumping-revision-number)
   - [Environment configuration](#environment-configuration)
     - [Editor configuration](#editor-configuration)
+    - [Git configuration](#git-configuration)
     - [Prevent wrapping within psql (optional)](#prevent-wrapping-within-psql-optional)
 
 
@@ -240,6 +241,14 @@ grep seattleflu /var/log/syslog
 ## Environment configuration
 ### Editor configuration
 We configure our editors to use spaces instead of tabs, trim trailing whitespace at the end of each line, and add an empty newline to the end of each file.
+
+### Git configuration
+We add the following configuration to our global `.gitconfig`:
+```
+[pull]
+    rebase = true
+```
+When pulling from master, local changes are now rebased on top of the master branch instead of creating "Merge branch 'master'..." commits.
 
 ### Prevent wrapping within psql (optional)
 Set pager environment variable to `less` and specify which `less` method to use.
