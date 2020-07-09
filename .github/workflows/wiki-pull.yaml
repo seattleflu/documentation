@@ -1,0 +1,29 @@
+---
+name: Pull from wiki
+
+on:
+  # Check every 5 minutes, the most frequently we can within GitHub Action's
+  # limitations.
+  schedule:
+    - cron: '*/5 * * * *'
+
+  # Manually triggered from the GitHub Actions UI.
+  workflow_dispatch:
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: master
+        fetch-depth: 0
+    - name: Pull from wiki repo
+      run: |
+        git config user.name "GitHub Actions on behalf of $(jq -r '.pusher.name' "$GITHUB_EVENT_PATH")"
+        git config user.email "$GITHUB_ACTION@actions.noreply.github.com"
+
+        git remote add wiki https://${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.wiki.git
+        git fetch wiki
+        git merge --ff --no-edit wiki/master
+        git push origin master
