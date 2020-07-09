@@ -7,5 +7,4 @@
 - [Onboarding](onboarding)
 - [SCAN](scan)
 - [Specimen Manifests](specimen-manifests)
-- [Survey](survey)
 - [Troubleshooting](troubleshooting)
