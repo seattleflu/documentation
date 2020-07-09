@@ -1,5 +1,7 @@
 # Documentation
 
+See the [wiki](https://github.com/seattleflu/documentation/wiki)!
+
 - [Barcodes](barcodes.md)
 - [Data Flow](data-flow.md)
 - [Deploying](deploying.md)
