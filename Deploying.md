@@ -1,5 +1,3 @@
-# Deploying ID3C Changes
-
 ## Prerequisites
 Before you get started, you'll need the following:
 
@@ -58,10 +56,10 @@ Before you get started, you'll need the following:
     Run the desired `id3c` command(s) with a prefix of `PGSERVICE={service name}`.
 
 
-[Infrastructure]: ./infrastructure.md
+[Infrastructure]: infrastructure
 [backoffice]: https://github.com/seattleflu/backoffice
 [ID3C]: https://github.com/seattleflu/id3c
 [ID3C-customizations]: https://github.com/seattleflu/id3c-customizations
-[backoffice.seattleflu.org]: infrastructure.md#backofficeseattlefluorg
-[sqitch configuration]: infrastructure.md#sqitch-configuration
+[backoffice.seattleflu.org]: infrastructure#backofficeseattlefluorg
+[sqitch configuration]: infrastructure#sqitch-configuration
 [Pipenv]:https://pipenv.readthedocs.io/en/latest/

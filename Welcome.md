@@ -1,5 +1,3 @@
-# Welcome!
-
 Welcome to Seattle Flu Study (SFS) GitHub documentation! If you're reading this,
 you're probably new here. This page, while currently a stub, dreams of being a
 one-stop shop for getting you set up and answering your questions before you
@@ -108,17 +106,17 @@ Data sources include prospective (SFS or SCAN enrollments via REDCap) and
 retrospective (Seattle Childrens, UW Medicine, Kaiser Permanente, or Fred Hutch
 data exports)
 
-See more details about data ingestion at [data-flow](data-flow.md).
+See more details about data ingestion at [data-flow](data-flow).
 
 #### Data Quality
 There are data quality checks throughout the ingestion and ETL pipelines in [ID3C]/[ID3C-customizations].
 Errors and warnings are posted in the __#id3c-alerts__ Slack channel.
 
-See more details about how to handle common errors at [troubleshooting](troubleshooting.md).
+See more details about how to handle common errors at [troubleshooting](troubleshooting).
 
 #### Barode minting
 The dev team gets requests for minting new barcodes in the __#barcodes__ Slack channel.
-More detailed instructions are available at [barcodes](barcodes.md).
+More detailed instructions are available at [barcodes](barcodes).
 
 ### Return of results
 CLIA certified lab results are returned to participants via a web portal.

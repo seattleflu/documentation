@@ -1,6 +1,5 @@
-# Seattle Flu Study onboarding
+## Table of contents
 
-- [Seattle Flu Study onboarding](#seattle-flu-study-onboarding)
   - [General access to study data](#general-access-to-study-data)
   - [Adding new database users](#adding-new-database-users)
   - [Providing AWS Access](#providing-aws-access)

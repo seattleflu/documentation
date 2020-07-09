@@ -1,5 +1,3 @@
-# Barcodes
-
 Barcodes for the study are generated as
 [CualIDs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5069752/) using
 [ID3C's](https://github.com/seattleflu/id3c) `id3c identifier mint` command.

@@ -1,5 +1,3 @@
-# Data Removal
-
 ## Prerequisites
 
 Before you get started, you'll need the following:

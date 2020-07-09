@@ -1,5 +1,3 @@
-# FHIR
-
 [FHIR](https://www.hl7.org/fhir/) is a standard for health care data exchange.
 It is our intended standard for enrollment data, selected for its interoperability and clear specifications.
 Here is a [brief intro to FHIR](http://www.hl7.org/implement/standards/fhir/overview-dev.html).

@@ -1,5 +1,3 @@
-# SFS/SCAN Data Flow
-
 An outline of the various data flows in Seattle Flu Study (SFS) and Greater Seattle Coronavirus Assessment Network (SCAN)
 
 ## Table of Contents
@@ -24,7 +22,7 @@ The lab at the Brotman Baty Institute (BBI) maintains Excel files that record al
 * Uploaded daily to the Fred Hutch AWS S3 bucket by BBI partners
 * [Cronjobs] set up to parse and upload the manifest data to ID3C table `receiving.manifest`
 * When the latest Excel file becomes too long, the lab creates a brand new file with the same format
-    * Instructions for adding these new files to the ingest process are avaiable at [specimen-manifests](specimen-manifests.md)
+    * Instructions for adding these new files to the ingest process are avaiable at [specimen-manifests](specimen-manifests)
 * See detailed script in [specimen-manifest] and [ID3C](https://github.com/seattleflu/id3c/blob/master/lib/id3c/cli/command/manifest.py).
 
 We also use the lab manifest to identify UW retrospective samples that need metadata pulled from the UW EMR system.
@@ -91,7 +89,7 @@ We receive molecular assay results from multiple sources, with the bulk of them 
 ##### Ellume
 * Part of the self-test study arm that provides Ellume self-test kits to participants
 * The Ellume team has set up automatic POST of [FHIR Bundle] with [FHIR Diagnostic Report] to [SFS API endpoint]
-    * More details at [fhir/presence-absence-example.md]
+    * More details at [fhir/presence-absence-example]
 * Provides results for Influenza A and Influenza B.
 
 ##### Cepheid
@@ -157,7 +155,7 @@ Custom views are created in the ID3C `shipping` schema to export data to interna
 [Cronjobs]: https://github.com/seattleflu/backoffice/blob/master/crontabs/id3c-production
 [FHIR Bundle]: https://www.hl7.org/fhir/bundle.html
 [FHIR Diagnostic Report]: https://www.hl7.org/fhir/diagnosticreport.html
-[fhir/presence-absence-example.md]: /fhir/presence-absence-example.md
+[fhir/presence-absence-example]: fhir/presence-absence-example
 [Fred Hutch rhino]: https://sciwiki.fredhutch.org/scicomputing/compute_platforms/#rhino
 [id3c-warehouse-schema.pdf]: /id3c-warehouse-schema.pdf
 [ITHS]: https://www.iths.org/

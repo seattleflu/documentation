@@ -1,5 +1,3 @@
-# SCAN
-
 Documentation on the Seattle Coronavirus Assessment Network (SCAN) project
 
 ## Adding a new language

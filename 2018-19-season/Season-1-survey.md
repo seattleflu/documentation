@@ -1,5 +1,3 @@
-# Survey data dictionary and flow chart
-
 Kiosk- and clinic-based collection sites in the 2018—19 season used a mobile
 app called ["FluTrack"](https://github.com/auderenow/learn/tree/master/FluTrack)
 developed by [Audere](https://auderenow.org) to collect consent and

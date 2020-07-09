@@ -1,5 +1,3 @@
-# Seattle Flu Study infrastructure
-
 Run by the Bedford Lab, currently managed mostly by Thomas.
 
 Unless noted otherwise, all of this is running under the AWS account

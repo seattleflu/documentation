@@ -1,5 +1,3 @@
-# Exchanging self-test diagnostic results
-
 This is an example FHIR R4 resource [Bundle][] for reporting the presence/absence
 of influenza virus.  Using FHIR provides a well-documented structure and
 semantics for representing this information, but for the actual exchange we

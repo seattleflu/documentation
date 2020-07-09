@@ -1,5 +1,3 @@
-# Specimen Manifests
-
 Updating the [specimen manifests] ingest process requires two main steps:
 
 1. Update the appropriate season config file for AWS and OneDrive in the [specimen manifests] repo with the new sheet metadata.

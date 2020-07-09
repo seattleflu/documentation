@@ -1,5 +1,3 @@
-# Troubleshooting
-
 Tips for moving forward when things break.
 
 ## Table of Contents
