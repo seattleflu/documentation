@@ -11,5 +11,5 @@ See the [wiki](https://github.com/seattleflu/documentation/wiki)!
 - [SCAN](scan.md)
 - [Specimen Manifests](specimen-manifests.md)
 - [Survey](survey.md)
-- [Troubleshooting](troubleshooting.md)
-- [Welcome](welcome.md)
+- ~[Troubleshooting](troubleshooting.md)~ Use the wiki!
+- ~[Welcome](welcome.md)~ Use the wiki!
