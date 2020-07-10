@@ -19,6 +19,7 @@ start using or contributing to our code.
     - [SCAN Switchboard](#scan-switchboard)
   - [Tools](#tools)
     - [Git](#git)
+      - [GitHub Actions](#github-actions)
     - [Python](#python)
       - [Pipenv](#pipenv)
       - [Flask](#flask)
@@ -145,9 +146,16 @@ The [source code](https://github.com/seattleflu/scan-switchboard) is separate fr
 
 ## Tools
 ### Git
-We use git for version control, and our repositories are all hosted on [GitHub].
+Git is our version control tool, and our repositories are all hosted on [GitHub].
 We generally follow [these guidelines](https://chris.beams.io/posts/git-commit/) for writing git commit messages.
+We typically do development in feature branches and merge into master.
+Generally, we deploy from master (or images/snapshots created from master).
 Before merging, we rebase our commits to create the most human-readable history of our codebase as possible.
+
+#### GitHub Actions
+We use GitHub Actions in the following repositories:
+* [seattleflu/lab-result-reports](https://github.com/seattleflu/lab-result-reports/actions)
+* [seattleflu/documentation](https://github.com/seattleflu/documentation/actions)
 
 ### Python
 Python 3 is the programming language of choice for our ETL pipelines.
@@ -270,6 +278,7 @@ To save these settings, add the following lines to your `~/.psqlrc`.
 [doctests at ID3C-customizations]: https://github.com/seattleflu/id3c-customizations/#doctests
 [FHIR ETL]: https://github.com/seattleflu/id3c/blob/master/lib/id3c/cli/command/etl/fhir.py
 [Flask]: https://flask.palletsprojects.com
+[GitHub]: https://github.com
 [HL7 FHIR]: https://www.hl7.org/fhir/
 [ID3C]: https://github.com/seattleflu/id3c
 [ID3C's design]: https://github.com/seattleflu/id3c#design
