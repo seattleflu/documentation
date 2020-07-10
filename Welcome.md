@@ -25,7 +25,7 @@ start using or contributing to our code.
       - [Flask](#flask)
       - [Click](#click)
     - [PostgreSQL](#postgresql)
-    - [Sqitch](#sqitch)
+      - [Sqitch](#sqitch)
     - [AWS](#aws)
     - [Tests](#tests)
       - [Doctests](#doctests)
@@ -177,7 +177,7 @@ We're currently using PostgreSQL version 10 for our production database with pla
 See [ID3C's design] for a motivation on the schema setup of our database.
 See [this flowchart](id3c-warehouse-schema.pdf) for an overview of the `warehouse` schema of the `seattleflu` database.
 
-### Sqitch
+#### Sqitch
 See our [motivation for using sqitch].
 
 ### AWS
