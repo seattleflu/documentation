@@ -184,9 +184,14 @@ See our [motivation for using sqitch].
 See our high level [AWS documentation].
 
 ### Tests
-#### Doctests
 We currently don't have many tests in ID3C, as we tend to rely more heavily on
-our alert system. However, we do have some [doctests at ID3C-customizations].
+our alert system (see the **#id3c-alerts** Slack channel).
+
+#### Doctests
+Run doctests in the ID3C or ID3C-customizations repo with `pytest -v`.
+
+#### Type Checks
+Run mypy type checking in the ID3C or ID3C-customizations repo with `./dev/mypy`.
 
 ## Misc
 ### REDCap
@@ -275,7 +280,6 @@ To save these settings, add the following lines to your `~/.psqlrc`.
 [backoffice]: https://github.com/seattleflu/backoffice
 [Click]: https://click.palletsprojects.com
 [cronjobs]: https://github.com/seattleflu/backoffice/tree/master/crontabs
-[doctests at ID3C-customizations]: https://github.com/seattleflu/id3c-customizations/#doctests
 [FHIR ETL]: https://github.com/seattleflu/id3c/blob/master/lib/id3c/cli/command/etl/fhir.py
 [Flask]: https://flask.palletsprojects.com
 [GitHub]: https://github.com
