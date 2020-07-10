@@ -29,6 +29,7 @@ start using or contributing to our code.
     - [AWS](#aws)
     - [Tests](#tests)
       - [Doctests](#doctests)
+      - [Type checks](#type-checks)
   - [Misc](#misc)
     - [REDCap](#redcap)
     - [FHIR](#fhir)
