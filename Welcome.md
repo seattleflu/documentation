@@ -37,6 +37,7 @@ start using or contributing to our code.
   - [Development tools](#development-tools)
   - [Running ID3C](#running-id3c)
     - [Test your installation](#test-your-installation)
+    - [Connecting to production vs. local databases](#connecting-to-production-vs-local-databases)
     - [Re-run an ETL process (without bumping revision number)](#re-run-an-etl-process-without-bumping-revision-number)
   - [Environment configuration](#environment-configuration)
     - [Editor configuration](#editor-configuration)
@@ -221,6 +222,19 @@ From within the `id3c` or `id3c-customizations` repo, run the following:
 ```sh
 PGDATABASE=seattleflu pipenv run id3c --help
 ```
+
+### Connecting to production vs. local databases
+Here's how you might see the identifier (barcode) sets in our production instance:
+```sh
+PGSERVICE=seattleflu-production pipenv run id3c identifier set ls
+```
+whereas in local testing, I'd do:
+```sh
+PGDATABASE=seattleflu pipenv run id3c identifier set ls
+```
+PGSERVICE points to a named service definition in a `~/.pg_service.conf` file.
+
+ID3C doesn't provide application-specific connection defaults, and it relies on the [standard Pg environment variables](https://www.postgresql.org/docs/current/libpq-envars.html) to define the connection.
 
 ### Re-run an ETL process (without bumping revision number)
 Set the processing log for all targeted rows to be blank.
