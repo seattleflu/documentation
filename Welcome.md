@@ -3,36 +3,35 @@ you're probably new here. This page, while currently a stub, dreams of being a
 one-stop shop for getting you set up and answering your questions before you
 start using or contributing to our code.
 
-- [Welcome!](#welcome)
-  - [Slack](#slack)
-  - [Permissions & Access](#permissions--access)
-  - [Responsibilities](#responsibilities)
-    - [ID3C](#id3c)
-      - [Data ingestion](#data-ingestion)
-      - [Data Quality](#data-quality)
-      - [Barode minting](#barode-minting)
-    - [Return of results](#return-of-results)
-      - [Lab Result Reports](#lab-result-reports)
-      - [Securelink](#securelink)
-    - [Labelmaker](#labelmaker)
-    - [Metabase](#metabase)
-    - [SCAN Switchboard](#scan-switchboard)
-  - [Tools](#tools)
-    - [Git](#git)
-      - [GitHub Actions](#github-actions)
-    - [Python](#python)
-      - [Pipenv](#pipenv)
-      - [Flask](#flask)
-      - [Click](#click)
-    - [PostgreSQL](#postgresql)
-      - [Sqitch](#sqitch)
-    - [AWS](#aws)
-    - [Tests](#tests)
-      - [Doctests](#doctests)
-      - [Type checks](#type-checks)
-  - [Misc](#misc)
-    - [REDCap](#redcap)
-    - [FHIR](#fhir)
+- [Slack](#slack)
+- [Permissions & Access](#permissions--access)
+- [Responsibilities](#responsibilities)
+  - [ID3C](#id3c)
+    - [Data ingestion](#data-ingestion)
+    - [Data Quality](#data-quality)
+    - [Barode minting](#barode-minting)
+  - [Return of results](#return-of-results)
+    - [Lab Result Reports](#lab-result-reports)
+    - [Securelink](#securelink)
+  - [Labelmaker](#labelmaker)
+  - [Metabase](#metabase)
+  - [SCAN Switchboard](#scan-switchboard)
+- [Tools](#tools)
+  - [Git](#git)
+    - [GitHub Actions](#github-actions)
+  - [Python](#python)
+    - [Pipenv](#pipenv)
+    - [Flask](#flask)
+    - [Click](#click)
+  - [PostgreSQL](#postgresql)
+    - [Sqitch](#sqitch)
+  - [AWS](#aws)
+  - [Tests](#tests)
+    - [Doctests](#doctests)
+    - [Type Checks](#type-checks)
+- [Misc](#misc)
+  - [REDCap](#redcap)
+  - [FHIR](#fhir)
 - [Development](#development)
   - [Development tools](#development-tools)
   - [Running ID3C](#running-id3c)
@@ -212,18 +211,18 @@ Our REDCap DET ETLs produce FHIR bundles that then get processed by our [FHIR ET
 See some [minimal FHIR bundle examples].
 
 
-# Development
-## Development tools
+## Development
+### Development tools
 * [Refresh your local dev database] with a copy from production
 
-## Running ID3C
-### Test your installation
+### Running ID3C
+#### Test your installation
 From within the `id3c` or `id3c-customizations` repo, run the following:
 ```sh
 PGDATABASE=seattleflu pipenv run id3c --help
 ```
 
-### Connecting to production vs. local databases
+#### Connecting to production vs. local databases
 Here's how you might see the identifier (barcode) sets in our production instance:
 ```sh
 PGSERVICE=seattleflu-production pipenv run id3c identifier set ls
@@ -236,7 +235,7 @@ PGSERVICE points to a named service definition in a `~/.pg_service.conf` file.
 
 ID3C doesn't provide application-specific connection defaults, and it relies on the [standard Pg environment variables](https://www.postgresql.org/docs/current/libpq-envars.html) to define the connection.
 
-### Re-run an ETL process (without bumping revision number)
+#### Re-run an ETL process (without bumping revision number)
 Set the processing log for all targeted rows to be blank.
 When any ETL, like the REDCap DET ETL, is run, it will process all rows with a blank processing log for the current revision (e.g. 12).
 Running the following code will make the affected rows (recieved on or after Jun 06, 2020) be picked up in a subsequent REDCap DET ETL run:
@@ -264,11 +263,11 @@ If you don't have `LOG_LEVEL=debug` turned on, full logs should be available on 
 grep seattleflu /var/log/syslog
 ```
 
-## Environment configuration
-### Editor configuration
+### Environment configuration
+#### Editor configuration
 We configure our editors to use spaces instead of tabs, trim trailing whitespace at the end of each line, and add an empty newline to the end of each file.
 
-### Git configuration
+#### Git configuration
 We add the following configuration to our global `.gitconfig`:
 ```
 [pull]
@@ -276,7 +275,7 @@ We add the following configuration to our global `.gitconfig`:
 ```
 When pulling from master, local changes are now rebased on top of the master branch instead of creating "Merge branch 'master'..." commits.
 
-### Prevent wrapping within psql (optional)
+#### Prevent wrapping within psql (optional)
 Set pager environment variable to `less` and specify which `less` method to use.
 If there's less than a screen full of information, don't page it.
 ```sh
