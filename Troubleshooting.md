@@ -14,6 +14,7 @@ Tips for moving forward when things break.
   - [Problem: Metabase queries are slow](#problem-metabase-queries-are-slow)
 - [SCAN RoR PDF generation](#scan-ror-pdf-generation)
   - [Problem: PDF generation errors out for specific barcodes](#problem-pdf-generation-errors-out-for-specific-barcodes)
+  - [Problem: REDCap records with duplicated barcodes are dropped](#problem-redcap-records-with-duplicated-barcodes-are-dropped)
 - [Presence Absence Results](#presence-absence-results)
   - [Investigating Presence/Absence Results](#investigating-presenceabsence-results)
     - [Problem: Need to investigate results from a specific plate](#problem-need-to-investigate-results-from-a-specific-plate)
@@ -170,6 +171,15 @@ ERROR Errors were encountered (n=1) during processing of: ['s3://dokku-stack-phi
 * Rarely, this problem pops up when ID3C failed to create a Specimen resource for a given REDCap record.
   Manually generating a DET for the target REDCap record should resolve this issue.
   If this issue continues to arise, then further debugging of our REDCap ingest process is warranted.
+
+
+### Problem: REDCap records with duplicated barcodes are dropped
+```
+Dropped 2 REDCap records with duplicated barcodes: ['AAAAAAAA']
+```
+Until this warning is resolved, it will prevent returning results to the affected study participants.
+When you encounter this warning, please create a new Trello card in the **#record-troubleshooting** board, and assign it to Misja.
+
 
 ## Presence Absence Results
 ### Investigating Presence/Absence Results
