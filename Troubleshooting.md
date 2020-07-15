@@ -9,6 +9,7 @@ Tips for moving forward when things break.
     - [Problem: `Exception`](#problem-exception)
   - [REDCap DET ETL](#redcap-det-etl)
     - [Problem: Duplicate REDCap record ID in a project](#problem-duplicate-redcap-record-id-in-a-project)
+    - [Problem: Unknown discharge disposition value](#problem-unknown-discharge-disposition-value)
 - [Metabase](#metabase)
   - [Problem: Metabase is down](#problem-metabase-is-down)
   - [Problem: Metabase queries are slow](#problem-metabase-queries-are-slow)
@@ -135,6 +136,19 @@ Be sure to tag Misja and Sarah (of the REDCap team) in the new card.
 
 Duplicate record IDs are a commonly known REDCap bug, a duplicate record ID across two study arms (e.g. symptomatic and asymptomatic) for the most part is not surprising.
 However, if the problem seems especially bizarre -- for example, if every single REDCap record ID in the priority code study arm is a duplicate record ID of another arm -- then send an additional message in the **#redcap** channel notifying Misja and Sarah of the situation.
+
+#### Problem: Unknown discharge disposition value
+```
+Aborting with error: Unknown discharge disposition value «hospice - medical facility».
+```
+The ETL pipeline attempts to map the raw discharge disposition value (indicating where the patient went upon discharge from the hospital) to a FHIR Encounter.hospitalization.dischargeDisposition code.
+This error indicates that there is no mapping for the raw value.
+
+If the raw value is a human readable disposition value, add a mapping to the data source specific ETL pipeline code file in the id3c-customizations repository.
+For example, for the UW retrospectives pipeline, edit the discharge_disposition function in [this file](https://github.com/seattleflu/id3c-customizations/tree/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_uw_retrospectives.py).
+
+If the raw value isn't a human readable disposition (e.g., is «96») or if you need more information about how to map it, contact Becca at ITHS.
+She will research the data issue and generate a correction if necessary.
 
 ## Metabase
 
