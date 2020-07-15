@@ -3,6 +3,9 @@ you're probably new here. This page, while currently a stub, dreams of being a
 one-stop shop for getting you set up and answering your questions before you
 start using or contributing to our code.
 
+- [Open source philosophy](#open-source-philosophy)
+  - [Safe to share publicly](#safe-to-share-publicly)
+  - [Don't share publicly](#dont-share-publicly)
 - [Slack](#slack)
 - [Permissions & Access](#permissions--access)
 - [Responsibilities](#responsibilities)
@@ -43,6 +46,32 @@ start using or contributing to our code.
     - [Git configuration](#git-configuration)
     - [Prevent wrapping within psql (optional)](#prevent-wrapping-within-psql-optional)
 
+
+## Open source philosophy
+The Seattle Flu Study practices open science.
+This means that our code and documentation (with very few, notable exceptions) is all open source.
+Even though our work can be highly specific and not always applicable to the public domain, we use a "public by default" rather than a "private by default" approach to our developer material.
+We only privatize repositories or documentation that contain sensitive data or whose release could pose a security risk to the study or its members.
+Here is a quick guide to what's safe to share and what's not.
+
+### Safe to share publicly
+* Documentation that is Seattle Flu specific but not sensitive
+* Links to Slack conversations
+* Links to Trello cards
+* Links to Metabase (or other apps at backoffice.seattleflu.org)
+* First names of study team contacts
+
+
+### Don't share publicly
+* Personally identifiable information of study participants or employees, including full names or email addresses
+* Real study barcodes
+* Secrets
+  * Passwords
+  * API authorization IDs
+  * API access tokens
+  * deidentification secrets
+  * etc.
+* Links to Google Drive (the risk is that link-based sharing could be turned on by accident for documents/folders, allowing access to anyone with the link)
 
 ## Slack
 Slack is the primary method of communication used by Seattle Flu Study members.
