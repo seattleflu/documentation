@@ -31,7 +31,7 @@ Tips for moving forward when things break.
 ```
 Aborting with error: Specimen with unexpected «collections-clia-compliance» barcode «aaaaaaaa»
 ````
-This is the wrong type of barcode, so delete this record and create a new Trello card in #record-troubleshooting.
+This is the wrong type of barcode, so delete this record and create a new Trello card in **#record-troubleshooting**.
 Be sure to tag Peter and Brian (of the lab) on the new card.
 
 
@@ -65,7 +65,7 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     AssertionError: Collection identifier found in set «samples», not {'collections-environmental', 'collections-kiosks', 'http://collections-seattleflu.org', 'collections-self-test', 'collections-household-intervention', 'collections-swab&send-asymptomatic', 'collections-kiosks-asymptomatic', 'collections-swab&send', 'collections-household-observation', 'http://collections-fluathome.org'}
     ```
 
-    In this case, we need to ask Peter or someone in #lab to update the specimen manifest with new collection IDs.
+    In this case, we need to ask Peter or someone in **#lab** to update the specimen manifest with new collection IDs.
     We may need to generate new ones for them.
     See example Slack threads ([1](https://seattle-flu-study.slack.com/archives/CCAEWSFTK/p1583554674022600), [2](https://seattle-flu-study.slack.com/archives/CLCKA5AKW/p1584032284051600)) of how this problem has been resolved previously.
 
@@ -76,14 +76,14 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     Assuming we're supposed to actually ingest barcodes from this collection, we need to add a missing collection (e.g. `collections-haarvi`) to the manifest ETL.
 
     Sometimes we receive barcodes from collections we're not supposed to be ingesting (e.g. `collections-clia-compliance`).
-    In that case, Slack someone on the #lab channel about the CLI barcode, and delete the affected rows from `receiving.manifest.`
+    In that case, Slack someone on the **#lab** channel about the CLI barcode, and delete the affected rows from `receiving.manifest.`
 
 3.
     ```
     Aborting with error: Sample identifier found in set «samples-haarvi», not {'samples'}
     ```
     This means we've received a sample from a separate study arm that we're not supposed to be ingesting.
-    Ask someone in the #lab Slack channel to update these sample identifiers to have a prefix of `_exp` so they won't get ingested in the next manifest upload.
+    Ask someone in the **#lab** Slack channel to update these sample identifiers to have a prefix of `_exp` so they won't get ingested in the next manifest upload.
     The original affected records should be deleted from `receiving.manifest`.
 
 #### Problem: `Exception`
@@ -131,12 +131,12 @@ then this may be caused by a bug in REDCap.
 ```
 
 The warning message really says it all.
-While this issue doesn't cause this ETL pipeline to fail, we still want to post in the #record-troubleshooting Trello board to alert the REDCap team about this problem.
+While this issue doesn't cause this ETL pipeline to fail, we still want to post in the **#record-troubleshooting** Trello board to alert the REDCap team about this problem.
 If left unmitigated, duplicate record IDs in REDCap could cause our [return of results PDF generation to fail](#problem-pdf-generation-errors-out-for-specific-barcodes).
 Be sure to tag Misja and Sarah (of the REDCap team) in the new card.
 
 Duplicate record IDs are a commonly known REDCap bug, a duplicate record ID across two study arms (e.g. symptomatic and asymptomatic) for the most part is not surprising.
-However, if the problem seems especially bizarre -- for example, if every single REDCap record ID in the priority code study arm is a duplicate record ID of another arm -- then send an additional message in the #redcap channel notifying Misja and Sarah of the situation.
+However, if the problem seems especially bizarre -- for example, if every single REDCap record ID in the priority code study arm is a duplicate record ID of another arm -- then send an additional message in the **#redcap** channel notifying Misja and Sarah of the situation.
 
 ## Metabase
 
@@ -167,7 +167,7 @@ ERROR Errors were encountered (n=1) during processing of: ['s3://dokku-stack-phi
 ```
 * This problem is commonly caused by duplicate record IDs in REDCap.
   It is related to a known REDCap bug that ITHS is working to fix.
-  If there are duplicate record IDs in or across study arms (e.g. asymptomatic or symptomatic), post a Slack message in the #redcap channel
+  If there are duplicate record IDs in or across study arms (e.g. asymptomatic or symptomatic), post a Slack message in the **#redcap** channel
   describing that there are one or more duplicate `record_id`s causing errors in our results PDF generation.
   Include which REDCap project contains the problem (e.g. English), and tag Misja.
 * Rarely, this problem pops up when ID3C failed to create a Specimen resource for a given REDCap record.
