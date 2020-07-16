@@ -75,7 +75,7 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     Assuming we're supposed to actually ingest barcodes from this collection, we need to add a missing collection (e.g. `collections-haarvi`) to the manifest ETL.
 
     Sometimes we receive barcodes from collections we're not supposed to be ingesting (e.g. `collections-clia-compliance`).
-    In that case, Slack someone on the **#lab** channel about the CLI barcode, and delete the affected rows from `receiving.manifest.`
+    In that case, make a card for the incorrect barcode in #record-troubleshooting, and delete the affected rows from `receiving.manifest.`
 
 3.
     ```
