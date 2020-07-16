@@ -55,11 +55,14 @@ Providing study members with access to the Fred Hutch-managed AWS S3 bucket requ
 > operations scoped to specific object prefixes. Attached is the
 > respective IAM policy document for {Affiliation}.
 
+**Note:** if you're granting permissions to a non-Fred Hutch, SFS software developer, consider modifying the above language to something like:
+> I'd like to grant them read/write access to all files within the fh-pi-bedford-t/seattleflu object prefix.
+
 When sending an email, be sure to CC the Bedford Lab dev team as well as the study member requesting access.
 See the next section for example IAM policies to attach to the email.
 
 ### Example IAM policies
-#### UW / BBI
+#### UW / BBI lab members
 ```json
 {
   "Version": "2012-10-17",
@@ -80,6 +83,36 @@ See the next section for example IAM policies to attach to the email.
         "s3:GetObjectVersion"
       ],
       "Resource": "arn:aws:s3:::fh-pi-bedford-t/seattleflu/bbi/*"
+    }
+  ]
+}
+```
+#### UW / BBI software developers
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "VisualEditor0",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "seattleflu/*"
+        }
+      },
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:GetObjectVersion"
+      ],
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t/seattleflu/*"
     }
   ]
 }
