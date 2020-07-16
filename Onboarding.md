@@ -71,7 +71,12 @@ See the next section for example IAM policies to attach to the email.
       "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::fh-pi-bedford-t"
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "seattleflu/*"
+        }
+      },
     },
     {
       "Sid": "VisualEditor1",
@@ -127,7 +132,12 @@ See the next section for example IAM policies to attach to the email.
       "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::fh-pi-bedford-t"
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "seattleflu/*"
+        }
+      },
     },
     {
       "Sid": "VisualEditor1",
@@ -153,7 +163,12 @@ See the next section for example IAM policies to attach to the email.
       "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Action": "s3:ListBucket",
-      "Resource": "arn:aws:s3:::fh-pi-bedford-t"
+      "Resource": "arn:aws:s3:::fh-pi-bedford-t",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": "seattleflu/*"
+        }
+      },
     },
     {
       "Sid": "VisualEditor1",
