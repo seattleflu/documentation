@@ -1,1 +1,1 @@
-Go to the [documentation wiki](/wiki).
+Go to the [documentation wiki](https://github.com/seattleflu/documentation/wiki).
