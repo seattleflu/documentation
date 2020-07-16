@@ -1,10 +1,12 @@
-- [Welcome](welcome)
-- [Barcodes](barcodes)
-- [Data Flow](data-flow)
-- [Deploying](deploying)
-- [FHIR](fhir)
-- [Infrastructure](infrastructure)
-- [Onboarding](onboarding)
-- [SCAN](scan)
-- [Specimen Manifests](specimen-manifests)
-- [Troubleshooting](troubleshooting)
+Welcome to the [Seattle Flu Study documentation wiki](https://github.com/seattleflu/documentation/wiki)!
+
+- [Welcome](welcome) - start with this if you're new around here
+- [Barcodes](barcodes) - a cheat sheet of barcode formats
+- [Data Flow](data-flow) - overview of how data move throughout the study
+- [Deploying](deploying) - step-by-step guide on deploying things to production
+- [FHIR](fhir) - how we use FHIR in the study
+- [Infrastructure](infrastructure) - overview of study infrastructure
+- [Onboarding](onboarding) - granting permissions to new study members
+- [SCAN](scan) - guide to adding a new SCAN study or language
+- [Specimen Manifests](specimen-manifests) - step-by-step guide on updating the specimen manifest ingest
+- [Troubleshooting](troubleshooting) - a cheat sheet of systematic problems and steps for solving them
