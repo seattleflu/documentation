@@ -76,7 +76,7 @@ See the next section for example IAM policies to attach to the email.
         "StringLike": {
           "s3:prefix": "seattleflu/*"
         }
-      },
+      }
     },
     {
       "Sid": "VisualEditor1",
@@ -106,7 +106,7 @@ See the next section for example IAM policies to attach to the email.
         "StringLike": {
           "s3:prefix": "seattleflu/*"
         }
-      },
+      }
     },
     {
       "Sid": "VisualEditor1",
@@ -137,7 +137,7 @@ See the next section for example IAM policies to attach to the email.
         "StringLike": {
           "s3:prefix": "seattleflu/*"
         }
-      },
+      }
     },
     {
       "Sid": "VisualEditor1",
@@ -168,7 +168,7 @@ See the next section for example IAM policies to attach to the email.
         "StringLike": {
           "s3:prefix": "seattleflu/*"
         }
-      },
+      }
     },
     {
       "Sid": "VisualEditor1",
