@@ -1,6 +1,6 @@
 - [Deploying id3c or id3c-customizations](#deploying-id3c-or-id3c-customizations)
 - [Deploying scan-switchboard](#deploying-scan-switchboard)
-
+- [Deploying specimen-manifests](#deploying-specimen-manifests)
 
 # Deploying id3c or id3c-customizations #
 
@@ -69,6 +69,7 @@ Before you get started, you'll need the following:
 [backoffice.seattleflu.org]: infrastructure#backofficeseattlefluorg
 [sqitch configuration]: infrastructure#sqitch-configuration
 [Pipenv]:https://pipenv.readthedocs.io/en/latest/
+[specimen-manifests]:https://github.com/seattleflu/specimen-manifests
 
 # Deploying scan-switchboard #
 
@@ -80,3 +81,11 @@ Before you get started, you'll need the following:
 5. Restart scan-switchboard with `sudo systemctl restart scan-switchboard`
 
 There is a crontab that syncs the switchboard. If you have changed something in scan-switchboard that needs accompanying changes to the crontab, make that change in the backoffice repository and deploy that too.
+
+
+# Deploying [specimen-manifests] #
+
+1. Log onto the `backoffice` server.
+2. Navigate to the `/opt/specimen-manifests` directory and run `git pull`.
+
+
