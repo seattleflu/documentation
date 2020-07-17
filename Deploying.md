@@ -1,3 +1,7 @@
+- [Deploying id3c or id3c-customizations](#deploying-id3c-or-id3c-customizations)
+- [Deploying scan-switchboard](#deploying-scan-switchboard)
+
+
 # Deploying id3c or id3c-customizations #
 
 ## Prerequisites
