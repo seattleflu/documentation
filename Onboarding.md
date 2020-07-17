@@ -39,6 +39,11 @@ You may choose to follow the template below:
 > If you have any questions, the @blab-dev-team can help answer them on the #id3c or #informatics channels in the Seattle Flu Study Slack.
 
 
+## Adding new REDCap users
+Before adding a new study member to any REDCap project, confirm the DTUA is executed with Robin.
+Then, use [this script](https://github.com/seattleflu/backoffice/blob/master/dev/add-user-to-all-projects) to programmatically import a user to all REDCap with permissions equivalent to an existing REDCap user.
+
+
 ## Providing AWS Access
 Providing study members with access to the Fred Hutch-managed AWS S3 bucket requires sending an email to Fred Hutch Sci Comp (scicomp@fhcrc.org) like the one below:
 
