@@ -74,7 +74,7 @@ Before you get started, you'll need the following:
 
 1. Log onto the `backoffice` server.
 2. Navigate to the `/opt/scan-switchboard` directory and run `git pull`.
-3. Add any newly needed secret environment variables under `id3c-production/env.d/…`.
+3. Add any newly needed secret environment variables under `/opt/backoffice/id3c-production/env.d/…`.
    (Non-secret environment variables should be committed and pulled in via git.)
 4. Install the latest code with `pipenv sync`.
 5. Restart scan-switchboard with `sudo systemctl restart scan-switchboard`
