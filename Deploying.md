@@ -1,3 +1,5 @@
+# Deploying id3c or id3c-customizations #
+
 ## Prerequisites
 Before you get started, you'll need the following:
 
@@ -63,3 +65,14 @@ Before you get started, you'll need the following:
 [backoffice.seattleflu.org]: infrastructure#backofficeseattlefluorg
 [sqitch configuration]: infrastructure#sqitch-configuration
 [Pipenv]:https://pipenv.readthedocs.io/en/latest/
+
+# Deploying scan-switchboard #
+
+1. Log onto the `backoffice` server.
+2. Navigate to the `/opt/scan-switchboard` directory and run `git pull`.
+3. Add any newly needed secret environment variables under `id3c-production/env.d/…`.
+   (Non-secret environment variables should be committed and pulled in via git.)
+4. Install the latest code with `pipenv sync`.
+5. Restart scan-switchboard with `sudo systemctl restart scan-switchboard`
+
+There is a crontab that syncs the switchboard. If you have changed something in scan-switchboard that needs accompanying changes to the crontab, make that change in the backoffice repository and deploy that too.
