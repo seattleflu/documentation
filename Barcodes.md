@@ -18,7 +18,9 @@ Once these concerns are addressed, use the `id3c identifier set` command to
 create a new collection. Then, create a new label layout for the [labelmaker].
 Now, you're ready to [mint barcodes](#making-new-barcodes)!
 > Note: One-off requests for new collections do not necessarily need to have their label
-settings merged to master or be tracked in the following barcode settings table.
+settings merged to master or be tracked in the following barcode settings table. For example,
+if an identifier set's layout normally prints two copies of each barcode, you can locally
+edit the appropriate class in the labelmaker.py for the run.
 
 
 [labelmaker]: https://github.com/seattleflu/id3c/blob/master/lib/id3c/labelmaker.py
