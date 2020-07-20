@@ -93,6 +93,8 @@ and saved to your computer.
 Open up the new _barcode-labels.pdf_ file.  It should have 20 pages (of 52
 barcodes each) formatted to print on a box of [LCRY-1100-Y][] sheets.
 
+The Google drive location where to put label PDFs is in the #barcodes channel topic in Slack.
+
 When printing there a couple tips for higher-quality output:
 
 1. Change the paper type to labels in your computer's print dialog.
