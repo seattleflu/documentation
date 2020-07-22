@@ -2,7 +2,7 @@
 - [Deploying scan-switchboard](#deploying-scan-switchboard)
 - [Deploying specimen-manifests](#deploying-specimen-manifests)
 
-# Deploying id3c or id3c-customizations #
+# Deploying [id3c] or [id3c-customizations] #
 
 ## Prerequisites
 Before you get started, you'll need the following:
@@ -13,7 +13,7 @@ Before you get started, you'll need the following:
 * a public key shared with the `ubuntu` account on `backoffice.seattleflu.org`.
 
 ## Steps for deployment:
-1. Merge code changes in [ID3C] or [ID3C-customizations] to each master branch, respectively.
+1. Merge code changes in [id3c] or [id3c-customizations] to each master branch, respectively.
 2. Run `pipenv update` in the `id3c-production` directory of your [backoffice]
    checkout.  This will lock ID3C and our customizations at the latest state of
    their master branch on GitHub.  Review, commit, and push the changes.
@@ -42,7 +42,7 @@ Before you get started, you'll need the following:
         grant "{role}" to "backoffice-etl";
 
 
-### Code changes to [ID3C]
+### Code changes to [id3c]
 > If you have no code changes to deploy, you may skip this section.
 
 4. Log onto the `backoffice` server.
@@ -70,6 +70,7 @@ Before you get started, you'll need the following:
 [sqitch configuration]: infrastructure#sqitch-configuration
 [Pipenv]:https://pipenv.readthedocs.io/en/latest/
 [specimen-manifests]:https://github.com/seattleflu/specimen-manifests
+
 
 # Deploying scan-switchboard #
 
