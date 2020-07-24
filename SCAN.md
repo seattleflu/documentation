@@ -6,7 +6,7 @@ Checklist
 1. Insert `<span>` tags into the REDCap project fields while the project is still in development mode.
    - Download the existing data dictionary with the [download-data-dictionary] script.
    - Upload a modified data dictionary with injected HTML attributes via [upload-data-dictionary].
-2. Enable REDCap DETs for the new project once testing is complete and it's ready for production.
+2. [Enable REDCap DETs] for the new project once testing is complete and it's ready for production.
 3. Update the REDCap DET ETL with the new language's project ID and ISO code (see [example]).
 4. Add a new cronjob for the new REDCap DET ETL.*
 5. Create a new LaTeX PDF template in [lab-result-reports].
@@ -33,6 +33,7 @@ Checklist
 
 
 [download-data-dictionary]: https://github.com/seattleflu/backoffice/blob/master/bin/redcap-data-dictionary/download-data-dictionary
+[Enable REDCap DETs]: https://github.com/seattleflu/documentation/wiki/redcap#enable-dets-for-a-project
 [upload-data-dictionary]: https://github.com/seattleflu/backoffice/blob/master/bin/redcap-data-dictionary/upload-data-dictionary
 [example]: https://github.com/seattleflu/id3c-customizations/pull/99/commits/30fe06bc614f41c5fb44d83c5ec58a68a0b22dbd
 [lab-result-reports]: https://github.com/seattleflu/lab-result-reports
