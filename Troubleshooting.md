@@ -3,6 +3,8 @@ Tips for moving forward when things break.
 - [ETL processes](#etl-processes)
   - [FHIR ETL](#fhir-etl)
     - [Problem: `AssertionError`](#problem-assertionerror)
+  - [Presence Absence ETL](#presence-absence-etl)
+    - [Problem: `SampleNotFoundError`](#problem-samplenotfounderror)
     - [Problem: `AssertionError`](#problem-assertionerror-1)
   - [Manifest ETL](#manifest-etl)
     - [Problem: `AssertionError`](#problem-assertionerror-2)
@@ -29,7 +31,7 @@ Tips for moving forward when things break.
 #### Problem: `AssertionError`
 ```
 Aborting with error: Specimen with unexpected «collections-clia-compliance» barcode «aaaaaaaa»
-````
+```
 This is the wrong type of barcode, so delete this record and create a new Trello card in **#record-troubleshooting**.
 Be sure to tag Peter and Brian (of the lab) on the new card.
 
