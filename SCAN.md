@@ -1,12 +1,34 @@
 Documentation on the Seattle Coronavirus Assessment Network (SCAN) project
 
+- [Adding a new study arm](#adding-a-new-study-arm)
+- [Adding a new language](#adding-a-new-language)
+
+## Adding a new study arm
+
+1. First, answer the questions listed in the [barcodes documentation] pertaining to creating new collections.
+2. Create a new identifier set.
+3. Create a new barcode label layout for the [labelmaker].
+4. [Enable REDCap DETs] for the new project once testing is complete and it's ready for production.
+5. Update the REDCap DET ETL with the new study's project ID and purview (see [example]).
+   > Note: If the new REDCap project is _not_ identical to existing SCAN projects, this may required additional updates to the ETL.
+6. Update the FHIR ETL with the new study's collection identifier set.
+7. Add a new cronjob for the new REDCap DET ETL.
+8. Decide if we need to manually generate DETs (for e.g. if the new study arm uses the REDCap mobile app or API for enrollments)
+   > Note: we may not have to manually generate DETs if we receive at least one DET for an instrument containing a manually-updated field. If we have other required instruments, then that DET must come _after_ those instruments are complete. This works fairly well if the manually-updated field is in a later instrument, like kit unboxing.
+9. Update the manifest ETL expected collection identifier sets
+10. Update the SCAN RoR shipping view.
+11. Update the reportable conditions shipping view with the new collection identifier set.
+12. Update the backoffice export-redcap-scan script.
+13. Update the [export-record-barcodes] script in the [scan-switchboard] repo with the new language's project ID and purview.
+
+
 ## Adding a new language
 
 Checklist
 1. Insert `<span>` tags into the REDCap project fields while the project is still in development mode.
    - Download the existing data dictionary with the [download-data-dictionary] script.
    - Upload a modified data dictionary with injected HTML attributes via [upload-data-dictionary].
-2. Enable REDCap DETs for the new project once testing is complete and it's ready for production.
+2. [Enable REDCap DETs] for the new project once testing is complete and it's ready for production.
 3. Update the REDCap DET ETL with the new language's project ID and ISO code (see [example]).
 4. Add a new cronjob for the new REDCap DET ETL.*
 5. Create a new LaTeX PDF template in [lab-result-reports].
@@ -32,7 +54,10 @@ Checklist
 ‡: Depends on #6
 
 
+[barcodes documentation]: https://github.com/seattleflu/documentation/wiki/barcodes#creating-new-collections
+[labelmaker]: https://github.com/seattleflu/id3c/blob/master/lib/id3c/labelmaker.py
 [download-data-dictionary]: https://github.com/seattleflu/backoffice/blob/master/bin/redcap-data-dictionary/download-data-dictionary
+[Enable REDCap DETs]: https://github.com/seattleflu/documentation/wiki/redcap#enable-dets-for-a-project
 [upload-data-dictionary]: https://github.com/seattleflu/backoffice/blob/master/bin/redcap-data-dictionary/upload-data-dictionary
 [example]: https://github.com/seattleflu/id3c-customizations/pull/99/commits/30fe06bc614f41c5fb44d83c5ec58a68a0b22dbd
 [lab-result-reports]: https://github.com/seattleflu/lab-result-reports
