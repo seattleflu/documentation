@@ -295,7 +295,8 @@ grep seattleflu /var/log/syslog
 ### Environment configuration
 #### Editor configuration
 We configure our editors to use spaces instead of tabs, trim trailing whitespace at the end of each line, and add an empty newline to the end of each file.
-If you use VS Code, add these settings to trim trailing whitespace, add final newline, and trim additional final newlines:
+
+If you use VS Code, add these settings:
 "files.insertFinalNewline": true,
 "files.trimFinalNewlines": true,
 "files.trimTrailingWhitespace": true,
