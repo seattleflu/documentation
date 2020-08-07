@@ -3,9 +3,11 @@ you're probably new here. This page, while currently a stub, dreams of being a
 one-stop shop for getting you set up and answering your questions before you
 start using or contributing to our code.
 
-- [Open source philosophy](#open-source-philosophy)
-  - [Safe to share publicly](#safe-to-share-publicly)
-  - [Don't share publicly](#dont-share-publicly)
+- [Team philosophies](#team-philosophies)
+  - [Open science](#open-science)
+    - [Safe to share publicly](#safe-to-share-publicly)
+    - [Don't share publicly](#dont-share-publicly)
+  - [Inclusion and diversity](#inclusion-and-diversity)
 - [Slack](#slack)
 - [Permissions & Access](#permissions--access)
 - [Responsibilities](#responsibilities)
@@ -47,14 +49,16 @@ start using or contributing to our code.
     - [Prevent wrapping within psql (optional)](#prevent-wrapping-within-psql-optional)
 
 
-## Open source philosophy
+## Team philosophies
+
+### Open science
 The Seattle Flu Study practices open science.
 This means that our code and documentation (with very few, notable exceptions) is all open source.
 Even though our work can be highly specific and not always applicable to the public domain, we use a "public by default" rather than a "private by default" approach to our developer material.
 We only privatize repositories or documentation that contain sensitive data or whose release could pose a security risk to the study or its members.
 Here is a quick guide to what's safe to share and what's not.
 
-### Safe to share publicly
+#### Safe to share publicly
 * Documentation that is Seattle Flu specific but not sensitive
 * Links to Slack conversations
 * Links to Trello cards
@@ -62,7 +66,7 @@ Here is a quick guide to what's safe to share and what's not.
 * First names of study team contacts
 
 
-### Don't share publicly
+#### Don't share publicly
 * Personally identifiable information of study participants or employees, including full names or email addresses
 * Real study barcodes
 * Secrets
@@ -72,6 +76,12 @@ Here is a quick guide to what's safe to share and what's not.
   * deidentification secrets
   * etc.
 * Links to Google Drive (the risk is that link-based sharing could be turned on by accident for documents/folders, allowing access to anyone with the link)
+
+
+### Inclusion and diversity
+We aim to write our documentation and code comments with inclusion and diversity in mind.
+We've found the [Google inclusive documentation style guide](https://developers.google.com/style/inclusive-documentation) to be a useful starting point for these considerations.
+
 
 ## Slack
 Slack is the primary method of communication used by Seattle Flu Study members.
