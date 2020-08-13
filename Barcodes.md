@@ -93,8 +93,8 @@ and saved to your computer.
 Open up the new _barcode-labels.pdf_ file.  It should have 20 pages (of 52
 barcodes each) formatted to print on a box of [LCRY-1100-Y][] sheets.
 
-The Google drive location where to put label PDFs is in the #barcodes channel topic in Slack.
-SCAN collection barcodes already have a folder. Put new PDFs in that folder instead of creating a new one.
+The Google Drive location where to put label PDFs is in the #barcodes channel topic in Slack.
+Name the PDF file clearly and put it into the appropriate folder in the Google Drive.
 The lab team will delete the PDF files from Google Drive when they have finished printing them. We don't delete the PDFs.
 
 When printing there a couple tips for higher-quality output:
