@@ -33,7 +33,8 @@ You may choose to follow the template below:
 >
 >     psql --host production.db.seattleflu.org production $USERNAME
 >
-> This will prompt you for your token/password. If you're connecting frequently, you can also setup a password > file that PostgreSQL can use to remember your password (https://www.postgresql.org/docs/10/libpq-pgpass.html)> .
+> This will prompt you for your token/password. If you're connecting frequently, you can also setup a password
+> file that PostgreSQL can use to remember your password (https://www.postgresql.org/docs/10/libpq-pgpass.html).
 >
 > Please remember the data usage policies associated with accessing the database, as outlined in the DTUA you signed.
 > If you have any questions, the @blab-dev-team can help answer them on the #id3c or #informatics channels in the Seattle Flu Study Slack.
