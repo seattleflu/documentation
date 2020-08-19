@@ -1,7 +1,29 @@
 Documentation on the Seattle Coronavirus Assessment Network (SCAN) project
 
+- [Return of results portal](#return-of-results-portal)
 - [Adding a new study arm](#adding-a-new-study-arm)
 - [Adding a new language](#adding-a-new-language)
+
+## Return of results portal
+Currently, we return SCAN participant's results via a dedicated page for SCAN at the [UW LabMed SecureLink portal].
+A SCAN participant must provide their collection barcode and date of birth in order to retrieve their results.
+
+The following example data can be entered at the [SecureLink dev instance] to see a live view what a SCAN participant sees for each of the result codes including an example PDF where applicable:
+
+
+| barcode | date of birth | result | pdf |
+|---|---|---|---|
+| AAAAAAAA | 2020-01-01 | not-received | no |
+| BBBBBBBB | 2020-01-01 | pending      | no |
+| CCCCCCCC | 2020-01-01 | never-tested | yes |
+| DDDDDDDD | 2020-01-01 | negative     | yes |
+| EEEEEEEE | 2020-01-01 | inconclusive | yes |
+| FFFFFFFF | 2020-01-01 | positive     | yes |
+
+
+Note that only the [SecureLink dev instance], not the live site, is compatible with these (fake) example data.
+These example barcodes may one day reflect a real participant's collection barcode, therefore no test data are used on the live production site.
+
 
 ## Adding a new study arm
 
@@ -69,3 +91,5 @@ Checklist
 [get_pdf_report()]: https://github.com/nkrumm/securelink/blob/d82a1871bcbaa7a90ea75b84a507e4cd6bcd8f30/app/__init__.py#L124
 [export-record-barcodes]: https://github.com/seattleflu/scan-switchboard/blob/master/bin/export-record-barcodes
 [scan-switchboard]: https://github.com/seattleflu/scan-switchboard
+[UW LabMed SecureLink portal]: https://securelink.labmed.uw.edu/scan
+[SecureLink dev instance]: https://securelink.labmed-dev.uw.edu/scan
