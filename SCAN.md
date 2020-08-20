@@ -5,7 +5,8 @@ Documentation on the Seattle Coronavirus Assessment Network (SCAN) project
 - [Adding a new language](#adding-a-new-language)
 
 ## Return of results portal
-Currently, we return SCAN participant's results via a dedicated page for SCAN at the [UW LabMed SecureLink portal].
+Currently, we return SCAN participant's results via a dedicated page for SCAN at the [UW LabMed SecureLink portal]. (See the private [securelink GitHub repo].)
+
 A SCAN participant must provide their collection barcode and date of birth in order to retrieve their results.
 
 The following example data can be entered at the [SecureLink dev instance] to see a live view what a SCAN participant sees for each of the result codes including an example PDF where applicable:
@@ -92,4 +93,5 @@ Checklist
 [export-record-barcodes]: https://github.com/seattleflu/scan-switchboard/blob/master/bin/export-record-barcodes
 [scan-switchboard]: https://github.com/seattleflu/scan-switchboard
 [UW LabMed SecureLink portal]: https://securelink.labmed.uw.edu/scan
+[securelink GitHub repo]: https://github.com/nkrumm/securelink
 [SecureLink dev instance]: https://securelink.labmed-dev.uw.edu/scan
