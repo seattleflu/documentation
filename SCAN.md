@@ -9,7 +9,7 @@ Currently, we return SCAN participant's results via a dedicated page for SCAN at
 
 A SCAN participant must provide their collection barcode and date of birth in order to retrieve their results.
 
-The following example data can be entered at the [SecureLink dev instance] to see a live view what a SCAN participant sees for each of the result codes including an example PDF where applicable:
+The following example data can be entered at the [SecureLink dev instance] to see a live view what a SCAN participant sees for each of the result codes:
 
 
 | barcode | date of birth | result | pdf |
