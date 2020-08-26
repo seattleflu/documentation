@@ -137,11 +137,25 @@ partnership program with Azure.  This allows us 25,000 outgoing emails per
 month for zero cost.  The account is managed and accessed via the [Azure
 portal][] under the "seattleflu" resources group.
 
-Limited, send-only API keys are minted for each of our services which needs to
-send email.  Currently this includes:
+Limited, send-only SendGrid API keys are minted for each of our services which
+needs to send email.  Currently this includes:
 
 * Postfix on backoffice.seattleflu.org (e.g. for cron job emails)
 * Metabase for alerts and "pulses"
+
+Mail for local users on backoffice.seattleflu.org is all aliased to the `root`
+user, which is then aliased to outside external addresses, such as those of
+individual devs and or Slack channels (via Slack's email integration).
+
+Aliases live in the plain text file `/etc/aliases`.  After editing, you must
+run the `newaliases` command as root to update the compiled form.  Refer to
+`man aliases` for more information.
+
+Cron sends mail for any job which has output to stdout or stderr, even if the
+command exits with success.  (Both [`chronic`][] and [`fatigue`][] are used to
+wrap cron job commands to affect this behaviour.)  Mail is sent to the user the
+job is running as (usually `ubuntu` for us) or to the value of `MAILTO` if set
+in the crontab (usually not for us).
 
 
 [Azure portal]: https://portal.azure.com
@@ -149,3 +163,5 @@ send email.  Currently this includes:
 [password file]: https://www.postgresql.org/docs/10/libpq-pgpass.html
 [connection service file]: https://www.postgresql.org/docs/10/libpq-pgservice.html
 [the connection service file used for Metabase]: https://github.com/seattleflu/backoffice/blob/master/pg_service.conf
+[`chronic`]: https://joeyh.name/code/moreutils/
+[`fatigue`]: https://github.com/tsibley/fatigue
