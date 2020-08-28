@@ -2,6 +2,9 @@ An `encounter` in ID3C is "[An interaction with an individual to collect point-i
 An associated [Individual] and Site are required to create an Encounter (see [warehouse schema diagram]).
 
 ## REDCap projects
+We create Encounters from a REDCap record (commonly called a study "enrollment").
+Sometimes, a single REDCap record maps to multiple Encounters in ID3C.
+For example, intitial and follow-up surveys are treated as separate Encounters with the same [Individual].
 In addition to requiring sufficient information to create an associated [Individual] and Site (i.e. physical place of encounter), we wait to create Encounters in ID3C until the following conditions are met for each project:
 
 ### [SCAN]
