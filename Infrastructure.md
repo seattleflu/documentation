@@ -133,9 +133,10 @@ apex (i.e. seattleflu.org).
 ## Email
 
 Email services are provided by [SendGrid](https://sendgrid.com) via their
-partnership program with Azure.  This allows us 25,000 outgoing emails per
-month for zero cost.  The account is managed and accessed via the [Azure
-portal][] under the "seattleflu" resources group.
+partnership program with Azure.  We purchase a "silver" subscription, which is
+the lowest-priced level that provides a dedicated IP address for the delivering
+mail servers.  The account is managed and accessed via the [Azure portal][]
+under the "seattleflu" resources group.
 
 Limited, send-only SendGrid API keys are minted for each of our services which
 needs to send email.  Currently this includes:
