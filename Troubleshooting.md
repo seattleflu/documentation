@@ -141,16 +141,18 @@ However, if the problem seems especially bizarre -- for example, if every single
 
 #### Problem: Unknown discharge disposition value
 ```
-Aborting with error: Unknown discharge disposition value «hospice - medical facility».
+Unknown discharge disposition value «...» for barcode «...».
 ```
 The ETL pipeline attempts to map the raw discharge disposition value (indicating where the patient went upon discharge from the hospital) to a FHIR Encounter.hospitalization.dischargeDisposition code.
-This error indicates that there is no mapping for the raw value.
+This warning indicates that there is no mapping for the raw value and the REDCap DET has been skipped in the ETL process.
 
 If the raw value is a human readable disposition value, add a mapping to the data source specific ETL pipeline code file in the id3c-customizations repository.
 For example, for the UW retrospectives pipeline, edit the discharge_disposition function in [this file](https://github.com/seattleflu/id3c-customizations/tree/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_uw_retrospectives.py).
 
 If the raw value isn't a human readable disposition (e.g., is «96») or if you need more information about how to map it, contact Becca at ITHS.
 She will research the data issue and generate a correction if necessary.
+
+Once the mapping has been updated and deployed, be sure to manually generate/upload the DETs for th skipped records so that they can be ingested!
 
 ## Metabase
 
