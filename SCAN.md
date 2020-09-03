@@ -5,7 +5,7 @@ Documentation on the Seattle Coronavirus Assessment Network (SCAN) project
 - [Adding a new language](#adding-a-new-language)
 
 ## Return of results portal
-Currently, we return SCAN participant's results via a dedicated page for SCAN at the [UW LabMed SecureLink portal]. (See the private [securelink GitHub repo].)
+Currently, we return SCAN participant's results via a dedicated page for SFS at the [UW LabMed SecureLink portal]. (See the private [securelink GitHub repo].)
 
 A SCAN participant must provide their collection barcode and date of birth in order to retrieve their results.
 
@@ -88,8 +88,8 @@ Checklist
 [this Trello card]: https://trello.com/c/iaS57pKI
 [README]: https://github.com/seattleflu/lab-result-reports/blob/master/README.md
 [backoffice]: https://github.com/seattleflu/backoffice
-[generate-pdfs]: https://github.com/seattleflu/backoffice/blob/master/bin/scan-return-of-results/generate-pdfs
-[generate-results-csv]: https://github.com/seattleflu/backoffice/blob/master/bin/scan-return-of-results/generate-results-csv
+[generate-pdfs]: https://github.com/seattleflu/backoffice/blob/master/bin/return-of-results/generate-pdfs
+[generate-results-csv]: https://github.com/seattleflu/backoffice/blob/master/bin/return-of-results/generate-results-csv
 [get_pdf_report()]: https://github.com/nkrumm/securelink/blob/d82a1871bcbaa7a90ea75b84a507e4cd6bcd8f30/app/__init__.py#L124
 [export-record-barcodes]: https://github.com/seattleflu/scan-switchboard/blob/master/bin/export-record-barcodes
 [scan-switchboard]: https://github.com/seattleflu/scan-switchboard
