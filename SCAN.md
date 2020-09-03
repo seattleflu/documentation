@@ -43,6 +43,7 @@ These example barcodes may one day reflect a real participant's collection barco
 11. Update the reportable conditions shipping view with the new collection identifier set.
 12. Update the backoffice export-redcap-scan script.
 13. Update the [export-record-barcodes] script in the [scan-switchboard] repo with the new language's project ID and purview.
+14. Update the [ID3C Glossary] with new definitions of how Encounters, Samples, Individuals (etc.) get created for this project.
 
 
 ## Adding a new language
@@ -95,3 +96,4 @@ Checklist
 [UW LabMed SecureLink portal]: https://securelink.labmed.uw.edu/scan
 [securelink GitHub repo]: https://github.com/nkrumm/securelink
 [SecureLink dev instance]: https://securelink.labmed-dev.uw.edu/scan
+[ID3C Glossary]: id3c-glossary
