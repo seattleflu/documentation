@@ -22,6 +22,12 @@ In addition to requiring sufficient information to create an associated [Individ
   - `consent_date` is not blank
   > Note: while not required to create an encounter, `nasal_swab_collection` must be complete and verified to link an associated [Sample].
 
+- Husky Test (kiosk)
+  - `consent_form` is complete and verified
+  - `enrollment_questionnaire` is complete and verified
+  - `consent_date` and `location_type` fields are not blank
+  > Note: while not required to create an encounter, `nasal_swab_collection` must be complete and verified to link an associated [Sample].
+
 ### SFS
 - [Kiosk]
   - `screening` is complete and verified

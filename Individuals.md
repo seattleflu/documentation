@@ -10,6 +10,10 @@ The identifier string for an individual is created by joining their:
 * birthdate
 * zipcode
 
+### UW Re-opening
+* For UW re-opening projects, the most stable identifier to match participants is the UW NetID.
+* We hash the stripped and lowercase `netid` field to create the individual identifier.
+
 
 If any piece of the information listed above is missing, then we create an individual identifier by hashing the REDCap URL, project ID, and record ID.
 

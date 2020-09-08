@@ -13,6 +13,10 @@ We wait to create Samples in ID3C until the following conditions are met for eac
   - `nasal_swab_collection` is complete and verified
   - `utm_tube_barcode_2` is not blank or `reenter_barcode` == `reenter_barcode_2`
 
+- Husky Testing (kiosk)
+  - `nasal_swab_collection` is complete and verified
+  - `utm_tube_barcode_2` is not blank or `reenter_barcode` == `reenter_barcode_2`
+
 ### SFS
 - [Kiosk]
   - `sfs_barcode` is not blank or `sfs_barcode_manual` is not blank
