@@ -56,7 +56,7 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `test-strips-fluathome.org`                       | [LCRY-2380-G][]   |        2,380 |            119 |
 `samples-haarvi`                                  | [LCRY-2380][]     |        2,380 |            119 | small aliquoting barcodes for HAARVI
 `collections-haarvi`                              | [LCRY-1100][]     |        1,040 |             52 |
-`collections-household-general-season-three`      | [LCRY-1100-O][]   |        1,040 |             52 |
+`collections-household-general`                   | [LCRY-1100-O][]   |        1,040 |             52 | Season 3 household collection
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
 [LCRY-1100]: https://www.divbio.com/product/lcry-1100
