@@ -4,6 +4,8 @@
   - [Adding new database users](#adding-new-database-users)
     - [Minting credentials](#minting-credentials)
     - [Accessing the production database](#accessing-the-production-database)
+      - [UW Medicine VPN](#uw-medicine-vpn)
+      - [Adding your home IP address](#adding-your-home-ip-address)
   - [Providing AWS Access](#providing-aws-access)
     - [Example IAM policies](#example-iam-policies)
       - [UW / BBI](#uw--bbi)
@@ -58,6 +60,9 @@ Don't submit it for yourself.
 Once you get your AMC account, go to [this link to get instructions for installing the VPN client](https://one.uwmedicine.org/sites/its/Networks/Pages/SSLVPN%20Frequently%20Asked%20Questions.aspx).
 (You need an AMC account to access this page.)
 
+#### Adding your home IP address
+Sometimes, we'll add someone's home IP address to our firewall's allowlist.
+To retrieve your public IPv4 address, once connected to your home internet, go to https://www.whatismyip.com/.
 
 ## Adding new REDCap users
 Before adding a new study member to any REDCap project, confirm the DTUA is executed with Robin.
