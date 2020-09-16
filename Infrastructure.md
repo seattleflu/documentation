@@ -112,11 +112,11 @@ Deploying changes to remote databases requires some configuration.
 * Single AWS VPC
 
 * AWS security group, `web-services`, for web servers allowing ports 80 and 443
-  from all and port 22 from Fred Hutch (140.107.0.0/16), IDM, and select IDM and
+  from all and port 22 from Fred Hutch (140.107.0.0/16), IDM, UW Medicine, and select IDM and
   SFS developers' home IP addresses.
 
 * AWS security group, `rds-postgresql`, for RDS allowing port 5432 from the web
-  server security group, the Fred Hutch (140.107.0.0/16), IDM, and select IDM
+  server security group, the Fred Hutch (140.107.0.0/16), IDM, UW Medicine, and select IDM
   and SFS developers' home IP addresses.
 
 
