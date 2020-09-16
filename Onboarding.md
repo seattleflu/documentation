@@ -2,6 +2,8 @@
 
   - [General access to study data](#general-access-to-study-data)
   - [Adding new database users](#adding-new-database-users)
+    - [Minting credentials](#minting-credentials)
+    - [Accessing the production database](#accessing-the-production-database)
   - [Providing AWS Access](#providing-aws-access)
     - [Example IAM policies](#example-iam-policies)
       - [UW / BBI](#uw--bbi)
@@ -13,6 +15,8 @@
 See [this Slack message](https://seattle-flu-study.slack.com/archives/GJXFQ209K/p1591997617135300?thread_ts=1591997369.134700&cid=GJXFQ209K) pointing to a Google Drive folder, maintained by Robin, that describes access to Metabase, REDCap, etc.
 
 ## Adding new database users
+
+### Minting credentials
 Before adding a new study member to the production database, confirm the DTUA is executed with Robin.
 
 Next, create a new user with the `id3c user create` command.
@@ -38,6 +42,21 @@ You may choose to follow the template below:
 >
 > Please remember the data usage policies associated with accessing the database, as outlined in the DTUA you signed.
 > If you have any questions, the @blab-dev-team can help answer them on the #id3c or #informatics channels in the Seattle Flu Study Slack.
+
+### Accessing the production database
+The production database has firewall rules that allow only access to certain IP addresses or IP ranges.
+The list of [allowed IP addresses](infrastructure#networking-and-security-groups) is described elsewhere.
+Generally speaking, you'll need to be connected to your institution's network (either on campus or via a VPN) to get access to the database.
+
+#### UW Medicine VPN
+To use the UW Medicine VPN, you'll need to create an AMC account.
+AMC (Academic Medical Center) accounts are used inside UW Medicine to connect to various UW Med resources, including the UW Medicine VPN.
+Here is the [info about getting an AMC account](https://services.uwmedicine.org/oip/form/newAccount.jsp).
+Your manager/supervisor/department authority should complete the form for you.
+Don't submit it for yourself.
+
+Once you get your AMC account, go to [this link to get instructions for installing the VPN client](https://one.uwmedicine.org/sites/its/Networks/Pages/SSLVPN%20Frequently%20Asked%20Questions.aspx).
+(You need an AMC account to access this page.)
 
 
 ## Adding new REDCap users
