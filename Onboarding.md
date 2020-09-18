@@ -68,6 +68,9 @@ To retrieve your public IPv4 address, once connected to your home internet, go t
 Before adding a new study member to any REDCap project, confirm the DTUA is executed with Robin.
 Then, use [this script](https://github.com/seattleflu/backoffice/blob/master/dev/add-user-to-all-projects) to programmatically import a user to all REDCap with permissions equivalent to an existing REDCap user.
 
+## Providing Switchboard access
+Add users in the form of `netid@washington.edu` to the [_switchboard-authorized-users_ file](https://github.com/seattleflu/backoffice-apache2/blob/master/switchboard-authorized-users).
+Then, `sudo git pull` your new commit into `/etc/apache2` on backoffice.
 
 
 ## Providing Fred Hutch S3 access
