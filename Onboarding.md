@@ -6,7 +6,7 @@
     - [Accessing the production database](#accessing-the-production-database)
       - [UW Medicine VPN](#uw-medicine-vpn)
       - [Adding your home IP address](#adding-your-home-ip-address)
-  - [Providing AWS Access](#providing-aws-access)
+  - [Providing Fred Hutch S3 access](#providing-fred-hutch-s3-access)
     - [Example IAM policies](#example-iam-policies)
       - [UW / BBI](#uw--bbi)
       - [SCH](#sch)
@@ -69,7 +69,8 @@ Before adding a new study member to any REDCap project, confirm the DTUA is exec
 Then, use [this script](https://github.com/seattleflu/backoffice/blob/master/dev/add-user-to-all-projects) to programmatically import a user to all REDCap with permissions equivalent to an existing REDCap user.
 
 
-## Providing AWS Access
+
+## Providing Fred Hutch S3 access
 Providing study members with access to the Fred Hutch-managed AWS S3 bucket requires sending an email to Fred Hutch Sci Comp (scicomp@fhcrc.org) like the one below:
 
 > External collaboration for Economy Cloud storage
