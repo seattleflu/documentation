@@ -1,6 +1,8 @@
 Tips for moving forward when things break.
 
 - [ETL processes](#etl-processes)
+  - [General](#general)
+    - [Problem: Unknown barcode](#problem-unknown-barcode)
   - [FHIR ETL](#fhir-etl)
     - [Problem: `AssertionError`](#problem-assertionerror)
   - [Presence Absence ETL](#presence-absence-etl)
@@ -26,6 +28,11 @@ Tips for moving forward when things break.
     - [Problem: A sample was retroactively failed](#problem-a-sample-was-retroactively-failed)
 
 ## ETL processes
+### General
+#### Problem: Unknown barcode
+When encountering an unknown barcode that looks like a typo or a close match to a real barcode, use the [unknown barcode Metabase query] to try to find a possible match.
+If the barcode is from the FHIR ETL, identify the underlying REDCap record this barcode belongs to, and add a new card to **#record-troubleshooting** describing the problem.
+If the barcode is from a different ETL, Slack **#lab** to prompt them to update the specimen manifest with the correct barcode (whatever it may be).
 
 ### FHIR ETL
 #### Problem: `AssertionError`
@@ -246,3 +253,6 @@ the plate. In this example, we are searching for plate `BAT049A`:
       ```
   1. Delete the incorrect result record(s) for the sample from `warehouse.presence_absence`
   1. Delete the incorrect results JSON document from `receiving.presence_absence` so we don't ingest the incorrect results again when we bump the ETL revision number.
+
+
+[unknown barcode Metabase query]: https://backoffice.seattleflu.org/metabase/question/439
