@@ -1,9 +1,16 @@
 - [Deploying id3c or id3c-customizations](#deploying-id3c-or-id3c-customizations)
+  - [Prerequisites](#prerequisites)
+  - [Steps for deployment:](#steps-for-deployment)
+    - [Schema changes to the database](#schema-changes-to-the-database)
+    - [Code changes to id3c](#code-changes-to-id3c)
+    - [Data uploads to the database](#data-uploads-to-the-database)
+- [Deploying husky-musher](#deploying-husky-musher)
 - [Deploying scan-switchboard](#deploying-scan-switchboard)
 - [Deploying specimen-manifests](#deploying-specimen-manifests)
 
-# Deploying [id3c] or [id3c-customizations] #
-
+# Deploying id3c or id3c-customizations
+* [id3c] source code
+* [id3c-customizations] source code
 ## Prerequisites
 Before you get started, you'll need the following:
 
@@ -42,7 +49,7 @@ Before you get started, you'll need the following:
         grant "{role}" to "backoffice-etl";
 
 
-### Code changes to [id3c]
+### Code changes to id3c
 > If you have no code changes to deploy, you may skip this section.
 
 4. Log onto the `backoffice` server.
@@ -73,7 +80,8 @@ Before you get started, you'll need the following:
 [husky-musher]: https://github.com/seattleflu/husky-musher
 
 
-# Deploying [husky-musher] #
+# Deploying husky-musher #
+* [husky-musher] source code
 
 1. Log onto the `backoffice` server.
 2. Navigate to the `/opt/husky-musher` directory and run `git pull`.
@@ -93,9 +101,8 @@ Before you get started, you'll need the following:
 There is a crontab that syncs the switchboard. If you have changed something in scan-switchboard that needs accompanying changes to the crontab, make that change in the backoffice repository and deploy that too.
 
 
-# Deploying [specimen-manifests] #
+# Deploying specimen-manifests #
+* [specimen-manifests] source code
 
 1. Log onto the `backoffice` server.
 2. Navigate to the `/opt/specimen-manifests` directory and run `git pull`.
-
-
