@@ -78,6 +78,7 @@ Before you get started, you'll need the following:
 [Pipenv]:https://pipenv.readthedocs.io/en/latest/
 [specimen-manifests]:https://github.com/seattleflu/specimen-manifests
 [husky-musher]: https://github.com/seattleflu/husky-musher
+[scan-switchboard]: https://github.com/seattleflu/scan-switchboard
 
 
 # Deploying husky-musher #
@@ -90,6 +91,7 @@ Before you get started, you'll need the following:
 
 
 # Deploying scan-switchboard #
+* [scan-switchboard] source code
 
 1. Log onto the `backoffice` server.
 2. Navigate to the `/opt/scan-switchboard` directory and run `git pull`.
