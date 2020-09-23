@@ -70,6 +70,15 @@ Before you get started, you'll need the following:
 [sqitch configuration]: infrastructure#sqitch-configuration
 [Pipenv]:https://pipenv.readthedocs.io/en/latest/
 [specimen-manifests]:https://github.com/seattleflu/specimen-manifests
+[husky-musher]: https://github.com/seattleflu/husky-musher
+
+
+# Deploying [husky-musher] #
+
+1. Log onto the `backoffice` server.
+2. Navigate to the `/opt/husky-musher` directory and run `git pull`.
+3. Reload the uWSGI server by running `sudo systemctl restart uwsgi`.
+   > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
 
 
 # Deploying scan-switchboard #
