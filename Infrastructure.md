@@ -45,7 +45,7 @@ Configuration of interest includes
     - Apps enabled: `api-testing`, `api-production`, `husky-musher`
     - App environment using envdirs in `/etc/uwsgi/env.d`
 
-* Apache2 (`/etc/apache2`)
+* Apache2 (`/etc/apache2`) (see private [backoffice-apache2 repo](https://github.com/seattleflu/backoffice-apache2) for source control)
     - Modules enabled: `ssl`, `proxy`, `proxy_uwsgi`
     - Sites enabled: `backoffice`, `backoffice-le-ssl`
     - Reverse proxies to API via uWSGI socket
