@@ -91,18 +91,6 @@ Before you get started, you'll need the following:
     Run the desired `id3c` command(s) with a prefix of `PGSERVICE={service name}`.
 
 
-[Infrastructure]: infrastructure
-[backoffice]: https://github.com/seattleflu/backoffice
-[ID3C]: https://github.com/seattleflu/id3c
-[ID3C-customizations]: https://github.com/seattleflu/id3c-customizations
-[backoffice.seattleflu.org]: infrastructure#backofficeseattlefluorg
-[sqitch configuration]: infrastructure#sqitch-configuration
-[Pipenv]:https://pipenv.readthedocs.io/en/latest/
-[specimen-manifests]:https://github.com/seattleflu/specimen-manifests
-[husky-musher]: https://github.com/seattleflu/husky-musher
-[scan-switchboard]: https://github.com/seattleflu/scan-switchboard
-
-
 ### Deploying husky-musher
 * [husky-musher] source code
 
@@ -298,3 +286,13 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
 
 [backoffice-apache2]: https://github.com/seattleflu/backoffice-apache2
 [backoffice apache2 le ssl conf file]: https://github.com/seattleflu/backoffice-apache2/blob/master/sites-available/backoffice-le-ssl.conf
+[Infrastructure]: infrastructure
+[backoffice]: https://github.com/seattleflu/backoffice
+[ID3C]: https://github.com/seattleflu/id3c
+[ID3C-customizations]: https://github.com/seattleflu/id3c-customizations
+[backoffice.seattleflu.org]: infrastructure#backofficeseattlefluorg
+[sqitch configuration]: infrastructure#sqitch-configuration
+[Pipenv]:https://pipenv.readthedocs.io/en/latest/
+[specimen-manifests]:https://github.com/seattleflu/specimen-manifests
+[husky-musher]: https://github.com/seattleflu/husky-musher
+[scan-switchboard]: https://github.com/seattleflu/scan-switchboard
