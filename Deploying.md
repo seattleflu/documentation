@@ -11,6 +11,7 @@
   - [Deploying husky-musher](#deploying-husky-musher)
   - [Deploying scan-switchboard](#deploying-scan-switchboard)
   - [Deploying specimen-manifests](#deploying-specimen-manifests)
+- [Initial deployments](#initial-deployments)
 
 
 ## Service overview
@@ -130,3 +131,162 @@ There is a crontab that syncs the switchboard. If you have changed something in 
 
 1. Log onto the `backoffice` server.
 2. Navigate to the `/opt/specimen-manifests` directory and run `git pull`.
+
+
+## Initial deployments
+Note: these deployment steps assume you're using Pipenv for dependency management.
+
+1. With `{app-name}` as your desired application name, clone your new repo on the backoffice server under `/opt/{app-name}`.
+   This should ideally match the name of the GitHub repository.
+2. Decide whether the app should be hosted as a uWSGI or systemd service. ASGI apps (like [scan-switchboard] cannot use uWSGI).
+3. Update the (private) [backoffice-apache2] repo.
+   Replacing `{desired-endpoint}` with the desired URL endpoint at https://backoffice.seattleflu.org/ where you want your app to be available, make the following changes:
+   * **uWSGI workflow:**
+     1. make sure that the application is available via a variable named `application`.
+     2. Update the [backoffice apache2 le ssl conf file] to add a new `ProxyPass` entry for the app:
+         ```apache
+         ProxyPass /{desired-endpoint} unix:/run/uwsgi/app/{desired-endpoint}/socket|uwsgi://{desired-endpoint}/
+         ```
+        * If you want a Shibboleth UW NetID authentication layer, add the following to give access to anyone with a valid UW NetID:
+            ```apache
+            <Location "/{desired-endpoint}">
+               # Authenticate visitors with Shibboleth (configured elsewhere to use
+               # UW's IdP).  Any valid UW NetID will do, so all we need is a valid
+               # Shibboleth session.
+               AuthType shibboleth
+               Require shib-session
+
+               # Tell Shibboleth that it should always try to establish a session if
+               # none exists, otherwise it might decide not to and the Require rule
+               # above would prevent access.
+               ShibRequestSetting requireSession 1
+            </Location>
+            ```
+         * If instead you want to restrict UW NetID access to limited NetIDs, instead use
+            ```apache
+            <Location "/{desired-endpoint}">
+               # Authenticate visitors with Shibboleth (configured elsewhere to use
+               # UW's IdP).  Require a UW NetID in one of our predefined groups.
+               AuthType shibboleth
+               AuthGroupFile {app-authorized-users}
+               Require group {space-separated group-names}
+
+               # Tell Shibboleth that it should always try to establish a session if
+               # none exists, otherwise it might decide not to and the Require rule
+               # above would prevent access.
+               ShibRequestSetting requireSession 1
+            </Location>
+            ```
+            The given `AuthGroupFile` should live in the top-level of the (private) [backoffice-apache2] repo.
+            Each specified group name should be declared inside the given `AuthGroupFile` file with the following syntax:
+            ```
+            {group-name}: {netid}@washington.edu {netid}@washington.edu ...
+            ```
+
+            (See an example of the [SCAN Switchboard authorized NetIDs](https://github.com/seattleflu/backoffice-apache2/blob/master/switchboard-authorized-users)).
+
+   * **systemd workflow:**
+      1. Update the [backoffice apache2 le ssl conf file] to add the following entries for the app. Note that our convention for a new `{port-number}` has been to start at `3000` and increment by one for each new application.
+         ```apache
+         ProxyPass /{desired-endpoint}/ http://localhost:{port-number}/
+         ProxyPassReverse /{desired-endpoint}/ http://localhost:{port-number}/
+         RedirectMatch /{desired-endpoint}$ /{desired-endpoint}/
+         ```
+
+4. Deploy your apache2 changes from the previous step.
+5. With `{app-name}` as your desired application name, create a new directory in the [backoffice] repo named `{app-name}`, and add the following to it:
+   * A README.
+   * **uWSGI workflow:**
+     * A `uwsgi.ini` file that contains:
+         ```ini
+         #
+         # This uWSGI configuration file should be used by referencing it from Ubuntu's
+         # app-based configuration layout.
+         #
+         # Put the following in /etc/uwsgi/apps-available/{app-name}.ini:
+         #
+         #    [uwsgi]
+         #    ini = /opt/backoffice/{app-name}/uwsgi.ini
+         #
+         # and make a symlink to it from /etc/uwsgi/apps-enabled/{app-name}.ini.
+         #
+         # It is assumed that Pipenv is configured to install its virtualenvs in .venv
+         # with PIPENV_VENV_IN_PROJECT=1.
+         #
+         [uwsgi]
+         plugin = python3
+         envdir = %d/env.d/uwsgi
+         virtualenv = /opt/{app-name}/.venv
+         wsgi-file = /opt/{app-name}/app.py
+         processes = 1
+         threads = 2
+         enable-threads = true
+         ```
+         See the [husky-musher uwsgi.ini file](https://github.com/seattleflu/backoffice/blob/master/husky-musher/uwsgi.ini) as an example.
+         You may want to choose a different number of processes and threads than what is used in the example above.
+     * A new envdir diretory at `env.d/uwsgi`.
+     Inside it, add the non-sensitive environment variables.
+
+   * **systemd workflow:**
+     * A `Makefile` that contains:
+         ```make
+         SHELL := /bin/bash -euo pipefail
+
+         apps := \
+            {app-name}.service
+
+         install: $(apps:%=/etc/systemd/system/%)
+
+         /etc/systemd/system/%: %
+            @install -cv $< $@
+         ```
+         See the [scan-switchboard Makefile](https://github.com/seattleflu/backoffice/blob/master/scan-switchboard/Makefile) as an example.
+     * A systemd service file named `{app-name}.service` that contains:
+         ```ini
+         [Unit]
+         Description=My new app!
+         After=network.target
+
+         [Service]
+         WorkingDirectory=/opt/{app-name}
+         User=nobody
+         Environment="PIPENV_VENV_IN_PROJECT=1"
+         ExecStart=/usr/local/bin/pipenv run ./bin/serve --config base_url:/{desired-endpoint}/
+         Restart=always
+         RestartSec=10
+
+         [Install]
+         WantedBy=default.target
+         ```
+         See the [SCAN Switchboard service file](https://github.com/seattleflu/backoffice/blob/master/scan-switchboard/scan-switchboard.service) as an example.
+
+6. Update [backoffice] repo documentation README pointing to the newly created directory from the previous step.
+7. Deploy the [backoffice] repo changes.
+   1. From the `/opt/backoffice` directory on the backoffice server, run `git pull`.
+   2. Add any secret environment variables under `/opt/backoffice/{app-name}/env.d/`.
+8. Deploy your app for the first time.
+   With `{app-name}` as your desired application name:
+   * **uWSGI workflow:**
+     1. On the backoffice server, put the following in `/etc/uwsgi/apps-available/{app-name}.ini`:
+         ```ini
+         [uwsgi]
+         ini = /opt/backoffice/{app-name}/uwsgi.ini
+         ```
+         and make a symlink to it from `/etc/uwsgi/apps-enabled/{app-name}.ini`.
+     2. Explicitly grant the www-data user permissions to see the uwsgi envdir with:
+        * `chgrp -R www-data /opt/backoffice/*/env.d/uwsgi`
+        * `chmod -R g=rX /opt/backoffice/*/env.d/uwsgi`
+
+   * **systemd workflow:**
+     1. Inside `/opt/backoffice/`, run `sudo make -C {app-name}`.
+     2. To deploy the app, run `sudo systemctl daemon-reload`.
+     3. Then, run `sudo systemctl enable {app-name}`.
+        This command creates a symlink pointing from `/etc/systemd/system/default.target.wants/{app-name}.service` → `/etc/systemd/system/{app-name}.service`.
+     4. Next, start the service via `sudo systemctl start {app-name}`.
+
+9.  Update the [recurring deployments documentation](#recurring-deployments) on how to update this app in the future.
+10. Update [infrastructure documentation](infrastructure#backoffice-seattleflu.org) to add information about your new uWSGI or systemd app.
+
+
+[backoffice-apache2]: https://github.com/seattleflu/backoffice-apache2
+[backoffice apache2 le ssl conf file]: https://github.com/seattleflu/backoffice-apache2/blob/master/sites-available/backoffice-le-ssl.conf
