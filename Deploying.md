@@ -1,3 +1,6 @@
+- [Service overview](#service-overview)
+  - [uWSGI apps](#uwsgi-apps)
+  - [systemd apps](#systemd-apps)
 - [Recurring deployments](#recurring-deployments)
   - [Deploying id3c or id3c-customizations](#deploying-id3c-or-id3c-customizations)
     - [Prerequisites](#prerequisites)
@@ -8,6 +11,20 @@
   - [Deploying husky-musher](#deploying-husky-musher)
   - [Deploying scan-switchboard](#deploying-scan-switchboard)
   - [Deploying specimen-manifests](#deploying-specimen-manifests)
+
+
+## Service overview
+We currently use two hosting services for our production applications: uWSGI and systemd.
+
+### uWSGI apps
+* [id3c-production web API](https://github.com/seattleflu/backoffice/tree/master/id3c-production)
+* [Husky Musher](https://github.com/seattleflu/backoffice/tree/master/husky-musher)
+
+### systemd apps
+* [Metabase](https://github.com/seattleflu/backoffice/tree/master/metabase)
+* [Lab Labels](https://github.com/seattleflu/backoffice/tree/master/lab-labels)
+* [SCAN Switchboard](https://github.com/seattleflu/backoffice/tree/master/scan-switchboard)
+
 
 ## Recurring deployments
 ### Deploying id3c or id3c-customizations
