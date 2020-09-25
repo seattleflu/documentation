@@ -60,6 +60,7 @@ Before you get started, you'll need the following:
 8. Install the latest crontabs with `sudo make -C crontabs`.
 9. Reload the web API backend by running `sudo systemctl restart uwsgi`.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
+10. Check web API log file at `/var/log/uwsgi/app/api-production.log`.
 
 
 ### Data uploads to the database
@@ -88,6 +89,7 @@ Before you get started, you'll need the following:
 2. Navigate to the `/opt/husky-musher` directory and run `git pull`.
 3. Reload the uWSGI server by running `sudo systemctl restart uwsgi`.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
+4. Check log file at `/var/log/uwsgi/app/husky-musher.log` for any errors or warnings.
 
 
 # Deploying scan-switchboard #
