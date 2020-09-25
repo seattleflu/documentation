@@ -1,17 +1,19 @@
-- [Deploying id3c or id3c-customizations](#deploying-id3c-or-id3c-customizations)
-  - [Prerequisites](#prerequisites)
-  - [Steps for deployment:](#steps-for-deployment)
-    - [Schema changes to the database](#schema-changes-to-the-database)
-    - [Code changes to id3c](#code-changes-to-id3c)
-    - [Data uploads to the database](#data-uploads-to-the-database)
-- [Deploying husky-musher](#deploying-husky-musher)
-- [Deploying scan-switchboard](#deploying-scan-switchboard)
-- [Deploying specimen-manifests](#deploying-specimen-manifests)
+- [Recurring deployments](#recurring-deployments)
+  - [Deploying id3c or id3c-customizations](#deploying-id3c-or-id3c-customizations)
+    - [Prerequisites](#prerequisites)
+    - [Steps for deployment:](#steps-for-deployment)
+      - [Schema changes to the database](#schema-changes-to-the-database)
+      - [Code changes to id3c](#code-changes-to-id3c)
+      - [Data uploads to the database](#data-uploads-to-the-database)
+  - [Deploying husky-musher](#deploying-husky-musher)
+  - [Deploying scan-switchboard](#deploying-scan-switchboard)
+  - [Deploying specimen-manifests](#deploying-specimen-manifests)
 
-# Deploying id3c or id3c-customizations
+## Recurring deployments
+### Deploying id3c or id3c-customizations
 * [id3c] source code
 * [id3c-customizations] source code
-## Prerequisites
+#### Prerequisites
 Before you get started, you'll need the following:
 
 * a personal admin account to the production ID3C database plus the login information for the `postgres` user account.
@@ -19,13 +21,13 @@ Before you get started, you'll need the following:
   > See [Infrastructure] → **Databases (PostgreSQL)** → [sqitch configuration]
 * a public key shared with the `ubuntu` account on `backoffice.seattleflu.org`.
 
-## Steps for deployment:
+#### Steps for deployment:
 1. Merge code changes in [id3c] or [id3c-customizations] to each master branch, respectively.
 2. Run `pipenv update` in the `id3c-production` directory of your [backoffice]
    checkout.  This will lock ID3C and our customizations at the latest state of
    their master branch on GitHub.  Review, commit, and push the changes.
 
-### Schema changes to the database
+##### Schema changes to the database
 > If you have no schema changes to deploy, you may skip this section.
 3. Deploy database schema changes via `sqitch` from your local machine.
    Run the following commands, replacing the curly-bracketed text with your specifications.
@@ -49,7 +51,7 @@ Before you get started, you'll need the following:
         grant "{role}" to "backoffice-etl";
 
 
-### Code changes to id3c
+##### Code changes to id3c
 > If you have no code changes to deploy, you may skip this section.
 
 4. Log onto the `backoffice` server.
@@ -63,7 +65,7 @@ Before you get started, you'll need the following:
 10. If the API was restarted, check web API log file with `sudo tail -f /var/log/uwsgi/app/api-production.log`.
 
 
-### Data uploads to the database
+##### Data uploads to the database
 > If you have no data to upload, you may skip this section.
 
 10. Upload data to the `receiving` area of the database from your local machine.
@@ -82,7 +84,7 @@ Before you get started, you'll need the following:
 [scan-switchboard]: https://github.com/seattleflu/scan-switchboard
 
 
-# Deploying husky-musher #
+### Deploying husky-musher
 * [husky-musher] source code
 
 1. Log onto the `backoffice` server.
@@ -92,7 +94,7 @@ Before you get started, you'll need the following:
 4. Check log file at `/var/log/uwsgi/app/husky-musher.log` for any errors or warnings.
 
 
-# Deploying scan-switchboard #
+### Deploying scan-switchboard
 * [scan-switchboard] source code
 
 1. Log onto the `backoffice` server.
@@ -106,7 +108,7 @@ Before you get started, you'll need the following:
 There is a crontab that syncs the switchboard. If you have changed something in scan-switchboard that needs accompanying changes to the crontab, make that change in the backoffice repository and deploy that too.
 
 
-# Deploying specimen-manifests #
+### Deploying specimen-manifests
 * [specimen-manifests] source code
 
 1. Log onto the `backoffice` server.
