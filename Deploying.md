@@ -11,6 +11,7 @@
   - [Deploying husky-musher](#deploying-husky-musher)
   - [Deploying scan-switchboard](#deploying-scan-switchboard)
   - [Deploying specimen-manifests](#deploying-specimen-manifests)
+  - [Deploying backoffice-apache2](#deploying-backoffice-apache2)
 - [Initial deployments](#initial-deployments)
 
 
@@ -133,6 +134,13 @@ There is a crontab that syncs the switchboard. If you have changed something in 
 2. Navigate to the `/opt/specimen-manifests` directory and run `git pull`.
 
 
+### Deploying backoffice-apache2
+* [backoffice-apache2] source code (private)
+
+1. Log onto the `backoffice` server with agent forwarding (e.g. `ssh -A …`)
+2. Navigate to the `/etc/apache2` directory and run `sudo git pull`.
+
+
 ## Initial deployments
 Note: these deployment steps assume you're using Pipenv for dependency management.
 
@@ -193,7 +201,7 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
          RedirectMatch /{desired-endpoint}$ /{desired-endpoint}/
          ```
 
-4. Deploy your apache2 changes from the previous step.
+4. [Deploy your apache2 changes](#deploying-backoffice-apache2) from the previous step.
 5. With `{app-name}` as your desired application name, create a new directory in the [backoffice] repo named `{app-name}`, and add the following to it:
    * A README.
    * **uWSGI workflow:**
