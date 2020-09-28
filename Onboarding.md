@@ -73,6 +73,7 @@ Then, use [this script](https://github.com/seattleflu/backoffice/blob/master/dev
 ## Providing Switchboard access
 Add users in the form of `netid@washington.edu` to the [_switchboard-authorized-users_ file](https://github.com/seattleflu/backoffice-apache2/blob/master/switchboard-authorized-users).
 Then, `sudo git pull` your new commit into `/etc/apache2` on backoffice.
+> Note: You'll need to forward your authentication agent by logging onto the backoffice server with `ssh -A`.
 
 
 ## Providing Fred Hutch S3 access
