@@ -6,6 +6,8 @@
     - [Accessing the production database](#accessing-the-production-database)
       - [UW Medicine VPN](#uw-medicine-vpn)
       - [Adding your home IP address](#adding-your-home-ip-address)
+  - [Adding new REDCap users](#adding-new-redcap-users)
+  - [Providing Switchboard access](#providing-switchboard-access)
   - [Providing Fred Hutch S3 access](#providing-fred-hutch-s3-access)
     - [Example IAM policies](#example-iam-policies)
       - [UW / BBI](#uw--bbi)
