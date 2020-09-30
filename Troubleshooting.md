@@ -203,8 +203,9 @@ ERROR Errors were encountered (n=1) during processing of: ['s3://dokku-stack-phi
 Dropped 2 REDCap records with duplicated barcodes: ['AAAAAAAA']
 ```
 Until this warning is resolved, it will prevent returning results to the affected study participants.
-When you encounter this warning, please create a new Trello card in the **#record-troubleshooting** board, and assign it to Misja.
-
+When you encounter this warning, please create a new Trello card in the **#record-troubleshooting** board, and assign it to:
+* Annie if it's a UW Reopening, non lab-related issue, or
+* Misja for all other issues
 
 ## Presence Absence Results
 ### Investigating Presence/Absence Results
