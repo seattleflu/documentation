@@ -100,7 +100,8 @@ Before you get started, you'll need the following:
 3. Add any newly needed secret environment variables under `/opt/backoffice/id3c-production/env.d/…`.
    (Non-secret environment variables should be committed and pulled in via git.)
 4. Install the latest code with `pipenv sync`.
-5. Restart scan-switchboard with `sudo systemctl restart scan-switchboard`
+5. If you've changed the structure of the `record_barcodes` table in the SQLite database, delete the old database file under `data/`.
+6. Restart scan-switchboard with `sudo systemctl restart scan-switchboard`
 
 There is a crontab that syncs the switchboard. If you have changed something in scan-switchboard that needs accompanying changes to the crontab, make that change in the backoffice repository and deploy that too.
 
