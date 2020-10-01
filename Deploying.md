@@ -58,9 +58,10 @@ Before you get started, you'll need the following:
    (Non-secret environment variables should be committed and pulled in via git.)
 7. Install the latest production environment with `(cd id3c-production; pipenv sync)`.
 8. Install the latest crontabs with `sudo make -C crontabs`.
-9. Reload the web API backend by running `sudo systemctl restart uwsgi`.
+9. If there are updates to the web API, restart the web API backend by running `sudo systemctl restart uwsgi`.
+   > Note: Only run `sudo systemctl restart uwsgi` if necessary because it briefly takes the API offline.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
-10. Check web API log file at `/var/log/uwsgi/app/api-production.log`.
+10. If the API was restarted, check web API log file with `sudo tail -f /var/log/uwsgi/app/api-production.log`.
 
 
 ### Data uploads to the database
