@@ -28,6 +28,8 @@ Tips for moving forward when things break.
     - [Problem: A sample was retroactively failed](#problem-a-sample-was-retroactively-failed)
 - [Barcode collection sets](#barcode-collection-sets)
   - [Problem: labels for the incorrect collection identifier were used](#problem-labels-for-the-incorrect-collection-identifier-were-used)
+- [SFS Switchboard](#sfs-switchboard)
+  - [Problem: SFS Switchboard does not load certain barcodes](#problem-sfs-switchboard-does-not-load-certain-barcodes)
 
 ## ETL processes
 ### General
@@ -303,6 +305,31 @@ If this happens, there are a few steps to take to remedy this:
 4. Now, check the **#id3c-alerts** channel or the processing log in the `receiving` tables to see if any ETL jobs skipped the record because the encounter's collection barcode was not in an expected set.
    For example, the FHIR ETL does not currently support ingesting Asymptomatic Kiosk barcodes.
    If these barcodes were skipped in any ETL job, upload manually generated REDCap DETs for the affected encounters.
+
+
+## SFS Switchboard
+### Problem: SFS Switchboard does not load certain barcodes
+Sometimes the SFS Switchboard's database fails to update.
+There is hardly a single cause here, so there are a few things to try when this happens.
+1. Check the systemd logs with `sudo systemctl status scan-switchboard`
+2. Check the journal logs with `sudo journalctl -fu scan-switchboard`
+3. Capture the state of the Switchboard data with:
+    ```sh
+    cd $(mktemp -d)
+    ps aux > ps
+    cp -rp /opt/scan-switchboard/data .
+    ```
+Try to capture as much information about the failed state of the service as possible before manually restarting the service for the lab.
+
+To manually restart the service, depending on your problem, you may choose to:
+* Manually generate the Switchboard data via
+  ```sh
+  PIPENV_PIPFILE=/opt/scan-switchboard/Pipfile \
+    envdir /opt/backoffice/id3c-production/env.d/redcap-sfs/ \
+    envdir /opt/backoffice/id3c-production/env.d/redcap-scan/ \
+    pipenv run make -BC /opt/scan-switchboard/
+  ```
+* Restart the service with `sudo systemctl restart scan-switchboard`
 
 
 [unknown barcode Metabase query]: https://backoffice.seattleflu.org/metabase/question/439
