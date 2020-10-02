@@ -26,6 +26,8 @@ Tips for moving forward when things break.
   - [Bad Presence/Absence Results Uploaded](#bad-presenceabsence-results-uploaded)
     - [Problem: A plate was swapped](#problem-a-plate-was-swapped)
     - [Problem: A sample was retroactively failed](#problem-a-sample-was-retroactively-failed)
+- [Barcode collection sets](#barcode-collection-sets)
+  - [Problem: labels for the incorrect collection identifier were used](#problem-labels-for-the-incorrect-collection-identifier-were-used)
 
 ## ETL processes
 ### General
@@ -254,6 +256,53 @@ the plate. In this example, we are searching for plate `BAT049A`:
       ```
   1. Delete the incorrect result record(s) for the sample from `warehouse.presence_absence`
   1. Delete the incorrect results JSON document from `receiving.presence_absence` so we don't ingest the incorrect results again when we bump the ETL revision number.
+
+
+## Barcode collection sets
+### Problem: labels for the incorrect collection identifier were used
+Sometimes, the wrong barcode collection identifier set labels are used for an in-person enrollment event.
+For example, the study may have an event enrolling people in the SCAN In-Person Enrollments REDCap project, but on the way over, an RA accidentally grabbed Asymptomatic Kiosk collection labels instead of SCAN STAVE collection labels.
+If this happens, there are a few steps to take to remedy this:
+1. Retrieve the list of all affected collection barcodes that need to have their internal identifier set changed to the correct set.
+   Following the example above, we want a list of every Asymptomatic Kiosk collection barcode that was accidentally used for SCAN In-Person Enrollments.
+   Let's imagine that the affected barcodes are:
+   ```
+   AAAAAAAA
+   BBBBBBBB
+   CCCCCCCC
+   ```
+
+2. Verify that the given barcodes are of the correct identifier set:
+    ```sql
+    select distinct
+      identifier_set_id
+    from
+      warehouse.identifier
+    where barcode in (
+      'AAAAAAAA',
+      'BBBBBBBB',
+      'CCCCCCCC'
+    );
+    ```
+    If there is only one `identifier_set_id` returned and it matches our expectations (e.g. it is `16` which is the `identifier_set_id` for `collections-kiosks-asymptomatic`), then we may proceed.
+    Otherwise, we need to go back to the beginning and make sure we have a correct understanding of the problem.
+
+3. Then, update the collection identifier set IDs of the affected barcodes.
+   Make sure to test locally first.
+   Assuming the desired `identifier_set_id` is `25` (`collections-scan-kiosks`), our code may look like:
+    ```sql
+    update
+      warehouse.identifier
+    set identifier_set_id = 25
+    where barcode in (
+      'AAAAAAAA',
+      'BBBBBBBB',
+      'CCCCCCCC'
+    );
+    ```
+4. Now, check the **#id3c-alerts** channel or the processing log in the `receiving` tables to see if any ETL jobs skipped the record because the encounter's collection barcode was not in an expected set.
+   For example, the FHIR ETL does not currently support ingesting Asymptomatic Kiosk barcodes.
+   If these barcodes were skipped in any ETL job, upload manually generated REDCap DETs for the affected encounters.
 
 
 [unknown barcode Metabase query]: https://backoffice.seattleflu.org/metabase/question/439
