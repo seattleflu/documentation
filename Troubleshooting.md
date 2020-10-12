@@ -104,7 +104,38 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     Aborting with error: More than one sample matching sample and/or collection barcodes: [Record(id=137871, identifier=None, collection_identifier='aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', encounter_id=1754975),    Record(id=138045, identifier='bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', collection_identifier=None, encounter_id=None)]
     ```
     This error can arise due to incomplete records within the manifest uploaded by the lab team.
-    Delete the sample record that is incomplete i.e. the sample that doesn't have a collection identifier.
+    This usually affects a large batch of samples because the lab team completes one plate of samples at a time in the manifest.
+    Search the receiving table to find affected records with:
+    ```sql
+    with error_records as (
+        select
+            document ->> 'sample' as sample,
+            document ->> 'collection' as collection,
+            processing_log
+        from receiving.manifest
+        where received::date between '<date-before-error>'::date and '<date-of-error>'::date
+        and document ->> 'collection' is null
+    ),
+
+    complete_records as (
+        select
+            document ->> 'sample' as sample,
+            document ->> 'collection' as collection
+        from receiving.manifest
+        where received::date = '<date-of-error>'::date
+        and document ->> 'collection' is not null
+    )
+
+    select
+        *
+    from error_records
+    join complete_records using (sample)
+    ;
+
+    ```
+    The `processing_log` contains the `sample_id` for the created `warehouse.sample` records.
+    Delete the sample records that are incomplete.
+
 1.
     ```
     Aborting with error: More than one sample matching sample and/or collection barcodes: [Record(id=118997, identifier='aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', collection_identifier='bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', encounter_id=416344), Record(id=120434, identifier=None, collection_identifier='cccccccc-cccc-cccc-cccc-cccccccccccc', encounter_id=416344)]
@@ -124,8 +155,8 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
     We've solved this in the past by taking the following steps:
     1. Delete the sample that doesn't have any presence-absence results.
     In this case, it's sample `122250`.
-    2. Run the manifest ETL.
-    3. Manually upload a DET for the affected REDCap records so they may be linked to the correct encounter and have a sample.
+    1. Run the manifest ETL.
+    2. Manually upload a DET for the affected REDCap records so they may be linked to the correct encounter and have a sample.
 
     Note that samples that have not yet been aliquoted will resolve when they're added to the aliquoting manifest.
     In this case, `cccccccc-cccc-cccc-cccc-cccccccccccc` was one of the duplicate barcodes.
