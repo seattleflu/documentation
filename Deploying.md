@@ -164,7 +164,7 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
                # Authenticate visitors with Shibboleth (configured elsewhere to use
                # UW's IdP).  Require a UW NetID in one of our predefined groups.
                AuthType shibboleth
-               AuthGroupFile {app-authorized-users}
+               AuthGroupFile authorized-users
                Require group {space-separated group-names}
 
                # Tell Shibboleth that it should always try to establish a session if
@@ -179,7 +179,7 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
             {group-name}: {netid}@washington.edu {netid}@washington.edu ...
             ```
 
-            (See an example of the [SCAN Switchboard authorized NetIDs](https://github.com/seattleflu/backoffice-apache2/blob/master/switchboard-authorized-users)).
+            (See an example of the [authorized NetIDs](https://github.com/seattleflu/backoffice-apache2/blob/master/authorized-users)).
 
    * **systemd workflow:**
       1. Update the [backoffice apache2 le ssl conf file] to add the following entries for the app. Note that our convention for a new `{port-number}` has been to start at `3000` and increment by one for each new application.
