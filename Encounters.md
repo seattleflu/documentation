@@ -35,6 +35,17 @@ In addition to requiring sufficient information to create an associated [Individ
   > Note: while not required to create an encounter, `nasal_swab_collection` must be complete and verified to link an associated [Sample].
 
 ### SFS
+- [UW Reopening]
+  - `eligibility_screening` is complete and verified
+  - `consent_form` is complete and verified
+  - `enrollment_questionnaire` is complete and verified
+  - `parental_consent_form` is complete if participant < 18 years old
+  - **Enrollment events**
+    - `enrollment_date` is not blank
+  - **Encounter events** for each REDCap repeat instance
+    - `daily_attestation` is complete and verified, and either `test_order_survey` or `kiosk_registration_4c7f` are complete and verified, and `testing_date` is not blank
+    - we can create an associated [Sample]
+
 - [Kiosk]
   - `screening` is complete and verified
   - `main_consent_form` is complete and verified
@@ -82,3 +93,4 @@ We represent an ID3C Encounter in HL7 FHIR vocabulary as an [Encounter Resource]
 [Asymptomatic Swab & Send]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_asymptomatic_swab_n_send.py
 [Swab & Send + Home Flu]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_swab_and_home_flu.py
 [Encounter Resource]: https://www.hl7.org/fhir/encounter.html
+[UW Reopening]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_uw_reopening.py
