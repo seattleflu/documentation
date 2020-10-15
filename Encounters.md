@@ -39,7 +39,7 @@ In addition to requiring sufficient information to create an associated [Individ
   - `eligibility_screening` is complete and verified
   - `consent_form` is complete and verified
   - `enrollment_questionnaire` is complete and verified
-  - `parental_consent_form` is complete if participant < 18 years old
+  - `parental_consent_form` is complete and `signature_parent` is not blank if participant < 18 years old
   - **Enrollment events**
     - `enrollment_date` is not blank
   - **Encounter events** for each REDCap repeat instance
