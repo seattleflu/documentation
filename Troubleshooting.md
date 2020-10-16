@@ -126,15 +126,28 @@ We should manually skip the bundle in `recieving.presence_absence` and wait for 
         and document ->> 'collection' is not null
     )
 
-    select
-        *
-    from error_records
-    join complete_records using (sample)
+    select *
+    from warehouse.sample
+    where sample_id in
+    (
+      select distinct(cast(b.plog ->> 'sample_id' as int)) as error_sample_id
+      from
+      (
+        select jsonb_array_elements(a.processing_log) as plog
+        from
+        (
+          select err.processing_log
+          from error_records err
+          join complete_records comp using (sample)
+        ) as a
+      ) as b
+    where b.plog @> '{"etl":"manifest"}'
+    order by cast(b.plog ->> 'sample_id' as int)
+    )
     ;
-
     ```
-    The `processing_log` contains the `sample_id` for the created `warehouse.sample` records.
-    Delete the sample records that are incomplete.
+    Look at the output of that final `select *`. If that looks correct, change the
+    `select *` to `delete` to delete the records from the warehouse.sample table.
 
 1.
     ```
