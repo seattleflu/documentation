@@ -71,7 +71,7 @@ Before adding a new study member to any REDCap project, confirm the DTUA is exec
 Then, use [this script](https://github.com/seattleflu/backoffice/blob/master/dev/add-user-to-all-projects) to programmatically import a user to all REDCap with permissions equivalent to an existing REDCap user.
 
 ## Providing Switchboard access
-Add users in the form of `netid@washington.edu` to the [_switchboard-authorized-users_ file](https://github.com/seattleflu/backoffice-apache2/blob/master/switchboard-authorized-users).
+Add users in the form of `netid@washington.edu` to the [_authorized-users_ file](https://github.com/seattleflu/backoffice-apache2/blob/master/authorized-users).
 Then, `sudo git pull` your new commit into `/etc/apache2` on backoffice.
 > Note: You'll need to forward your authentication agent by logging onto the backoffice server with `ssh -A`.
 
