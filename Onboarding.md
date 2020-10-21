@@ -75,6 +75,8 @@ Add users in the form of `netid@washington.edu` to the [_authorized-users_ file]
 Then, `sudo git pull` your new commit into `/etc/apache2` on backoffice.
 > Note: You'll need to forward your authentication agent by logging onto the backoffice server with `ssh -A`.
 
+You may need to run `sudo systemctl reload apache2` for apache2 to notice the updated authz users file.
+
 
 ## Providing Fred Hutch S3 access
 Providing study members with access to the Fred Hutch-managed AWS S3 bucket requires sending an email to Fred Hutch Sci Comp (scicomp@fhcrc.org) like the one below:
