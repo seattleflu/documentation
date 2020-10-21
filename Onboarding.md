@@ -72,10 +72,16 @@ Then, use [this script](https://github.com/seattleflu/backoffice/blob/master/dev
 
 ## Providing Switchboard access
 Add users in the form of `netid@washington.edu` to the [_authorized-users_ file](https://github.com/seattleflu/backoffice-apache2/blob/master/authorized-users).
+For Switchboard, you'll typically be adding new users to the `bat-lab` group.
 Then, `sudo git pull` your new commit into `/etc/apache2` on backoffice.
 > Note: You'll need to forward your authentication agent by logging onto the backoffice server with `ssh -A`.
 
 You may need to run `sudo systemctl reload apache2` for apache2 to notice the updated authz users file.
+
+
+## Providing Lead Dawgs access
+The steps for providing Lead Dawgs access are similar to those for [providing Switchboard access](#providing-switchboard-access).
+For Lead Dawgs, you'll typically be adding users to the `uw-kiosk-team` user group.
 
 
 ## Providing Fred Hutch S3 access
