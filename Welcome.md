@@ -191,6 +191,8 @@ We generally follow [these guidelines](https://chris.beams.io/posts/git-commit/)
 We typically do development in feature branches and merge into master.
 Generally, we deploy from master (or images/snapshots created from master).
 Before merging, we rebase our commits to create the most human-readable history of our codebase as possible.
+We avoid moving and changing code in the same commit.
+
 
 #### GitHub Actions
 We use GitHub Actions in the following repositories:
