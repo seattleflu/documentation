@@ -2,6 +2,7 @@ Welcome to the [Seattle Flu Study documentation wiki](https://github.com/seattle
 
 - [Welcome](welcome) - start with this if you're new around here
 - [Barcodes](barcodes) - a cheat sheet of barcode formats
+- [Code review](code-review) - guidelines for authors and reviewers
 - [Data Flow](data-flow) - overview of how data move throughout the study
 - [Deploying](deploying) - step-by-step guide on deploying things to production
 - [FHIR](fhir) - how we use FHIR in the study
