@@ -22,6 +22,7 @@ _Internal tooling_
 * [Metabase](https://metabase.com) at `/metabase`
 * [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
 * [Scan Switchboard](https://github.com/seattleflu/scan-switchboard) at `/switchboard`
+* [Husky Musher](https://github.com/seattleflu/husky-musher) at `/husky-musher`
 
 Hosted on an EC2 instance.
 
@@ -37,15 +38,21 @@ Configuration of interest includes
 
 * [SCAN Switchboard config](https://github.com/seattleflu/backoffice/tree/master/scan-switchboard) (`/opt/backoffice/scan-switchboard`)
 
+* [Husky Musher config](https://github.com/seattleflu/backoffice/tree/master/husky-musher) (`/opt/backoffice/husky-musher`)
+
+
 * uWSGI (`/etc/uwsgi`)
-    - Apps enabled: `api-testing`, `api-production`
+    - Apps enabled: `api-testing`, `api-production`, `husky-musher`
     - App environment using envdirs in `/etc/uwsgi/env.d`
 
-* Apache2 (`/etc/apache2`)
+* Apache2 (`/etc/apache2`) (see private [backoffice-apache2 repo](https://github.com/seattleflu/backoffice-apache2) for source control)
     - Modules enabled: `ssl`, `proxy`, `proxy_uwsgi`
     - Sites enabled: `backoffice`, `backoffice-le-ssl`
     - Reverse proxies to API via uWSGI socket
+    - Reverse proxies to Husky Musher via uWSGI socket
     - Reverse proxies to Metabase via HTTP
+    - Reverse proxies to Lab Labels via HTTP
+    - Reverse proxies to SCAN Switchboard via HTTP
 
 * Let's Encrypt (`/etc/letsencrypt`)
     - Managed by `certbot`
@@ -58,11 +65,13 @@ Configuration of interest includes
     - run via systemd
 
 * systemd
-    - `systemctl status metabase`
-    - `journalctl --unit metabase`
-    - `/etc/systemd/system/metabase.service` → `/opt/backoffice/metabase/metabase.service`
-    - `/etc/systemd/system/lab-labels.service` → `/opt/backoffice/lab-labels/lab-labels.service`
-    - `/etc/systemd/system/scan-switchboard.service` → `/opt/backoffice/scan-switchboard/scan-switchboard.service`
+  * Apps enabled:
+    * Metabase: `/etc/systemd/system/metabase.service` → `/opt/backoffice/metabase/metabase.service`
+    * Lab Labels: `/etc/systemd/system/lab-labels.service` → `/opt/backoffice/lab-labels/lab-labels.service`
+    * SCAN Switchboard: `/etc/systemd/system/scan-switchboard.service` → `/opt/backoffice/scan-switchboard/scan-switchboard.service`
+  * Check service status with
+    - `systemctl status {service name}`
+    - `journalctl --unit {service name}`
 
 * ID3C ETL jobs are run periodically using cron, defined in `/etc/cron.d/backoffice`
 
