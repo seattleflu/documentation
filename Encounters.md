@@ -35,6 +35,20 @@ In addition to requiring sufficient information to create an associated [Individ
   > Note: while not required to create an encounter, `nasal_swab_collection` must be complete and verified to link an associated [Sample].
 
 ### SFS
+- [Childcare]
+  - `consentassent_form` is complete and verified
+  - `enrollment_questionnaire` is complete and verified
+  - `parent_signature` field is not blank if participant < 18 years old
+  - **Enrollment events**
+    - `enrollment_date` is not blank
+  - **Encounter events**
+    - One of the following instruments is complete and verified:
+      - `symptom_check`
+      - `swab_kit_reg`
+      - `post_collection_data_entry_qc`
+    - we can create an associated [Sample]
+  - _Note_: We do not ingest participant demographic data such as age, sex, race for this project due to re-identifiability concerns with site being limited to only two daycare centers.
+
 - [UW Reopening]
   - `eligibility_screening` is complete and verified
   - `consent_form` is complete and verified
@@ -94,3 +108,4 @@ We represent an ID3C Encounter in HL7 FHIR vocabulary as an [Encounter Resource]
 [Swab & Send + Home Flu]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_swab_and_home_flu.py
 [Encounter Resource]: https://www.hl7.org/fhir/encounter.html
 [UW Reopening]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_uw_reopening.py
+[Childcare]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_childcare.py

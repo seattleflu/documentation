@@ -25,6 +25,13 @@ We wait to create Samples in ID3C until the following conditions are met for eac
   - `utm_tube_barcode_2` is not blank or `reenter_barcode` == `reenter_barcode_2`
 
 ### SFS
+- [Childcare]
+  - `post_collection_data_entry_qc` is complete and verified
+  - One of the following barcode fields is not blank:
+    - `return_utm_barcode`
+    - `utm_tube_barcode`
+    - `pre_scan_barcode`
+
 - [UW Reopening]
   - the sample is a swab-n-send sample and `post_collection_data_entry_qc` is complete and verified or the sample is a kiosk sample and `kiosk_registration_4c7f` is complete and verified
   - `collect_barcode_kiosk` is not blank or `return_utm_barcode` is not blank or `pre_scan_barcode` is not blank
@@ -53,3 +60,4 @@ We represent an ID3C Sample in HL7 FHIR vocabulary as an [Specimen Resource].
 [Swab & Send + Home Flu]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_swab_and_home_flu.py
 [Specimen Resource]: https://www.hl7.org/fhir/specimen.html
 [UW Reopening]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_uw_reopening.py
+[Childcare]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_childcare.py
