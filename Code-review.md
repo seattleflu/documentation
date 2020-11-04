@@ -32,6 +32,14 @@ feedback and do it right.  Talk explicitly about that tradeoff, as it is
 different case to case.  It's ok to ping people if PRs aren't getting
 attention.
 
+Pay attention to commit structure (how code changes are organized into
+individual commits), sequence (what order the commits are in), and messages
+(why these changes are being made), as crafting these well can make it much
+easier for new team members and our future selves to maintain the codebase.
+Historical context for why previous changes were made is invaluable for
+understanding when and how you might want to change that code again.  The
+commits themselves, not just the changes they make, are part of the review too.
+
 ### As an author
 
 * Direct reviewers' attention to any parts you're unsure of or specific topics
