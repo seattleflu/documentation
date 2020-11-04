@@ -19,7 +19,8 @@ important to focus on work that makes fixing problems _easier_.
 
 Code review interactions should primarily foster discussion and aim to produce
 rough consensus or agreement.  Suggesting changes is ok, but code reviews are
-much more than creating a punch list of changes required by a gatekeeper.
+much more than creating a [punch list](https://m-w.com/dictionary/punch+list)
+of changes required by a gatekeeper.
 
 Communication is hard, especially via text-only mediums, and constructive
 critique doubly so.  Be kind and generous and give people the benefit of the
