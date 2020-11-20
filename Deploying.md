@@ -127,6 +127,7 @@ There is a crontab that syncs the switchboard. If you have changed something in 
 
 1. Log onto the `backoffice` server with agent forwarding (e.g. `ssh -A …`)
 2. Navigate to the `/etc/apache2` directory and run `sudo git pull`.
+3. Reload apache by running: `sudo systemctl reload apache2`.
 
 
 ## Initial deployments
