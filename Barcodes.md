@@ -98,6 +98,19 @@ and saved to your computer.
 Open up the new _barcode-labels.pdf_ file.  It should have 20 pages (of 52
 barcodes each) formatted to print on a box of [LCRY-1100-Y][] sheets.
 
+### Minting batches
+We have a script on the backoffice server that is useful for generating batches of barcodes when the requester wants a 
+maximum number of sheets in each PDF file. For example, if the requester asked for 40 sheets of UW reopening Home barcodes
+in files of no more than 20 sheets each, the command would be:
+
+PGSERVICE=seattleflu-production /opt/backoffice/bin/mint-barcodes-in-batch --identifier-set=collections-uw-home --per-sheet=26 --max-sheets=20 --sheets=40 --prefix="/home/ubuntu/temp/" 
+
+* --per-sheet: specifies how many barcodes fit on a sheet of labels
+* --max-sheets: specifies the maximum number of sheets per PDF file
+* --sheets: specifies the number of sheets to be minted
+* --prefix: specifics the text to pre-pend to the filename; this sets the path. We've found it useful to include the requester's name, 
+e.g., --prefix="/home/ubuntu/temp/Evan_" 
+
 The Google Drive location where to put label PDFs is in the #barcodes channel topic in Slack.
 Name the PDF file clearly and put it into the appropriate folder in the Google Drive.
 The lab team will delete the PDF files from Google Drive when they have finished printing them. We don't delete the PDFs.
