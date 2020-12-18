@@ -232,7 +232,8 @@ Once the mapping has been updated and deployed, be sure to manually generate/upl
     ```
 
 ### Problem: Metabase results are stale
-Metabase caching is enabled so that slow queries don't have to be executed every time the question is viewed. The global `CACHE TIME-TO-LIVE (TTL) MULTIPLIER` setting controls how long results get cached. 
+Metabase caching is enabled so that slow queries don't have to be executed every time the question is viewed. A query that takes longer than the `MINIMUM QUERY DURATION` setting to run will get cached.
+The global `CACHE TIME-TO-LIVE (TTL) MULTIPLIER` setting controls how long results get cached. 
 From Metabase:
    ```
       To determine how long each saved question's cached result should stick around, we take the query's average execution time and multiply 
