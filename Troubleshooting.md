@@ -17,6 +17,7 @@ Tips for moving forward when things break.
 - [Metabase](#metabase)
   - [Problem: Metabase is down](#problem-metabase-is-down)
   - [Problem: Metabase queries are slow](#problem-metabase-queries-are-slow)
+  - [Problem: Metabase results are stale](#problem-metabase-results-are-stale)
 - [SCAN RoR PDF generation](#scan-ror-pdf-generation)
   - [Problem: PDF generation errors out for specific barcodes](#problem-pdf-generation-errors-out-for-specific-barcodes)
   - [Problem: REDCap records with duplicated barcodes are dropped](#problem-redcap-records-with-duplicated-barcodes-are-dropped)
@@ -229,6 +230,28 @@ Once the mapping has been updated and deployed, be sure to manually generate/upl
     and usename = 'metabase'
     and state = 'active'
     ```
+
+### Problem: Metabase results are stale
+Metabase caching is enabled so that slow queries don't have to be executed every time the question is viewed. The global `CACHE TIME-TO-LIVE (TTL) MULTIPLIER` setting controls how long results get cached. 
+From Metabase:
+   ```
+      To determine how long each saved question's cached result should stick around, we take the query's average execution time and multiply 
+      that by whatever you input here. So if a query takes on average 2 minutes to run, and you input 10 for your multiplier, its cache entry 
+      will persist for 20 minutes.
+   ```
+
+This TTL multiplier setting can be overridden for a question by setting a value in the `cache_ttl` column of the `report_card` table in the metabase database.
+First, you may need to give your admin database user permissions by connecting as the `postgres` user and running:
+   ```sql
+   grant metabase to "{your admin user name}"
+   ```
+
+Then update the correct row in the `report_card` table. To set a 0 multiplier (to disable caching altogether) for a question run a command like:
+   ```sql 
+   update report_card
+   set cache_ttl = 0
+   where name  = '{the name of the question}'
+   ```
 
 ## SCAN RoR PDF generation
 
