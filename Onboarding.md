@@ -45,7 +45,7 @@ You may choose to follow the template below:
 > file that PostgreSQL can use to remember your password (https://www.postgresql.org/docs/10/libpq-pgpass.html).
 >
 > Please remember the data usage policies associated with accessing the database, as outlined in the DTUA you signed.
-> If you have any questions, the @blab-dev-team can help answer them on the #id3c or #informatics channels in the Seattle Flu Study Slack.
+> If you have any questions, the @dev-team can help answer them on the #id3c or #informatics channels in the Seattle Flu Study Slack.
 
 ### Accessing the production database
 The production database has firewall rules that allow only access to certain IP addresses or IP ranges.
