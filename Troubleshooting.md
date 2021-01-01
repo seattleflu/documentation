@@ -81,7 +81,7 @@ update receiving.presence_absence
 set processing_log = '[
     {
         "status": "manually skipped",
-        "revision": 8
+        "revision": {the current revision number of the presence-absence ETL}
     }
 ]'
 where presence_absence_id = {the group number}
