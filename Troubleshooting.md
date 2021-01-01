@@ -69,6 +69,23 @@ This error means that a sample from a separate study arm that we're not supposed
 The appropriate avenue is to Slack someone in one of data-transfer channels.
 We can ask NWGC to re-send the same JSON bundle but with `_exp` designations on the affected samples.
 We should manually skip the bundle in `recieving.presence_absence` and wait for the updated JSON.
+Find the presence_absence_id/group number by looking for 
+```
+Rolling back to savepoint presence_absence group {the group number}
+````
+in /var/log/syslog.
+
+Manually mark the receiving record as skipped like this:
+````sql
+update receiving.presence_absence
+set processing_log = '[
+    {
+        "status": "manually skipped",
+        "revision": 8
+    }
+]'
+where presence_absence_id = {the group number}
+````
 
 
 ### Manifest ETL
