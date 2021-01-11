@@ -8,6 +8,7 @@ Welcome to the [Seattle Flu Study documentation wiki](https://github.com/seattle
 - [FHIR](fhir) - how we use FHIR in the study
 - [ID3C Glossary](id3c-glossary) - a glossary of ID3C terms
 - [Infrastructure](infrastructure) - overview of study infrastructure
+- [Linelists](linelists) - step-by-step instructions on creating linelists for WA DoH
 - [Onboarding](onboarding) - granting permissions to new study members
 - [REDCap](redcap) - details about our ITHS REDCap instance
 - [SCAN](scan) - guide to adding a new SCAN study or language
