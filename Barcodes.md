@@ -51,7 +51,8 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-fluathome.org`                       | [LCRY-2380-Y][]   |        2,380 |            119 |
 `collections-scan`                                | [LCRY-1100][]     |          520 |             26 | in duplicate for now, might be triplicate if we start ROR
 `collections-scan-kiosks`                         | [LCRY-1100][]     |        1,040 |             52 |SCAN STAVE-surge testing around vulnerable/exposures
-`collections-clia-compliance`                     | [LCRY-1100][]     |        1,040 |             52 |CLIA barcodes
+`collections-clia-compliance`                     | [LCRY-1100][]     |        1,040 |             52 |CLIA barcodes (default layout)
+`collections-clia-compliance`                     | [LCRY-2380][]     |        2,380 |             119|CLIA barcodes ('small' layout)
 `kits-fluathome.org`                              | [LCRY-1100-B][]   |        1,040 |             52 |
 `test-strips-fluathome.org`                       | [LCRY-2380-G][]   |        2,380 |            119 |
 `samples-haarvi`                                  | [LCRY-2380][]     |        2,380 |            119 | small aliquoting barcodes for HAARVI
@@ -100,12 +101,13 @@ barcodes each) formatted to print on a box of [LCRY-1100-Y][] sheets.
 
 ### Minting batches
 We have a script on the backoffice server that is useful for generating batches of barcodes when the requester wants a 
-maximum number of sheets in each PDF file. For example, if the requester asked for 40 sheets of UW reopening Home barcodes
+maximum number of sheets in each PDF file. For example, if the requester asked for 40 sheets of CLIA barcodes in the small layout
 in files of no more than 20 sheets each, the command would be:
 
-PGSERVICE=seattleflu-production /opt/backoffice/bin/mint-barcodes-in-batch --identifier-set=collections-uw-home --per-sheet=26 --max-sheets=20 --sheets=40 --prefix="/home/ubuntu/temp/" 
+PGSERVICE=seattleflu-production /opt/backoffice/bin/mint-barcodes-in-batch --identifier-set=collections-clia-compliance --per-sheet=26 --layout=small --max-sheets=20 --sheets=40 --prefix="/home/ubuntu/temp/" 
 
 * --per-sheet: specifies how many barcodes fit on a sheet of labels
+* --layout: specifies which label layout to print with. The default is 'default'.
 * --max-sheets: specifies the maximum number of sheets per PDF file
 * --sheets: specifies the number of sheets to be minted
 * --prefix: specifics the text to pre-pend to the filename; this sets the path. We've found it useful to include the requester's name, 
