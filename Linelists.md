@@ -1,14 +1,11 @@
-# Create Linelists for WA DoH
-
-- [Create Linelists for WA DoH](#create-linelists-for-wa-doh)
-  - [Overview](#overview)
-  - [Deep dive](#deep-dive)
-  - [Setup](#setup)
-    - [Connect to the production ID3C database](#connect-to-the-production-id3c-database)
-    - [Install dependencies](#install-dependencies)
-    - [Clone the backoffice repo](#clone-the-backoffice-repo)
-    - [Install your python environment](#install-your-python-environment)
-    - [Configure REDCap API Tokens environment variables](#configure-redcap-api-tokens-environment-variables)
+- [Overview](#overview)
+- [Deep dive](#deep-dive)
+- [Setup](#setup)
+  - [Connect to the production ID3C database](#connect-to-the-production-id3c-database)
+  - [Install dependencies](#install-dependencies)
+  - [Clone the backoffice repo](#clone-the-backoffice-repo)
+  - [Install your python environment](#install-your-python-environment)
+  - [Configure REDCap API Tokens environment variables](#configure-redcap-api-tokens-environment-variables)
 
 > Note: this workflow only works for Unix systems (MacOS and Linux).
 Windows is not supported.
