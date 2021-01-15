@@ -220,8 +220,8 @@ Then, when you're done with SCAN projects, repeat the process above for all the 
 
 Now, when you're calling a command that requires REDCap API tokens as environment variables, you can do so by preceding the `envdir` call before the script (but AFTER any other variable declarations like `PGSERVICE`). e.g.
 
-    envdir ./id3c-production/redcap-scan/ \
-        envdir ./id3c-production/redcap-sfs/ \
+    envdir ./id3c-production/env.d/redcap-scan/ \
+        envdir ./id3c-production/env.d/redcap-sfs/ \
         example-command
 
 
