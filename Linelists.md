@@ -216,7 +216,7 @@ Remember to save your work!
 
 Repeat this process for every SCAN REDCap project you're targeting in the [linelist configuration file] (also at `~/backoffice/etc/wa-doh-linelists.yaml`).
 
-Then, when you're done with SCAN projects, repeat the process above, except instead of creating the new file under `redcap-scan/`, create it under `redcap-sfs/`.
+Then, when you're done with SCAN projects, repeat the process above for all the SFS projects, except instead of creating the new file under `redcap-scan/`, create it under `redcap-sfs/`.
 
 Now, when you're calling a command that requires REDCap API tokens as environment variables, you can do so by preceding the `envdir` call before the script (but AFTER any other variable declarations like `PGSERVICE`). e.g.
 
