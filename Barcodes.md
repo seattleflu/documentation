@@ -61,6 +61,11 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-uw-home`                             | [LCRY-1100-B][]   |          520 |             26 | in duplicate, Husky Coronavirus Testing mail (at-home)
 `collections-uw-observed`                         | [LCRY-1100-B][]   |        1,040 |             52 | Husky Coronavirus Testing kiosk (in-person)
 `collections-childcare`                           | [LCRY-1100][]   |          1,040 |             52 | singles, Childcare Study
+`collections-school-testing`                      | [LCRY-1100][]   |            520 |             26 | duplicates, Seattle Public Schools (SPS)
+`collections-apple-respiratory`                   | [LCRY-1100][]   |            520 |             26 | duplicates, Apple Study
+`collections-adult-family-home-outbreak`          | [LCRY-1100][]   |          1,040 |             52 | singlets, Adult Family Home (AFH) Outbreaks (not for Workplace Outbreaks)
+`collections-workplace-outbreak`                  | [LCRY-1100][]   |          1,040 |             52 | singlets, Workplace Outbreaks (not for Adult Family Home AFH Outbreaks)
+
 
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
