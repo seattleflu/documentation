@@ -28,8 +28,7 @@ Copy and paste this following example using `2021-01-01` as the target results d
     cd ~/backoffice
 
     PGSERVICE=seattleflu-production \
-        envdir ./id3c-production/env.d/redcap-sfs \
-        envdir ./id3c-production/env.d/redcap-scan \
+        envdir ./id3c-production/env.d/redcap \
         ./bin/wa-doh-linelists/generate 2021-01-01
 
 
@@ -206,7 +205,7 @@ You'll need to copy your REDCap API token from each project and create a new fil
 We create file names using this pattern: `REDCAP_API_TOKEN_redcap.iths.org_{PROJECT_ID}`.
 Here's an example of creating a new environment variable for the SCAN IRB English project (project ID 22461) with the text editor `nano`:
 
-    nano redcap-scan/REDCAP_API_TOKEN_redcap.iths.org_22461
+    nano redcap/REDCAP_API_TOKEN_redcap.iths.org_22461
 
 Note that you are literally typing the string `REDCAP_API_TOKEN` here.
 Once you're inside the file with `nano`, paste your actual token copied from REDCap.
@@ -216,12 +215,11 @@ Remember to save your work!
 
 Repeat this process for every SCAN REDCap project you're targeting in the [linelist configuration file] (also at `~/backoffice/etc/wa-doh-linelists.yaml`).
 
-Then, when you're done with SCAN projects, repeat the process above, except instead of creating the new file under `redcap-scan/`, create it under `redcap-sfs/`.
+Then, when you're done with SCAN projects, repeat the process above for all the SFS projects.
 
 Now, when you're calling a command that requires REDCap API tokens as environment variables, you can do so by preceding the `envdir` call before the script (but AFTER any other variable declarations like `PGSERVICE`). e.g.
 
-    envdir ./id3c-production/redcap-scan/ \
-        envdir ./id3c-production/redcap-sfs/ \
+    envdir ./id3c-production/env.d/redcap \
         example-command
 
 
