@@ -119,6 +119,12 @@ PGSERVICE=seattleflu-production /opt/backoffice/bin/mint-barcodes-in-batch --ide
 * --prefix: specifics the text to pre-pend to the filename; this sets the path. We've found it useful to include the requester's name, 
 e.g., --prefix="/home/ubuntu/temp/Evan_" 
 
+Files will be named with this pattern: prefix_identifier_set_(the layout)_(number of sheets in the file)_sheets_(current date)_(the iteration number).pdf
+
+For example: Peter_collections-uw-observed_default_15_sheets_2020-10-26_1.pdf
+
+**
+
 The Google Drive location where to put label PDFs is in the #barcodes channel topic in Slack.
 Name the PDF file clearly and put it into the appropriate folder in the Google Drive.
 The lab team will delete the PDF files from Google Drive when they have finished printing them. We don't delete the PDFs.
