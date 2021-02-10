@@ -61,8 +61,8 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-uw-home`                             | [LCRY-1100-B][]   |          520 |             26 | in duplicate, Husky Coronavirus Testing mail (at-home)
 `collections-uw-observed`                         | [LCRY-1100-B][]   |        1,040 |             52 | Husky Coronavirus Testing kiosk (in-person)
 `collections-childcare`                           | [LCRY-1100][]   |          1,040 |             52 | singles, Childcare Study
-`collections-school-testing-home`                 | [LCRY-1100][]   |            520 |             26 | duplicates, Seattle Public Schools (SPS) at home
-`collections-school-testing-observed`             | [LCRY-1100][]   |            1040 |             52 | singles, Seattle Public Schools (SPS) observed/in-person
+`collections-school-testing-home`                 | [LCRY-1100][]   |            520 |             26 | duplicates, Snohomish Schools (Snohomish Schools) at home
+`collections-school-testing-observed`             | [LCRY-1100][]   |            1040 |             52 | singles, Snohomish Schools (Snohomish Schools) observed/in-person
 `collections-apple-respiratory`                   | [LCRY-1100][]   |            520 |             26 | duplicates, Apple Study
 `collections-adult-family-home-outbreak`          | [LCRY-1100][]   |          1,040 |             52 | singlets, Adult Family Home (AFH) Outbreaks (not for Workplace Outbreaks)
 `collections-workplace-outbreak`                  | [LCRY-1100][]   |          1,040 |             52 | singlets, Workplace Outbreaks (not for Adult Family Home AFH Outbreaks)
