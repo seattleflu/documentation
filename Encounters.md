@@ -28,7 +28,7 @@ In addition to requiring sufficient information to create an associated [Individ
   - `consent_date` is not blank
   > Note: while not required to create an encounter, `nasal_swab_collection` must be complete and verified to link an associated [Sample].
 
-- Husky Test (kiosk)
+- Husky Test (kiosk) (see [UW Reopening] for Husky Coronavirus Testing)
   - `consent_form` is complete and verified
   - `enrollment_questionnaire` is complete and verified
   - `consent_date` and `location_type` fields are not blank
@@ -49,7 +49,7 @@ In addition to requiring sufficient information to create an associated [Individ
     - we can create an associated [Sample]
   - _Note_: We do not ingest participant demographic data such as age, sex, race for this project due to re-identifiability concerns with site being limited to only two daycare centers.
 
-- [UW Reopening]
+- [UW Reopening] -- a.k.a. Husky Coronavirus Testing
   - `eligibility_screening` is complete and verified
   - `consent_form` is complete and verified
   - `enrollment_questionnaire` is complete and verified
