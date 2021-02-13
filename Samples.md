@@ -50,7 +50,7 @@ We wait to create Samples in ID3C until the following conditions are met for eac
 
 
 ## FHIR
-We represent an ID3C Sample in HL7 FHIR vocabulary as an [Specimen Resource].
+We represent an ID3C Sample in HL7 FHIR vocabulary as a [Specimen Resource].
 
 [warehouse schema diagram]: https://github.com/seattleflu/documentation/blob/master/id3c-warehouse-schema.pdf
 [SCAN ETL]: https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/etl/redcap_det_scan.py
