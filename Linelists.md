@@ -6,6 +6,7 @@
   - [Clone the backoffice repo](#clone-the-backoffice-repo)
   - [Install your python environment](#install-your-python-environment)
   - [Configure REDCap API Tokens environment variables](#configure-redcap-api-tokens-environment-variables)
+- [Troubleshooting](#troubleshooting)
 
 > Note: this workflow only works for Unix systems (MacOS and Linux).
 Windows is not supported.
@@ -221,6 +222,41 @@ Now, when you're calling a command that requires REDCap API tokens as environmen
 
     envdir ./id3c-production/env.d/redcap \
         example-command
+
+
+## Troubleshooting
+
+The linelist generation code will fail if duplicate collection barcodes exist in any one REDCap project.
+If duplicates exist, you'll see an error message like this:
+```
+Exception: Duplicate barcodes detected in project 11111: 'Seattle Flu Study - Example Project'
+
+  record_id collection_barcode
+0      123           aaaaaaaa
+1      234           aaaaaaaa
+```
+
+If the duplicate collection barcode problem can't be easily fixed, it's possible to modify our linelist configuration file so that we can continue to generate linelists while dropping the problematic REDCap project.
+
+To drop a REDCap project from the linelist generation, open up `./etc/wa-doh-linelists.yml` in a text editor (such as `nano`, described in the [setup](#setup) steps).
+Sections of the configuration file are separated with three hyphens (`---`).
+Find the section pertaining to the problematic REDCap project.
+For example, let's pretend the linelist generation gave an error message complaining about:
+> project 19212: Seattle Flu Study - Asymptomatic Enrollments
+
+Find the section in the file `./etc/wa-doh-linelists.yml` that starts with:
+
+    ---
+    name: Seattle Flu Study - Asymptomatic Enrollments
+    project_id: 19212
+
+Delete everything starting with the section separator, `---`, until the next separator (or the end of the file if no other section exists).
+Save your edits.
+Now, when you run the linelist generation code, the SFS Asymptomatic enrollments project will be excluded.
+
+Once the duplicate collection barcode problem is fixed, you can refresh the `./etc/wa-doh-linelists.yml` config file back to its original contents by running:
+
+    git restore ./etc/wa-doh-linelists.yml
 
 
 [the `wa-doh-linelists` directory]: https://github.com/seattleflu/backoffice/tree/master/bin/wa-doh-linelists
