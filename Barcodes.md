@@ -37,7 +37,7 @@ and summarized below:
 Identifier set (type)                             | SKU of labels     | Barcodes/box | Barcodes/sheet | Notes
 ------------------------------------------------- | ----------------- | -----------: | -------------: | -----
 `samples`                                         | [LCRY-2380][]     |        1,020 |             51 | in duplicate, with the last column blank
-`collections-seattleflu.org`                      | [LCRY-1100-Y][]   |        1,040 |             52 |
+`collections-seattleflu.org`                      | [LCRY-1100-Y][]   |        1,040 |             52 | These are used for retrospective SCH samples
 `collections-kiosks`                              | [LCRY-1100-Y][]   |          520 |             26 | in duplicate, one-off mint of singlets for shelters
 `collections-kiosks-asymptomatic`                 | [LCRY-1100][]     |        1,040 |             52 |
 `collections-swab&send`                           | [LCRY-1100-G][]   |          260 |             13 | in triplicate, with the last column blank
