@@ -178,7 +178,7 @@ In this example, we'll put it in our home directory.
 
 Once you've installed `pipenv` and python 3.6, install the python development environment by running the following commands:
 
-    cd ~/backoffice/id3c-production
+    cd ~/backoffice
 
     git pull --rebase
 
