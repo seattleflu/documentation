@@ -185,7 +185,7 @@ Once you've installed `pipenv` and python 3.6, install the python development en
 If you see the message "`Already up to date.`," you're done with this step!
 Otherwise, run the following, too:
 
-    pipenv sync
+    PIPENV_PIPFILE=./id3c-production/Pipfile pipenv sync
 
 This may take a few minutes.
 
