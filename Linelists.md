@@ -22,9 +22,11 @@ It also requires the [REDCap API tokens environment variables](#redcap-tokens-en
 
 There are multiple ways to configure your environment, but here, we'll walk through one, specific way that the dev team uses.
 Once you've configured your environment properly, you can generate linelists with one command.
-Don't forget to [install the latest python environment](#install-your-python-environment) before each run, otherwise you may run into unexpeted errors!
+Don't forget to [install the latest python environment](#install-your-python-environment) before each run, otherwise you may run into unexpeted bugs!
 
 Copy and paste this following example using `2021-01-01` as the target results date:
+
+> Note: Don't forget to [install the latest development environment](#install-your-python-environment) before each run!
 
     cd ~/backoffice
 
