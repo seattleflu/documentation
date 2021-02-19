@@ -26,7 +26,7 @@ Don't forget to [install the latest python environment](#install-your-python-env
 
 Copy and paste this following example using `2021-01-01` as the target results date:
 
-> Note: Don't forget to [install the latest development environment](#install-your-python-environment) before each run!
+> Note: **Don't forget to [install the latest development environment](#install-your-python-environment) before each run!**
 
     cd ~/backoffice
 
