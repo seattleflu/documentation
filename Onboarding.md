@@ -5,7 +5,7 @@
     - [Minting credentials](#minting-credentials)
     - [Accessing the production database](#accessing-the-production-database)
       - [UW Medicine VPN](#uw-medicine-vpn)
-      - [Adding your home IP address](#adding-your-home-ip-address)
+      - [Adding your home IP address](#adding-your-home-ip-address) 
   - [Adding new REDCap users](#adding-new-redcap-users)
   - [Providing Switchboard access](#providing-switchboard-access)
   - [Providing Fred Hutch S3 access](#providing-fred-hutch-s3-access)
@@ -51,8 +51,9 @@ You may choose to follow the template below:
 The production database has firewall rules that allow only access to certain IP addresses or IP ranges.
 The list of [allowed IP addresses](infrastructure#networking-and-security-groups) is described elsewhere.
 Generally speaking, you'll need to be connected to your institution's network (either on campus or via a VPN) to get access to the database.
+The UW Medicine and Fred Hutch VPNs are allowed.
 
-#### UW Medicine VPN
+#### UW Medicine VPN (Preferred)
 To use the UW Medicine VPN, you'll need to create an AMC account.
 AMC (Academic Medical Center) accounts are used inside UW Medicine to connect to various UW Med resources, including the UW Medicine VPN.
 Here is the [info about getting an AMC account](https://services.uwmedicine.org/oip/form/newAccount.jsp).
@@ -63,8 +64,7 @@ Once you get your AMC account, go to [this link to get instructions for installi
 (You need an AMC account to access this page.)
 
 #### Adding your home IP address
-Sometimes, we'll add someone's home IP address to our firewall's allowlist.
-To retrieve your public IPv4 address, once connected to your home internet, go to https://www.whatismyip.com/.
+Sometimes, we'll add someone's home IP address to our firewall's allowlist. This is currenlty only used for legacy exceptions or rare circumstances where VPN access could not be maintained. Newly onboarding users should first attempt to gain access through one of the institution's VPNs. To retrieve your public IPv4 address, once connected to your home internet, go to https://www.whatismyip.com/.
 
 ## Adding new REDCap users
 Before adding a new study member to any REDCap project, confirm the DTUA is executed with Robin.
