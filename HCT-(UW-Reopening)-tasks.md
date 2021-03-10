@@ -19,6 +19,8 @@ You can typically leave start_hour and end_hour as they are. You would change th
 
 After you've inserted, you can use the next block of SQL to see what's configured for days after today. It will show the total quota (across all hours) for the day. You can compare against the spreadsheet to double check that the right amount got configured. The block of SQL that inserts drops remainder values, so if the quota amount is not evenly divisible by the number of hours, you'll see a smaller total number than the quota.
 
+The rules for inviting participants are documented in the "Quota Logic starting Winter Quarter, January 2021" section at the end of the "UW return-to-campus informatics" document in the Informatics directory of the Google Drive.
+
 
 
 
