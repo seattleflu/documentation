@@ -14,6 +14,7 @@ The screener data includes ZIP code, which is more identifiable that the other d
 Azure Data Factory details:
 Azure Portal -> Data factories
 Data Factory name: bbi
-
+pipeline: pipeline_screeningdata
+The pipeline copies data from the screeningdata_azure_storage dataset and inserts it into the screeningdata_sql dataset. It keeps track of rows that it's already copied from screeningdata_azure_storage by updating the watermark entry in the watermark_sql dataset.
 
 
