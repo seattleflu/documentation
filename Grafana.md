@@ -1,5 +1,5 @@
-The study has a [Grafana Cloud][] subscription on grafana.com, so that we don't
-have to manage and operate our own [Grafana][] and [Loki][] instances.
+The study has a [Grafana Cloud][] [subscription][] on grafana.com, so that we
+don't have to manage and operate our own [Grafana][] and [Loki][] instances.
 
 Our [Grafana][] instance is <https://grafana.seattleflu.org>.
 
@@ -58,4 +58,5 @@ Authz happens in two places:
 [Loki]: https://grafana.com/oss/loki/
 [Prometheus]: https://prometheus.io
 [spreg]: https://iam-tools.u.washington.edu/spreg/#mhttps://grafana.seattleflu.org/saml/metadata
+[subscription]: https://grafana.com/orgs/seattleflu
 [UW Groups]: https://groups.uw.edu
