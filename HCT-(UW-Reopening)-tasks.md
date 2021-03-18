@@ -21,7 +21,16 @@ After you've inserted, you can use the next block of SQL to see what's configure
 
 The rules for inviting participants are documented in the "Quota Logic starting Winter Quarter, January 2021" section at the end of the "UW return-to-campus informatics" document in the Informatics directory of the Google Drive.
 
+# Updating REDCap records in ID3C
 
+When a clinical user imports into REDCap to update enrollment fields, to mark a participant for a surge, etc., REDCap does not generate change notifications (DETs). Therefore, we need to generate DETs ourselves. Ask the clinical user the start and stop times of the import. Buffer a couple of minutes on either side and then configure the following command to export DETs. Set the --since-date (the start time), --until-date (the end time), the path to your env dir folder with REDCap entries, and where you want the resulting NDJSON file to get written.
+
+REDCAP_API_URL="https://redcap.iths.org/api/" envdir {path to your env dir folder with REDCap entries} id3c redcap-det generate --project-id=23854 --instrument="enrollment_questionnaire" --since-date="2021-03-05 11:14:00" --until-date="2021-03-05 11:28:00" > enrollment_questionnaire_dets.ndjson
+
+And then import those DETs into the database. Update the following command with production database info and the path to the NDJSON file you generated above. 
+
+PGHOST="{the host}" PGDATABASE="{the database}" PGUSER="{username}" PGPASSWORD=$(read -srep "password: " x; echo "$x")  id3c redcap-det upload enrollment_questionnaire_dets.ndjson
+  
 
 
 
