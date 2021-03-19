@@ -40,7 +40,7 @@ the [Service Provider Registry][spreg].
 Authz happens in two places:
 
  1. At the UW IdP, we gate access to Grafana via memberships in the
-    `uw_gs_bbi_sfs_grafana` UW Group.  Since Grafana auto-creates new users
+    [uw_gs_bbi_sfs_grafana][] UW Group.  Since Grafana auto-creates new users
     from SAML logins, this allows us to control who from UW can login.  Group
     membership is managed via [UW Groups][] and the access control is
     configured via the [SP registry][spreg].
@@ -60,3 +60,4 @@ Authz happens in two places:
 [spreg]: https://iam-tools.u.washington.edu/spreg/#mhttps://grafana.seattleflu.org/saml/metadata
 [subscription]: https://grafana.com/orgs/seattleflu
 [UW Groups]: https://groups.uw.edu
+[uw_gs_bbi_sfs_grafana]: https://groups.uw.edu/group/uw_gs_bbi_sfs_grafana
