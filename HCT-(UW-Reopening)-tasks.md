@@ -19,9 +19,11 @@ You can typically leave start_hour and end_hour as they are. You would change th
 
 After you've inserted, you can use the next block of SQL to see what's configured for days after today. It will show the total quota (across all hours) for the day. You can compare against the spreadsheet to double check that the right amount got configured. The block of SQL that inserts drops remainder values, so if the quota amount is not evenly divisible by the number of hours, you'll see a smaller total number than the quota.
 
+The SQL to insert quota rounds down to the nearest integer, so if the daily quota amount is not evenly divisible by the number of hours configured for the day then the sum of the quota configured per hour will be less than the daily quota amount. For example, if the daily quota is 2000 and the quota gets divided among 12 hours then each hour gets 166. The total across the hours (166 * 12 = 1992) is less than the original 2000.
+
 The rules for inviting participants are documented in the "Quota Logic starting Winter Quarter, January 2021" section at the end of the "UW return-to-campus informatics" document in the Informatics directory of the Google Drive.
 
-We have a Metabase dashboard that shows the invitation queue.  
+This Metabase dashboard shows the current invitation queue as well as the quota information starting with the current date.   
 https://backoffice.seattleflu.org/metabase/dashboard/74
 
 # Updating REDCap records in ID3C
