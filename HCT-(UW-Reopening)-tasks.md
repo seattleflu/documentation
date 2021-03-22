@@ -21,6 +21,9 @@ After you've inserted, you can use the next block of SQL to see what's configure
 
 The rules for inviting participants are documented in the "Quota Logic starting Winter Quarter, January 2021" section at the end of the "UW return-to-campus informatics" document in the Informatics directory of the Google Drive.
 
+We have a Metabase dashboard that shows the invitation queue.  
+https://backoffice.seattleflu.org/metabase/dashboard/74
+
 # Updating REDCap records in ID3C
 
 When a clinical user imports into REDCap to update enrollment fields, to mark a participant for a surge, etc., REDCap does not generate change notifications (DETs). Therefore, we need to generate DETs ourselves. Typically, we want to pull in these DETs after 7:00 PM so that we don't drown receiving.redcap_det with these DETs and delay "real time" changes, like daily attestations, that need to be processed so that participants can get invited quickly.
