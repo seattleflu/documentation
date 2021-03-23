@@ -153,6 +153,14 @@ Now, you're ready to point a command to the ID3C production database by calling 
 
         brew install pyenv
 
+   Make sure to follow pyenv's instructions to add it's initialization to your
+   shell initialization file.  You can do this by running:
+
+        echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+
+   You'll then need to start a new terminal session by opening a new tab or new
+   window.
+
     Then run:
 
         pyenv install 3.6.9
