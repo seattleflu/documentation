@@ -68,7 +68,7 @@ where details @> '{"_provenance": {"redcap": {"url": "https://redcap.iths.org/",
 );
 ```
 Open questions: 
-1. warehouse.sample's encounter_id column has a foreign key relationship to the encounters table. If we have a sample for the encounter we're trying to delete we won't be able to delete the encounter. Should we null out the encounter_id on those sample rows? Should we delete the sample rows? 
+1. warehouse.sample's encounter_id column has a foreign key relationship to the encounters table. If we have a sample for the encounter we're trying to delete we won't be able to delete the encounter. Should we null out the encounter_id on those sample rows? Should we delete the sample rows? Should we update the warehouse.sample’s encounter_id to reference an encounter for the retained redcap record?
 
 2. The receiving.fhir records contain the encounters that we just deleted. If we ever reprocess those then the encounters will get re-created. It would be cleaner to find and delete the related FHIR records, but there will be lots.
 
