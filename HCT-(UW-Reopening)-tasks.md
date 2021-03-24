@@ -42,6 +42,32 @@ PGHOST="{the host}" PGDATABASE="{the database}" PGUSER="{username}" PGPASSWORD=$
 The HCT project contains a lot of data and a lot of records. This makes it really hard to use the log viewer in REDCap to see activity for a given record. Instead, you can just form the URL yourself and go there directly.  
 <div style="display: inline">https://redcap.iths.org/redcap_v10.5.2/Logging/index.php?pid=23854&record={the record ID}</div>
   
-
-
+# Handling a deleted REDCap record
+If a REDCap record gets deleted after the enrollment questionnaire was marked as Complete (thus letting our ETL process it) then we will need to delete records on our side. Otherwise, we could continue to invite the participant (the record) for testing. Doing this would actually re-create the REDCap record.
+1. If the offers job did re-create the REDCap record, delete that record in REDCap.
+2. Delete all encounter_locations for the record ID. Replace "xxxx" with the actual REDCap record ID.
+```sql
+delete
+from warehouse.encounter_location
+where encounter_id in
+(
+select encounter_id
+from warehouse.encounter
+where details @> '{"_provenance": {"redcap": {"url": "https://redcap.iths.org/", "project_id":23854, "record_id":"xxxx"}}}'
+);
+```
+3. Delete all encounters for the record ID. Replace "xxxx" with the actual REDCap record ID.
+```sql
+delete
+from warehouse.encounter
+where encounter_id in
+(
+select encounter_id
+from warehouse.encounter
+where details @> '{"_provenance": {"redcap": {"url": "https://redcap.iths.org/", "project_id":23854, "record_id":"xxxx"}}}'
+);
+```
+Open questions: 
+1. warehouse.sample's encounter_id column has a foreign key relationship to the encounters table. If we have a sample for the encounter we're trying to delete we won't be able to delete the encounter. Should we null out the encounter_id on those sample rows? Should we delete the sample rows? 
+2. The receiving.fhir records contain the encounters that we just deleted. If we ever reprocess those then the encounters will get re-created. It would be cleaner to find and delete the related FHIR records, but there will be lots.
 
