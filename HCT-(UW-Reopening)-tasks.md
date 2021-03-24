@@ -37,6 +37,10 @@ REDCAP_API_URL="https://redcap.iths.org/api/" envdir {path to your env dir folde
 And then import those DETs into the database. Update the following command with production database info and the path to the NDJSON file you generated above. 
 
 PGHOST="{the host}" PGDATABASE="{the database}" PGUSER="{username}" PGPASSWORD=$(read -srep "password: " x; echo "$x")  id3c redcap-det upload enrollment_questionnaire_dets.ndjson
+
+# Looking at the REDCap log for a record
+The HCT project contains a lot of data and a lot of records. This makes it really hard to use the log viewer in REDCap to see activity for a given record. Instead, you can just form the URL yourself and go there directly.
+https://redcap.iths.org/redcap_v10.5.2/Logging/index.php?pid=23854&record={the record ID}
   
 
 
