@@ -1,5 +1,5 @@
 # Populating the quota
-The clinical team maintains a spreadsheet (link purposefully not put into this wiki because it's public) that sets the quota that the 
+The clinical team maintains a spreadsheet (link purposefully not put into this wiki because it's public, see Slack thread https://seattle-flu-study.slack.com/archives/C018V0WGGJ0/p1616786475040200) that sets the quota that the 
 offer_uw_testing job should use for each day. The spreadsheet is updated on Fridays to include quota for the next week.
 
 We have a Metabase "Pulse" that will send an alert to the id3c-alerts Slack channel a notification if there is no quota configured for the following day. This alert is a good reminder that quota needs to be configured.
