@@ -49,6 +49,10 @@ Before you get started, you'll need the following:
 ##### Schema changes to the database
 > If you have no schema changes to deploy, you may skip this section.
 3. Deploy database schema changes via `sqitch` from your local machine.
+
+   _**Note:**_ The "refresh-materialized-shipping-views" cronjob locks the shipping views and can cause a delay in the deployment of sqitch changes.
+   Consider commenting out this cronjob on the `backoffice` server before deploying sqitch changes for shipping views.
+
    Run the following commands, replacing the curly-bracketed text with your specifications.
 
    First, check that the plan looks good.
