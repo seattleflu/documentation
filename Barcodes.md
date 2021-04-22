@@ -34,6 +34,9 @@ Different study arms use different colors and different numbers of copies of
 each barcode, described by [this spreadsheet](https://docs.google.com/spreadsheets/d/1_UBOZ3pFq_oT-OIaFZfyvu9Qj9CpoZsRq4UjWkk37rE/edit#gid=0)
 and summarized below:
 
+__Note__: The Barcodes/sheet reflects the number of unique barcodes per sheet according to the default copies per barcode of each collection set.
+This number will change if you specify a different number of copies per barcode using the `--copies-per-barcode` option when minting or creating labels for barcodes.
+
 Identifier set (type)                             | SKU of labels     | Barcodes/box | Barcodes/sheet | Notes
 ------------------------------------------------- | ----------------- | -----------: | -------------: | -----
 `samples`                                         | [LCRY-2380][]     |        1,020 |             51 | in duplicate, with the last column blank
