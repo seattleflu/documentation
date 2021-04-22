@@ -21,7 +21,7 @@ See [this Slack message](https://seattle-flu-study.slack.com/archives/GJXFQ209K/
 ## Adding new database users
 
 ### Minting credentials
-Before adding a new study member to the production database, confirm the DTUA is executed with Robin.
+Before adding a new study member to the production database, confirm that Robin has the right agreements and documentation for the user to allow database access. For external collaborators, this is a DTUA. For internal team members, this is a CDA and training documentation (GCP, Human Subjects).
 
 Next, create a new user with the `id3c user create` command.
 
