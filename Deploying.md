@@ -83,6 +83,12 @@ Before you get started, you'll need the following:
    (Non-secret environment variables should be committed and pulled in via git.)
 7. Install the latest production environment with `(cd id3c-production; pipenv sync)`.
 8. Install the latest crontabs with `sudo make -C crontabs`.
+   Check the crontabs were successfully installed by inspecting `/var/log/syslog`.
+   Look out for errors such as:
+   ```
+   cron[901]: Error: bad minute; while reading /etc/cron.d/backoffice-id3c-production
+   cron[901]: (*system*backoffice-id3c-production) ERROR (Syntax error, this crontab file will be ignored)
+   ```
 9. If there are updates to the web API, restart the web API backend by running `sudo systemctl reload uwsgi`.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
 10. If the API was restarted, check web API log file with `sudo tail -f /var/log/uwsgi/app/api-production.log`.
