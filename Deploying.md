@@ -109,7 +109,8 @@ Before you get started, you'll need the following:
 3. Install the latest code with `pipenv sync`.
 4. Reload the uWSGI server by running `sudo systemctl reload uwsgi`.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
-5. Check log file at `/var/log/uwsgi/app/husky-musher.log` for any errors or warnings.
+5. Check the uWSGI server status by running `sudo systemctl status uwsgi`.
+6. Check log file with sudo at `/var/log/uwsgi/app/husky-musher.log` for any errors or warnings.
 
 
 ### Deploying scan-switchboard
