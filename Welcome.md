@@ -133,6 +133,18 @@ You will need access to the following:
 - Kaiser Permanente Secure File Transfer
 - [#record-troubleshooting Trello Board](https://trello.com/b/PAlgvsEO/record-troubleshooting)
 
+## LastPass
+LastPass is a UW-approved password management tool and is utilized by SFS developers to manage individual private and team shared passwords, keys, and secret keys. More information on LastPass can be found [here.](https://itconnect.uw.edu/wares/mws/my-workstation/security/lastpass/)
+
+Enrolling in UW's LastPass Enterprise account requires specific steps. (Please note, order of operations here is critical! If you do not complete these steps in order, your account may not be configured correctly):
+1. Request an account through UW using your NetID. Visit this [page](https://groups.uw.edu/group/u_passman_users_requested) and click "Join this group".
+2. Wait (up to 60 minutes) to receive an email from LastPass to activate your account. Follow the link in that email to reset your master password.
+3. After resetting your master password, download and install the appropriate LastPass browser extension or log in directly through the [LastPass](https://www.lastpass.com/) website.
+
+After successfully logging in:
+- Confirm your account is correctly confguired with your UW email address and "Enterprise User" in the top-right corner.
+- Confirm that you have access to the "Shared-SFS" shared folder under "All Items" from the navigation menu on the left.
+
 ## Responsibilities
 SFS developers maintain the following codebases and apps.
 
