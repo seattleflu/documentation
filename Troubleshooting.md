@@ -31,6 +31,8 @@ Tips for moving forward when things break.
   - [Problem: labels for the incorrect collection identifier were used](#problem-labels-for-the-incorrect-collection-identifier-were-used)
 - [SFS Switchboard](#sfs-switchboard)
   - [Problem: SFS Switchboard does not load certain barcodes](#problem-sfs-switchboard-does-not-load-certain-barcodes)
+- [Software Stack](#software-stack)
+  - [Problem: compiling Python 3.6 on MacOS Big Sur](#problem-compiling-python36-bigsur)
 
 ## ETL processes
 ### General
@@ -416,5 +418,46 @@ To manually restart the service, depending on your problem, you may choose to:
   ```
 * Restart the service with `sudo systemctl restart scan-switchboard`
 
+## Software Stack
+### Problem: compiling Python 3.6 on MacOS Big Sur
+We currently use Python 3.6 in production but it is currently in security-fixes-only support, and neither the Apple Command-line Developer Tools nor Homebrew support Python 3.6 at this point. In addition, attempting to build it on Big Sur fails due to compilation problems. Here is how to fix that build error and get Python 3.6 on Big Sur. Open a Terminal window and do the following (commands to be run are prepended with a `$`):
+1. Download Homebrew from https://brew.sh: 
+       $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+2. Install the prerequisite packages (some may be installed as a matter of course for Homebrew):
+       $ brew install bzip2 openssl readline sqlite zlib
+3. Download Python 3.6.x (currently 3.6.13, but check https://www.python.org/downloads/source/ for the most recent 3.6 update): 
+       $ curl -O https://www.python.org/ftp/python/3.6.13/Python-3.6.13.tgz
+4. Untar it:
+       $ tar xzf Python-3.6.13.tgz
+5. `cd` into the new directory:
+       $ cd Python-3.6.13
+6. Apply this diff to fix the build error:
+       diff --git a/Modules/posixmodule.c b/Modules/posixmodule.c
+       index 776a3d2..3b91180 100644
+       --- a/Modules/posixmodule.c
+       +++ b/Modules/posixmodule.c
+       @@ -19,7 +19,10 @@
+       #  pragma weak lchown
+       #  pragma weak statvfs
+       #  pragma weak fstatvfs
+       -
+       +#include <sys/types.h>
+       +#include <sys/socket.h>
+       +#include <sys/uio.h>
+       +#include <copyfile.h>
+       #endif /* __APPLE__ */
+       #define PY_SSIZE_T_CLEAN
+   Save it as `patch.txt` and apply it in the main Python source directory with:
+       $ patch -p1 < patch.txt
+   Make sure the patch applies cleanly--it's possible that the location will need to be fuzzed (which is probably fine; you should still check it manually) but if it fails, consider these instructions to be broken.
+7. Configure the installation with:
+       CC=/usr/bin/clang CFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/openssl/include -I/usr/local/opt/ncurses/include -I/usr/local/opt/sqlite/include -I/usr/local/opt/bzip2/include -I/usr/local/opt/readline/include" LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/openssl/lib -L/usr/local/opt/ncurses/lib -L/usr/local/opt/sqlite/lib -L/usr/local/opt/bzip2/lib -L/usr/local/opt/readline/lib" ./configure --prefix=/usr/local/python --enable-optimizations --with-ensurepip
+   This command will configure Python 3.6 for placement in `/usr/local/python`; if you want it in a different prefix (which is a good idea, especially if you have multiple versions of Python on your machine), change the `prefix` argument.
+8. Build and install it with:
+       $ make && make test
+       $ make altinstall
+9. Now you can access Python 3.6 by running:
+       $ /usr/local/python/bin/python3.6
+    (of course, change `/usr/local/python` to whatever you set the prefix to in step 7)
 
 [unknown barcode Metabase query]: https://backoffice.seattleflu.org/metabase/question/439
