@@ -460,4 +460,12 @@ We currently use Python 3.6 in production but it is currently in security-fixes-
        $ /usr/local/python/bin/python3.6
     (of course, change `/usr/local/python` to whatever you set the prefix to in step 7)
 
+And now for the disclaimers. You should only expect these instructions to work with:
+- Big Sur 11.4
+- Intel Mac
+- Python 3.6.13
+- Command-Line Developer Tools v12.5.0.0.1.1617976050, as obtained by `pkgutil --pkg-info=com.apple.pkg.CLTools_Executables`
+
+Please don't depend on this for anything resembling production, or use it with important data, or in the development of nuclear weapons.
+
 [unknown barcode Metabase query]: https://backoffice.seattleflu.org/metabase/question/439
