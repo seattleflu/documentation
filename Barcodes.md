@@ -111,7 +111,7 @@ Open up the new _barcode-labels.pdf_ file.  It should have 20 pages (of 52
 barcodes each) formatted to print on a box of [LCRY-1100-Y][] sheets.
 
 ### Minting batches
-We have a script on the backoffice server that is useful for generating batches of barcodes when the requester wants a 
+We have a [script on the backoffice server](https://github.com/seattleflu/backoffice/blob/master/bin/mint-barcodes-in-batch) that is useful for generating batches of barcodes when the requester wants a 
 maximum number of sheets in each PDF file. For example, if the requester asked for 40 sheets of CLIA barcodes in the small layout
 in files of no more than 20 sheets each, the command would be:
 
