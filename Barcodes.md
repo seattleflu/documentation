@@ -22,6 +22,10 @@ settings merged to master or be tracked in the following barcode settings table.
 if an identifier set's layout normally prints two copies of each barcode, you can locally
 edit the appropriate class in the labelmaker.py for the run.
 
+Once the labelmaker is ready with the new layout, announce in the slack #barcodes channel that 
+the barcodes for the new identifier set can be requested, and add the identifer set to the 
+table below on this docs page. 
+
 
 [labelmaker]: https://github.com/seattleflu/id3c/blob/master/lib/id3c/labelmaker.py
 
