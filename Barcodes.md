@@ -67,6 +67,7 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-household-general`                   | [LCRY-1100-O][]   |        1,040 |             52 | Season 3 household collection
 `collections-uw-home`                             | [LCRY-1100-B][]   |          520 |             26 | in duplicate, Husky Coronavirus Testing mail (at-home)
 `collections-uw-observed`                         | [LCRY-1100-B][]   |        1,040 |             52 | Husky Coronavirus Testing kiosk (in-person)
+`collections-uw-tiny-swabs`                       | [LCRY-2380][]     |        2,380 |            119 | singles, UW Tiny Swabs
 `collections-childcare`                           | [LCRY-1100][]   |          1,040 |             52 | singles, Childcare Study
 `collections-school-testing-home`                 | [LCRY-1100][]   |            520 |             26 | duplicates, Snohomish Schools at home
 `collections-school-testing-observed`             | [LCRY-1100][]   |           1040 |             52 | singles, Snohomish Schools observed/in-person
