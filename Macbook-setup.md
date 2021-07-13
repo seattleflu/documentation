@@ -151,7 +151,7 @@ Please note that this process can take several hours and is best to run with a f
 We create a local directory to save the pg_dump files, and specify bash on the refresh-database command to ensure it uses bash 5.x:
 ```
 mkdir ~/workspace/refresh-db-workdir
-cd ~/workspace/seattleflu/id3c
+cd ~/workspace/seattleflu/backoffice
 bash ./dev/refresh-database ~/workspace/refresh-db-workdir
 ```
 
