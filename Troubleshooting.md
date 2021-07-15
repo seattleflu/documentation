@@ -33,6 +33,9 @@ Tips for moving forward when things break.
   - [Problem: SFS Switchboard does not load certain barcodes](#problem-sfs-switchboard-does-not-load-certain-barcodes)
 - [Software Stack](#software-stack)
   - [Problem: compiling Python 3.6 on MacOS Big Sur](#problem-compiling-python36-bigsur)
+- [Linelists](#linelists)
+  - [Problem: Linelist didn't run successfully](#problem-linelist-didnt-run-successfully)
+ 
 
 ## ETL processes
 ### General
@@ -469,3 +472,14 @@ And now for the disclaimers. You should only expect these instructions to work w
 Please don't depend on this for anything resembling production, or use it with important data, or in the development of nuclear weapons.
 
 [unknown barcode Metabase query]: https://backoffice.seattleflu.org/metabase/question/439
+
+## Linelists
+### Problem: Linelist didn't run successfully
+
+If we get an alert that the linelist didn't successfully upload to it's destination (e.g. from the /opt/backoffice/bin/wa-doh-linelists/generate script), we need to manually rerun and upload the linelist file.
+
+Once the underlying issue is fixed, one way to do this is to update the [crontab](https://github.com/seattleflu/backoffice/blob/master/crontabs/wa-doh-linelists) on backoffice production instance, and change the time to run in the next few minutes, reinstall the crontab, let it run, verify output, change the time back and reinstall crontab.
+If you need to run it on a different date than the original failed run, you will need to update the `--date` parameter to run for the missed day. (note: this crontab is currently set to generate a linelist for the previous day's result) 
+One other option is to just run `backoffice/bin/wa-doh-linelists/generate` script locally, passing in appropriate environment variables and parameters.
+You can find additional information about running the linelists generating scripts in our [documentation](
+https://github.com/seattleflu/documentation/blob/master/Linelists.md)
