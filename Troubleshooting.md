@@ -483,3 +483,5 @@ If you need to run it on a different date than the original failed run, you will
 One other option is to just run `backoffice/bin/wa-doh-linelists/generate` script locally, passing in appropriate environment variables and parameters.
 You can find additional information about running the linelists generating scripts in our [documentation](
 https://github.com/seattleflu/documentation/blob/master/Linelists.md)
+
+When the new linelist is uploaded to its destination, post a note in the slack channel #linelist-submissions for visibility.
