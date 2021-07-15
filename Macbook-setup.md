@@ -168,3 +168,21 @@ Follow [these instructions](https://github.com/seattleflu/id3c#connection-detail
 brew tap sqitchers/sqitch
 brew install sqitch --with-postgres-support
 ```
+
+## Smartystreets and Geocoding cache files
+
+ID3C uses Smartystreets for geocoding addresses. Credentials must be provided, and can be added to a new env.d folder:
+```
+mkdir ~/workspace/seattleflu/env.d/smartystreets
+```
+Use a text editor to create new files ~/workspace/seattleflu/env.d/smartystreets/SMARTYSTREETS_AUTH_ID and SMARTYSTREETS_AUTH_TOKEN. Those values can be found in tne LastPass shared folder.
+
+Each address geocoded incurs a cost so the production server uses cache files to minimize the number of geocoding service requests. To avoid charges when running `id3c etl redcap-det` commands locally, these cache files should be copied from the production server to your local machine:
+```
+mkdir ~/workspace/seattleflu/cache
+scp -i [ssh_key_file].pem ubuntu@backoffice.seattleflu.org:/home/ubuntu/sfs-cache.pickle ~/workspace/seattleflu/cache/sfs-cache.pickle
+scp -i [ssh_key_file].pem ubuntu@backoffice.seattleflu.org:/home/ubuntu/scan-cache.pickle ~/workspace/seattleflu/cache/scan-cache.pickle
+scp -i [ssh_key_file].pem ubuntu@backoffice.seattleflu.org:/home/ubuntu/uw-reopening-cache.pickle ~/workspace/seattleflu/cache/uw-reopening-cache.pickle
+```
+
+To determine which cache file to use with which `id3c etl redcap-det` project argument, refer to the [backoffice crontab file](https://github.com/seattleflu/backoffice/blob/master/crontabs/id3c-production).
