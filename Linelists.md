@@ -32,12 +32,12 @@ Copy and paste this following example using `2021-01-01` as the target results d
 
     PGSERVICE=seattleflu-production \
         envdir ./id3c-production/env.d/redcap \
-        ./bin/wa-doh-linelists/generate 2021-01-01
+        ./bin/wa-doh-linelists/generate 2021-01-01 \
+        --output-dir /tmp
 
+In this example, the output linelists will be stored locally at `/tmp/linelist_2021-01-01.csv`. You can also specify a remote directory with the --output-dir argument using S3 or SSH/SFTP protocols, e.g. `--output-dir s3://bucketname/dirname` or `--output-dir ssh://remote-hostname/dirname`. In the case of SSH, the scripts use the DOH_USERNAME and DOH_PRIVKEY_PATH environment variables to determine the SSH username and the path to the private key to use. 
 
-The output linelists are stored locally in the `backoffice` repo under `~/backoffice/bin/wa-doh-linelists/data/linelist_{DATE}.csv`.
-You can navigate to these files in your window explorer (e.g. Finder) by opening the `backoffice` folder in your home directory.
-
+> Note: the `--output-dir` argument was historically optional, but is now required. In normal (i.e., via cron) operation, this should be specified in the crontab.
 
 ## Deep dive
 
@@ -51,20 +51,30 @@ Calling these individual scripts is useful if you want lower level control over 
         PGSERVICE=seattleflu-production \
             ./bin/wa-doh-linelists/export-id3c-hcov19-results 2021-01-01 > ./bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv
 
-2. The other merges ID3C linelist data and REDCap report data, transforming and standardizing them into a format WA DoH expects.
-   This script reqiures a test result `--date` in YYYY-MM-DD format and `--id3c-data` which, if you choose to run this script instead of `generate`, you'll need to export using the `export-id3c-hcov19-results` script  explained above.
+2. The other script, `transform`, merges ID3C linelist data and REDCap report data, transforming and standardizing them into a format WA DoH expects, and uploading them to the output directory.
+   This script requires 3 arguments:
+
+   * `--date`, which specifies the testing date in YYYY-MM-DD format,
+   * `--id3c-data` which, if you choose to run this script instead of `generate`, you'll need to export using the `export-id3c-hcov19-results` script explained above, and
+   * `--output-dir`, which saves the transformed data to a file under the local or remote directory specified, named after the testing date. This may be specified multiple times, and will upload data to all of them.
 
         cd ~/backoffice
 
         PIPENV_PIPFILE=./id3c-production/Pipfile \
-        pipenv run ./generate \
+        pipenv run ./transform \
             --date 2021-01-01 \
-            --id3c-data ./bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv
+            --id3c-data ./bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv \
+            --output-dir /tmp \
+            --output-dir s3://bucketname/dirname \
+            --output-dir ssh://sft-testing.wa.gov/dirname \
+            --project-id 12345 \
+            --upload-if-empty s3 \
+            --upload-if-empty /tmp
 
-    This script also takes two, optional arguments:
+    This script may also take two optional arguments:
 
     * `--project-id` filters the linelist export to only product linelists for the single, given project ID.
-    * `--output-dir` declares the output directory of where you want the `linelist_{DATE}.csv` files stored.
+    * `--upload-if-empty` bypasses checks for an empty output file when using the given protocol or URL, and will upload it even if empty. In other words, if the DoH doesn't want us to send them empty files via SSH, but they do want to be able to see that one was generated in the S3 bucket, specifying`--upload-if-empty s3` will accomplish that.
 
     See more information about the `transform` script with `./bin/wa-doh-linelists/transform --help`.
 
