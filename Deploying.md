@@ -89,9 +89,10 @@ Before you get started, you'll need the following:
    cron[901]: Error: bad minute; while reading /etc/cron.d/backoffice-id3c-production
    cron[901]: (*system*backoffice-id3c-production) ERROR (Syntax error, this crontab file will be ignored)
    ```
-9. If there are updates to the web API, restart the web API backend by running `sudo systemctl reload uwsgi`.
+9. Reload the web API backend by running `sudo systemctl reload uwsgi@api-production`.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
-10. If the API was restarted, check web API log file with `sudo tail -f /var/log/uwsgi/app/api-production.log`.
+5. Check the service status by running `sudo systemctl status uwsgi@api-production`.
+10. Check web API log file with `sudo journalctl -fu uwsgi@api-production`.
 
 
 ##### Data uploads to the database
@@ -107,10 +108,10 @@ Before you get started, you'll need the following:
 1. Log onto the `backoffice` server.
 2. Navigate to the `/opt/husky-musher` directory and run `git pull`.
 3. Install the latest code with `pipenv sync`.
-4. Reload the uWSGI server by running `sudo systemctl reload uwsgi`.
+4. Reload the uWSGI server by running `sudo systemctl reload uwsgi@husky-musher`.
    > See the uWSGI documentation under [Infrastructure] → **Hosts** → [backoffice.seattleflu.org]
-5. Check the uWSGI server status by running `sudo systemctl status uwsgi`.
-6. Check log file with sudo at `/var/log/uwsgi/app/husky-musher.log` for any errors or warnings.
+5. Check the uWSGI server status by running `sudo systemctl status uwsgi@husky-musher`.
+6. Check log file with `sudo journalctl -fu uwsgi@husky-musher` for any errors or warnings.
 
 
 ### Deploying scan-switchboard

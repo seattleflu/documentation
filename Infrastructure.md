@@ -41,9 +41,8 @@ Configuration of interest includes
 * [Husky Musher config](https://github.com/seattleflu/backoffice/tree/master/husky-musher) (`/opt/backoffice/husky-musher`)
 
 
-* uWSGI (`/etc/uwsgi`)
-    - Apps enabled: `api-testing`, `api-production`, `husky-musher`
-    - App environment using envdirs in `/etc/uwsgi/env.d`
+* uWSGI via our systemd uwsgi@ template services, defined in [infra](https://github.com/seattleflu/infra) and configured in [backoffice](https://github.com/seattleflu/backoffice) repo
+    - Apps: `uwsgi@api-testing`, `uwsgi@api-production`, `uwsgi@husky-musher`
 
 * Apache2 (`/etc/apache2`) (see private [backoffice-apache2 repo](https://github.com/seattleflu/backoffice-apache2) for source control)
     - Modules enabled: `ssl`, `proxy`, `proxy_uwsgi`
