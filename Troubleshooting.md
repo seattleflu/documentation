@@ -58,8 +58,7 @@ Be sure to tag Peter and Brian (of the lab) on the new card.
 ```sh
 No sample with identifier «aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa» found
 ```
-This means the specimen manifest sheet (or at least the latest imported copy of it in ID3C) is out of date.
-The lab may be slightly behind in updating it, or we may choose to manually import the specimen manifest sheet instead of relying on our automated process to import known specimen manifest sheets from S3.
+This means that specimen information sent from the LIMS to ID3C is out of date. The lab may just be behind in syncing it. We can prompt them to do so if needed.
 
 Sometimes, this error means that there was a duplicate collection barcode for two samples which is noted on the specimen manifest sheet.
 One solution here is to manually create samples with just the sample identifiers from the lab's aliquot manifest.
