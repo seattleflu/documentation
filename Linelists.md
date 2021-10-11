@@ -22,20 +22,20 @@ It also requires the [REDCap API tokens environment variables](#redcap-tokens-en
 
 There are multiple ways to configure your environment, but here, we'll walk through one, specific way that the dev team uses.
 Once you've configured your environment properly, you can generate linelists with one command.
-Don't forget to [install the latest python environment](#install-your-python-environment) before each run, otherwise you may run into unexpeted bugs!
+Don't forget to [install the latest python environment](#install-your-python-environment) before each run, otherwise you may run into unexpected bugs!
 
 Copy and paste this following example using `2021-01-01` as the target results date:
 
 > Note: **Don't forget to [install the latest development environment](#install-your-python-environment) before each run!**
 
-    cd ~/backoffice
+    cd ~/backoffice/wa-doh-linelists
 
     PGSERVICE=seattleflu-production \
-        envdir ./id3c-production/env.d/redcap \
-        ./bin/wa-doh-linelists/generate 2021-01-01 \
+        envdir ../id3c-production/env.d/redcap \
+        pipenv run ../bin/wa-doh-linelists/generate --date 2021-01-01 \
         --output-dir /tmp
 
-In this example, the output linelists will be stored locally at `/tmp/linelist_2021-01-01.csv`. You can also specify a remote directory with the --output-dir argument using S3 or SSH/SFTP protocols, e.g. `--output-dir s3://bucketname/dirname` or `--output-dir ssh://remote-hostname/dirname`. In the case of SSH, the scripts use the DOH_USERNAME and DOH_PRIVKEY_PATH environment variables to determine the SSH username and the path to the private key to use. 
+In this example, we run the command in the folder, `backoffice/wa-doh-linelists`, where its uses a different virtual environment compared to `backoffice/id3c-production`. The output linelists will be stored locally at `/tmp/linelist_2021-01-01.csv`. You can also specify a remote directory with the --output-dir argument using S3 or SSH/SFTP protocols, e.g. `--output-dir s3://bucketname/dirname` or `--output-dir ssh://remote-hostname/dirname`. In the case of SSH, the scripts use the DOH_USERNAME and DOH_PRIVKEY_PATH environment variables to determine the SSH username and the path to the private key to use.
 
 > Note: the `--output-dir` argument was historically optional, but is now required. In normal (i.e., via cron) operation, this should be specified in the crontab.
 
@@ -58,18 +58,18 @@ Calling these individual scripts is useful if you want lower level control over 
    * `--id3c-data` which, if you choose to run this script instead of `generate`, you'll need to export using the `export-id3c-hcov19-results` script explained above, and
    * `--output-dir`, which saves the transformed data to a file under the local or remote directory specified, named after the testing date. This may be specified multiple times, and will upload data to all of them.
 
-        cd ~/backoffice
+      cd ~/backoffice/wa-doh-linelists
 
-        PIPENV_PIPFILE=./id3c-production/Pipfile \
-        pipenv run ./transform \
-            --date 2021-01-01 \
-            --id3c-data ./bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv \
-            --output-dir /tmp \
-            --output-dir s3://bucketname/dirname \
-            --output-dir ssh://sft-testing.wa.gov/dirname \
-            --project-id 12345 \
-            --upload-if-empty s3 \
-            --upload-if-empty /tmp
+      envdir ../id3c-production/env.d/redcap
+      pipenv run ../bin/wa-doh-linelists/transform \
+          --date 2021-01-01 \
+          --id3c-data ../bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv \
+          --output-dir /tmp \
+          --output-dir s3://bucketname/dirname \
+          --output-dir ssh://sft-testing.wa.gov/dirname \
+          --project-id 12345 \
+          --upload-if-empty s3 \
+          --upload-if-empty /tmp
 
     This script may also take two optional arguments:
 
