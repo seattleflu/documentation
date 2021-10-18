@@ -91,6 +91,8 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 [LCRY-1100-O]: https://www.divbio.com/product/lcry-1100-o
 [LCRY-2380-G]: https://www.divbio.com/product/lcry-2380-g
 
+The filepaths in the following examples may need to be modified according to the location of the backoffice on your local system. It also requires a connection to an ID3C database.
+
 These types exist as identifier sets within ID3C, which you can verify by
 running:
 
@@ -100,10 +102,13 @@ running:
 To generate, for example, one box of new Seattle Flu collection barcodes for
 printing, run:
 
+    cd ~/id3c
+    
     PGSERVICE=seattleflu-production \
-      id3c identifier mint collections-seattleflu.org 1040 --labels barcode-labels.pdf
+      pipenv run id3c identifier mint collections-seattleflu.org 1040 --labels barcode-labels.pdf
 
-An example value for 'labels': labels-2020-07-20-greek-matrix-samples.pdf
+An example value for 'labels': Melissa_collections-seattleflu.org_default_20_sheets_2021-08-04_1.pdf,
+where we find it useful to include requester's name, identifier set, layout, number of sheets, and date generated for file naming purposes.
 
 Assuming you're on a Linux machine, you can stream the barcode minting process with `tail -f /var/log/syslog`.
 
@@ -111,36 +116,60 @@ The new identifiers and their associated barcodes will be stored in the ID3C
 database for future reference.  A PDF of formatted barcode labels will be made
 and saved to your computer.
 
-> Note: If you need to recreate labels for a previously generated set of
-> barcodes, use the `id3c identifier labels` command.
-
 Open up the new _barcode-labels.pdf_ file.  It should have 20 pages (of 52
 barcodes each) formatted to print on a box of [LCRY-1100-Y][] sheets.
 
+> Note: If you need to recreate labels for a previously generated set of
+> barcodes, use the `id3c identifier labels` command. \
+> For example: 
+> ```
+> PGSERVICE=seattleflu-production pipenv run id3c identifier labels _barcode-labels.pdf
+> ```
+> Modify the _barcode-labels filename at the end depending on what you want the output file to be called.
+> 
+> It will open up an interactive dialog and ask you which batch you want to reprint, and you’ll enter the index number of the batch you want to reprint.
+> 
+> Be mindful in what you select - do not want to reprint the same labels twice — duplicate barcode labels is no fun for us, the lab or participants. 
+
 ### Minting batches
 We have a [script on the backoffice server](https://github.com/seattleflu/backoffice/blob/master/bin/mint-barcodes-in-batch) that is useful for generating batches of barcodes when the requester wants a 
-maximum number of sheets in each PDF file. For example, if the requester asked for 40 sheets of CLIA barcodes in the small layout
+maximum number of sheets in each PDF file. 
+
+The filepaths in the following examples may need to be modified according to the location of the backoffice and directories on your local system.
+
+For example, if the requester asked for 40 sheets of CLIA barcodes in the small layout
 in files of no more than 20 sheets each, the command would be:
 
-PGSERVICE=seattleflu-production /opt/backoffice/bin/mint-barcodes-in-batch --identifier-set=collections-clia-compliance --per-sheet=26 --layout=small --max-sheets=20 --sheets=40 --prefix="/home/ubuntu/temp/" 
+```
+cd ~/id3c
 
-* --per-sheet: specifies how many barcodes fit on a sheet of labels
-* --layout: specifies which label layout to print with. The default is 'default'.
-* --max-sheets: specifies the maximum number of sheets per PDF file
-* --sheets: specifies the number of sheets to be minted
-* --prefix: specifics the text to pre-pend to the filename; this sets the path. We've found it useful to include the requester's name, 
+PGSERVICE=seattleflu-production pipenv run /opt/backoffice/bin/mint-barcodes-in-batch \
+  --identifier-set=collections-clia-compliance \ 
+  --per-sheet=26 \
+  --layout=small \
+  --max-sheets=20 \
+  --sheets=40 \
+  --prefix="/home/ubuntu/temp/"
+```
+
+* `--identifier-set`: specifies which collection barcode to mint
+* `--per-sheet`: specifies how many barcodes fit on a sheet of labels (refer to table above)
+* `--layout`: specifies which label layout to print with. The default is 'default'.
+* `--max-sheets`: specifies the maximum number of sheets per PDF file
+* `--sheets`: specifies the number of sheets total to be minted
+* `--prefix`: specifics the text to pre-pend to the filename; this sets the path. We've found it useful to include the requester's name, 
 e.g., --prefix="/home/ubuntu/temp/Evan_" 
 
 Files will be named with this pattern: prefix_identifier_set_(the layout)_(number of sheets in the file)_sheets_(current date)_(the iteration number).pdf
 
 For example: Peter_collections-uw-observed_default_15_sheets_2020-10-26_1.pdf
 
-**
-
-The Google Drive location where to put label PDFs is in the #barcodes channel topic in Slack.
+### Uploading files to Google Drive
+The Google Drive location where to put label PDFs is in the `#barcodes` channel topic in Slack.
 Name the PDF file clearly and put it into the appropriate folder in the Google Drive.
 The lab team will delete the PDF files from Google Drive when they have finished printing them. We don't delete the PDFs.
 
+### Printing files
 When printing there a couple tips for higher-quality output:
 
 1. Change the paper type to labels in your computer's print dialog.
