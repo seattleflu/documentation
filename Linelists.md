@@ -24,6 +24,8 @@ There are multiple ways to configure your environment, but here, we'll walk thro
 Once you've configured your environment properly, you can generate linelists with one command.
 Don't forget to [install the latest python environment](#install-your-python-environment) before each run, otherwise you may run into unexpected bugs!
 
+The filepaths in the following examples may need to be modified according to the location of the backoffice and env.d directories on your local system.
+
 Copy and paste this following example using `2021-01-01` as the target results date:
 
 > Note: **Don't forget to [install the latest development environment](#install-your-python-environment) before each run!**
@@ -31,9 +33,9 @@ Copy and paste this following example using `2021-01-01` as the target results d
     cd ~/backoffice/wa-doh-linelists
 
     PGSERVICE=seattleflu-production \
-        envdir ../id3c-production/env.d/redcap \
-        pipenv run ../bin/wa-doh-linelists/generate --date 2021-01-01 \
-        --output-dir /tmp
+      envdir ../id3c-production/env.d/redcap \
+      pipenv run ../bin/wa-doh-linelists/generate --date 2021-01-01 \
+      --output-dir /tmp
 
 In this example, we run the command in the folder, `backoffice/wa-doh-linelists`, where its uses a different virtual environment compared to `backoffice/id3c-production`. The output linelists will be stored locally at `/tmp/linelist_2021-01-01.csv`. You can also specify a remote directory with the --output-dir argument using S3 or SSH/SFTP protocols, e.g. `--output-dir s3://bucketname/dirname` or `--output-dir ssh://remote-hostname/dirname`. In the case of SSH, the scripts use the DOH_USERNAME and DOH_PRIVKEY_PATH environment variables to determine the SSH username and the path to the private key to use.
 
@@ -49,7 +51,7 @@ Calling these individual scripts is useful if you want lower level control over 
         cd ~/backoffice
 
         PGSERVICE=seattleflu-production \
-            ./bin/wa-doh-linelists/export-id3c-hcov19-results 2021-01-01 > ./bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv
+          ./bin/wa-doh-linelists/export-id3c-hcov19-results 2021-01-01 > ./bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv
 
 2. The other script, `transform`, merges ID3C linelist data and REDCap report data, transforming and standardizing them into a format WA DoH expects, and uploading them to the output directory.
    This script requires 3 arguments:
@@ -58,18 +60,19 @@ Calling these individual scripts is useful if you want lower level control over 
    * `--id3c-data` which, if you choose to run this script instead of `generate`, you'll need to export using the `export-id3c-hcov19-results` script explained above, and
    * `--output-dir`, which saves the transformed data to a file under the local or remote directory specified, named after the testing date. This may be specified multiple times, and will upload data to all of them.
 
-      cd ~/backoffice/wa-doh-linelists
-
-      envdir ../id3c-production/env.d/redcap
-      pipenv run ../bin/wa-doh-linelists/transform \
-          --date 2021-01-01 \
-          --id3c-data ../bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv \
-          --output-dir /tmp \
-          --output-dir s3://bucketname/dirname \
-          --output-dir ssh://sft-testing.wa.gov/dirname \
-          --project-id 12345 \
-          --upload-if-empty s3 \
-          --upload-if-empty /tmp
+    ```
+	cd ~/backoffice/wa-doh-linelists
+	
+    envdir ../id3c-production/env.d/redcap pipenv run ../bin/wa-doh-linelists/transform \
+      --date 2021-01-01 \
+      --id3c-data ../bin/wa-doh-linelists/data/id3c-export-2021-01-01.csv \
+      --output-dir /tmp \
+      --output-dir s3://bucketname/dirname \
+      --output-dir ssh://sft-testing.wa.gov/dirname \
+      --project-id 12345 \
+      --upload-if-empty s3 \
+      --upload-if-empty /tmp
+	```
 
     This script may also take two optional arguments:
 
@@ -86,7 +89,7 @@ Calling these individual scripts is useful if you want lower level control over 
 > You only have to complete these steps once.
 
 First, you'll need a username and password for the ID3C production database to complete this step.
-If you don't have or know your username or password, please contact the `@dev-team` on Slack at the **#id3c** channel.
+If you don't have or know your username or password, please contact the `@dev-team` on Slack at the **#informatics** channel.
 
 We have to point our [generate script] to a database.
 Here, we'll walk through how to configure a PostgreSQL service definition.
