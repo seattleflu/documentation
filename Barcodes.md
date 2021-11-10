@@ -57,9 +57,10 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-environmental`                       | [LCRY-1100-R][]   |        1,040 |             52 |
 `collections-fluathome.org`                       | [LCRY-2380-Y][]   |        2,380 |            119 |
 `collections-scan`                                | [LCRY-1100][]     |          520 |             26 | in duplicate for now, might be triplicate if we start ROR
-`collections-scan-kiosks`                         | [LCRY-1100][]     |        1,040 |             52 |SCAN STAVE-surge testing around vulnerable/exposures
-`collections-clia-compliance`                     | [LCRY-1100][]     |        1,040 |             52 |CLIA barcodes (default layout)
-`collections-clia-compliance`                     | [LCRY-2380][]     |        2,380 |             119|CLIA barcodes ('small' layout)
+`collections-scan-kiosks`                         | [LCRY-1100][]     |        1,040 |             52 | SCAN STAVE-surge testing around vulnerable/exposures
+`collections-scan-tiny-swabs`                     | [LCRY-2380][]     |        2,380 |            119 | singlets, TINY SCAN 
+`collections-clia-compliance`                     | [LCRY-1100][]     |        1,040 |             52 | CLIA barcodes (default layout)
+`collections-clia-compliance`                     | [LCRY-2380][]     |        2,380 |             119| CLIA barcodes ('small' layout)
 `kits-fluathome.org`                              | [LCRY-1100-B][]   |        1,040 |             52 |
 `test-strips-fluathome.org`                       | [LCRY-2380-G][]   |        2,380 |            119 |
 `samples-haarvi`                                  | [LCRY-2380][]     |        2,380 |            119 | small aliquoting barcodes for HAARVI
@@ -76,7 +77,9 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-apple-respiratory`                   | [LCRY-1100][]   |            520 |             26 | duplicates, Apple Study
 `collections-apple-respiratory-serial`            | [LCRY-1100][]   |            520 |             26 | duplicates, the "serial" barcodes for Apple Study
 `collections-adult-family-home-outbreak`          | [LCRY-1100][]   |          1,040 |             52 | singlets, Adult Family Home (AFH) Outbreaks (not for Workplace Outbreaks)
+`collections-adult-family-home-outbreak-tiny-swabs`| [LCRY-2380][]  |          2,380 |            119 | singlets, TINY Adult Family Home (AFH) Outbreaks (not for Workplace Outbreaks)
 `collections-workplace-outbreak`                  | [LCRY-1100][]   |          1,040 |             52 | singlets, Workplace Outbreaks (not for Adult Family Home AFH Outbreaks)
+`collections-workplace-outbreak-tiny-swabs`       | [LCRY-2380][]   |          2,380 |            119 | singlets, TINY Workplace Outbreaks (not for Adult Family Home AFH Outbreaks)
 `collections-radxup-yakima-schools-home`          | [LCRY-1100][]   |            520 |             26 | duplicates, Yakima Schools (Radxup) at home
 `collections-radxup-yakima-schools-observed`      | [LCRY-1100][]   |          1,040 |             52 | singlets, Yakima Schools (Radxup) observed/in-person
 
