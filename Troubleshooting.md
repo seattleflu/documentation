@@ -65,7 +65,7 @@ No sample found with identifier «aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa» or coll
 This means that specimen information sent from the LIMS (Lab Inventory Management System) to ID3C is out of date. This is a time-sensitive problem that will impact the return of testing results to participants.
 
 ##### Solution: 
-ID3C should be resynced from the LIMS. Contact the lab staff to resync the LIMS to ID3C. You can reach them via Slack in the #informatics or #lab channel.
+ID3C should be resynced from the LIMS. Contact the lab staff to resync the LIMS to ID3C. You can reach them via Slack in the #bat-lab-pipeline-alerts channel. If no one responds in that channel, you can also @ someone in the #informatics or #lab channel.
 
 This error can also be caused by a duplicated collection barcode for a sample which is noted on the specimen manifest sheet.
 ##### Solution: 
