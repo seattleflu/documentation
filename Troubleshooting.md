@@ -58,9 +58,17 @@ Be sure to tag Peter and Brian (of the lab) on the new card.
 ```sh
 No sample with identifier «aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa» found
 ```
-This means that specimen information sent from the LIMS to ID3C is out of date. The lab may just be behind in syncing it. We can prompt them to do so if needed.
+or
+```sh
+No sample found with identifier «aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa» or collection identifier «None»
+```
+This means that specimen information sent from the LIMS (Lab Inventory Management System) to ID3C is out of date. This is a time-sensitive problem that will impact the return of testing results to participants.
 
-Sometimes, this error means that there was a duplicate collection barcode for two samples which is noted on the specimen manifest sheet.
+##### Solution: 
+ID3C should be resynced from the LIMS. Contact the lab staff to resync the LIMS to ID3C. You can reach them via Slack in the #informatics or #lab channel.
+
+This error can also be caused by a duplicated collection barcode for a sample which is noted on the specimen manifest sheet.
+##### Solution: 
 One solution here is to manually create samples with just the sample identifiers from the lab's aliquot manifest.
 Once the collection barcode duplication issue is resolved, the manifest ETL will pick it up and update the newly created samples.
 
@@ -70,17 +78,17 @@ Once the collection barcode duplication issue is resolved, the manifest ETL will
 Aborting with error: Identifier found in set «samples-haarvi», not «samples»
 ```
 This error means that a sample from a separate study arm that we're not supposed to be ingesting was not properly marked as experimental (`_exp`), so it ended up in our pipeline.
-The appropriate avenue is to Slack someone in one of data-transfer channels.
-We can ask NWGC to re-send the same JSON bundle but with `_exp` designations on the affected samples.
-We should manually skip the bundle in `recieving.presence_absence` and wait for the updated JSON.
-Find the presence_absence_id/group number by looking for 
+##### Solution:
+Contact the appropriate data-transfer channel in Slack. Copy-paste the error message along with the presence_absence_id/group number into the message.
+Find the presence_absence_id/group number by looking through /var/log/syslog on the backoffice server for 
 ```
 Rolling back to savepoint presence_absence group {the group number}
 ````
-in /var/log/syslog.
 
-Manually mark the receiving record as skipped like this:
-````sql
+We can ask NWGC to re-send the same JSON bundle but with `_exp` designations on the affected samples.
+To manually skip the bundle in `recieving.presence_absence`:
+```sql
+--NOTE: this is NOT the correct procedure for SampleNotFoundErrors. 
 update receiving.presence_absence
 set processing_log = '[
     {
@@ -89,8 +97,7 @@ set processing_log = '[
     }
 ]'
 where presence_absence_id = {the group number}
-````
-
+```
 
 ### Manifest ETL
 #### Problem: `AssertionError`
