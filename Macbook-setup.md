@@ -191,4 +191,4 @@ To determine which cache file to use with which `id3c etl redcap-det` project ar
 
 These keys will be used to access private Github repos and ssh to the backoffice server.
 
-Follow [these instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh) to generate your keys and update your Github account with your public key. Your will also need to be added to the backoffice server so that you can use connect via ssh.
+Follow [these instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh) to generate your keys and update your Github account with your public key. Your public key will also need to be added to the backoffice server so that you can use connect via ssh.
