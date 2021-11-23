@@ -186,3 +186,9 @@ scp -i [ssh_key_file].pem ubuntu@backoffice.seattleflu.org:/home/ubuntu/uw-reope
 ```
 
 To determine which cache file to use with which `id3c etl redcap-det` project argument, refer to the [backoffice crontab file](https://github.com/seattleflu/backoffice/blob/master/crontabs/id3c-production).
+
+## Create public and private ssh keys
+
+These keys will be used to access private Github repos and ssh to the backoffice server.
+
+Follow [these instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh) to generate your keys and update your Github account with your public key. Your will also need to be added to the backoffice server so that you can use connect via ssh.
