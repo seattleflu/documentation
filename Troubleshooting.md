@@ -35,7 +35,7 @@ Tips for moving forward when things break.
   - [Problem: compiling Python 3.6 on MacOS Big Sur](#problem-compiling-python36-bigsur)
 - [Linelists](#linelists)
   - [Problem: Linelist didn't run successfully](#problem-linelist-didnt-run-successfully)
-- [Huksy Musher](#husky-musher)
+- [Husky Musher](#husky-musher)
   - [Problem: uWGSGI workers available alert](#problem-husky-musher-uwsgi-workers-available)
 
 ## ETL processes
