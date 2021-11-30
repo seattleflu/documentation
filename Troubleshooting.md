@@ -35,7 +35,8 @@ Tips for moving forward when things break.
   - [Problem: compiling Python 3.6 on MacOS Big Sur](#problem-compiling-python36-bigsur)
 - [Linelists](#linelists)
   - [Problem: Linelist didn't run successfully](#problem-linelist-didnt-run-successfully)
- 
+- [Huksy Musher](#husky-musher)
+  - [Problem: uWGSGI workers available alert](#problem-husky-musher-uwsgi-workers-available)
 
 ## ETL processes
 ### General
@@ -484,3 +485,24 @@ You can find additional information about running the linelists generating scrip
 https://github.com/seattleflu/documentation/blob/master/Linelists.md)
 
 When the new linelist is uploaded to its destination, post a note in the slack channel #linelist-submissions for visibility.
+
+## Husky Musher
+### Problem: uWGSGI workers available alert
+
+If we get an alert that the available uWSGI workers for huksy-musher has dropped to 0, we need to check the status of those workers and reload husky-musher if one or more workers is stuck.
+
+First get the pids of husky-musher worker processes (with the current configuration (11/30/21) there are 3 workers, which should be listed under the parent process):
+`ps -auxf | grep musher`
+
+Run `strace` on each worker pid, for example:
+`sudo strace -f -p "12702"`
+
+With the current cofiguration (11/30/2021) each worker has 4 threads, each with their own pid, which should be output by `strace`. Check for any threads that are stuck in read state (i.e. `read(4,  <unfinished ...>`), and monitor for a few seconds to see if they remain in that state.
+
+If one or more worker threads is indeed stuck, reload husky-musher:
+`sudo systemctl reload uwsgi@husky-musher`
+
+Repeat the steps above to confirm all workers and threads are functioning. 
+
+If a graceful reload does not work, restarting is a more forceful approach:
+`sudo systemctl restart uwsgi@husky-musher`
