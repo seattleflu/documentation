@@ -491,18 +491,48 @@ When the new linelist is uploaded to its destination, post a note in the slack c
 
 If we get an alert that the available uWSGI workers for huksy-musher has dropped to 0, we need to check the status of those workers and reload husky-musher if one or more workers is stuck.
 
-First get the pids of husky-musher worker processes (with the current configuration (11/30/21) there are 3 workers, which should be listed under the parent process):
-`ps -auxf | grep musher`
+First get the pids of husky-musher worker processes. With the current configuration (11/30/21) there are 3 workers, which should be listed under the parent process:
+`ps -auxf | grep husky-musher`
+```
+ubuntu@ip-172-31-15-85:~$ ps -auxf | grep husky-musher
+www-data   999  0.0  0.6 943776 111772 ?       Ss   04:00   0:03 /usr/bin/uwsgi --ini /etc/uwsgi/base.ini --ini /etc/uwsgi/apps-available/husky-musher.ini
+www-data  2308  0.0  0.6 1273788 108844 ?      Sl   04:00   0:11  \_ /usr/bin/uwsgi --ini /etc/uwsgi/base.ini --ini /etc/uwsgi/apps-available/husky-musher.ini
+www-data  2330  0.0  0.7 1278360 114892 ?      Sl   04:00   0:18  \_ /usr/bin/uwsgi --ini /etc/uwsgi/base.ini --ini /etc/uwsgi/apps-available/husky-musher.ini
+www-data  2334  0.0  0.7 1278112 113716 ?      Sl   04:00   0:18  \_ /usr/bin/uwsgi --ini /etc/uwsgi/base.ini --ini /etc/uwsgi/apps-available/husky-musher.ini
+ubuntu   13827  0.0  0.0  14852  1060 pts/0    S+   11:59   0:00              \_ grep --color=auto husky-musher
+prometh+  2307  0.0  0.1 113628 18696 ?        Ssl  04:00   0:07 uwsgi_exporter --web.listen-address localhost:46947 --stats.uri unix:///run/uwsgi/app/husky-musher/stats
+```
+Run `strace` on each worker pid (2308, 2330, and 2334 in the example above). For example:
+`sudo strace -f -p 2308`
 
-Run `strace` on each worker pid, for example:
-`sudo strace -f -p "12702"`
+With the current cofiguration (11/30/2021) each worker has 4 threads, each with their own pid, which should be output by `strace`. Check for any threads that are stuck in read state (i.e. `read(4,  <unfinished ...>`), and monitor strace for a few seconds to see if those pids remain in that state.
 
-With the current cofiguration (11/30/2021) each worker has 4 threads, each with their own pid, which should be output by `strace`. Check for any threads that are stuck in read state (i.e. `read(4,  <unfinished ...>`), and monitor for a few seconds to see if they remain in that state.
+```
+ubuntu@ip-172-31-15-85:~$ sudo strace -f -p 2308
+strace: Process 2308 attached with 4 threads
+[pid  2313] read(94,  <unfinished ...>
+[pid  2315] futex(0x555ce06f3bf8, FUTEX_WAKE_PRIVATE, 1) = 1
+[pid  2315] epoll_wait(9,  <unfinished ...>
+[pid  2314] futex(0x555ce06f3bf8, FUTEX_WAIT_PRIVATE, 2, NULL <unfinished ...>
+[pid  2308] read(92,  <unfinished ...>
+...
+```
 
-If one or more worker threads is indeed stuck, reload husky-musher:
+If one or more worker threads is indeed stuck in "read" state, reload husky-musher:
 `sudo systemctl reload uwsgi@husky-musher`
 
-Repeat the steps above to confirm all workers and threads are functioning. 
+Wait a few seconds for it to reload workers gracefully, at which point the workers should have new pids:
+```
+ubuntu@ip-172-31-15-85:~$ ps -auxf | grep husky-musher
+www-data   999  0.0  0.6 943848 112408 ?       Ss   04:00   0:04 /usr/bin/uwsgi --ini /etc/uwsgi/base.ini --ini /etc/uwsgi/apps-available/husky-musher.ini
+www-data 14952  0.1  0.5 1154804 81212 ?       Sl   12:07   0:00  \_ /usr/bin/uwsgi --ini /etc/uwsgi/base.ini --ini /etc/uwsgi/apps-available/husky-musher.ini
+www-data 14956  0.1  0.5 1158996 82144 ?       Sl   12:07   0:00  \_ /usr/bin/uwsgi --ini /etc/uwsgi/base.ini --ini /etc/uwsgi/apps-available/husky-musher.ini
+www-data 14960  0.0  0.4 1145932 78984 ?       Sl   12:07   0:00  \_ /usr/bin/uwsgi --ini /etc/uwsgi/base.ini --ini /etc/uwsgi/apps-available/husky-musher.ini
+ubuntu   15028  0.0  0.0  14852  1008 pts/0    S+   12:08   0:00              \_ grep --color=auto husky-musher
+prometh+  2307  0.0  0.1 113628 18696 ?        Ssl  04:00   0:07 uwsgi_exporter --web.listen-address localhost:46947 --stats.uri unix:///run/uwsgi/app/husky-musher/stats
+```
+
+Repeat the steps above with strace to confirm all workers and threads are functioning and/or check Grafana (web dashboard, uWSGI workers available panel). 
 
 If a graceful reload does not work, restarting is a more forceful approach:
 `sudo systemctl restart uwsgi@husky-musher`
