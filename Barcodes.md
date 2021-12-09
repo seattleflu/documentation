@@ -71,7 +71,7 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-uw-tiny-swabs`                       | [LCRY-2380][]     |        2,380 |            119 | singles, UW Tiny Swabs (pilot project)
 `collections-uw-tiny-swabs-home`                  | [LCRY-2380][]     |        2,380 |            119 | singles, UW Tiny Swabs at home (unobserved)
 `collections-uw-tiny-swabs-observed`              | [LCRY-2380][]     |        2,380 |            119 | singles, UW Tiny Swabs in-person (observed)
-`collections-childcare`                           | [LCRY-1100][]   |          1,040 |             52 | singles, Childcare Study
+`collections-childcare`                           | [LCRY-1100][]   |          1,040 |             52 | **INACTIVE**, singles, Childcare Study
 `collections-school-testing-home`                 | [LCRY-1100][]   |            520 |             26 | duplicates, Snohomish Schools at home
 `collections-school-testing-observed`             | [LCRY-1100][]   |           1040 |             52 | singles, Snohomish Schools observed/in-person
 `collections-apple-respiratory`                   | [LCRY-1100][]   |            520 |             26 | duplicates, Apple Study
@@ -80,8 +80,8 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-adult-family-home-outbreak-tiny-swabs`| [LCRY-2380][]  |          2,380 |            119 | singlets, TINY Adult Family Home (AFH) Outbreaks (not for Workplace Outbreaks)
 `collections-workplace-outbreak`                  | [LCRY-1100][]   |          1,040 |             52 | singlets, Workplace Outbreaks (not for Adult Family Home AFH Outbreaks)
 `collections-workplace-outbreak-tiny-swabs`       | [LCRY-2380][]   |          2,380 |            119 | singlets, TINY Workplace Outbreaks (not for Adult Family Home AFH Outbreaks)
-`collections-radxup-yakima-schools-home`          | [LCRY-1100][]   |            520 |             26 | duplicates, Yakima Schools (Radxup) at home
-`collections-radxup-yakima-schools-observed`      | [LCRY-1100][]   |          1,040 |             52 | singlets, Yakima Schools (Radxup) observed/in-person
+`collections-radxup-yakima-schools-home`          | [LCRY-1100][]   |            520 |             26 | **INACTIVE**, duplicates, Yakima Schools (Radxup) at home
+`collections-radxup-yakima-schools-observed`      | [LCRY-1100][]   |          1,040 |             52 | **INACTIVE**, singlets, Yakima Schools (Radxup) observed/in-person
 
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
