@@ -72,8 +72,8 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-uw-tiny-swabs-home`                  | [LCRY-2380][]     |        2,380 |            119 | singles, UW Tiny Swabs at home (unobserved)
 `collections-uw-tiny-swabs-observed`              | [LCRY-2380][]     |        2,380 |            119 | singles, UW Tiny Swabs in-person (observed)
 `collections-childcare`                           | [LCRY-1100][]   |          1,040 |             52 | **INACTIVE**, singles, Childcare Study
-`collections-school-testing-home`                 | [LCRY-1100][]   |            520 |             26 | duplicates, Snohomish Schools at home
-`collections-school-testing-observed`             | [LCRY-1100][]   |           1040 |             52 | singles, Snohomish Schools observed/in-person
+`collections-school-testing-home`                 | [LCRY-1100][]   |            520 |             26 | **INACTIVE**, duplicates, Snohomish Schools at home
+`collections-school-testing-observed`             | [LCRY-1100][]   |           1040 |             52 | **INACTIVE**, singles, Snohomish Schools observed/in-person
 `collections-apple-respiratory`                   | [LCRY-1100][]   |            520 |             26 | duplicates, Apple Study
 `collections-apple-respiratory-serial`            | [LCRY-1100][]   |            520 |             26 | duplicates, the "serial" barcodes for Apple Study
 `collections-adult-family-home-outbreak`          | [LCRY-1100][]   |          1,040 |             52 | singlets, Adult Family Home (AFH) Outbreaks (not for Workplace Outbreaks)
