@@ -98,7 +98,6 @@ An overview of the SFS slack:
 Noteworthy Slack channels for SFS developers include:
 - **#barcodes** - used for requesting newly minted barcodes. See the channel description for the upload destination for new labels.
 - **#clia** - used for questions about CLIA compliance
-- **#data-transfer-ellume** - a shared channel used to communicate with Ellume about data sharing
 - **#data-transfer-labmed (private)** - a shared channel used to communicate with UW SecureLink about data sharing
 - **#data-transfer-nwgc** - used to communicate with Northwest Genomics Center about data sharing
 - **#data-transfer-retrospectives** - used to communicate with Seattle Childrens about data sharing
@@ -108,6 +107,7 @@ Noteworthy Slack channels for SFS developers include:
 - **#ncov-reporting (private)** - alert system for positive or inconclusive hCoV-19 results
 - **#record-troubleshooting** - used to communicate bad barcodes or REDCap records
 - **#redcap** - general REDCap questions
+- **#software** - software team chat, for internal team communications
 - **#website** - questions about the public-facing study website (currently managed by Formative)
 
 ## Permissions & Access
@@ -125,6 +125,7 @@ You will need access to the following:
 - [Seattle Flu "backoffice" server](https://github.com/seattleflu/security-audit#overview), the core of our infrastructure
 - AWS access
     - [Seattle Flu Study AWS account]
+    - [Brotman Baty Institute AWS account]
     - [Fred Hutch Bedford S3 Bucket](https://sciwiki.fredhutch.org/scicomputing/store_objectstore/#economy-cloud-s3)
     - Securelink S3 Bucket
 - UW OneDrive - for specimen manifest sheets
@@ -226,7 +227,7 @@ We use [Flask] to set up the [ID3C] web API.
 We use [Click] to set up the [ID3C] command-line interface.
 
 ### PostgreSQL
-We're currently using PostgreSQL version 10 for our production database with plans to eventually [upgrade to PostgreSQL 12](https://github.com/seattleflu/id3c/issues/152).
+We're currently using PostgreSQL version 10 for our production database with plans to upgrade to PostgreSQL 13.
 
 See [ID3C's design] for a motivation on the schema setup of our database.
 See [this flowchart](id3c-warehouse-schema.pdf) for an overview of the `warehouse` schema of the `seattleflu` database.
