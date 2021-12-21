@@ -266,6 +266,8 @@ See some [minimal FHIR bundle examples].
 
 
 ## Development
+### Getting set up
+* [Macbook-setup](https://github.com/seattleflu/documentation/blob/master/Macbook-setup.md)
 ### Development tools
 * [Refresh your local dev database] with a copy from production
 
