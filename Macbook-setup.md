@@ -152,7 +152,7 @@ We create a local directory to save the pg_dump files, and specify bash on the r
 ```
 mkdir ~/workspace/refresh-db-workdir
 cd ~/workspace/seattleflu/backoffice
-bash ./dev/refresh-database ~/workspace/refresh-db-workdir
+bash ./dev/refresh-database -d ~/workspace/refresh-db-workdir -x
 ```
 
 ---
