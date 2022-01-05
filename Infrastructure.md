@@ -21,7 +21,7 @@ _Internal tooling_
 * Production [ID3C API](https://github.com/seattleflu/id3c) at `/production/api`
 * [Metabase](https://metabase.com) at `/metabase`
 * [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
-* [Scan Switchboard](https://github.com/seattleflu/scan-switchboard) at `/switchboard`
+* [SFS Switchboard](https://github.com/seattleflu/sfs-switchboard) at `/switchboard`
 * [Husky Musher](https://github.com/seattleflu/husky-musher) at `/husky-musher`
 
 Hosted on an EC2 instance.
@@ -36,7 +36,7 @@ Configuration of interest includes
 
 * [Lab Labels container config](https://github.com/seattleflu/backoffice/tree/master/lab-labels) (`/opt/backoffice/lab-labels`)
 
-* [SCAN Switchboard config](https://github.com/seattleflu/backoffice/tree/master/scan-switchboard) (`/opt/backoffice/scan-switchboard`)
+* [SFS Switchboard config](https://github.com/seattleflu/backoffice/tree/master/sfs-switchboard) (`/opt/backoffice/sfs-switchboard`)
 
 * [Husky Musher config](https://github.com/seattleflu/backoffice/tree/master/husky-musher) (`/opt/backoffice/husky-musher`)
 
@@ -51,7 +51,7 @@ Configuration of interest includes
     - Reverse proxies to Husky Musher via uWSGI socket
     - Reverse proxies to Metabase via HTTP
     - Reverse proxies to Lab Labels via HTTP
-    - Reverse proxies to SCAN Switchboard via HTTP
+    - Reverse proxies to SFS Switchboard via HTTP
 
 * Let's Encrypt (`/etc/letsencrypt`)
     - Managed by `certbot`
@@ -67,7 +67,7 @@ Configuration of interest includes
   * Apps enabled:
     * Metabase: `/etc/systemd/system/metabase.service` → `/opt/backoffice/metabase/metabase.service`
     * Lab Labels: `/etc/systemd/system/lab-labels.service` → `/opt/backoffice/lab-labels/lab-labels.service`
-    * SCAN Switchboard: `/etc/systemd/system/scan-switchboard.service` → `/opt/backoffice/scan-switchboard/scan-switchboard.service`
+    * SFS Switchboard: `/etc/systemd/system/sfs-switchboard.service` → `/opt/backoffice/sfs-switchboard/sfs-switchboard.service`
   * Check service status with
     - `systemctl status {service name}`
     - `journalctl --unit {service name}`

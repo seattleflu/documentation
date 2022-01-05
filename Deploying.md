@@ -9,7 +9,7 @@
       - [Code changes to id3c](#code-changes-to-id3c)
       - [Data uploads to the database](#data-uploads-to-the-database)
   - [Deploying husky-musher](#deploying-husky-musher)
-  - [Deploying scan-switchboard](#deploying-scan-switchboard)
+  - [Deploying sfs-switchboard](#deploying-sfs-switchboard)
   - [Deploying specimen-manifests](#deploying-specimen-manifests)
   - [Deploying backoffice-apache2](#deploying-backoffice-apache2)
 - [Initial deployments](#initial-deployments)
@@ -25,7 +25,7 @@ We currently use two hosting services for our production applications: uWSGI and
 ### systemd apps
 * [Metabase](https://github.com/seattleflu/backoffice/tree/master/metabase)
 * [Lab Labels](https://github.com/seattleflu/backoffice/tree/master/lab-labels)
-* [SCAN Switchboard](https://github.com/seattleflu/backoffice/tree/master/scan-switchboard)
+* [SFS Switchboard](https://github.com/seattleflu/backoffice/tree/master/sfs-switchboard)
 
 
 ## Recurring deployments
@@ -114,18 +114,18 @@ Before you get started, you'll need the following:
 6. Check log file with `sudo journalctl -fu uwsgi@husky-musher` for any errors or warnings.
 
 
-### Deploying scan-switchboard
-* [scan-switchboard] source code
+### Deploying sfs-switchboard
+* [sfs-switchboard] source code
 
 1. Log onto the `backoffice` server.
-2. Navigate to the `/opt/scan-switchboard` directory and run `git pull`.
+2. Navigate to the `/opt/sfs-switchboard` directory and run `git pull`.
 3. Add any newly needed secret environment variables under `/opt/backoffice/id3c-production/env.d/…`.
    (Non-secret environment variables should be committed and pulled in via git.)
 4. Install the latest code with `./bin/venv-run pip-sync`.
 5. If you've changed the structure of the `record_barcodes` table in the SQLite database, delete the old database file under `data/`.
-6. Restart scan-switchboard with `sudo systemctl restart scan-switchboard`
+6. Restart sfs-switchboard with `sudo systemctl restart sfs-switchboard`
 
-There is a crontab that syncs the switchboard. If you have changed something in scan-switchboard that needs accompanying changes to the crontab, make that change in the backoffice repository and deploy that too.
+There is a crontab that syncs the switchboard. If you have changed something in sfs-switchboard that needs accompanying changes to the crontab, make that change in the backoffice repository and deploy that too.
 
 
 ### Deploying specimen-manifests
@@ -148,7 +148,7 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
 
 1. With `{app-name}` as your desired application name, clone your new repo on the backoffice server under `/opt/{app-name}`.
    This should ideally match the name of the GitHub repository.
-2. Decide whether the app should be hosted as a uWSGI or systemd service. ASGI apps (like [scan-switchboard] cannot use uWSGI).
+2. Decide whether the app should be hosted as a uWSGI or systemd service. ASGI apps (like [sfs-switchboard] cannot use uWSGI).
 3. Update the (private) [backoffice-apache2] repo.
    Replacing `{desired-endpoint}` with the desired URL endpoint at https://backoffice.seattleflu.org/ where you want your app to be available, make the following changes:
    * **uWSGI workflow:**
@@ -250,7 +250,7 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
          /etc/systemd/system/%: %
             @install -cv $< $@
          ```
-         See the [scan-switchboard Makefile](https://github.com/seattleflu/backoffice/blob/master/scan-switchboard/Makefile) as an example.
+         See the [sfs-switchboard Makefile](https://github.com/seattleflu/backoffice/blob/master/sfs-switchboard/Makefile) as an example.
      * A systemd service file named `{app-name}.service` that contains:
          ```ini
          [Unit]
@@ -268,7 +268,7 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
          [Install]
          WantedBy=default.target
          ```
-         See the [SCAN Switchboard service file](https://github.com/seattleflu/backoffice/blob/master/scan-switchboard/scan-switchboard.service) as an example.
+         See the [sfs Switchboard service file](https://github.com/seattleflu/backoffice/blob/master/sfs-switchboard/sfs-switchboard.service) as an example.
 
 6. Update [backoffice] repo documentation README pointing to the newly created directory from the previous step.
 7. Deploy the [backoffice] repo changes.
@@ -309,4 +309,4 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
 [Pipenv]:https://pipenv.readthedocs.io/en/latest/
 [specimen-manifests]:https://github.com/seattleflu/specimen-manifests
 [husky-musher]: https://github.com/seattleflu/husky-musher
-[scan-switchboard]: https://github.com/seattleflu/scan-switchboard
+[sfs-switchboard]: https://github.com/seattleflu/sfs-switchboard

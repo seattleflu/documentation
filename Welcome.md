@@ -20,7 +20,7 @@ start using or contributing to our code.
     - [Securelink](#securelink)
   - [Labelmaker](#labelmaker)
   - [Metabase](#metabase)
-  - [SCAN Switchboard](#scan-switchboard)
+  - [SFS Switchboard](#sfs-switchboard)
 - [Tools](#tools)
   - [Git](#git)
     - [GitHub Actions](#github-actions)
@@ -130,7 +130,7 @@ You will need access to the following:
     - Securelink S3 Bucket
 - UW OneDrive - for specimen manifest sheets
 - [UW ITHS REDCap] plus access to all SFS/SCAN projects
-- [SCAN Switchboard]
+- [SFS Switchboard]
 - Kaiser Permanente Secure File Transfer
 - [#record-troubleshooting Trello Board](https://trello.com/b/PAlgvsEO/record-troubleshooting)
 
@@ -193,9 +193,9 @@ Used with barcode minting.
 [Metabase] is an open-source, B.I. tool that is used widely across the SFS.
 The [Seattle Flu Metabase] service is [documented here](https://github.com/seattleflu/backoffice/blob/master/metabase/README.md).
 
-### SCAN Switchboard
-The [SCAN Switchboard] is an internal tool built to speed up the lab's unboxing and quality control processes for recieved SCAN kits.
-The [source code](https://github.com/seattleflu/scan-switchboard) is separate from the [deployment configuration](https://github.com/seattleflu/backoffice/blob/master/scan-switchboard/README.md).
+### SFS Switchboard
+The [SFS Switchboard] is an internal tool built to speed up the lab's unboxing and quality control processes for recieved SCAN kits.
+The [source code](https://github.com/seattleflu/sfs-switchboard) is separate from the [deployment configuration](https://github.com/seattleflu/backoffice/blob/master/sfs-switchboard/README.md).
 
 ## Tools
 ### Git
@@ -371,7 +371,7 @@ To save these settings, add the following lines to your `~/.psqlrc`.
 [Pipenv]: https://pipenv.pypa.io/en/latest/
 [REDCap]: https://www.project-redcap.org/
 [Refresh your local dev database]: https://github.com/seattleflu/backoffice/tree/master/dev
-[SCAN Switchboard]: https://backoffice.seattleflu.org/switchboard/
+[SFS Switchboard]: https://backoffice.seattleflu.org/switchboard/
 [Seattle Flu Github]: https://github.com/seattleflu
 [Seattle Flu Metabase]: https://backoffice.seattleflu.org/metabase/
 [Seattle Flu Study "backoffice" server]: https://github.com/seattleflu/security-audit#overview

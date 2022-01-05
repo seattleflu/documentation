@@ -42,7 +42,7 @@ These example barcodes may one day reflect a real participant's collection barco
 10. Update the SCAN RoR shipping view.
 11. Update the reportable conditions shipping view with the new collection identifier set.
 12. Update the backoffice export-redcap-scan script.
-13. Update the [export-record-barcodes] script in the [scan-switchboard] repo with the new language's project ID and purview.
+13. Update the [export-record-barcodes] script in the [sfs-switchboard] repo with the new language's project ID and purview.
 14. Update the [ID3C Glossary] with new definitions of how Encounters, Samples, Individuals (etc.) get created for this project.
 
 
@@ -69,7 +69,7 @@ Checklist
      Translations are viewable via the Google drive link at [this Trello card].
    - Add new mock results PDFs for local development (e.g. CCCCCCCC-2020-01-01).†
    - Update the [get_pdf_report()] function in the python module to allow the new language code.
-9. Update the [export-record-barcodes] script in the [scan-switchboard] repo with the new language's project ID and ISO code.
+9. Update the [export-record-barcodes] script in the [sfs-switchboard] repo with the new language's project ID and ISO code.
 
 *: Depends on #3
 
@@ -91,8 +91,8 @@ Checklist
 [generate-pdfs]: https://github.com/seattleflu/backoffice/blob/master/bin/return-of-results/generate-pdfs
 [generate-results-csv]: https://github.com/seattleflu/backoffice/blob/master/bin/return-of-results/generate-results-csv
 [get_pdf_report()]: https://github.com/nkrumm/securelink/blob/d82a1871bcbaa7a90ea75b84a507e4cd6bcd8f30/app/__init__.py#L124
-[export-record-barcodes]: https://github.com/seattleflu/scan-switchboard/blob/master/bin/export-record-barcodes
-[scan-switchboard]: https://github.com/seattleflu/scan-switchboard
+[export-record-barcodes]: https://github.com/seattleflu/sfs-switchboard/blob/master/bin/export-record-barcodes
+[sfs-switchboard]: https://github.com/seattleflu/sfs-switchboard
 [UW LabMed SecureLink portal]: https://securelink.labmed.uw.edu/scan
 [securelink GitHub repo]: https://github.com/nkrumm/securelink
 [SecureLink dev instance]: https://securelink.labmed-dev.uw.edu/scan
