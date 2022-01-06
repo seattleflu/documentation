@@ -25,7 +25,7 @@ We currently use two hosting services for our production applications: uWSGI and
 ### systemd apps
 * [Metabase](https://github.com/seattleflu/backoffice/tree/master/metabase)
 * [Lab Labels](https://github.com/seattleflu/backoffice/tree/master/lab-labels)
-* [SFS Switchboard](https://github.com/seattleflu/backoffice/tree/master/switchboard)
+* [SFS Switchboard](https://github.com/seattleflu/backoffice/tree/master/sfs-switchboard)
 
 
 ## Recurring deployments
@@ -250,7 +250,7 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
          /etc/systemd/system/%: %
             @install -cv $< $@
          ```
-         See the [sfs-switchboard Makefile](https://github.com/seattleflu/backoffice/blob/master/switchboard/Makefile) as an example.
+         See the [sfs-switchboard Makefile](https://github.com/seattleflu/backoffice/blob/master/sfs-switchboard/Makefile) as an example.
      * A systemd service file named `{app-name}.service` that contains:
          ```ini
          [Unit]
@@ -268,7 +268,7 @@ Note: these deployment steps assume you're using Pipenv for dependency managemen
          [Install]
          WantedBy=default.target
          ```
-         See the [SFS Switchboard service file](https://github.com/seattleflu/backoffice/blob/master/switchboard/sfs-switchboard.service) as an example.
+         See the [SFS Switchboard service file](https://github.com/seattleflu/backoffice/blob/master/sfs-switchboard/sfs-switchboard.service) as an example.
 
 6. Update [backoffice] repo documentation README pointing to the newly created directory from the previous step.
 7. Deploy the [backoffice] repo changes.

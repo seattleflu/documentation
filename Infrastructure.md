@@ -36,7 +36,7 @@ Configuration of interest includes
 
 * [Lab Labels container config](https://github.com/seattleflu/backoffice/tree/master/lab-labels) (`/opt/backoffice/lab-labels`)
 
-* [SFS Switchboard config](https://github.com/seattleflu/backoffice/tree/master/switchboard) (`/opt/backoffice/sfs-switchboard`)
+* [SFS Switchboard config](https://github.com/seattleflu/backoffice/tree/master/sfs-switchboard) (`/opt/backoffice/sfs-switchboard`)
 
 * [Husky Musher config](https://github.com/seattleflu/backoffice/tree/master/husky-musher) (`/opt/backoffice/husky-musher`)
 
