@@ -138,7 +138,12 @@ There is a crontab that syncs the switchboard. If you have changed something in 
 ### Deploying backoffice-apache2
 * [backoffice-apache2] source code (private)
 
-1. Log onto the `backoffice` server with agent forwarding (e.g. `ssh -A …`)
+1. Log onto the `backoffice` server with agent forwarding:
+   ```
+   eval `ssh-agent`
+   ssh-add ~/.ssh/id_rsa
+   ssh -A ubuntu@backoffice.seattleflu.org
+   ```
 2. Navigate to the `/etc/apache2` directory and run `sudo git pull`.
 3. Reload apache by running: `sudo systemctl reload apache2`.
 
