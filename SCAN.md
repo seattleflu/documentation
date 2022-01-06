@@ -91,8 +91,8 @@ Checklist
 [generate-pdfs]: https://github.com/seattleflu/backoffice/blob/master/bin/return-of-results/generate-pdfs
 [generate-results-csv]: https://github.com/seattleflu/backoffice/blob/master/bin/return-of-results/generate-results-csv
 [get_pdf_report()]: https://github.com/nkrumm/securelink/blob/d82a1871bcbaa7a90ea75b84a507e4cd6bcd8f30/app/__init__.py#L124
-[export-record-barcodes]: https://github.com/seattleflu/sfs-switchboard/blob/master/bin/export-record-barcodes
-[sfs-switchboard]: https://github.com/seattleflu/sfs-switchboard
+[export-record-barcodes]: https://github.com/seattleflu/switchboard/blob/master/bin/export-record-barcodes
+[sfs-switchboard]: https://github.com/seattleflu/switchboard
 [UW LabMed SecureLink portal]: https://securelink.labmed.uw.edu/scan
 [securelink GitHub repo]: https://github.com/nkrumm/securelink
 [SecureLink dev instance]: https://securelink.labmed-dev.uw.edu/scan

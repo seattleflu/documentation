@@ -195,7 +195,7 @@ The [Seattle Flu Metabase] service is [documented here](https://github.com/seatt
 
 ### SFS Switchboard
 The [SFS Switchboard] is an internal tool built to speed up the lab's unboxing and quality control processes for recieved SCAN kits.
-The [source code](https://github.com/seattleflu/sfs-switchboard) is separate from the [deployment configuration](https://github.com/seattleflu/backoffice/blob/master/sfs-switchboard/README.md).
+The [source code](https://github.com/seattleflu/switchboard) is separate from the [deployment configuration](https://github.com/seattleflu/backoffice/blob/master/switchboard/README.md).
 
 ## Tools
 ### Git

@@ -21,7 +21,7 @@ _Internal tooling_
 * Production [ID3C API](https://github.com/seattleflu/id3c) at `/production/api`
 * [Metabase](https://metabase.com) at `/metabase`
 * [Lab Labels](https://github.com/tsibley/Lab-Labels) at `/labels`
-* [SFS Switchboard](https://github.com/seattleflu/sfs-switchboard) at `/switchboard`
+* [SFS Switchboard](https://github.com/seattleflu/switchboard) at `/switchboard`
 * [Husky Musher](https://github.com/seattleflu/husky-musher) at `/husky-musher`
 
 Hosted on an EC2 instance.
@@ -36,7 +36,7 @@ Configuration of interest includes
 
 * [Lab Labels container config](https://github.com/seattleflu/backoffice/tree/master/lab-labels) (`/opt/backoffice/lab-labels`)
 
-* [SFS Switchboard config](https://github.com/seattleflu/backoffice/tree/master/sfs-switchboard) (`/opt/backoffice/sfs-switchboard`)
+* [SFS Switchboard config](https://github.com/seattleflu/backoffice/tree/master/switchboard) (`/opt/backoffice/sfs-switchboard`)
 
 * [Husky Musher config](https://github.com/seattleflu/backoffice/tree/master/husky-musher) (`/opt/backoffice/husky-musher`)
 
