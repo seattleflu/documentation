@@ -65,11 +65,11 @@ No sample found with identifier «aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa» or coll
 ```
 This means that specimen information sent from the LIMS (Lab Inventory Management System) to ID3C is out of date. This is a time-sensitive problem that will impact the return of testing results to participants.
 
-##### Solution: 
+##### Solution:
 ID3C should be resynced from the LIMS. Contact the lab staff to resync the LIMS to ID3C. You can reach them via Slack in the #bat-lab-pipeline-alerts channel. If no one responds in that channel, you can also @ someone in the #informatics or #lab channel.
 
 This error can also be caused by a duplicated collection barcode for a sample which is noted on the specimen manifest sheet.
-##### Solution: 
+##### Solution:
 One solution here is to manually create samples with just the sample identifiers from the lab's aliquot manifest.
 Once the collection barcode duplication issue is resolved, the manifest ETL will pick it up and update the newly created samples.
 
@@ -81,7 +81,7 @@ Aborting with error: Identifier found in set «samples-haarvi», not «samples»
 This error means that a sample from a separate study arm that we're not supposed to be ingesting was not properly marked as experimental (`_exp`), so it ended up in our pipeline.
 ##### Solution:
 Contact the appropriate data-transfer channel in Slack. Copy-paste the error message along with the presence_absence_id/group number into the message.
-Find the presence_absence_id/group number by looking through /var/log/syslog on the backoffice server for 
+Find the presence_absence_id/group number by looking through /var/log/syslog on the backoffice server for
 ```
 Rolling back to savepoint presence_absence group {the group number}
 ````
@@ -89,7 +89,7 @@ Rolling back to savepoint presence_absence group {the group number}
 We can ask NWGC to re-send the same JSON bundle but with `_exp` designations on the affected samples.
 To manually skip the bundle in `recieving.presence_absence`:
 ```sql
---NOTE: this is NOT the correct procedure for SampleNotFoundErrors. 
+--NOTE: this is NOT the correct procedure for SampleNotFoundErrors.
 update receiving.presence_absence
 set processing_log = '[
     {
@@ -262,11 +262,11 @@ Once the mapping has been updated and deployed, be sure to manually generate/upl
 
 ### Problem: Metabase results are stale
 Metabase caching is enabled so that slow queries don't have to be executed every time the question is viewed. A query that takes longer than the `MINIMUM QUERY DURATION` setting to run will get cached.
-The global `CACHE TIME-TO-LIVE (TTL) MULTIPLIER` setting controls how long results get cached. 
+The global `CACHE TIME-TO-LIVE (TTL) MULTIPLIER` setting controls how long results get cached.
 From Metabase:
    ```
-      To determine how long each saved question's cached result should stick around, we take the query's average execution time and multiply 
-      that by whatever you input here. So if a query takes on average 2 minutes to run, and you input 10 for your multiplier, its cache entry 
+      To determine how long each saved question's cached result should stick around, we take the query's average execution time and multiply
+      that by whatever you input here. So if a query takes on average 2 minutes to run, and you input 10 for your multiplier, its cache entry
       will persist for 20 minutes.
    ```
 
@@ -277,7 +277,7 @@ First, you may need to give your admin database user permissions by connecting a
    ```
 
 Then update the correct row in the `report_card` table. To set a 0 multiplier (to disable caching altogether) for a question run a command like:
-   ```sql 
+   ```sql
    update report_card
    set cache_ttl = 0
    where name  = '{the name of the question}'
@@ -408,34 +408,34 @@ If this happens, there are a few steps to take to remedy this:
 ### Problem: SFS Switchboard does not load certain barcodes
 Sometimes the SFS Switchboard's database fails to update.
 There is hardly a single cause here, so there are a few things to try when this happens.
-1. Check the systemd logs with `sudo systemctl status scan-switchboard`
-2. Check the journal logs with `sudo journalctl -fu scan-switchboard`
+1. Check the systemd logs with `sudo systemctl status sfs-switchboard`
+2. Check the journal logs with `sudo journalctl -fu sfs-switchboard`
 3. Capture the state of the Switchboard data with:
     ```sh
     cd $(mktemp -d)
     ps aux > ps
-    cp -rp /opt/scan-switchboard/data .
+    cp -rp /opt/sfs-switchboard/data .
     ```
 Try to capture as much information about the failed state of the service as possible before manually restarting the service for the lab.
 
 To manually restart the service, depending on your problem, you may choose to:
 * Manually generate the Switchboard data via
   ```sh
-  PIPENV_PIPFILE=/opt/scan-switchboard/Pipfile \
+  PIPENV_PIPFILE=/opt/sfs-switchboard/Pipfile \
     envdir /opt/backoffice/id3c-production/env.d/redcap-sfs/ \
     envdir /opt/backoffice/id3c-production/env.d/redcap-scan/ \
-    pipenv run make -BC /opt/scan-switchboard/
+    pipenv run make -BC /opt/sfs-switchboard/
   ```
-* Restart the service with `sudo systemctl restart scan-switchboard`
+* Restart the service with `sudo systemctl restart sfs-switchboard`
 
 ## Software Stack
 ### Problem: compiling Python 3.6 on MacOS Big Sur
 We currently use Python 3.6 in production but it is currently in security-fixes-only support, and neither the Apple Command-line Developer Tools nor Homebrew support Python 3.6 at this point. In addition, attempting to build it on Big Sur fails due to compilation problems. Here is how to fix that build error and get Python 3.6 on Big Sur. Open a Terminal window and do the following (commands to be run are prepended with a `$`):
-1. Download Homebrew from https://brew.sh: 
+1. Download Homebrew from https://brew.sh:
        $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 2. Install the prerequisite packages (some may be installed as a matter of course for Homebrew):
        $ brew install bzip2 openssl readline sqlite zlib
-3. Download Python 3.6.x (currently 3.6.13, but check https://www.python.org/downloads/source/ for the most recent 3.6 update): 
+3. Download Python 3.6.x (currently 3.6.13, but check https://www.python.org/downloads/source/ for the most recent 3.6 update):
        $ curl -O https://www.python.org/ftp/python/3.6.13/Python-3.6.13.tgz
 4. Untar it:
        $ tar xzf Python-3.6.13.tgz
@@ -486,7 +486,7 @@ Please don't depend on this for anything resembling production, or use it with i
 If we get an alert that the linelist didn't successfully upload to it's destination (e.g. from the /opt/backoffice/bin/wa-doh-linelists/generate script), we need to manually rerun and upload the linelist file.
 
 Once the underlying issue is fixed, one way to do this is to update the [crontab](https://github.com/seattleflu/backoffice/blob/master/crontabs/wa-doh-linelists) on backoffice production instance, and change the time to run in the next few minutes, reinstall the crontab, let it run, verify output, change the time back and reinstall crontab.
-If you need to run it on a different date than the original failed run, you will need to update the `--date` parameter to run for the missed day. (note: this crontab is currently set to generate a linelist for the previous day's result) 
+If you need to run it on a different date than the original failed run, you will need to update the `--date` parameter to run for the missed day. (note: this crontab is currently set to generate a linelist for the previous day's result)
 One other option is to just run `backoffice/bin/wa-doh-linelists/generate` script locally, passing in appropriate environment variables and parameters.
 You can find additional information about running the linelists generating scripts in our [documentation](
 https://github.com/seattleflu/documentation/blob/master/Linelists.md)
@@ -539,7 +539,7 @@ ubuntu   15028  0.0  0.0  14852  1008 pts/0    S+   12:08   0:00              \_
 prometh+  2307  0.0  0.1 113628 18696 ?        Ssl  04:00   0:07 uwsgi_exporter --web.listen-address localhost:46947 --stats.uri unix:///run/uwsgi/app/husky-musher/stats
 ```
 
-Repeat the steps above with strace to confirm all workers and threads are functioning and/or check Grafana (web dashboard, uWSGI workers available panel). 
+Repeat the steps above with strace to confirm all workers and threads are functioning and/or check Grafana (web dashboard, uWSGI workers available panel).
 
 If a graceful reload does not work, restarting is a more forceful approach:
 `sudo systemctl restart uwsgi@husky-musher`
