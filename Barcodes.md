@@ -82,6 +82,7 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-workplace-outbreak-tiny-swabs`       | [LCRY-2380][]   |          2,380 |            119 | singlets, TINY Workplace Outbreaks (not for Adult Family Home AFH Outbreaks)
 `collections-radxup-yakima-schools-home`          | [LCRY-1100][]   |            520 |             26 | **INACTIVE**, duplicates, Yakima Schools (Radxup) at home
 `collections-radxup-yakima-schools-observed`      | [LCRY-1100][]   |          1,040 |             52 | **INACTIVE**, singlets, Yakima Schools (Radxup) observed/in-person
+`collections-airs'                                | [LCRY-1100-W][]  |            520 |             26 | duplicates, FH Prospective Sero Study AIM 3B (AIRS)
 
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
@@ -93,6 +94,7 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 [LCRY-1100-B]: https://www.divbio.com/product/lcry-1100-b
 [LCRY-1100-O]: https://www.divbio.com/product/lcry-1100-o
 [LCRY-2380-G]: https://www.divbio.com/product/lcry-2380-g
+[LCRY-1100-W]: https://www.divbio.com/product/lcry-1100
 
 The filepaths in the following examples may need to be modified according to the location of the backoffice on your local system. It also requires a connection to an ID3C database.
 
