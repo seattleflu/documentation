@@ -82,7 +82,7 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-workplace-outbreak-tiny-swabs`       | [LCRY-2380][]   |          2,380 |            119 | singlets, TINY Workplace Outbreaks (not for Adult Family Home AFH Outbreaks)
 `collections-radxup-yakima-schools-home`          | [LCRY-1100][]   |            520 |             26 | **INACTIVE**, duplicates, Yakima Schools (Radxup) at home
 `collections-radxup-yakima-schools-observed`      | [LCRY-1100][]   |          1,040 |             52 | **INACTIVE**, singlets, Yakima Schools (Radxup) observed/in-person
-`collections-airs'                                | [LCRY-1100-W][]  |            520 |             26 | duplicates, FH Prospective Sero Study AIM 3B (AIRS)
+`collections-airs`                                | [LCRY-1100-W][]  |            520 |             26 | duplicates, FH Prospective Sero Study AIM 3B (AIRS)
 
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
