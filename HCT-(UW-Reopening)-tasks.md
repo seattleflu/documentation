@@ -30,13 +30,13 @@ https://backoffice.seattleflu.org/metabase/dashboard/74
 
 When a clinical user imports into REDCap to update enrollment fields, to mark a participant for a surge, etc., REDCap does not generate change notifications (DETs). Therefore, we need to generate DETs ourselves. Typically, we want to pull in these DETs after 7:00 PM so that we don't drown receiving.redcap_det with these DETs and delay "real time" changes, like daily attestations, that need to be processed so that participants can get invited quickly.
 
-Ask the clinical user the start and stop times of the import. Buffer a couple of minutes on either side and then configure the following command to export DETs. Set the --since-date (the start time), --until-date (the end time), the path to your env dir folder with REDCap entries, and where you want the resulting NDJSON file to get written.
+Ask the clinical user the start and stop times of the import. Buffer a couple of minutes on either side and then configure the following command to export DETs. Set the --since-date (the start time, in local time), --until-date (the end time), the path to your env dir folder with REDCap entries, and where you want the resulting NDJSON file to get written.
 
-REDCAP_API_URL="https://redcap.iths.org/api/" envdir {path to your env dir folder with REDCap entries} id3c redcap-det generate --project-id=23854 --instrument="enrollment_questionnaire" --since-date="2021-03-05 11:14:00" --until-date="2021-03-05 11:28:00" > enrollment_questionnaire_dets.ndjson
+REDCAP_API_URL="https://hct.redcap.rit.uw.edu/api/" envdir {path to your env dir folder with REDCap entries} pipenv run id3c redcap-det generate --project-id=45 --instrument="enrollment_questionnaire" --since-date="2021-03-05 11:14:00" --until-date="2021-03-05 11:28:00" > enrollment_questionnaire_dets.ndjson
 
 And then import those DETs into the database. Update the following command with production database info and the path to the NDJSON file you generated above. 
 
-PGHOST="{the host}" PGDATABASE="{the database}" PGUSER="{username}" PGPASSWORD=$(read -srep "password: " x; echo "$x")  id3c redcap-det upload enrollment_questionnaire_dets.ndjson
+PGHOST="{the host}" PGDATABASE="{the database}" PGUSER="{username}" PGPASSWORD=$(read -srep "password: " x; echo "$x") pipenv run id3c redcap-det upload enrollment_questionnaire_dets.ndjson
 
 # Looking at the REDCap log for a record
 The HCT project contains a lot of data and a lot of records. This makes it really hard to use the log viewer in REDCap to see activity for a given record. Instead, you can just form the URL yourself and go there directly.  
