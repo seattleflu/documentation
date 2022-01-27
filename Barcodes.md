@@ -102,7 +102,7 @@ These types exist as identifier sets within ID3C, which you can verify by
 running:
 
     PGSERVICE=seattleflu-production \
-      id3c identifier set ls
+      pipenv run id3c identifier set ls
 
 To generate, for example, one box of new Seattle Flu collection barcodes for
 printing, run:
