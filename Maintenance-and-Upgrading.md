@@ -16,13 +16,16 @@ We will manage Python versions as follows:
 
 ### Building/Installing Python
 To build Python 3.9.9 on Ubuntu 18 (of course, replace 3.9.9 with whatever version of Python you're building):
- - Install the Python build-time dependencies: `sudo apt install build-essential libbz2-dev libffi-dev libfontconfig1-dev libfreetype6-dev libgdbm-compat-dev libgdbm-dev libice-dev liblzma-dev libncurses5-dev libpng-dev libpthread-stubs0-dev libreadline-dev libsm-dev libsqlite0-dev libsqlite3-dev libssl-dev libtinfo-dev libx11-dev libxau-dev libxcb1-dev libxdmcp-dev libxext-dev libxft-dev libxrender-dev libxss-dev libxt-dev lzma-dev tcl-dev tcl8.6-dev tk-dev tk8.6-dev uuid-dev x11proto-core-dev x11proto-dev x11proto-scrnsaver-dev x11proto-xext-dev xtrans-dev zlib1g-dev`
+ - Install the Python build-time dependencies: 
+```sudo apt install build-essential libbz2-dev libffi-dev libfontconfig1-dev libfreetype6-dev libgdbm-compat-dev libgdbm-dev libice-dev liblzma-dev libncurses5-dev libpng-dev libpthread-stubs0-dev libreadline-dev libsm-dev libsqlite0-dev libsqlite3-dev libssl-dev libtinfo-dev libx11-dev libxau-dev libxcb1-dev libxdmcp-dev libxext-dev libxft-dev libxrender-dev libxss-dev libxt-dev lzma-dev tcl-dev tcl8.6-dev tk-dev tk8.6-dev uuid-dev x11proto-core-dev x11proto-dev x11proto-scrnsaver-dev x11proto-xext-dev xtrans-dev zlib1g-dev```
  - Download the Python source tarball: `curl -o /tmp/Python-3.9.9.tar.xz https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tar.xz`
  - Unpack the source code: `pushd /tmp && tar xJf Python-3.9.9.tar.xz`
  - Configure and build it: `pushd Python-3.9.9 && ./configure --prefix=/opt/python/3.9.9 --enable-optimizations && make -j$(nproc)` 
  - Install it: `make install`
  - Update the symlink: `pushd /opt/python && rm -f current && ln -s 3.9.9 current`
- - Install pipenv and friends: `/opt/python/current/bin/pip3 install --upgrade pip setuptools wheel && /opt/python/current/bin/pip3 install pipenv`
+ - Install pipenv and friends: `/opt/python/current/bin/pip3 install --upgrade pip && /opt/python/current/bin/pip3 install pipenv wheel`
+
+Note that the Vagrant provisioning script at https://github.com/seattleflu/backoffice/tree/master/dev/vagrant/backoffice can build whatever version of Python you like as part of the `vagrant up` process.
 
 ### Upgrading SFS Software
 Once the new version of Python is installed, existing virtualenvs must be rebuilt to use it.
@@ -30,14 +33,52 @@ Once the new version of Python is installed, existing virtualenvs must be rebuil
 #### `pipenv`-based projects
  - Do `pipenv --rm` in the project directory to completely remove the existing virtualenv.
  - If upgrading from one major version to another (e.g. 3.6 to 3.9), make sure the `python_version` setting in the `Pipfile` is set to allow the version you're upgrading to.
+ - Ensure that the `id3c` and `id3c-customizations` hashes in `Pipfile` are up-to-date. To update them, find the hash of the appropriate commit in the id3c or id3c-customization repo's `git log`.
  - To set up the new virtualenv, do `PIPENV_VENV_IN_PROJECT=1 pipenv update`. This will regenerate the `Pipenv.lock` file with new versions of any dependencies (this is important if doing major version upgrades).
  - Test, test, test!
 
-FIXME: this needs to be expanded (especially for switchboard)
-#### Virtualenv-based projects
- - Destroy the existing virtualenv.
- - Create a new virtualenv using the new version of Python.
+#### Virtualenv-based projects (Switchboard)
+ - Ensure that the `id3c` hash in `requirements.in` is up-to-date. To update it, check the id3c repo's `git log` for the right commit to use.
+ - Recreate the virtualenv using the new version of Python. This command will destroy and recreate the venv for you: `make venv` 
+ - Update the `requirements.txt` file: `make requirements.txt`
+
+#### Upgrading Production Python Environments
+
 
 ## Upgrading Postgres
+
+### Useful Links
+ - AWS Postgres upgrade guides: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.PostgreSQL.html#USER_UpgradeDBInstance.PostgreSQL.MajorVersion
+ - Postgres/PostGIS version compatibility tables: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.PostgreSQL.CommonDBATasks.PostGIS.html#CHAP_PostgreSQL.Extensions.PostGIS
+
+### Cloning Production
+ - Log on to AWS and navigate to the RDS console. Select the production instance and click the "Maintenance & Backups" tab.
+ - Find the latest snapshot of production and restore it. This always creates a new database instance, so it's safe to do this for testing whenever you like.
+   - It's best to use the same type and generation of instance as the snapshot's source (ie, `db.m5`). It's not necessary to use the same size (`4xlarge`), so use a smaller one and save money.
+   - Make the name of the new instance extremely obvious, so you don't accidentally change production! I like to use "deleteme-seattleflu-upgradetest" or similar.
+ - These databases are pretty expensive, so be sure to delete any test instances when you're done.
+ 
+### The Postgres Upgrade Process
+ - From the RDS Databases list, select the instance to be upgraded and click the "Modify" button.
+ - Change the "DB Engine Version" to the new version of Postgres you'd like to upgrade the database to, _and nothing else_. Click the "Continue" button at the bottom.
+ - Review the changes to be made, and select the "Apply immediately" button. There are several possibilities as to what will happen here:
+   - Additional changes will need to be made in order to accomplish the upgrade. For instance, if the current instance type doesn't support the new version of the database, it will have to be changed first. If you attempt to proceed, you may get an error message like, "RDS does not support creating a DB instance with the following combination: DBInstanceClass=db.t2.small, Engine=postgres, EngineVersion=13.3, LicenseModel=postgresql-license. For supported combinations of instance class and database engine version, see the documentation."
+   - Upgrading directly to the specified version isn't possible. This will occur when the version of PostGIS installed in the current database doesn't match the version available in the new one. In this case, upgrade to an intermediate version first. This error may not be displayed immediately, but rather will occur after `pg_upgrade` is invoked to attempt the upgrade, and a log file will be generated detailing the reason for the failure.
+   - The upgrade can proceed as specified.
+ - If working on production, schedule the upgrade to occur during a maintenance window during off-hours.
+   - If working with a restored snapshot or on a development instance, it's safe to select the "Apply immediately" option.
+ - The upgrade will take 10-60 minutes, during which time the database will be unavailable.
+
+### Upgrading PostGIS
+If Postgres and PostGIS both need to be upgraded, Postgres must be upgraded first. You'll need to upgrade to a version of Postgres that supports both the old and new versions of PostGIS, then upgrade PostGIS. If you want to upgrade Postgres further, you can then do so. 
+ - **Upgrading PostGIS will close all current database connections.**
+   - However, it's practically instantaneous, so it's generally safe to do during business hours. Running jobs will fail, but pick up where they left off during their next run.
+ - Upgrade Postgres using the procedure above in [The Postgres Upgrade Process](Maintenance-and-Upgrading.md#the-postgres-upgrade-process).
+ - Connect to the database as the `postgres` user.
+ - Make sure you're in the database that has the extension installed: `SELECT extname,extversion FROM pg_extension WHERE lower(extname)='postgis';`
+ - Show the current and available PostGIS extension versions: `SELECT * FROM pg_available_extensions WHERE lower(name) LIKE 'postgis%' ORDER BY name;`
+ - Update the extension version: `ALTER EXTENSION postgis UPDATE;`
+ - Complete the upgrade: `SELECT postgis_extensions_upgrade();`
+ - Make sure all the bits are correct: `SELECT postgis_full_version();`
 
 ## Upgrading the Operating System
