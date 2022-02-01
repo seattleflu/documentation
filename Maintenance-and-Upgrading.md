@@ -41,9 +41,31 @@ Once the new version of Python is installed, existing virtualenvs must be rebuil
  - Ensure that the `id3c` hash in `requirements.in` is up-to-date. To update it, check the id3c repo's `git log` for the right commit to use.
  - Recreate the virtualenv using the new version of Python. This command will destroy and recreate the venv for you: `make venv` 
  - Update the `requirements.txt` file: `make requirements.txt`
+ - Merge the changes back to Github.
 
-#### Upgrading Production Python Environments
+#### uWSGI apps
+uWSGI is built against a specific installation of Python and can easily get confused if multiple versions are present on a system. Specifically, if not using system Python, you shouldn't use the system uWSGI. Fortunately, it's easy to fix.
+ - Install uWSGI to the global, non-system Python: `/opt/python/current/bin/pip3 install uwsgi`
+ - Update the `/etc/systemd/system/uwsgi@.service` file to point to the new uWSGI binary, which is `/opt/python/current/bin/uwsgi`.
+ - Restart any running uWSGI processes. 
 
+## Production upgrade process
+ - Before starting, make sure to merge any required changes for the new version of Python to the seattleflu repositories. In particular:
+   - [id3c](https://github.com/seattleflu/id3c)
+   - [id3c-customizations](https://github.com/seattleflu/id3c-customizations)
+   - [backoffice](https://github.com/seattleflu/backoffice) (depends on the above)
+   - [switchboard](https://github.com/seattleflu/switchboard) (_ibid_)
+ - Pause all cronjobs, either by disabling them in the crontabs, or stopping cron entirely. Ensure that all cron jobs are stopped by monitoring `/var/log/syslog`.
+ - Stop all uWSGI apps. You can get a list of them via `systemctl list-units uwsgi*`. Stop each with `systemctl stop <unit name>`.
+ - Install the new version of Python, as described in [Building/Installing Python](Maintenance-and-Upgrading.md#buildinginstalling-python).
+ - Install the new version of uWSGI, as described in [uWSGI apps](Maintenance-and-Upgrading.md#uwsgi-apps).
+ - Ensure that the PATH environment variable in `/etc/environment` contains the correct path to the new version of Python first in the list. This is `/opt/python/current/bin`.
+ - Log out and back in, or update your session's PATH variable to include that path.
+ - Back up the existing `/opt/backoffice` and `/opt/sfs-switchboard` directories so the changes can easily be reverted if necessary.
+ - Pull down the latest versions of the [backoffice](https://github.com/seattleflu/backoffice) and [switchboard](https://github.com/seattleflu/switchboard) repos.
+ - Recreate the pipenvs as described in [`Pipenv`-based projects](Maintenance-and-Upgrading.md#pipenv-based-projects), and virtualenvs as in [Virtualenv-based projects (Switchboard)](Maintenance-and-Upgrading.md#virtualenv-based-projects-switchboard).
+ - Re-enable all the cron jobs.
+ - Restart all the uWSGI apps with `systemctl start <unit name>`.
 
 ## Upgrading Postgres
 
