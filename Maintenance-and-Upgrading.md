@@ -55,17 +55,28 @@ uWSGI is built against a specific installation of Python and can easily get conf
    - [id3c-customizations](https://github.com/seattleflu/id3c-customizations)
    - [backoffice](https://github.com/seattleflu/backoffice) (depends on the above)
    - [switchboard](https://github.com/seattleflu/switchboard) (_ibid_)
- - Pause all cronjobs, either by disabling them in the crontabs, or stopping cron entirely. Ensure that all cron jobs are stopped by monitoring `/var/log/syslog`.
+ - Pause all cronjobs, either by disabling them in the crontabs, or stopping cron entirely with `sudo systemctl stop cron`. Ensure that all cron jobs are stopped by monitoring `/var/log/syslog`.
+ - Stop Apache: `sudo systemctl stop apache2`
  - Stop all uWSGI apps. You can get a list of them via `systemctl list-units uwsgi*`. Stop each with `systemctl stop <unit name>`.
  - Install the new version of Python, as described in [Building/Installing Python](Maintenance-and-Upgrading.md#buildinginstalling-python).
  - Install the new version of uWSGI, as described in [uWSGI apps](Maintenance-and-Upgrading.md#uwsgi-apps).
  - Ensure that the PATH environment variable in `/etc/environment` contains the correct path to the new version of Python first in the list. This is `/opt/python/current/bin`.
  - Log out and back in, or update your session's PATH variable to include that path.
  - Back up the existing `/opt/backoffice` and `/opt/sfs-switchboard` directories so the changes can easily be reverted if necessary.
- - Pull down the latest versions of the [backoffice](https://github.com/seattleflu/backoffice) and [switchboard](https://github.com/seattleflu/switchboard) repos.
+ - Pull down the latest versions of the [backoffice](https://github.com/seattleflu/backoffice), [backoffice-apache2](https://github.com/seattleflu/backoffice-apache2), and [switchboard](https://github.com/seattleflu/switchboard) repos.
  - Recreate the pipenvs as described in [`Pipenv`-based projects](Maintenance-and-Upgrading.md#pipenv-based-projects), and virtualenvs as in [Virtualenv-based projects (Switchboard)](Maintenance-and-Upgrading.md#virtualenv-based-projects-switchboard).
  - Re-enable all the cron jobs.
- - Restart all the uWSGI apps with `systemctl start <unit name>`.
+ - Restart all the uWSGI apps with `sudo systemctl start <unit name>`.
+
+### Reverting changes
+ - Stop all cronjobs, probably with `sudo systemctl stop cron`.
+ - Stop all uWSGI apps, and (if necessary) reset the path to the uWSGI binary in `/etc/systemd/system/uwsgi@.service`.
+ - Delete the Python symlink: `rm /opt/python/current`. Point it at the correct install if still using an in-house-compiled version, or leave it deleted if using system Python.
+ - Reset the following repos back to the appropriate commit:
+   - [backoffice](https://github.com/seattleflu/backoffice) (in `/opt/backoffice`)
+   - [backoffice-apache2](https://github.com/seattleflu/backoffice-apache2) (in `/etc/apache2`)
+   - [switchboard](https://github.com/seattleflu/switchboard) (in `/opt/scan-switchboard`)
+   - [id3c](https://github.com/seattleflu/id3c) and [id3c-customizations](https://github.com/seattleflu/id3c-customizations) may also need to be reset if the Python version has changed.
 
 ## Upgrading Postgres
 
