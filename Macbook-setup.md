@@ -192,3 +192,23 @@ To determine which cache file to use with which `id3c etl redcap-det` project ar
 These keys will be used to access private Github repos and ssh to the backoffice server.
 
 Follow [these instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh) to generate your keys and update your Github account with your public key. Your public key will also need to be added to the backoffice server so that you can use connect via ssh.
+
+## Block specific git commands
+
+To prevent inadvertantly adding and commiting files, the commands `git add .` and `git stage .` should be avoided. This can be enforced by adding a wrapper on the git command to your ~/.zshrc file:
+
+```
+git() {
+    if [ "$1" = "add" -o "$1" = "stage" ]; then
+        if [ "$2" = "." ]; then
+            printf "'git %s .' is currently disabled by your Git wrapper.\n" "$1";
+        else
+            command git "$@";
+        fi
+    else
+        command git "$@";
+    fi;
+}
+```
+
+Test that the wrapper is working by opening a new terminal and running those two commands from any folder.
