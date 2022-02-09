@@ -56,10 +56,15 @@ export PATH=/Users/<your system username>/.pyenv/versions/3.9.10/bin:$PATH
 ```
 Then restart terminal. Now `python --version` and `python3 --version` should show version 3.9.10.
 
+Next install pipenv and envdir:
+```
+pip install pipenv envdir
+```
+
 ---
 ## Install updated version of bash
 
-At time of writing, MacOS ships with bash version 3.x. A newer version is requires to run some of our bash scripts, so we install bash 5.x with Homebrew:
+At time of writing, MacOS ships with bash version 3.x. A newer version is required to run some of our bash scripts, so we install bash 5.x with Homebrew:
 ```
 brew install bash
 ```
