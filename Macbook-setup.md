@@ -26,6 +26,7 @@ Follow the Homebrew installation instructions [here](https://docs.brew.sh/Instal
 ## Install Python 3.6.9 via pyenv
 
 At time of writing, MacOS ships with Python 2.7.16 (/usr/bin/python) and Python 3.8.2 (/usr/bin/python3). We will leave these installed but will not use them, instead opting for pyenv to manage python versions (starting with Python 3.6.9 to match current production server).
+
 ```
 brew install zlib sqlite bzip2 libiconv libzip xz pyenv 
 LDFLAGS="-L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib" CPPFLAGS="-I$(brew --prefix xz)/include" pyenv install --patch 3.6.9 < <(curl -sSL https://github.com/python/cpython/commit/8ea6353.patch\?full_index\=1)
@@ -41,6 +42,19 @@ Next install pipenv and envdir:
 ```
 pip install pipenv envdir
 ```
+
+### UPDATE: install Python 3.9.10
+
+Production system was upgraded to Python 3.9.10 on 2/8/2022. To install Python 3.9.10 using pyenv, and make it your default version:
+```
+pyenv install 3.9.10
+```
+
+Add the following (or replace existing) line in ~/.zshrc:
+```
+export PATH=/Users/<your system username>/.pyenv/versions/3.9.10/bin:$PATH
+```
+Then restart terminal. Now `python --version` and `python3 --version` should show version 3.9.10.
 
 ---
 ## Install updated version of bash
