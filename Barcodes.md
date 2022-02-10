@@ -83,6 +83,7 @@ Identifier set (type)                             | SKU of labels     | Barcodes
 `collections-radxup-yakima-schools-home`          | [LCRY-1100][]   |            520 |             26 | **INACTIVE**, duplicates, Yakima Schools (Radxup) at home
 `collections-radxup-yakima-schools-observed`      | [LCRY-1100][]   |          1,040 |             52 | **INACTIVE**, singlets, Yakima Schools (Radxup) observed/in-person
 `collections-airs`                                | [LCRY-1100-W][]  |            520 |             26 | duplicates, FH Prospective Sero Study AIM 3B (AIRS)
+`collections-cascadia-tiny-swabs-home`            | [LCRY-2380][]  |            1,020 |             51 | duplicates, tiny swabs, final column blank
 
 
 [LCRY-2380]: https://www.divbio.com/product/lcry-2380
