@@ -25,6 +25,10 @@ edit the appropriate class in the labelmaker.py for the run.
 Once the labelmaker is ready with the new layout, announce in the slack #barcodes channel that 
 the barcodes for the new identifier set can be requested, and add the identifer set to the 
 table below on this docs page. 
+> Note: If your new layout uses tiny barcodes ([LCRY-2380][]), or if your new collection will need to have its
+sample identifiers backfilled for another reason, then you will also need to add the new collection sets' name
+to the query in the [backfill sample ids job](https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/backfill_sample_ids.py) in addition to creating the 
+new layout in labelmaker.py.
 
 
 [labelmaker]: https://github.com/seattleflu/id3c/blob/master/lib/id3c/labelmaker.py
