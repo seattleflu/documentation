@@ -231,3 +231,19 @@ git() {
 ```
 
 Test that the wrapper is working by opening a new terminal and running those two commands from any folder.
+
+## Install git-secrets
+
+Similar to above, install the [git-secrets](https://github.com/awslabs/git-secrets) as a tool to avoid accidentally checking secrets into git. 
+
+Install using homebrew: 
+```
+brew install git-secrets
+```
+
+From the [advanced configuration](https://github.com/awslabs/git-secrets#advanced-configuration), configure the secrets checks for AWS credentials in existing repos and those cloned in the future: 
+```
+git secrets --register-aws --global
+git secrets --install ~/.git-templates/git-secrets
+git config --global init.templateDir ~/.git-templates/git-secrets
+```
