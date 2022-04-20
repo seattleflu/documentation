@@ -32,7 +32,7 @@ When a clinical user imports into REDCap to update enrollment fields, to mark a 
 
 Ask the clinical user the start and stop times of the import. Buffer a couple of minutes on either side and then configure the following command to export DETs. Set the --since-date (the start time, in local time), --until-date (the end time), the path to your env dir folder with REDCap entries, and where you want the resulting NDJSON file to get written.
 
-REDCAP_API_URL="https://hct.redcap.rit.uw.edu/api/" envdir {path to your env dir folder with REDCap entries} pipenv run id3c redcap-det generate --project-id=45 --instrument="enrollment_questionnaire" --since-date="2021-03-05 11:14:00" --until-date="2021-03-05 11:28:00" > enrollment_questionnaire_dets.ndjson
+REDCAP_API_URL="https://hct.redcap.rit.uw.edu/" envdir {path to your env dir folder with REDCap entries} pipenv run id3c redcap-det generate --project-id=45 --instrument="enrollment_questionnaire" --since-date="2021-03-05 11:14:00" --until-date="2021-03-05 11:28:00" > enrollment_questionnaire_dets.ndjson
 
 And then import those DETs into the database. Update the following command with production database info and the path to the NDJSON file you generated above. 
 
