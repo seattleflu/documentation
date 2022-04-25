@@ -72,3 +72,22 @@ Open questions:
 
 2. The receiving.fhir records contain the encounters that we just deleted. If we ever reprocess those then the encounters will get re-created. It would be cleaner to find and delete the related FHIR records, but there will be lots.
 
+# Deleting record from husky musher cache
+If a record has been deleted, we should manually delete the participant's lookup from the husky musher cache so it redoes the redcap fetch on the next lookup.
+
+To do so, on production:
+
+```
+cd /opt/husky-musher/
+sudo PYTHONPATH=lib envdir /opt/backoffice/husky-musher/env.d/uwsgi/ pipenv run python3
+```
+
+and then in the python shell: (fill in the relevant participant_net_id)
+```
+from diskcache import FanoutCache
+CACHE = FanoutCache("/home/ubuntu/husky-musher-cache") 
+CACHE.get('participant_net_id')
+len(CACHE)
+del CACHE['participant_net_id']
+len(CACHE)
+```
