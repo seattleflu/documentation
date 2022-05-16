@@ -101,6 +101,43 @@ psql --version
 ```
 
 ---
+## Block specific git commands
+
+To prevent inadvertantly adding and commiting files, the commands `git add .` and `git stage .` should be avoided. This can be enforced by adding a wrapper on the git command to your ~/.zshrc file:
+
+```
+git() {
+    if [ "$1" = "add" -o "$1" = "stage" ]; then
+        if [ "$2" = "." ]; then
+            printf "'git %s .' is currently disabled by your Git wrapper.\n" "$1";
+        else
+            command git "$@";
+        fi
+    else
+        command git "$@";
+    fi;
+}
+```
+
+Test that the wrapper is working by opening a new terminal and running those two commands from any folder.
+
+## Install git-secrets
+
+Similar to above, install the [git-secrets](https://github.com/awslabs/git-secrets) as a tool to avoid accidentally checking secrets into git. 
+
+Install using homebrew: 
+```
+brew install git-secrets
+```
+
+From the [advanced configuration](https://github.com/awslabs/git-secrets#advanced-configuration), configure the secrets checks for AWS credentials in existing repos and those cloned in the future: 
+```
+git secrets --register-aws --global
+git secrets --install ~/.git-templates/git-secrets
+git config --global init.templateDir ~/.git-templates/git-secrets
+```
+
+---
 ## Clone git repos
 
 Create a workspace (e.g. ~/workspace/seattleflu) and clone the three primary repos:
@@ -212,38 +249,3 @@ These keys will be used to access private Github repos and ssh to the backoffice
 
 Follow [these instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh) to generate your keys and update your Github account with your public key. Your public key will also need to be added to the backoffice server so that you can use connect via ssh.
 
-## Block specific git commands
-
-To prevent inadvertantly adding and commiting files, the commands `git add .` and `git stage .` should be avoided. This can be enforced by adding a wrapper on the git command to your ~/.zshrc file:
-
-```
-git() {
-    if [ "$1" = "add" -o "$1" = "stage" ]; then
-        if [ "$2" = "." ]; then
-            printf "'git %s .' is currently disabled by your Git wrapper.\n" "$1";
-        else
-            command git "$@";
-        fi
-    else
-        command git "$@";
-    fi;
-}
-```
-
-Test that the wrapper is working by opening a new terminal and running those two commands from any folder.
-
-## Install git-secrets
-
-Similar to above, install the [git-secrets](https://github.com/awslabs/git-secrets) as a tool to avoid accidentally checking secrets into git. 
-
-Install using homebrew: 
-```
-brew install git-secrets
-```
-
-From the [advanced configuration](https://github.com/awslabs/git-secrets#advanced-configuration), configure the secrets checks for AWS credentials in existing repos and those cloned in the future: 
-```
-git secrets --register-aws --global
-git secrets --install ~/.git-templates/git-secrets
-git config --global init.templateDir ~/.git-templates/git-secrets
-```
