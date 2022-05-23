@@ -40,7 +40,7 @@ PGSERVICE="{the pg service}" pipenv run id3c redcap-det upload enrollment_questi
 
 # Looking at the REDCap log for a record
 The HCT project contains a lot of data and a lot of records. This makes it really hard to use the log viewer in REDCap to see activity for a given record. Instead, you can just form the URL yourself and go there directly.  
-<div style="display: inline">https://redcap.iths.org/redcap_v10.5.2/Logging/index.php?pid=23854&record={the record ID}</div>
+<div style="display: inline">https://hct.redcap.rit.uw.edu/redcap_v12.3.3/Logging/index.php?pid=45&record={the record ID}</div>
   
 # Handling a deleted REDCap record
 If a REDCap record gets deleted after the enrollment questionnaire was marked as Complete (thus letting our ETL process it) then we will need to delete records on our side. Otherwise, we could continue to invite the participant (the record) for testing. Doing this would actually re-create the REDCap record.
@@ -53,7 +53,7 @@ where encounter_id in
 (
 select encounter_id
 from warehouse.encounter
-where details @> '{"_provenance": {"redcap": {"url": "https://redcap.iths.org/", "project_id":23854, "record_id":"xxxx"}}}'
+where details @> '{"_provenance": {"redcap": {"url": "https://hct.redcap.rit.uw.edu/", "project_id":45, "record_id":"xxxx"}}}'
 );
 ```
 3. Delete all encounters for the record ID. Replace "xxxx" with the actual REDCap record ID.
@@ -64,7 +64,7 @@ where encounter_id in
 (
 select encounter_id
 from warehouse.encounter
-where details @> '{"_provenance": {"redcap": {"url": "https://redcap.iths.org/", "project_id":23854, "record_id":"xxxx"}}}'
+where details @> '{"_provenance": {"redcap": {"url": "https://hct.redcap.rit.uw.edu/", "project_id":45, "record_id":"xxxx"}}}'
 );
 ```
 Open questions: 
