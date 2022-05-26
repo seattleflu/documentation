@@ -210,7 +210,7 @@ mkdir ~/workspace/refresh-db-workdir
 cd ~/workspace/seattleflu/backoffice
 bash ./dev/refresh-database -d ~/workspace/refresh-db-workdir -x
 ```
-
+> Note: If you use the same working directory to update the database you should empty it before refreshing again. If you don't clear the directory, this command will utilize the database dump that already exists rather than new production data.
 ---
 ## Create Postgres Service and Password files
 
