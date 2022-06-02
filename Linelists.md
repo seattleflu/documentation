@@ -7,6 +7,8 @@
   - [Install your python environment](#install-your-python-environment)
   - [Configure REDCap API Tokens environment variables](#configure-redcap-api-tokens-environment-variables)
 - [Troubleshooting](#troubleshooting)
+  - [Duplicated Barcodes](#duplicated-barcodes)
+  - [Generating Manual Linelists](#generating-manual-linelists)
 
 > Note: this workflow only works for Unix systems (MacOS and Linux).
 Windows is not supported.
@@ -249,6 +251,7 @@ Now, when you're calling a command that requires REDCap API tokens as environmen
 
 ## Troubleshooting
 
+### Duplicated Barcodes
 The linelist generation code will fail if duplicate collection barcodes exist in any one REDCap project.
 If duplicates exist, you'll see an error message like this:
 ```
@@ -281,6 +284,55 @@ Once the duplicate collection barcode problem is fixed, you can refresh the `./e
 
     git restore ./etc/wa-doh-linelists.yml
 
+### Generating Manual Linelists
+
+In some circumstances, records that should be included in the linelist may be dropped. If this happens, these records will need to be added to a new catchup linelist that can be sent to DoH. To aid in the generation of these linelists (especially when missing records span multiple days), there is a jupyter notebook attached to this [linelist trello card]. To run this notebook and generate the linelist with missing records, you will need 6 things:
+1. Return of Results data with Sample Barcode
+2. Presence Absence Results with Sample Barcode
+3. The EH&S Linelist Report
+4. All records from `shipping.linelist_data_for_wa_doh_v1`
+5. All linelists from `<S3 Path>` and its subdirectories
+
+To obtain (1.) run:
+```
+select 
+	qrcode,
+	RIGHT(identifier::text, 8) as sample_barcode,
+	status_code,
+	collect_ts,
+	result_ts,
+	swab_type,
+	staff_observed,
+	pre_analytical_specimen_collection
+from
+	shipping.return_results_v3 left join
+	warehouse.identifier ident on ident.barcode = qrcode left join
+	warehouse.sample samp on samp.collection_identifier = ident.uuid::text
+```
+
+To obtain (2.) run:
+```
+select 
+	barcode, 
+	sample_id, 
+	hcov19_presence_absence_result_v1.result_ts, 
+	hcov19_presence_absence_result_v1.hcov19_result_release_date 
+from 
+	shipping.hcov19_presence_absence_result_v1
+	join warehouse.sample using (sample_id)
+	join warehouse.identifier on uuid::text = collection_identifier
+```
+
+To obtain (3.) export the [EH&S Linelist Report]. Then to obtain (4.), you can run the following command. You'll want to redirect the output.
+```
+psql --quiet --no-align --tuples-only --set ON_ERROR_STOP= <<<"
+    copy (select * from shipping.linelist_data_for_wa_doh_v1) to stdout with (format csv, header);
+"
+```
+
+Finally, linelist records can be obtained from the `public-health-reporting` directory of the S3 BBI Shipping bucket. You'll want to recursively copy all the files from that directory.
+
+Once you have obtained the necessary data, alter the filepaths in the second cell of the notebook file. Also update the output path to `<date>_append.csv`. You will also want to alter the date range in cell 7 to exclude EH&S records that were created today since they will not be in a linelist yet. You can then run all the cells and verify the linelist output at the end of the process is as expected. As written, the notebook will output all records that are present in the EH&S project but not in any of your downloaded linelist files. 
 
 [the `wa-doh-linelists` directory]: https://github.com/seattleflu/backoffice/tree/master/bin/wa-doh-linelists
 [backoffice]: https://github.com/seattleflu/backoffice/
@@ -288,3 +340,5 @@ Once the duplicate collection barcode problem is fixed, you can refresh the `./e
 [generate script]: https://github.com/seattleflu/backoffice/blob/master/bin/wa-doh-linelists/generate
 [pyenv]: https://github.com/pyenv/pyenv
 [linelist configuration file]: https://github.com/seattleflu/backoffice/blob/master/etc/wa-doh-linelists.yaml
+[EH&S Linelist Report]: https://redcap.iths.org/redcap_v12.3.3/DataExport/index.php?pid=24025&report_id=60454
+[linelist trello card]: https://trello.com/c/tayvA3xV/1388-document-linelist-append-process-and-notebook
