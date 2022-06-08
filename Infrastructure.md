@@ -97,14 +97,15 @@ These are hosted on AWS RDS.
 
 ### testing.db.seattleflu.org
 
-* `seattleflu-testing` is the instance name
-* db.t2.micro
-* primary database is named `testing`
+* `seattleflu-testing-encrypted` is the instance name
+* db.t3.large
+* to save costs we only spin this database up when it is useful for testing. If you need to test,
+just save a snapshot of the production database and spin up a test instance from there.
 
 ### production.db.seattleflu.org
 
-* `seattleflu-production` is the instance name
-* db.t2.micro
+* `seattleflu-production-encrypted` is the instance name
+* db.m5.4xlarge
 * primary database is named `production`
 
 ### sqitch configuration
