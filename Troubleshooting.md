@@ -27,6 +27,7 @@ Tips for moving forward when things break.
   - [Bad Presence/Absence Results Uploaded](#bad-presenceabsence-results-uploaded)
     - [Problem: A plate was swapped](#problem-a-plate-was-swapped)
     - [Problem: A sample was retroactively failed](#problem-a-sample-was-retroactively-failed)
+    - [Problem: Presence Absence Results Exist for a Sample Marked as `never-tested`](#problem-presence-absence-results-exist-for-a-sample-marked-as-never-tested)
 - [Barcode collection sets](#barcode-collection-sets)
   - [Problem: labels for the incorrect collection identifier were used](#problem-labels-for-the-incorrect-collection-identifier-were-used)
 - [SFS Switchboard](#sfs-switchboard)
@@ -356,6 +357,19 @@ the plate. In this example, we are searching for plate `BAT049A`:
   1. Delete the incorrect result record(s) for the sample from `warehouse.presence_absence`
   1. Delete the incorrect results JSON document from `receiving.presence_absence` so we don't ingest the incorrect results again when we bump the ETL revision number.
 
+#### Problem: Presence Absence Results Exist for a Sample Marked as `never-tested`
+* Sometimes samples that are retroactively marked as `never-tested` for quality control reasons had presence absence results ingested into ID3C. This can be counterintuitive, so when it occurs we should remove those presence absence results from ID3C.
+* There is a Metabase pulse set to alert if there are sample records marked as `never-tested` that have associated PA results.
+* You can find PA results for samples marked as `never-tested` with the following query:
+```
+with never_tested as (
+  select distinct sample_id, sample.details from warehouse.sample
+    join warehouse.identifier on (sample.identifier = identifier.uuid::text) 
+    join warehouse.presence_absence using (sample_id)  
+  where sample.details ->> 'note' = 'never-tested'
+) select * from warehouse.presence_absence where sample_id in (select sample_id from never_tested)
+```
+* Remove results from `warehouse.presence_absence` by changing the select to a delete.
 
 ## Barcode collection sets
 ### Problem: labels for the incorrect collection identifier were used
