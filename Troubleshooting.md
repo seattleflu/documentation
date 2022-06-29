@@ -369,6 +369,7 @@ with never_tested as (
   where sample.details ->> 'note' = 'never-tested'
 ) select * from warehouse.presence_absence where sample_id in (select sample_id from never_tested)
 ```
+* You may want to check with the lab if something weird looks like it is occurring. We have technically gotten the OK to remove these samples, but sometimes it is good to keep them if something atypical is going on.
 * Remove results from `warehouse.presence_absence` by changing the select to a delete.
 
 ## Barcode collection sets
