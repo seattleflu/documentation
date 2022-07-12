@@ -359,17 +359,17 @@ the plate. In this example, we are searching for plate `BAT049A`:
 
 #### Problem: Presence Absence Results Exist for a Sample Marked as `never-tested`
 * Sometimes samples that are retroactively marked as `never-tested` for quality control reasons had presence absence results ingested into ID3C. This can be counterintuitive, so when it occurs we should remove those presence absence results from ID3C.
-* There is a Metabase pulse set to alert if there are sample records marked as `never-tested` that have associated PA results.
+* There is a Metabase pulse set to alert if there are sample records marked as `never-tested` that have associated PA results. Note this only sends alerts for non OpenArray assays.
 * You can find PA results for samples marked as `never-tested` with the following query:
 ```
 with never_tested as (
   select distinct sample_id, sample.details from warehouse.sample
     join warehouse.identifier on (sample.identifier = identifier.uuid::text) 
     join warehouse.presence_absence using (sample_id)  
-  where sample.details ->> 'note' = 'never-tested'
+  where sample.details ->> 'note' = 'never-tested' and presence_absence.details ->> 'device' != 'OpenArray'
 ) select * from warehouse.presence_absence where sample_id in (select sample_id from never_tested)
 ```
-* You may want to check with the lab if something weird looks like it is occurring. We have technically gotten the OK to remove these samples, but sometimes it is good to keep them if something atypical is going on.
+* You may want to check with the lab if something weird looks like it is occurring. We have technically gotten the OK to remove these samples, but sometimes it is good to keep them if something atypical is going on. We generally leave OpenArray results since they are held to a higher standard than Taqman results. 
 * Remove results from `warehouse.presence_absence` by changing the select to a delete.
 
 ## Barcode collection sets
