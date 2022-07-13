@@ -7,6 +7,7 @@ An outline of the various data flows in Seattle Flu Study (SFS) and Greater Seat
     * [Other Enrollments](#other-enrollment-data-sources)
     * [Molecular Results](#molecular-results)
     * [Genomic Data](#genomic-data)
+    * [RClone](#rclone)
     * [Outdated](#outdated)
 * [ETL](#etl)
 * [Data Warehouse](#data-warehouse)
@@ -69,8 +70,12 @@ There are other enrollment data sources that have not been converted to REDCap p
 ##### Kaiser Permanente (KP)
 * CSV uploaded by KP partner to the Kaiser secure file transfer (biannual)
 * Requires manual download, parse and upload
+##### Public Health Seattle King County (PHSKC)
+* Excel file uploaded to shared sharepoint directory
+* [RClone](#rclone) is used to sync files between a shared Sharepoint directory and our S3 receiving area.
+* [Cronjobs] set up to parse and upload PHSKC data.
 
-Both SCH and KP data are parsed and uploaded to ID3C table `receiving.clinical`
+SCH, KP, and PHSKC data are parsed and uploaded to ID3C table `receiving.clinical`
 * See detailed script in [ID3C-customizations](https://github.com/seattleflu/id3c-customizations/blob/master/lib/seattleflu/id3c/cli/command/clinical.py).
 
 #### Molecular Results
@@ -110,6 +115,39 @@ We receive molecular assay results from multiple sources, with the bulk of them 
 * Currently only assembling Influenza and SARS-CoV-2 positive samples.
 * The SFS assembly pipeline automatically POSTs complete Influenza genomes to ID3C table `receiving.consensus_genome`
 * SARS-CoV-2 genomes are not currently uploaded to ID3C due to the database not set up to limit access to them from the general study group.
+
+#### RClone
+
+We use RClone to sync data that has been shared with the team through Sharepoint. It is a little bit of a wonky process to use Sharepoint in this way, but detailed steps for setting up Rclone with respect to Sharepoint and S3 data ingestion in the context of PHSKC data is included below. 
+
+You cannot see files that have been shared with you from Rclone, so you will have to use the Microsoft Graph API to list them.  Navigate to the [graph explorer page](https://developer.microsoft.com/en-us/graph/graph-explorer) and sign in using the `sfs-service@uw.edu` account (password in LastPass). In the menu on the left of the screen, scroll down and expand the `OneDrive` section. Then click the GET query for `files shared with me`. The URL we need to configure RClone is under the `"remoteItem": "webDavUrl": <URL We Need>`. Make sure to select the URL for the correct shared item. Notice that the URL is encoded - you will need to decode it before using it with RClone. For additional help with the above steps, see [this page](https://www.zuar.com/blog/using-rclone-for-sharepoint-shared-files/).
+
+Now that we have this url, we can continue with the RClone CLI. Execute the command `rclone config`, then select the option for a new remote. For name, enter `phskc-onedrive`. For the storage configuration select `webdav`, then paste in the URL from the last step when it asks for the URL of the host to connect to. For the name of the service, select `sharepoint`. For user, enter `sfs-service@uw.edu` and then enter the password shared on LastPass as the password. You can leave the bearer token empy and skip editing of the advanced config. You can confirm your remote is set up correctly by running `rclone ls phskc-onedrive:`, which should list out all files shared with the `sfs-service` account for the PHSKC project.
+
+Connecting to S3 is a simpler process. Again start by creating a new remote and entering `phskc-bbi-s3` for the name. Select `s3` for the storage configuration and then select `AWS` for the provider. You can choose to either use AWS credentials from the environment or store them with RClone. If you choose to store them with RClone you will have to enter values for your Access Key and Secret. For the region, enter `us-west-2` and leave the S3 API blank. For location constraint, also enter `us-west-2` and set the ACL to `private`. Choose `AES256` for the default encryption and leave the `KMS ID` value blank. Finally, select the default storage class and skip editing of the advanced config. You can run `rclone ls phskc-bbi-s3:` to confirm the connection was succesful. 
+
+You can check your configuration at any time by running `rclone config dump`. If you followed the steps above, your configuration should look something like the below.
+```
+{
+       "phskc-bbi-s3": {
+	         "access_key_id": "XXXXXXXXXXXXXXXX",
+		 "acl": "private",
+		 "location_constraint": "us-west-2",
+		 "provider": "AWS",
+		 "region": "us-west-2",
+		 "secret_access_key": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+		 "server_side_encryption": "AES256",
+		 "type": "s3"
+	},
+	 "phskc-onedrive": {
+		 "pass": "XXXXXXXXXXXXXXXXXXXXXXX",
+		 "type": "webdav",
+		 "url": "https://uwnetid-my.sharepoint.com/personal/acyu_uw_edu/Documents/Central Lab SPS Leads/Seattle Flu Study Covid Surveillance/Data provided to Seattle Flu Study",
+		 "user": "sfs-service@uw.edu",
+		 "vendor": "sharepoint"
+	 }
+}
+```
 
 #### Outdated:
 We have some lingering ingest scripts from Year 1 of SFS that are no longer used.
