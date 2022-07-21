@@ -224,3 +224,88 @@ Rows in the `kit` table represent: A self-test kit connected to an encounter and
 - `rdt_sample_id`: Internal id of the [sample](#sample) collected from the residual RDT extractant; integer
 - `utm_sample_id`: Internal id of the [sample](#sample) collected from the second swap; integer
 - `details`: Additional information about this kit which does not have a place in the relational schema; jsonb
+
+## Receiving
+The receiving table stores non-relational (or minimally-relational) data before it is transformed and loaded into the warehouse
+by one of our ETL processes
+
+### Clinical
+Rows in the `clinical` table represent: A set of clinical documents; append only
+
+#### Clinical Columns
+- `clinical_id`: Internal id of this clinical record set; integer
+- `document`: JSON document created from a pre-processed Excel file; json
+- `received`: When this clinical document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+### Consensus Genome
+Rows in the `consensus_genome` table represent: A set of consensus genome documents; append only
+
+#### Consensus Genome Columns
+- `consensus_genome_id`: Internal id of this consensus genome; integer
+- `document`: Original consensus genome JSON document; json
+- `received`: When this consensus genome document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+### Enrollment
+Rows in the `enrollment` table represent: A set of enrollment documents; append only
+
+#### Enrollment Columns
+- `enrollment_id`: Internal id of this enrollment document; integer
+- `document`: Original enrollment JSON document; json
+- `received`: When this enrollment document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+### FHIR
+Rows in the `fhir` table represent: A set of [FHIR](fhir) documents; append only
+
+#### FHIR Columns
+- `fhir_ud`: Internal id of this fhir record set; integer
+- `document`: JSON document in [FHIR format](http://www.hl7.org/implement/standards/fhir/formats.html); json
+- `received`: When this FHIR document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+### Longitudinal
+Rows in the `longitudinal` table represent: A set of longitudianl documents; append only
+
+#### Longitudinal Columns
+- `longitudinal_id`: Internal id of this longitudinal document; integer
+- `document`: JSON document created from a pre-processed Excel file; json
+- `received`: When this longitudinal document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+### Manifest
+Rows in the `manifest` table represent: A set of manifest records; append only
+
+#### Manifest Columns
+- `manifest_id`: Internal id of this manifest document; integer
+- `document`: Manifest record as a JSON document; json
+- `received`: When this manifest document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+### Presence Absence
+Rows in the `presence_absence` table represent: A set of presence/absence documents; append only
+
+#### Presence Absence Columns
+- `presence_absence_id`: Internal id of this presence/absence document; integer
+- `document`: Original presence/absence JSON document; json
+- `received`: When this presence/absence document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+### REDCap DET
+Rows in the `redcap_det` table represent: A set of REDCap DET request data documents; append only
+
+#### REDCap DET Columns
+- `redcap_det_id`: Internal id of this REDCap DET document; integer
+- `document`: JSON document created from REDCap DET request data; json
+- `received`: When this REDCap DET document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+### Sequence Read Set
+Rows in the `sequence_read_set` table represent: A set of references to sequence reads; append only
+
+#### Sequence Read Set Columns
+- `sequence_read_set_id`: Internal id of this sequence read set document; integer
+- `document`: Original sequence read set JSON document; json
+- `received`: When this sequence read set document was received; timestamp
+- `processing_log`: Event log recording details of ETL into data warehouse; jsonb
