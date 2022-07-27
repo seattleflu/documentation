@@ -309,3 +309,25 @@ Rows in the `sequence_read_set` table represent: A set of references to sequence
 - `document`: Original sequence read set JSON document; json
 - `received`: When this sequence read set document was received; timestamp
 - `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+## Operations
+
+### Deliverables Log
+Rows in the `deliverables_log` table represent: Deliverables sent by either our Linelist or Return of Results jobs
+
+#### Deliverables Log Columns
+- `deliverables_log_id`: Internal id of this deliverable; integer
+- `sample_barcode`: The [sample](#sample) barcode associated with this deliverable; citext
+- `collection_barcode`: The collection barcode associated with this deliverable; citext
+- `details`: Additional information about this deliverable which does not have a place in the relational schema; jsonb
+- `process_name`: The process which sent this deliverable; text
+- `sent`: When this deliverable was sent; timestamp
+
+### Test Quota
+Rows in the `test_quota` table represent: Quota entries for HCT testing invites
+
+#### Test Quota Columns
+- `name`: Name of the process using this quota; text
+- `timespan`: Timespan during which this quota is active; timestamp range
+- `max`: The maximum number of testing entries alloted to this entry timespan; integer
+- `used`: The number of testing entries currently used during this entry timespan; integer
