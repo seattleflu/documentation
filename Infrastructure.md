@@ -139,16 +139,15 @@ apex (i.e. seattleflu.org).
 [More details](https://devcenter.heroku.com/articles/custom-domains#configuring-dns-for-root-domains)
 
 
+
 ## Email
 
-Email services are provided by [SendGrid](https://sendgrid.com) via their
-partnership program with Azure.  We purchase a "silver" subscription, which is
-the lowest-priced level that provides a dedicated IP address for the delivering
-mail servers.  The account is managed and accessed via the [Azure portal][]
-under the "seattleflu" resources group.
+Email services are provided by [AWS SES](https://aws.amazon.com/ses/).  
+The account is managed and accessed via the AWS portal.
 
-Limited, send-only SendGrid API keys are minted for each of our services which
-needs to send email.  Currently this includes:
+Limited, send-only AWS IAM users and associated SMTP credentials for SES
+are minted for each of our services which needs to send email.  Currently 
+this includes:
 
 * Postfix on backoffice.seattleflu.org (e.g. for cron job emails)
 * Metabase for alerts and "pulses"
@@ -168,7 +167,6 @@ job is running as (usually `ubuntu` for us) or to the value of `MAILTO` if set
 in the crontab (usually not for us).
 
 
-[Azure portal]: https://portal.azure.com
 [sqitch]: https://sqitch.org/
 [password file]: https://www.postgresql.org/docs/10/libpq-pgpass.html
 [connection service file]: https://www.postgresql.org/docs/10/libpq-pgservice.html
