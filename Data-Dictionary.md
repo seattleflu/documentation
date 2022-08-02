@@ -36,7 +36,13 @@ have been preserved where possible.
     - [Genome Submission Metadata v1](#genome-submission-metadata-v1)
     - [Sample with Best Available Encounter Data v1](#sample-with-best-available-encounter-data-v1)
     - [Incidence Model Observation v4](#incidence-model-observation-v4)
-    - [Scan Encounters with Best Available Vaccination Data v1](#scan-encounters-with-best-available-vaccination-data-v1)
+    - [Observation With Presence Absence Result V3](#observation-with-presence-absence-result-v3)
+    - [FHIR Encounter Details V2](#fhir-encounter-details-v2)
+    - [SCAN Enrollments V1](#scan-enrollments-v1)
+    - [SCAN Encounters with Best Available Vaccination Data v1](#scan-encounters-with-best-available-vaccination-data-v1)
+    - [SCAN Encounters V1](#scan-encounters-v1)
+    - [UW Reopening Encounters V1](#uw-reopening-encounters-v1)
+    - [UW Reopening Enrollment FHIR Encounter Details V1](#uw-reopening-enrollment-fhir-encounter-details-v1)
 - [Operations](#operations)
     - [Deliverables Log](#deliverables-log)
     - [Test Quota](#test-quota)
@@ -309,6 +315,155 @@ Rows in the `sequence_read_set` table represent: A set of references to sequence
 - `document`: Original sequence read set JSON document; json
 - `received`: When this sequence read set document was received; timestamp
 - `processing_log`: Event log recording details of ETL into data warehouse; jsonb
+
+## Shipping
+Outgoing warehouse data prepared for external consumers
+
+### FHIR Questionnaire Responses V1
+`fhir_questionnaire_responses_v1` is a view of FHIR Questionnaire Responses stored in an [encounter's](#encounter) details
+
+#### FHIR Questionnaire Responses V1 Columns
+- `encounter_id`: Internal id of the [encounter](#encounter) this response is linked with; integer
+- `link_id`: Identifier of the question this response relates to; text
+- `string_response`: If the response to the question is a string, it is present in this field; text[]
+- `boolean_response`: If the response to the question is a boolean, it is present in this field; boolean
+- `date_response`: If the response to the question is a date, it is present in this field; text[]
+- `integer_response`: If the response to the question is an integer, it is present in this field; integer[]
+- `numeric_response`: If the response to the question is numeric, it is present in this field; numeric[]
+- `code_response`: If the response to this question is encoded, it is present in this field; text[]
+
+### Genome Submission Metadata V1
+`genome_submission_metadata_v1` is a view of minimal metadata used for consensus genome submissions
+
+#### Genome Submission Metadata V1 Columns
+- `sfs_sample_identifier`: A unique external [identifier](#identifier) assigned to this [sample](#sample); text
+- `sfs_sample_barcode`: Short suffix of UUID (CualID) used as a tracking barcode, relates to the sample [identifier](#identifier); citext
+- `sfs_collection_barcode`: Short suffix of UUID (CualID) used as a tracking barcode, relates to the collection [identifier](#identifier); citext
+- `collection_date`: The date on which this sample was collected; timestamp
+- `swab_type`: The type of swab used to collect the sample (e.g. `ans`, `mtp`, `np`); text
+- `source`: The study group for which this sample belongs to (e.g. `SCH`, `SFS`, `AIRS`, etc.); text
+- `puma`: The puma code associated with the collection of this sample; text
+- `county`: The county to which the census tract associated with the collection of this sample; text
+- `state`: The state associated with the collection of this sample; text
+- `baseline_surveillance`: Whether or not this sample can be considered baseline surveillance; This includes samples that were randomly sampled for genomic surveillance, not identified in a targeted sampling effort, and/or sampled across targeted efforts in order to better represent a community; For more details see descriptions [here](https://www.aphl.org/programs/preparedness/Crisis-Management/Documents/Technical-Assistance-for-Categorizing-Baseline-Surveillance-Update-Oct2021.pdf); boolean
+
+### HCOV19 Presence Absence Result V1
+`hcov19_presence_absence_result_v1` is a view of hCov-19 Samples with Non-Clinical Presence / Absence Results
+
+#### HCOV19 Presence Absence Result V1 Columns
+- `presence_absence_id`: Internal id of the [presence / absence](#presence-absence) result this result is linked with; integer
+- `result_ts`: The timestamp associated with when this result was released. Note that this is the internal samplify timestamp (in PST) when the result was released if it is after 2022-07-18, the internal samplify timestamp (in GMT) if it is after 2022-06-09 (but before 2022-07-18), or the last modified date of the record if it is before 2022-06-09; timestamp
+- `hcov19_result_release_date`: The timestamp when this record was created; timestamp
+- `target`: Internal id of the [target](#target) for the presence/absence test; integer
+- `organism`: Internal id of the [organism](#organism) detected by this target; most-specific available; integer
+
+### Incidence Model Observation V4
+`incidence_model_observation_v4` is a view of warehoused samples and important questionnaire responses for modeling and visualization
+
+#### Incidence Model Observation V4 Columns
+- `encounter`: External identifier for this [encounter](#encounter); case-sensitive; text
+- `encountered_week`: The week during which this encounter occurred; text
+- `site`: External identifier for the [site](#site) at which this encounter occurred; text
+- `site_type`: Classification of the role of a [site](#site) (e.g. retrospective, clinical); text
+- `individual`: External identifier for this [individual](#individual) (e.g. study participant id); text
+- `sex`: Sex assigned at birth; assigned-sex (see fhir documentation [here](<http://www.hl7.org/implement/standards/fhir/codesystem-administrative-gender.html>))
+- `age_bin_fine`: Five year range into which an individual's age at encounter falls; intervalrange
+- `age_range_fine_lower`: Lower bound of the above five year range; inclusive; numeric
+- `age_range_fine_upper`: Upper bound of the above five year range; exclusive; numeric
+- `age_range_coarse`: Coarse age range into which an individual's age at encounter falls; intervalrange
+- `age_range_coarse_lower`: Lower bound of the above coarse age range; inclusive; numeric
+- `age_range_coarse_upper`: Upper bound of the above coarse age range; exclusive; numeric
+- `address_identifier`:  External identifier by which this residence [location](#location) is known; citext
+- `residence_census_tract`: Census tract containing this residence in the [location](#location) hierearchy; text
+- `residence_puma`: Puma code associated with this residence in the [location](#location) hierarchy; text
+- `flu_shot`: Whether or not this individual had received a flu shot when encountered; boolean
+- `symptoms`: Symptoms experienced by the individual at the time of encounter; text array
+- `manifest_origin`: The origin of the sample (e.g. `hmc_retro`, `sch_retro`); text
+- `swab_type`: The type of swab used to collect the sample (e.g. `ans`, `mtp`, `np`); text
+- `collection_matrix`: The collection matrix method for this sample (e.g. `dry`, `utm_vtm`); text
+- `sample`: A unique external [identifier](#identifier) assigned to this [sample](#sample); text
+
+### Observation With Presence Absence Result V3
+`observation_with_presence_absence_result_v3` is a view joining the `incidence_model_observation_v4`, the `presence_absence_result_v2`, and the `hcov19_observation_v1` views.
+
+#### Observation With Presence Absence Result V3 Columns
+- `target`: Internal id of the [target](#target) for the presence/absence observation; integer
+- `organism`: Internal id of the [organism](#organism) detected by this target; most-specific available; integer
+- `present`: The result of a presence/absence test. True if the target is found, False if not, null if inconclusive; boolean
+- `presence`: The result of a presence/absence test. 1 if the target is found, 0 if not, null if inconclusive; integer
+- `device`: The device this presence/absence test was run on (e.g. `TaqmanQPCR`, `OpenArray`); text
+- `assay_type`: The category of the assay for this test (e.g. `Clia`, `Research`); text
+- all other columns are defined above in the documentation for `incidence_model_observation_v4`.
+
+### Sample With Best Available Encounter Data V1
+`sample_with_best_available_encounter_data_v1` is a view of warehoused samples combined with best available envounter date and site details.
+
+#### Sample With Best Available Encounter Data V1 Columns
+- `sample_id`: Internal id of this [sample](#sample); integer
+- `has_encounter_data`: Whether or not this sample has associated encounter data; boolean
+- `best_available_encounter_date`: The date on which the best available encounter occurred; date
+- `season`: Season during which this encounter occurred; Y1 is prior to October 1st 2019, Y2 prior to November 1st 2020, Y3 prior to November 1st 2021, and Y4 prior to November 1st 2022; text
+- `best_available_site_id`: Internal identifier for the [site](#site) where this encounter took place; integer
+- `best_available_site`: External identifier for the [site](#site) where this encounter took place; text
+- `best_available_site_type`: Classification of the role of a [site](#site) (e.g. `retrospective`, `clinical`) where this encounter took place; text
+- `best_available_site_category`: Classification of the category of a [site](#site) (e.g. `community`, `hospital`) where this encounter took place; text
+
+### FHIR Encounter Details V2
+`fhir_encounter_details_v2` is a view of SCAN encounter data in the FHIR format.
+
+#### FHIR Encounter Details V2 Columns
+For additional details about columns in this view, check out the REDCap codebook for the project [at this location](https://redcap.iths.org/redcap_v12.3.3/Design/data_dictionary_codebook.php?pid=22461). The full column list is excluded here due to its length.
+
+### SCAN Enrollments V1
+`scan_enrollments_v1` is a view of enrollment data from the SCAN project.
+
+#### SCAN Enrollments V1 Columns
+- `illness_questionnaire_date`: The date on which the illness questionnaire for this enrollment was completed; text
+- `scan_study_arm`: The study arm under which this enrollment occurred; text
+- `priority_code`: The priority code, if it exists, used by the participant when creating this enrollment; text
+- `puma`: The puma code for the location associated with this enrollment record; text
+- `neighborhood_district`: The neighborhood associated with this location (e.g. `ballard`, `downtown`, `lake_union`); text
+- `geo_location_name`: The area name based off the Puma location associated with this enrollment. See [descriptions](https://www2.census.gov/geo/pdfs/reference/puma/2010_PUMA_Names.pdf); text
+- `kit_received`: Whether or not a kit was sent along with the enrollment for this participant; boolean
+
+### SCAN Encounters With Best Available Vaccination Data V1
+`scan_encounters_with_best_available_vaccination_data_v1` is a view of SCAN encounters with best available vaccination data transformation applied
+
+#### SCAN Encounters With Best Available Vaccination Data V1 Columns
+- `individual`: External identifier for this [individual](#individual) (e.g. study participant id); text
+- `encounter_id`: Internal id of this [encounter](#encounter); integer
+- `encountered`: Date on which this [encounter](#encounter) occurred; date
+- `pt_entered_covid_vax`: Whether or not an individual reported covid vaccine information for this encounter; text
+- `pt_entered_covid_doses`: The number of doses of a covid vaccine an individual reported having had for this encounter; text
+- `calculated_covid_doses`: The number of doses it was calculated an individual had at this encounter; text
+- `calculated_vac_date_1`: The calculated date at which an individual got their first dose of the vaccine (most common first dose date); text
+- `calculated_vac_name_1`: The calculated vaccine name of an individual's first dose (most common name); text
+- `calculated_vac_date_2`:The calculated date at which an individual got their second dose of the vaccine (most common second dose date); text
+- `calculated_vac_name_2`: The calculated vaccine name of an individual's second dose (most common name); text
+- `calculated_vac_date_3`: The calculated date at which an individual got their third dose of the vaccine (most common third dose date); text
+- `calculated_vac_name_3`: The calculated vaccine name of an individual's third dose (most common name); text
+- `vac_date_1_out_of_range`: Whether the first dose date is out of order given the other calculated dates; This can nullify or alter the calculated `best_available_vac_status` for an individual; integer
+- `vac_date_2_out_of_range`: Whether the second dose date is out of order given the other calculated dates; This can nullify or alter the calculated `best_available_vac_status` for an individual; integer
+- `vac_date_3_out_of_range`: Whether the third dose date is out of order given the other calculated dates; This can nullify or alter the calculated `best_available_vac_status` for an individual; integer
+- `best_available_vac_status`: The best available vaccination status for an individual given the calculations above; possible values are `not_vaccinated`, `boosted`, `fully_vaccinated`, `invalid`, `partially_vaccindated`, `unknown`; text
+
+### SCAN Encounters V1
+`scan_encounters_v1` is a view of encounter data from the SCAN project. Note that duplicate encounters in this view may exist if an encounter encompasses multiple tests. This can happen in rare occasions when 2 kits are sent out for an encounter and registered in REDCap, with one kit on the incident report and not-tested and one kit tested.
+
+#### SCAN Encounters V1 Columns
+For additional details about columns in this view, check out the REDCap codebook for the project [at this location](https://redcap.iths.org/redcap_v12.3.3/Design/data_dictionary_codebook.php?pid=22461). The full column list is excluded here due to its length.
+
+### UW Reopening Encounters V1
+`uw_reopening_encounters_v1` is a view of encounter data tied to enrollment questionnaire data for HCT encounters.
+
+#### UW Reopening Encounters V1 Columns
+For additional details about columns in this view, check out the REDCap codebook for the project [at this location](https://hct.redcap.rit.uw.edu/redcap_v12.3.3/Design/data_dictionary_codebook.php?pid=148). The full column list is excluded here due to its length.
+
+### UW Reopening Enrollment FHIR Encounter Details V1
+`uw_reopening_enrollment_fhir_encounter_details_v1` is a view of enrollment details in the FHIR format.
+
+#### UW Reopening Enrollment FHIR Encounter Details V1 Columns
+For additional details about the columns in this view, check out the REDCap codebook for the project [at this location](https://hct.redcap.rit.uw.edu/redcap_v12.3.3/Design/data_dictionary_codebook.php?pid=148). The full column list is excluded here due to its length.
 
 ## Operations
 
