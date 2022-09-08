@@ -129,20 +129,20 @@ Next from the new app registration's overview page, click on "Endpoints" and rec
 
 Now that we have these values, we can continue with the RClone CLI. Execute the command `rclone config` on your local machine, then select the option for a new remote. For name, enter `phskc-onedrive-aad` (aad: Azure Active Directory). For the storage configuration select `onedrive`. Next enter the `client_id` and `client_secret` values created above.  For region, select `global`. For "Edit advanced config" select no. For "Use auto config" select yes, which will launch your browser to authenticate. Make sure you are signed in as `sfs-service@uw.edu` before granting permissions to rclone. After successful authentication, select `onedrive` as the `config_type` and use the default `config_driveid` value (we will override this with `--onedrive-drive-id` when copying from the shared folder). Confirm the settings  and quit config.
 
-Two additional options need to be set. Run `rclone config file` to find its location, then open it with a text editor. In the `[phskc-onedrive-aad]` entry, add the following rows:
+Two additional options need to be set. Run `rclone config file` to find its location, then open it with a text editor. In the `[phskc-onedrive-aad]` entry, add the following rows with urls found above:
 ```
-auth_url = <Auth url>
-token_url = <Token url>
+auth_url = https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/authorize
+token_url = https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token
 ```
 
-If configured correctly, you should be able to list the shared folder contents with:
+If configured correctly, you should be able to list the shared folder contents with (single quotes are needed around `<drive_id>` value):
 ```
-rclone ls phskc-onedrive-aad: --onedrive-drive-id='<drive id>' --onedrive-root-folder-id=<root folder id>
+rclone ls phskc-onedrive-aad: --onedrive-drive-id='<drive-id>' --onedrive-root-folder-id=<root-folder-id>
 ```
 
 The [phskc-onedrive-aad] config entry from your local can then be copied into the rclone config file on production, followed by the same test.
 
-Connecting to S3 is a simpler process. Again start by creating a new remote and entering `phskc-bbi-s3` for the name. Select `s3` for the storage configuration and then select `AWS` for the provider. You can choose to either use AWS credentials from the environment or store them with RClone. If you choose to store them with RClone you will have to enter values for your Access Key and Secret. For the region, enter `us-west-2` and leave the S3 API blank. For location constraint, also enter `us-west-2` and set the ACL to `private`. Choose `AES256` for the default encryption and leave the `KMS ID` value blank. Finally, select the default storage class and skip editing of the advanced config. You can run `rclone ls phskc-bbi-s3:` to confirm the connection was succesful. 
+Connecting to S3 is a simpler process. Again start by creating a new remote and entering `phskc-bbi-s3` for the name. Select `s3` for the storage configuration and then select `AWS` for the provider. You can choose to either use AWS credentials from the environment or store them with RClone. If you choose to store them with RClone you will have to enter values for your Access Key and Secret. For the region, enter `us-west-2` and leave the S3 API blank. For location constraint, also enter `us-west-2` and set the ACL to `private`. Choose `AES256` for the default encryption and leave the `KMS ID` value blank. Finally, select the default storage class and skip editing of the advanced config. You can run `rclone ls phskc-bbi-s3:` to confirm the connection was successful. 
 
 You can check your configuration at any time by running `rclone config dump`. If you followed the steps above, your configuration should look something like the below.
 ```
@@ -157,12 +157,15 @@ You can check your configuration at any time by running `rclone config dump`. If
 		 "server_side_encryption": "AES256",
 		 "type": "s3"
 	},
-	 "phskc-onedrive": {
-		 "pass": "XXXXXXXXXXXXXXXXXXXXXXX",
-		 "type": "webdav",
-		 "url": "https://uwnetid-my.sharepoint.com/personal/acyu_uw_edu/Documents/Central Lab SPS Leads/Seattle Flu Study Covid Surveillance/Data provided to Seattle Flu Study",
-		 "user": "sfs-service@uw.edu",
-		 "vendor": "sharepoint"
+	 "phskc-onedrive-aad": {
+		 "auth_url": "https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/authorize",
+		 "token_url": "https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token",
+		 "type": "onedrive",
+		 "drive_id": "<default drive id>",
+		 "drive_type": "business",
+		 "token": "<token-json>",
+		 "client_id": "<client-id>",
+		 "client_secret": "<client-secret>"
 	 }
 }
 ```
