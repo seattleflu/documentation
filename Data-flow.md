@@ -118,11 +118,29 @@ We receive molecular assay results from multiple sources, with the bulk of them 
 
 #### RClone
 
-We use RClone to sync data that has been shared with the team through Sharepoint. It is a little bit of a wonky process to use Sharepoint in this way, but detailed steps for setting up Rclone with respect to Sharepoint and S3 data ingestion in the context of PHSKC data is included below. 
+We use RClone to sync data that has been shared with the team through Sharepoint/OneDrive. It is a little bit of a wonky process to use in this way, but detailed steps for setting up Rclone with respect to OneDrive and S3 data ingestion in the context of PHSKC data is included below. 
 
-You cannot see files that have been shared with you from Rclone, so you will have to use the Microsoft Graph API to list them.  Navigate to the [graph explorer page](https://developer.microsoft.com/en-us/graph/graph-explorer) and sign in using the `sfs-service@uw.edu` account (password in LastPass). In the menu on the left of the screen, scroll down and expand the `OneDrive` section. Then click the GET query for `files shared with me`. The URL we need to configure RClone is under the `"remoteItem": "webDavUrl": <URL We Need>`. Make sure to select the URL for the correct shared item. Notice that the URL is encoded - you will need to decode it before using it with RClone. For additional help with the above steps, see [this page](https://www.zuar.com/blog/using-rclone-for-sharepoint-shared-files/).
+You cannot see files that have been shared with you from Rclone, so you will have to use the Microsoft Graph API to list them.  Navigate to the [graph explorer page](https://developer.microsoft.com/en-us/graph/graph-explorer) and sign in using the `sfs-service@uw.edu` account (password in LastPass). In the menu on the left of the screen, scroll down and expand the `OneDrive` section. Then click the GET query for `files shared with me`. Find the entry for with `"name": "Data provided to Seattle Flu Study"`. The `"id"` value will be passed with `--onedrive-root-folder-id` when copying files. Find the `"driveId"` value under `"parentReference"`, which will be passed as `--onedrive-drive-id`.
 
-Now that we have this url, we can continue with the RClone CLI. Execute the command `rclone config`, then select the option for a new remote. For name, enter `phskc-onedrive`. For the storage configuration select `webdav`, then paste in the URL from the last step when it asks for the URL of the host to connect to. For the name of the service, select `sharepoint`. For user, enter `sfs-service@uw.edu` and then enter the password shared on LastPass as the password. You can leave the bearer token empy and skip editing of the advanced config. You can confirm your remote is set up correctly by running `rclone ls phskc-onedrive:`, which should list out all files shared with the `sfs-service` account for the PHSKC project.
+The rclone configuration also requires a client id and secret to authenticate using UW IT Azure AD. To set this up, log into portal.azure.com using the `sfs-service@uw.edu` account and search for Azure Active Directory. Click on "App Registrations" then "+ New Registration" button. Provide a name for the app, select "UW Only - Single tenant)" as supported account type, and Redirect URI select "Web" and enter "http://127.0.0.1:53682/" (see rclone onedrive documentation: https://rclone.org/onedrive/). After the app is registered, get the `"Application (client) ID"` value to use in rclone config. Next click on "Certificates & Secrets" and "Client Secrets" then "+ New Client Secret". Provide a description and expiration, then record the secret value to use in rclone config.
+
+Next from the new app registration's overview page, click on "Endpoints" and record the "OAuth 2.0 authorization endpoint (v2)" and 
+"OAuth 2.0 token endpoint (v2) values", to be used as `auth_url` and `token_url` in the manual rclone configuration step below.
+
+Now that we have these values, we can continue with the RClone CLI. Execute the command `rclone config` on your local machine, then select the option for a new remote. For name, enter `phskc-onedrive-aad` (aad: Azure Active Directory). For the storage configuration select `onedrive`. Next enter the `client_id` and `client_secret` values created above.  For region, select `global`. For "Edit advanced config" select no. For "Use auto config" select yes, which will launch your browser to authenticate. Make sure you are signed in as `sfs-service@uw.edu` before granting permissions to rclone. After successful authentication, select `onedrive` as the `config_type` and use the default `config_driveid` value (we will override this with `--onedrive-drive-id` when copying from the shared folder). Confirm the settings  and quit config.
+
+Two additional options need to be set. Run `rclone config file` to find its location, then open it with a text editor. In the `[phskc-onedrive-aad]` entry, add the following rows:
+```
+auth_url = <Auth url>
+token_url = <Token url>
+```
+
+If configured correctly, you should be able to list the shared folder contents with:
+```
+rclone ls phskc-onedrive-aad: --onedrive-drive-id='<drive id>' --onedrive-root-folder-id=<root folder id>
+```
+
+The [phskc-onedrive-aad] config entry from your local can then be copied into the rclone config file on production, followed by the same test.
 
 Connecting to S3 is a simpler process. Again start by creating a new remote and entering `phskc-bbi-s3` for the name. Select `s3` for the storage configuration and then select `AWS` for the provider. You can choose to either use AWS credentials from the environment or store them with RClone. If you choose to store them with RClone you will have to enter values for your Access Key and Secret. For the region, enter `us-west-2` and leave the S3 API blank. For location constraint, also enter `us-west-2` and set the ACL to `private`. Choose `AES256` for the default encryption and leave the `KMS ID` value blank. Finally, select the default storage class and skip editing of the advanced config. You can run `rclone ls phskc-bbi-s3:` to confirm the connection was succesful. 
 
