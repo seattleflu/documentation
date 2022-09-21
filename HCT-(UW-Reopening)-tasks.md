@@ -1,4 +1,6 @@
 # Populating the quota
+**Note: As of July 2022, this is no longer necessary as Y3 HCT does not need this for testing invites.**
+
 The clinical team maintains a spreadsheet (link purposefully not put into this wiki because it's public, see Slack thread https://seattle-flu-study.slack.com/archives/C018V0WGGJ0/p1616786475040200) that sets the quota that the 
 offer_uw_testing job should use for each day. The spreadsheet is updated on Fridays to include quota for the next week.
 
@@ -73,6 +75,8 @@ Open questions:
 2. The receiving.fhir records contain the encounters that we just deleted. If we ever reprocess those then the encounters will get re-created. It would be cleaner to find and delete the related FHIR records, but there will be lots.
 
 # Deleting record from husky musher cache
+**Note: As of Sep 2022, we have a nightly job that should pickup redcap record deletions automatically and delete associated entries from the cache.**
+
 If a record has been deleted, we should manually delete the participant's lookup from the husky musher cache so it redoes the redcap fetch on the next lookup.
 
 To do so, on production:
