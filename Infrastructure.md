@@ -166,6 +166,36 @@ wrap cron job commands to affect this behaviour.)  Mail is sent to the user the
 job is running as (usually `ubuntu` for us) or to the value of `MAILTO` if set
 in the crontab (usually not for us).
 
+### Rotating keys for SES IAM users
+
+To rotate the keys for the SES IAM users, follow the steps for creating a new key
+pair and then convert the secret key to an SMTP password using these instructions:
+https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html#smtp-credentials-convert
+
+To update the credentials in Metabase via the UI, go to Admin -> Settings -> Email and enter the
+access key as SMTP username and the converted secret key as SMTP password.
+
+To update the credentials for Postfix, shell into backoffice server and update `/etc/postfix/saslpass`
+with the new credentials:
+```
+[email-smtp.us-west-2.amazonaws.com]:587 <AWS_ACCESS_KEY_ID>:<SMTP_PASSWORD_FROM_AWS_SECRET_ACCESS_KEY>
+```
+Then run:
+```
+sudo postmap hash:/etc/postfix/saslpass
+
+sudo postfix status
+sudo postfix reload
+sudo postfix status
+```
+To send a test email with postfix, use this command (replace `recipient@example.com` with your email, press enter after each line):
+```
+sendmail -f root@backoffice.seattleflu.org recipient@example.com
+From: <root@backoffice.seattleflu.org>
+Subject: Amazon SES Test                
+This message was sent using Amazon SES. 
+.
+```
 
 [sqitch]: https://sqitch.org/
 [password file]: https://www.postgresql.org/docs/10/libpq-pgpass.html
