@@ -137,8 +137,9 @@ You will need access to the following:
 ## LastPass
 LastPass is a UW-approved password management tool and is utilized by SFS developers to manage individual private and team shared passwords, keys, and secret keys. More information on LastPass can be found [here.](https://itconnect.uw.edu/wares/mws/my-workstation/security/lastpass/)
 
-Enrolling in UW's LastPass Enterprise account requires specific steps. (Please note, order of operations here is critical! If you do not complete these steps in order, your account may not be configured correctly):
-1. Request an account through UW using your NetID. Visit this [page](https://groups.uw.edu/group/u_passman_users_requested) and click "Join this group".
+Enrolling in UW's LastPass Enterprise account requires specific steps. (Please note, order of operations here is critical! If you do not complete these steps in order, your account may not be configured correctly):  
+
+1. Request an account through UW using your NetID. Visit this [page](https://groups.uw.edu/group/u_passman_users_requested) and click "Join this group". If you do not see an option to join the group, someone will need to add you to your team's LastPass UW group (for example, uw_gs_bbi_lastpass) first. Then you can return to the link in this step and join the u_passman_users_requested group.
 2. Wait (up to 60 minutes) to receive an email from LastPass to activate your account. Follow the link in that email to reset your master password.
 3. After resetting your master password, download and install the appropriate LastPass browser extension or log in directly through the [LastPass](https://www.lastpass.com/) website.
 
