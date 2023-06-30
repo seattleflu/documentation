@@ -74,13 +74,15 @@ bash --version
 ```
 
 ---
-## Create a PostgreSQL 10 instance using Postgres.app
+## Create a PostgreSQL 13 instance using Postgres.app
 
 1. Launch Postgres from Applications folder. 
 2. Click the show panel button in the bottom left corner.
 3. Click the + button to add a new PostgreSQL instance.
-4. Name the new instance and select version 10 from the dropdown. Leave port as 5432.
+4. Name the new instance and select version 13 from the dropdown. Leave port as 5432.
 5. Press 'Create Server' button.
+6. Optionally, under 'Server Settings' press 'Change password' and set a password. If you do set a password, be sure to add it to your .pgpass file, covered later in this document.
+7. Press 'Initialize' to start the server.
 
 You should now have a PostgreSQL server running with these default settings:
 - Host: localhost
@@ -89,11 +91,11 @@ You should now have a PostgreSQL server running with these default settings:
 - Database: _same as user_
 - Password: _none_
 
-## Add Postgres 10 binary folder to PATH
+## Add Postgres 13 binary folder to PATH
 
 Add the following line to ~/.zshrc:
 ```
-export PATH=$PATH:/Applications/Postgres.app/Contents/versions/10/bin
+export PATH=$PATH:/Applications/Postgres.app/Contents/versions/13/bin
 ```
 Then close and restart terminal. You should now be able to run psql from anywhere.
 ```
