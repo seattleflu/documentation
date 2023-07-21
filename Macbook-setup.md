@@ -188,7 +188,7 @@ https://redcap.iths.org/api/
 
 We store Redcap API tokens using this file naming convention: REDCAP_API_TOKEN_redcap.iths.org_{PROJECT_ID}. 
 
-Log in to the REDCap instance, open a specific project, note the project ID (pid) value in the URL, and click "API" from in the sidebar menu. Generate an API token and save the value in a new file ~/workspace/seattleflu/env.d/redcap/REDCAP_API_URL_redcap.iths.org_{PROJECT_ID}
+Log in to the REDCap instance, open a specific project, note the project ID (pid) value in the URL, and click "API" from in the sidebar menu. Generate an API token and save the value in a new file ~/workspace/seattleflu/env.d/redcap/REDCAP_API_TOKEN_redcap.iths.org_{PROJECT_ID}
 
 _Note: These environment variable files and others can be added later as you need them._
 
